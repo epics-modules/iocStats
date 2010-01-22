@@ -1,0 +1,27 @@
+record(ai, "$(IOCNAME):CLUST_$(P)_$(S)_0") {
+  field(DESC, "$(TYPE) Size")
+  field(DTYP, "IOC stats clusts")
+  field(INP, "@clust_info $(P) $(S) 0")
+  field(FLNK, "$(IOCNAME):CLUST_$(P)_$(S)_1")
+}
+
+record(ai, "$(IOCNAME):CLUST_$(P)_$(S)_1") {
+  field(DESC, "$(TYPE) Clusters")
+  field(DTYP, "IOC stats clusts")
+  field(INP, "@clust_info $(P) $(S) 1")
+  field(FLNK, "$(IOCNAME):CLUST_$(P)_$(S)_2")
+}
+
+record(ai, "$(IOCNAME):CLUST_$(P)_$(S)_2") {
+  field(DESC, "$(TYPE) Free")
+  field(DTYP, "IOC stats clusts")
+  field(INP, "@clust_info $(P) $(S) 2")
+  field(FLNK, "$(IOCNAME):CLUST_$(P)_$(S)_3")
+}
+
+record(ai, "$(IOCNAME):CLUST_$(P)_$(S)_3") {
+  field(DESC, "$(TYPE) Usage")
+  field(DTYP, "IOC stats clusts")
+  field(INP, "@clust_info $(P) $(S) 3")
+  field(FLNK, "$(FLNK)")
+}

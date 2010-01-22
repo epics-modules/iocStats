@@ -1,0 +1,1001 @@
+4 0 1
+beginScreenProperties
+major 4
+minor 0
+release 1
+x 248
+y 77
+w 480
+h 310
+font "helvetica-bold-r-18.0"
+ctlFont "helvetica-bold-r-18.0"
+btnFont "helvetica-bold-r-18.0"
+fgColor index 14
+bgColor index 7
+textColor index 14
+ctlFgColor1 index 14
+ctlFgColor2 index 1
+ctlBgColor1 index 3
+ctlBgColor2 index 49
+topShadowColor index 1
+botShadowColor index 14
+title "$(ioc) $(name) Pool"
+showGrid
+snapToGrid
+gridSize 5
+endScreenProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 10
+y 50
+w 455
+h 250
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 365
+y 140
+w 85
+h 25
+controlPv "$(ioc):$(pool)_MBUF_FREE"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 365
+y 195
+w 85
+h 25
+controlPv "$(ioc):$(pool)_MBUF_MAX"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 35
+y 75
+w 24
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Size"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 105
+y 75
+w 45
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Clusters"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 190
+y 75
+w 26
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Free"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 270
+y 75
+w 35
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Usage"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 205
+y 55
+w 85
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "$(name) Pool"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 95
+y 95
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_0_1"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 245
+y 95
+w 95
+h 20
+controlPv "$(ioc):CLUST_$(idx)_0_3"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 170
+y 95
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_0_2"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 15
+y 120
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_1_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 95
+y 120
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_1_1"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 245
+y 120
+w 95
+h 20
+controlPv "$(ioc):CLUST_$(idx)_1_3"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 170
+y 120
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_1_2"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 15
+y 145
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_2_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 95
+y 145
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_2_1"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 245
+y 145
+w 95
+h 20
+controlPv "$(ioc):CLUST_$(idx)_2_3"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 170
+y 145
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_2_2"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 15
+y 170
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_3_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 95
+y 170
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_3_1"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 245
+y 170
+w 95
+h 20
+controlPv "$(ioc):CLUST_$(idx)_3_3"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 170
+y 170
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_3_2"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 15
+y 195
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_4_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 95
+y 195
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_4_1"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 245
+y 195
+w 95
+h 20
+controlPv "$(ioc):CLUST_$(idx)_4_3"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 170
+y 195
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_4_2"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 15
+y 220
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_5_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 95
+y 220
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_5_1"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 245
+y 220
+w 95
+h 20
+controlPv "$(ioc):CLUST_$(idx)_5_3"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 170
+y 220
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_5_2"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 15
+y 245
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_6_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 95
+y 245
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_6_1"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 245
+y 245
+w 95
+h 20
+controlPv "$(ioc):CLUST_$(idx)_6_3"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 170
+y 245
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_6_2"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 15
+y 270
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_7_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 95
+y 270
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_7_1"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 245
+y 270
+w 95
+h 20
+controlPv "$(ioc):CLUST_$(idx)_7_3"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 170
+y 270
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_7_2"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 370
+y 120
+w 72
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Total % Free"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 390
+y 175
+w 24
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Max"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 380
+y 85
+w 49
+h 16
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "MBUFs"
+}
+autoSize
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 480
+h 40
+lineColor index 54
+fill
+fillColor index 54
+lineWidth 0
+endObjectProperties
+
+# (Exit Button)
+object activeExitButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 415
+y 10
+w 50
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+label "Exit"
+font "helvetica-medium-r-12.0"
+3d
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 310
+y 10
+w 95
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Home Screen..."
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "lcls_main"
+}
+setPosition {
+  0 "parentWindow"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 10
+y 0
+w 285
+h 40
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 53
+useDisplayBg
+value {
+  "IOC $(name) Pool Cluster Info"
+  "$(ioc)"
+}
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 15
+y 95
+w 65
+h 20
+controlPv "$(ioc):CLUST_$(idx)_0_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+

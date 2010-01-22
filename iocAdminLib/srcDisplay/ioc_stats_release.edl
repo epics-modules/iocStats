@@ -1,0 +1,571 @@
+4 0 1
+beginScreenProperties
+major 4
+minor 0
+release 1
+x 304
+y 128
+w 470
+h 350
+font "helvetica-bold-r-18.0"
+ctlFont "helvetica-bold-r-18.0"
+btnFont "helvetica-bold-r-18.0"
+fgColor index 14
+bgColor index 6
+textColor index 14
+ctlFgColor1 index 14
+ctlFgColor2 index 1
+ctlBgColor1 index 3
+ctlBgColor2 index 49
+topShadowColor index 1
+botShadowColor index 14
+title "$(ioc) Releases"
+showGrid
+snapToGrid
+gridSize 5
+endScreenProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 10
+y 50
+w 450
+h 295
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 520
+h 40
+lineColor index 54
+fill
+fillColor index 54
+lineWidth 0
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 5
+y 0
+w 293
+h 32
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 53
+useDisplayBg
+value {
+  "EPICS Software Module Releases - Page $(p)"
+  "$(ioc)"
+}
+autoSize
+endObjectProperties
+
+# (Exit Button)
+object activeExitButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 410
+y 10
+w 50
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+label "Exit"
+font "helvetica-medium-r-12.0"
+3d
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 305
+y 10
+w 95
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Home Screen..."
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "lcls_main"
+}
+setPosition {
+  0 "parentWindow"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 80
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)1"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 105
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)2"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 130
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)3"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 155
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)4"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 180
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)5"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 205
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)6"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 230
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)7"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 255
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)8"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 280
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)9"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 55
+w 210
+h 25
+controlPv "$(ioc):RELEASE$(idx)0"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 55
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)0.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 80
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)1.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 240
+y 315
+w 210
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Release Versions (Page 2),,,"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "ioc_stats_release"
+}
+setPosition {
+  0 "parentWindow"
+}
+symbols {
+  0 "ioc=$(ioc),idx=1,p=2"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 20
+y 315
+w 210
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Release Versions (Page 1),,,"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "ioc_stats_release"
+}
+setPosition {
+  0 "parentWindow"
+}
+symbols {
+  0 "ioc=$(ioc),idx=0,p=1"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 105
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)2.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 130
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)3.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 155
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)4.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 180
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)5.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 205
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)6.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 230
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)7.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 255
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)8.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 20
+y 280
+w 210
+h 20
+controlPv "$(ioc):RELEASE$(idx)9.DESC"
+fgColor index 14
+bgColor index 3
+font "helvetica-medium-r-12.0"
+lineWidth 0
+endObjectProperties
+

@@ -1,0 +1,197 @@
+Instructions for iocAdmin users                    Last Updated 07/14/2009
+--------------------------------
+
+The iocAdmin package contains databases and libraries to add ioc administration
+PVs (including STARTTOD (ioc start time), TOD (time-of-day that updates 
+every second), SYSRESET (ioc restart command), access security PVs, etc) to an 
+ioc application.  This package also supports IOC stats (devIocStats) - see 
+README_devIocStats for detail.
+
+iocAdmin also provides access.db, a database template defining records for
+device attributes that are common across many IOC applications.  See I-5 
+below for more detail.
+
+Also provided is baseSecurity.acf, an access control file with ioc-related
+access rules and groups.
+
+I - Adding the iocAdmin package to your IOC application:
+-------------------------------------------------------
+
+(1) Add IOCADMIN to configure/RELEASE and clean/rebuild configure:
+
+IOCADMIN=/afs/slac/g/lcls/epics/modules/iocAdmin/iocAdmin-R<release>
+
+(2) Link the iocAdmin libraries into your app by adding to 
+    <xxx>App/src/Makefile:
+
+   <xxx>_LIBS += devIocStats
+
+(3) Add the following .dbd files to <xxx>App/src/Makefile 
+    or to <xxx>App/src/<xxx>Include.dbd:
+
+   <xxx>_DBD += iocAdmin.dbd
+
+(4) Install the iocAdmin database and create iocRelease.db by adding to 
+    <xxx>App/Db/Makefile:
+
+   DB_INSTALLS += $(IOCADMIN)/db/iocAdmin.db      (VxWorks IOCs)
+   DB_INSTALLS += $(IOCADMIN)/db/iocAdminRTEMS.db (RTEMS   IOCs)
+   DB_INSTALLS += $(IOCADMIN)/db/iocAdminSoft.db  (soft    IOCs)
+   DB_INSTALLS += $(IOCADMIN)/db/access.db        (if required by next step)
+   DB_INSTALLS += $(IOCADMIN)/db/baseSecurity.acf
+   IOCRELEASE_DB += iocRelease.db
+
+    NOTE: The iocRelease database assumes that each 
+    module used by the application has a line in configure/RELEASE as follows:
+	<module>_MODULE_VERION =  <module>-<version>
+    It also assumes that modules are not specified in any file included
+    by configure/RELEASE.
+
+(5) For each device, or device attribute, used by higher-level software 
+    (ie, feedback), an ACCESS mode and FBCK state soft mbbo records are
+    required and used by the higher-level software to determine proper 
+    configuration and display.  Both records must be saved and restored 
+    across IOC restart.  Currently, devices requiring these records include 
+    beamline devices (ie, BPMs, bunch length monitors, toroids, faraday cups, 
+    PMTs, wire-scanners, collimators, power meters, gun RF, klystrons, 
+    cavities, and magnets).  These records may be required per device channel 
+    or device attribute instead of per device, depending on the needs of the 
+    higher-level software.  
+
+    The ACCESS record has state names of Online, Maintenance, Checkout, and 
+    Offline and is set by operations.  It is not meant to be used by Channel 
+    Access Security or for the actual device state which is set using a 
+    different record name by the IOC itself.  See iocAdminLib/Db/access.doc 
+    for requirements and discussion of the ACCESS record.
+
+    The FBCK record has state names of Off, On, and Unavailable.  
+    "Unavailable" indicates the device is not used by any feedback loop and
+    this value is set by operations.  "On" is set when ANY feedback loop is 
+    using the device, and "Off" is set when ALL feedback loops are NOT using 
+    the device.  "Off" requires feedback loops to know about each other or 
+    some sort of feedback loop management.
+
+    To create this record, make sure access.db template file is installed 
+    (see the previous the step) and include access.db in your device 
+    substitutions file for every device as follows:
+
+	file access.db
+	{
+	pattern { DEV                                             }
+		{ <device or attribute name including ALL colons> }
+	}
+    See iocAdminLib/Db/access.doc for requirements and discussion.
+
+(6) Optional - include baseSecurity.acf in any existing acf file that is
+    built in the ioc application.
+
+II - Adding iocAdmin to your IOC startup file:
+-----------------------------------------------
+
+(1) Add the following environment variables to st.cmd:
+
+	All IOCs (must be less than 40 characters):
+	   epicsEnvSet("ENGINEER","<yourname>")
+	   epicsEnvSet("LOCATION","<ioclocation>")
+
+	Soft IOCs only (can be longer than 40 characters):
+	   epicsEnvSet("STARTUP","/usr/local/lcls/epics/iocCommon/<iocname>")
+	   epicsEnvSet("ST_CMD","startup.cmd")
+
+(2) Add iocAdmin database to st.cmd (before iocInit):
+
+    VxWorks IOCs only:
+    dbLoadRecords("db/iocAdmin.db", "IOC=<iocname>")
+    RTEMS IOCs only:
+    dbLoadRecords("db/iocAdminRTEMS.db", "IOC=<iocname>")
+    Soft IOCs only:
+    dbLoadRecords("db/iocAdminSoft.db", "IOC=<iocname>")
+
+(3) Add iocRelease database to st.cmd (before iocInit):
+
+    dbLoadRecords("db/iocRelease.db", "IOC=<iocname>")
+
+(4) If baseSecurity.acf is not included in the ioc application's own
+    acf file, add these lines (before iocInit):
+
+    asSetFilename("<path>/db/baseSecurity.acf")
+    asSetSubstitutions("IOC=<iocname>")
+
+    where <path> must be absolute.
+
+III - Adding iocAdmin to CA Clients:
+------------------------------------
+
+(1) Channel Watcher:
+    (1a) Alarm Limits - Macros are not provided for IOC health alarm limits in 
+	 iocAdmin.db.  Alarm limits must be added to the channel watcher 
+	 configuration file instead.  The IOC channel access security state 
+         should also be added.  Use this template to create the 
+	 <ioc>.cwConfig file:
+
+	RTEMS and VxWorks IOCs only:
+	$(IOCADMIN)/restore/iocAdmin.cwConfig
+
+	Soft IOCs only:
+	$(IOCADMIN)/restore/iocAdminSoft.cwConfig
+
+    (1b) Device-Specific Records - For every device instantiating the 
+         access.db database, add these lines to the channel watcher 
+         configuration file:
+
+	<device name including ALL colons>ACCESS /LOG
+	<device name including ALL colons>FBCK /LOG
+
+(2) EDM:
+    (2a) IOC Display - Choose the correct machine area for the IOC and add 
+	 the ioc to the proper network EDM displays:
+		$EDM/lcls/ntwk_<area>_main.edl
+		$EDM/lcls/ntwk_<area>_iocstatus.edl
+	Use the proper related display depending on the type of IOC:
+	ioc_rtems_acsw - RTEMS IOC using an AC switch to power cycle.
+	ioc_rtems_crat - RTEMS IOC using the crate interface to power cycle.
+	ioc_rtems_none - RTEMS IOC without a crate interface or AC switch.
+	ioc_rtems_nosupport - RTEMS IOC with a unsupported crate interface
+	ioc_soft       - Soft IOC
+	Set the "ioc" macro to the ioc database name.
+
+    (2b) Device-Specific Display - For each device instantiating the access.db
+	 database, add choice or menu buttons for ACCESS and FBCK on the 
+	 device single-unit diagnostic display and/or subsystem display 
+	 showing the device status.
+
+(3) Channel Archiver - for each IOC, consider adding some or all of the 
+    following records to Channel Archiver:
+
+	All IOCs:
+	<iocname>:CA_CLNT_CNT
+	<iocname>:CA_CONN_CNT
+	<iocname>:FD_FREE
+
+	RTEMS and VxWorks IOCs only:
+	<iocname>:MEM_FREE
+	<iocname>:MEM_BLK_FREE
+	<iocname>:SYS_MBUF_FREE
+	<iocname>:LOAD
+	<iocname>:IFI_ERR_CNT
+	<iocname>:IFO_ERR_CNT
+	<iocname>:CLUST_1_0_2
+	<iocname>:CLUST_1_1_2
+
+(4) Alarm Handler - add logic for the IOC heartbeat (that creates the 
+    HEARTBEATSUM record) to the ALH soft IOC (via email to Judy Rock).  Add 
+    the IOC to the "NETWORK" subgroup for all applicable machine areas with 
+    the following PVs and include them in <iocname>:STATSUMY on the ALH soft 
+    IOC:
+
+	All IOCs:
+	<iocname>:CA_CLNT_CNT
+	<iocname>:CA_CONN_CNT
+	<iocname>:SUSP_TASK_CNT
+	<iocname>:FD_FREE
+	<iocname>:HEARTBEATSUM (from the ALH soft IOC)
+
+	RTEMS and VxWorks IOCs only:
+	<iocname>:LOAD
+	<iocname>:MEM_BLK_FREE
+

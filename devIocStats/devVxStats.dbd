@@ -1,0 +1,5 @@
+device(ai,INST_IO,devAiStats,"VX stats")
+device(ai,INST_IO,devAiClusts,"VX stats clusts")
+device(ao,INST_IO,devAoStats,"VX stats")
+device(stringin,INST_IO,devStringinStats,"VX stats")
+function(rebootProc)

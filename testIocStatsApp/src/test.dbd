@@ -1,0 +1,2 @@
+registrar(testSuspensionRegistrar)
+registrar(testCpuUseRegistrar)

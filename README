@@ -1,0 +1,13 @@
+Files and Directories:
+
+README			- this file
+README_devIocStats	- devIocStats information
+README_iocAdmin		- iocAdmin usage
+RELEASE_NOTES		- release notes
+RELEASE_SITE		- included by configure/RELEASE, location of epics
+TO_DO			- to-do list and upgrade ideas.
+configure		- build configuration files
+devIocStats		- IOC statistics device support
+iocAdminLib		- LCLS-unique database, displays, and config files
+testIocStatsApp		- Application for testing devIocStats and iocAdminLib
+

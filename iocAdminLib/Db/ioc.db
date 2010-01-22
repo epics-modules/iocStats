@@ -1,0 +1,267 @@
+# Used by Channel Access Security to determine access to this IOC.
+record(mbbo, "$(IOCNAME):ACCESS")
+{
+  field(DESC, "$(IOCNAME) Acc Mode")
+  field(ASG,  "IOCMANAGERS")
+  field(PINI, "YES")
+  field(ZRST, "Running")
+  field(ZRSV, "NO_ALARM")
+  field(ONST, "Maintenance")
+  field(ONSV, "MINOR")
+  field(TWST, "Test")
+  field(TWSV, "MINOR")
+  field(THST, "OFFLINE")
+  field(THSV, "MAJOR")
+}
+record(stringin, "$(IOCNAME):STARTTOD")
+{
+    field(DESC, "Time and date of startup")
+    field(DTYP, "Soft Timestamp")
+    field(PINI, "YES")
+    field(INP, "@%m/%d/%Y %H:%M:%S")
+}
+record(stringin, "$(IOCNAME):TOD")
+{
+    field(DESC, "Current time and date")
+    field(DTYP, "Soft Timestamp")
+    field(SCAN, "1 second")
+    field(INP, "@%m/%d/%Y %H:%M:%S")
+}
+record(calcout, "$(IOCNAME):HEARTBEAT")
+{
+    field(DESC, "1 Hz counter since boot")
+    field(CALC, "(A<2147483647)?A+1:1")
+    field(SCAN, "1 second")
+    field(INPA, "$(IOCNAME):HEARTBEAT")
+}
+#
+# Using an existing internal set of subroutines, this
+# PV updates the Access Security mechanism dynamically.
+# The .acf file is re-read.
+#
+record( sub, "$(IOCNAME):READACF")
+{
+    field( DESC, "$(IOCNAME) ACF Update")
+    field( ASG,  "IOCMANAGERS")
+    field( INAM, "asSubInit")
+    field( SNAM, "asSubProcess")
+    field( BRSV, "INVALID")
+}
+record(sub, "$(IOCNAME):SYSRESET")
+{
+    field(DESC, "IOC Restart" )
+    field(SNAM, "rebootProc")
+    field(BRSV,"INVALID")
+    field(L,"1")
+}
+
+record(ai, "$(IOCNAME):CA_CLNT_CNT") {
+  field(DESC, "Number of CA Clients")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@ca_clients")
+  field(HOPR, "200")
+  field(HIHI, "175")
+  field(HIGH, "100")
+  field(HHSV, "MAJOR")
+  field(HSV, "MINOR")
+}
+
+record(ai, "$(IOCNAME):CA_CONN_CNT") {
+  field(DESC, "Number of CA Connections")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@ca_connections")
+  field(HOPR, "2000")
+  field(HIHI, "1750")
+  field(HIGH, "1000")
+  field(HHSV, "MAJOR")
+  field(HSV, "MINOR")
+}
+
+record(ai, "$(IOCNAME):RECORD_CNT") {
+  field(DESC, "Number of Records")
+  field(PINI, "YES")
+  field(DTYP, "IOC stats")
+  field(INP, "@records")
+}
+
+record(ai, "$(IOCNAME):FD_MAX") {
+  field(DESC, "Max File Descriptors")
+  field(PINI, "YES")
+  field(DTYP, "IOC stats")
+  field(INP, "@maxfd")
+}
+
+record(ai, "$(IOCNAME):FD_CNT") {
+  field(DESC, "Allocated File Descriptors")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(FLNK, "$(IOCNAME):FD_FREE  PP MS")
+  field(INP, "@fd")
+}
+
+record(calc, "$(IOCNAME):FD_FREE") {
+  field(DESC, "Available FDs")
+  field(CALC, "B>0?B-A:C")
+  field(INPA, "$(IOCNAME):FD_CNT  NPP MS")
+  field(INPB, "$(IOCNAME):FD_MAX  NPP MS")
+  field(INPC, "1000")
+  field(HOPR, "150")
+  field(LOLO, "5")
+  field(LOW, "20")
+  field(LLSV, "MAJOR")
+  field(LSV, "MINOR")
+}
+
+record(ai, "$(IOCNAME):LOAD") {
+  field(DESC, "CPU Load")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@cpu")
+  field(EGU, "%")
+  field(PREC, "1")
+  field(HOPR, "100")
+  field(HIHI, "80")
+  field(HIGH, "70")
+  field(HHSV, "MAJOR")
+  field(HSV, "MINOR")
+}
+
+record(ai, "$(IOCNAME):SUSP_TASK_CNT") {
+  field(DESC, "Number Suspended Tasks")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@suspended_tasks")
+  field(HIHI, "1")
+  field(HHSV, "MAJOR")
+}
+
+record(ai, "$(IOCNAME):MEM_USED") {
+  field(DESC, "Allocated Memory")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@allocated_bytes")
+  field(EGU, "byte")
+}
+
+record(ai, "$(IOCNAME):MEM_FREE") {
+  field(DESC, "Free Memory")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@free_bytes")
+  field(EGU, "byte")
+}
+
+record(ai, "$(IOCNAME):MEM_MAX") {
+  field(DESC, "Maximum Memory")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@total_bytes")
+  field(EGU, "byte")
+}
+
+record(ao, "$(IOCNAME):CA_UPD_TIME") {
+  field(DESC, "CA Check Update Period")
+  field(DTYP, "IOC stats")
+  field(OUT, "@ca_scan_rate")
+  field(EGU, "sec")
+  field(DRVH, "60")
+  field(DRVL, "1")
+  field(HOPR, "60")
+  field(VAL, "15")
+  field(PINI, "YES")
+}
+
+record(ao, "$(IOCNAME):FD_UPD_TIME") {
+  field(DESC, "FD Check Update Time")
+  field(DTYP, "IOC stats")
+  field(OUT, "@fd_scan_rate")
+  field(EGU, "sec")
+  field(DRVH, "60")
+  field(DRVL, "1")
+  field(HOPR, "60")
+  field(VAL, "20")
+  field(PINI, "YES")
+}
+
+record(ao, "$(IOCNAME):LOAD_UPD_TIME") {
+  field(DESC, "CPU Check Update Period")
+  field(DTYP, "IOC stats")
+  field(OUT, "@cpu_scan_rate")
+  field(EGU, "sec")
+  field(DRVH, "60")
+  field(DRVL, "1")
+  field(HOPR, "60")
+  field(VAL, "10")
+  field(PINI, "YES")
+}
+
+record(ao, "$(IOCNAME):MEM_UPD_TIME") {
+  field(DESC, "Memory Check Update Period")
+  field(DTYP, "IOC stats")
+  field(OUT, "@memory_scan_rate")
+  field(EGU, "sec")
+  field(DRVH, "60")
+  field(DRVL, "1")
+  field(HOPR, "60")
+  field(VAL, "10")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):ST_SCRIPT1") {
+  field(DESC, "Startup Script Part1")
+  field(DTYP, "IOC stats")
+  field(INP, "@startup_script_1")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):ST_SCRIPT2") {
+  field(DESC, "Startup Script Part2")
+  field(DTYP, "IOC stats")
+  field(INP, "@startup_script_2")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):KERNEL_VERS") {
+  field(DESC, "Kernel Version")
+  field(DTYP, "IOC stats")
+  field(INP, "@kernel_ver")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):EPICS_VERS") {
+  field(DESC, "EPICS Version")
+  field(DTYP, "IOC stats")
+  field(INP, "@epics_ver")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):HOSTNAME") {
+  field(DESC, "Host Name")
+  field(DTYP, "IOC stats")
+  field(INP, "@hostname")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):APP_DIR1") {
+  field(DESC, "Application Directory Part 1")
+  field(DTYP, "IOC stats")
+  field(INP, "@pwd1")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):APP_DIR2") {
+  field(DESC, "Application Directory Part 2")
+  field(DTYP, "IOC stats")
+  field(INP, "@pwd2")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):UPTIME") {
+  field(DESC, "Elapsed Time since Start")
+  field(SCAN, "1 second")
+  field(DTYP, "IOC stats")
+  field(INP, "@up_time")
+  field(PINI, "YES")
+}

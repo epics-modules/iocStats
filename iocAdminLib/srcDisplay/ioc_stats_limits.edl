@@ -1,0 +1,631 @@
+4 0 1
+beginScreenProperties
+major 4
+minor 0
+release 1
+x 618
+y 83
+w 370
+h 280
+font "helvetica-bold-r-18.0"
+ctlFont "helvetica-bold-r-18.0"
+btnFont "helvetica-bold-r-18.0"
+fgColor index 14
+bgColor index 6
+textColor index 14
+ctlFgColor1 index 14
+ctlFgColor2 index 1
+ctlBgColor1 index 3
+ctlBgColor2 index 49
+topShadowColor index 1
+botShadowColor index 14
+title "$(ioc) Limits"
+showGrid
+snapToGrid
+gridSize 5
+endScreenProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 15
+y 50
+w 335
+h 220
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 210
+y 75
+w 60
+h 20
+controlPv "$(ioc):CA_CLNT_CNT.HIGH"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 280
+y 75
+w 60
+h 20
+controlPv "$(ioc):CA_CLNT_CNT.HIHI"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 220
+y 55
+w 30
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "HIGH"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 295
+y 55
+w 24
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "HIHI"
+}
+autoSize
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 210
+y 105
+w 60
+h 20
+controlPv "$(ioc):CA_CONN_CNT.HIGH"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 280
+y 105
+w 60
+h 20
+controlPv "$(ioc):CA_CONN_CNT.HIHI"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 280
+y 135
+w 60
+h 20
+controlPv "$(ioc):SUSP_TASK_CNT.HIHI"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 210
+y 175
+w 60
+h 20
+controlPv "$(ioc):LOAD.HIGH"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 280
+y 175
+w 60
+h 20
+controlPv "$(ioc):LOAD.HIHI"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 210
+y 230
+w 60
+h 20
+controlPv "$(ioc):FD_FREE.LOLO"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 280
+y 230
+w 60
+h 20
+controlPv "$(ioc):FD_FREE.LOW"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 370
+h 40
+lineColor index 54
+fill
+fillColor index 54
+lineWidth 0
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 5
+y 0
+w 200
+h 40
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 53
+useDisplayBg
+value {
+  "IOC Diagnostics Alarm Limits"
+  "$(ioc)"
+}
+endObjectProperties
+
+# (Exit Button)
+object activeExitButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 315
+y 10
+w 50
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+label "Exit"
+font "helvetica-medium-r-12.0"
+3d
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 210
+y 10
+w 95
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Home Screen..."
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "lcls_main"
+}
+setPosition {
+  0 "parentWindow"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 20
+y 80
+w 71
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "# CA Clients"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 120
+y 70
+w 80
+h 30
+controlPv "$(ioc):CA_CLNT_CNT"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 120
+y 105
+w 80
+h 30
+controlPv "$(ioc):CA_CONN_CNT"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 20
+y 115
+w 90
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "# CA PV Conns"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 120
+y 140
+w 80
+h 30
+controlPv "$(ioc):SUSP_TASK_CNT"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 20
+y 150
+w 75
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "# Susp Tasks"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 20
+y 185
+w 57
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "CPU Load"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 120
+y 175
+w 80
+h 30
+controlPv "$(ioc):LOAD"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 295
+y 210
+w 28
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "LOW"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 220
+y 210
+w 34
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "LOLO"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 120
+y 230
+w 80
+h 30
+controlPv "$(ioc):FD_FREE"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 20
+y 240
+w 64
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Free # FDs"
+}
+autoSize
+endObjectProperties
+

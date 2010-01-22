@@ -1,0 +1,52 @@
+#
+# Used by higher level software to determine how to use PVs associated
+# with the device.  This record is manually set by operations when the 
+# state of the device changes.
+# For example: Ops thinks the device is broken in some way.  
+# They write an Artemis and put the device in MAINTENANCE.  
+# The hardware guys fix the problem, solve the Artemis and put the 
+# device in CHECKOUT.  Ops decides whether the device is working and 
+# either marks it ONLINE or back to MAINTENANCE.
+#
+record(mbbo, "$(DEV)ACCESS")
+{
+  field(DESC, "Usage Mode")
+  field(PINI, "YES")
+# Online - this device is operational, working normally, and ready to 
+# be used by higher level software.
+  field(ZRST, "Online")
+  field(ZRSV, "NO_ALARM")
+# Maintenance - this device is in a maintenance state (being worked on by 
+# controls) where maintainers can see how it is performing, but should not 
+# be used by most higher level software.
+  field(ONST, "Maintenance")
+  field(ONSV, "MINOR")
+# Checkout - This device has had maintenance work done and is back in 
+# production for 'check out' purposes by operations before it's released 
+# for normal use.  Some higher level software may use it.
+  field(TWST, "Checkout")
+  field(TWSV, "MINOR")
+# Offline - device is broken and should not be used by any higher level
+# software.
+  field(THST, "Offline")
+  field(THSV, "MAJOR")
+}
+#
+# Used by higher level software to determine if a PV is in feedback or not.
+# May also be used by actuator (magnet and RF) IOC applications to 
+# switch output records to "closed_loop" to prevent outside programs from
+# changing setpoints when an actuator device is in feedback.
+#
+record(mbbo, "$(DEV)FBCK")
+{
+  field(DESC, "Feedback State")
+  field(PINI, "YES")
+  field(VAL, "2")
+# Off - this device can be used in feedback but all feedback loops 
+# using it are off.
+  field(ZRST, "Off")
+# On - this device is being used by one or more feedback loops.
+  field(ONST, "On")
+# Unavailable - this device is not used by any feedback loop.
+  field(TWST, "Unavailable")
+}

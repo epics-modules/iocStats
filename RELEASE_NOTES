@@ -1,0 +1,113 @@
+Release Notes for iocAdmin
+--------------------------
+
+iocAdmin-R3-1-1: July 14, 2009
+  * iocAdminLib/srcDisplay - LCLS display update - add ioc_stats_release.edl.
+  * iocAdminLib/src - Remove python script for automatically
+    creating a display with RELEASE module versions..
+  * configure/RULES_BUILD - Remove rule for building a display
+    with RELEASE module versions.
+  
+iocAdmin-R3-1-0: July 7, 2009
+  * devIocStats - Ralph Lange made changes.  Here are his notes:
+	Functionality is basically as before, the main work (quite a bit more 
+	than I expected) being the split-up of all the devIocStatsOSD.c files 
+	into functionally separate source files. (So that any single 
+	functionality may be not implemented for an architecture and fall-back 
+	to os/posix or os/default.) That split-up includes new names and APIs 
+	between the generic part of the device support and the OSD parts, 
+	which I tried to streamline, which allowed for some serious code 
+	simplifications in the generic parts. I also made sure the new APIs 
+	will make it a lot easier to support waveform records.
+
+	I fixed a few bugs in the code (IFerrors and uptime under vxWorks) and 
+	added (in the attached version) kernel version and CPU usage info for 
+	posix systems.
+
+	Added mem->total to the meminfo structure to create reasonable 
+	information on soft IOC implementations with virtual memory 
+	organization:
+	   total:  on this host - physically installed memory.
+	   used:   for this IOC - physical memory used at the moment (RSS)
+	   free:   on this host - physical memory that is available to 
+		   processes  (free plus cache plus buffers)
+	Added memory implementation for Linux, FD usage implementations for 
+	Linux and Solaris.
+  * iocAdminLib/srcDisplay - LCLS display update.
+  * iocAdminLib/src - Added python scripts by Dayle Kotturi for automatically
+    creating a database and display with RELEASE module versions..
+  * iocAdminLib/Db - Add iocAdminSoft and iocAdminRTEMS databases for soft 
+    and RTEMS IOCs.  Add MEM_MAX.  Process CLUST records only after MBUF_FREE
+    records are processed.
+  * iocAdminLib/srcRestore - Add iocAdminSoft.cwConfig for soft IOCs.
+  * configure/RULES_BUILD - Add rules for building a database and display
+    with RELEASE module versions.
+
+iocAdmin-R3-0-0: Apr 29, 2009
+  * Built against EPICS R3.14.8.2 and RTEMS 4.9.1 (base-R3-14-8-2-lcls3)
+  * devIocStats/os/RTEMS/devIocStatsOSD.h - change by Sue Witherspoon so that
+    bsp_reset is only used for PPC and uC5282.
+
+iocAdmin-R2-1-4: Mar 23, 2009
+  * devIocStats/src/devIocStatsAnalog.c - add support for number of records.
+    Fix bad bug in update rate initialization.  Add a check for valid rate.
+    Reset UDF for all cluster sizes.
+  * devIocStats/src/os/RTEMS/devIocStatsOSD.c - check for cpuUsageReset.
+    Use Tills miscUtils routines for cpu load if rtems version >= 4.9
+    and selected in CONFIG_SITE.
+  * devIocStats/src/os/vxWorks/devIocStatsOSD.* - Bug fix for vxWorks 6.
+    Remove IF error logic for vxWorks 6 (leave those at zero).
+  * iocAdminLib/srcDisplay/ioc_stats*.edl - add alarm sensitivity on ALL inputs.
+  * iocAdminLib/Db/ioc.db - add PINI=YES for ao's, add RECORD_CNT.
+  * README_devIocStats - add support for number of records.
+  * configure/CONFIG_SITE - add USR_CFLAGS_RTEMS option for Till's CPU load calc.
+
+iocAdmin-R2-1-3: Feb 10, 2009
+  * devIocStats/src/devIocStatsString.c - set epics env var string to blank 
+    and UDF=0 when valid env var but just no value.
+  * devIocStats/src/Makefile and 
+    devIocStats/src/os/RTEMS/devIocStatsOSD.h - use bsp_reset for uC5282 and 
+    all BSPs on RTEMS 4.9.1.
+  * devIocStats/src/os/RTEMS/devIocStatsOSD.h - use bsp_reset for uC5282 and 
+    all BSPs on RTEMS 4.9.1.
+  * devIocStats/src/os/RTEMS/devIocStatsOSD.c - prevent negative cpu load.
+
+iocAdmin-R2-1-2: Feb 9, 2009
+devIocStats/src/devIocStats.h - get rid of an unused define.
+iocAdminLib/Db/access.db - add FBCK record.
+README_iocAdmin - description of FBCK record.
+
+iocAdmin-R2-1-1: Jan 20, 2009
+devIocStats/src/devIocStatsString.c, devIocStats.dbd: 
+	Add device support for general environment variables and 
+	EPICS environment variables.
+iocAdminLib/Db/iocEnvVar.db, ioc.db, Makefile, iocAdmin.substitutions:
+	Create database for environment variables.  
+	Add EPICS environment variables.  
+README_devIocStats - description of environment variables support.
+
+iocAdmin-R2-1-0:
+devIocStats/src/os/RTEMS/devIocStatsOSD.c - code changes for RTEMS 4.9.
+iocAdminLib/srcRestore/iocAdmin.cwConfig - add STARTTOD (logging only).
+iocAdminLib/Db/access.db, ioc.db, iocAdmin.substitutions, access.doc -
+	Add ACCESS record to ioc.db (no longer uses access.db).
+	Change access.db for requirements by HLA.  Remove colon from name so
+	that ACCESS can be defined per channel or attribute, 
+	not just per device.  Add access.doc documentation.
+README_iocAdmin - description of access usage.
+
+iocAdmin-R2-0-0:
+Built against EPICS R3.14.8.2 and RTEMS 4.7.1 (base-R3-14-8-2-lcls2).
+devIocStats and testIocStatsApp added.
+
+iocAdmin-R1-0-2-1:
+Cosmetic changes for LCLS and R3.14.9
+
+iocAdmin-R1-0-2:
+Built against EPICS R3.14.9 and RTEMS 4.7.1 (base-R3-14-9-lcls1)
+
+iocAdmin-R1-0-1:
+Built against EPICS R3.14.8.2 and RTEMS 4.7.1 (base-R3-14-8-2-lcls2)
+
+iocAdmin-R1-0-0: June 29, 2007 Initial version	
+Built against EPICS R3.14.8.2 and RTEMS 4.7 (base-R3-14-8-2-lcls1)

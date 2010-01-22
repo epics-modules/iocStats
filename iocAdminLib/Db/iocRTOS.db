@@ -1,0 +1,94 @@
+record(ai, "$(IOCNAME):MEM_BLK") {
+  field(DESC, "Maximum Free Memory Block")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@max_free")
+  field(EGU, "byte")
+  field(HOPR, "50000000")
+  field(FLNK, "$(IOCNAME):MEM_BLK_FREE  PP MS")
+}
+
+record(calc, "$(IOCNAME):MEM_BLK_FREE") {
+  field(DESC, "Maximum Free Memory Block")
+  field(CALC, "A>0?A:B")
+  field(INPA, "$(IOCNAME):MEM_BLK  NPP MS")
+  field(INPB, "1000000000")
+  field(EGU, "byte")
+  field(HOPR, "50000000")
+  field(LOLO, "100000")
+  field(LOW, "500000")
+  field(LLSV, "MAJOR")
+  field(LSV, "MINOR")
+}
+
+record(stringin, "$(IOCNAME):BOOTLINE1") {
+  field(DESC, "Boot Line Part1")
+  field(DTYP, "IOC stats")
+  field(INP, "@bootline_1")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):BOOTLINE2") {
+  field(DESC, "Boot Line Part2")
+  field(DTYP, "IOC stats")
+  field(INP, "@bootline_2")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):BOOTLINE3") {
+  field(DESC, "Boot Line Part3")
+  field(DTYP, "IOC stats")
+  field(INP, "@bootline_3")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):BOOTLINE4") {
+  field(DESC, "Boot Line Part4")
+  field(DTYP, "IOC stats")
+  field(INP, "@bootline_4")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):BOOTLINE5") {
+  field(DESC, "Boot Line Part5")
+  field(DTYP, "IOC stats")
+  field(INP, "@bootline_5")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):BOOTLINE6") {
+  field(DESC, "Boot Line Part6")
+  field(DTYP, "IOC stats")
+  field(INP, "@bootline_6")
+  field(PINI, "YES")
+}
+
+record(ai, "$(IOCNAME):SYS_MBUF_FREE") {
+  field(DESC, "Min % Free Sys MBUFs")
+  field(DTYP, "IOC stats")
+  field(SCAN, "I/O Intr")
+  field(EGU, "%")
+  field(INP, "@min_sys_mbuf")
+  field(FLNK, "$(SYS_MBUF_FLNK)")
+}
+
+record(ai, "$(IOCNAME):SYS_MBUF_MAX") {
+  field(DESC, "Number of System MBUFs")
+  field(DTYP, "IOC stats")
+  field(INP, "@sys_mbuf")
+  field(PINI, "YES")
+}
+
+record(ai, "$(IOCNAME):IFI_ERR_CNT") {
+  field(DESC, "IF Input Errors")
+  field(DTYP, "IOC stats")
+  field(SCAN, "I/O Intr")
+  field(INP, "@inp_errs")
+}
+
+record(ai, "$(IOCNAME):IFO_ERR_CNT") {
+  field(DESC, "IF Output Errors")
+  field(DTYP, "IOC stats")
+  field(SCAN, "I/O Intr")
+  field(INP, "@out_errs")
+}
