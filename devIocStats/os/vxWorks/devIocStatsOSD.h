@@ -53,7 +53,11 @@
 
 #if _WRS_VXWORKS_MAJOR >= 6
 #define MAX_FILES iosMaxFiles
+#if _WRS_VXWORKS_MINOR >= 6
+#define FDTABLE_INUSE(i) (iosFdTable[i])
+#else
 #define FDTABLE_INUSE(i) (iosFdTable[i] && (iosFdTable[i]->refCnt > 0))
+#endif
 #define CLUSTSIZES CL_TBL_SIZE
 #else
 #define MAX_FILES maxFiles
