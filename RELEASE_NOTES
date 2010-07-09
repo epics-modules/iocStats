@@ -1,5 +1,11 @@
-Release Notes for iocAdmin
+Release Notes for iocStats
 --------------------------
+
+iocStats-R3-1-2: July 09, 2010
+  * devIocStats - Changes by Ralph Lange:
+    - Fix for CLUSTSIZES on vxWorks 5 (submitted by Kay-Uwe Kasemir)
+    - Added header file for Darwin (MacOS X) (submitted by Eric Norum)
+    - Fixed implementation for CpuUsage under Posix
 
 iocAdmin-R3-1-1: July 14, 2009
   * iocAdminLib/srcDisplay - LCLS display update - add ioc_stats_release.edl.
