@@ -1,5 +1,6 @@
 /*************************************************************************\
-* Copyright (c) 2009 Helmholtz-Zentrum Berlin fuer Materialien und Energie.
+* Copyright (c) 2009-2010 Helmholtz-Zentrum Berlin
+*     für Materialien und Energie.
 * Copyright (c) 2002 The University of Chicago, as Operator of Argonne
 *     National Laboratory.
 * Copyright (c) 2002 The Regents of the University of California, as
@@ -9,66 +10,55 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdCpuUsage.c - CPU usage info: posix implementation = use clock() */
+/* osdCpuUsage.c - CPU usage info: posix implementation = use getrusage() */
 
 /*
  *  Author: Ralph Lange (HZB/BESSY)
  *
- *  based on code written by Ken Evans for the CA Gateway
- *
  *  Modification History
  *  2009-05-27 Ralph Lange (HZB/BESSY)
  *     Restructured OSD parts
+ *  2010-07-09 Ralph Lange (HZB/BESSY)
+ *     Changed implementation to use getrusage()
  *
  */
 
-#ifdef SOLARIS
-/* Is in stdlib.h elsewhere, not available on WIN32 */
-#include <sys/loadavg.h>
-#endif
+#include <sys/time.h>
+#include <sys/resource.h>
 
-#ifdef WIN32
-#else
-#include <unistd.h>
-#endif
-
-#include <limits.h>
 #include <epicsTime.h>
 #include <devIocStats.h>
 
-#define ULONG_DIFF(n1,n2) (((n1) >= (n2))?((n1)-(n2)):((n1)+(ULONG_MAX-(n2))))
-
 static epicsTimeStamp prevTime;
-static unsigned long cpuPrevCount;
+static double prevUsage;
 
 int devIocStatsInitCpuUsage (void) {
+    struct rusage stats;
     epicsTimeGetCurrent(&prevTime);
-    cpuPrevCount = (unsigned long)clock();
+    getrusage(RUSAGE_SELF, &stats);
+    prevUsage = stats.ru_utime.tv_sec + stats.ru_utime.tv_usec / 1e6;
     return 0;
 }
 
 int devIocStatsGetCpuUsage (double *pval)
 {
     epicsTimeStamp curTime;
-    double delTime;
+    double curUsage;
+    double diffUsage;
+    struct rusage stats;
+    double diffTime;
     double cpuFract;
-    /* For WIN32, clock returns wall clock so cpuFract always is 1. */
-    unsigned long cpuCurCount = (unsigned long)clock();
 
     epicsTimeGetCurrent(&curTime);
-    delTime = epicsTimeDiffInSeconds(&curTime, &prevTime);
+    getrusage(RUSAGE_SELF, &stats);
+    curUsage = stats.ru_utime.tv_sec + stats.ru_utime.tv_usec / 1e6;
+    diffTime = epicsTimeDiffInSeconds(&curTime, &prevTime);
+    diffUsage = curUsage - prevUsage;
 
-    /* Calculate the CPU Fract
-    Note: clock() returns (long)-1 if it can't find the time;
-    however, we can't distinguish that -1 from a -1 owing to
-    wrapping.  So treat the return value as an unsigned long and
-    don't check the return value. */
-    cpuFract = (delTime > 0) ? (double)(ULONG_DIFF(cpuCurCount,cpuPrevCount))/delTime/CLOCKS_PER_SEC : 0.0;
-    if (cpuFract > 1.0) cpuFract = 1.0;
+    cpuFract = (diffTime > 0) ? diffUsage / diffTime : 0.0;
 
-    /* Reset the previous values */
     prevTime = curTime;
-    cpuPrevCount = cpuCurCount;
+    prevUsage = curUsage;
 
     *pval = cpuFract * 100.0;
     return 0;
