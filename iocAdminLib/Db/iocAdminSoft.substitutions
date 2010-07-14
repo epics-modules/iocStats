@@ -6,12 +6,12 @@
 #
 #==============================================================================
 #
-file ioc.db
+file ioc.template
 {
 pattern { IOCNAME }
 	{ $(IOC)  }
 }
-file iocEnvVar.db
+file iocEnvVar.template
 {
 pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
 	{ $(IOC) , LOCATION     , LOCATION                        , env    }

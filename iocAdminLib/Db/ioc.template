@@ -128,6 +128,41 @@ record(ai, "$(IOCNAME):LOAD") {
   field(HSV, "MINOR")
 }
 
+record(ai, "$(IOCNAME):CPULOAD") {
+  field(DESC, "CPU Load")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@cpu_load")
+  field(EGU, "%")
+  field(PREC, "1")
+  field(HOPR, "100")
+  field(HIHI, "80")
+  field(HIGH, "70")
+  field(HHSV, "MAJOR")
+  field(HSV, "MINOR")
+}
+
+record(ai, "$(IOCNAME):IOCLOAD") {
+  field(DESC, "IOC Load")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@ioc_load")
+  field(EGU, "%")
+  field(PREC, "1")
+  field(HOPR, "100")
+  field(HIHI, "80")
+  field(HIGH, "70")
+  field(HHSV, "MAJOR")
+  field(HSV, "MINOR")
+}
+
+record(ai, "$(IOCNAME):NOOFCPUS") {
+  field(DESC, "No. of CPUs")
+  field(DTYP, "IOC stats")
+  field(INP, "@no_of_cpus")
+  field(PINI, "YES")
+}
+
 record(ai, "$(IOCNAME):SUSP_TASK_CNT") {
   field(DESC, "Number Suspended Tasks")
   field(SCAN, "I/O Intr")
