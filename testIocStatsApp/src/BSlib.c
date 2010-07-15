@@ -149,10 +149,10 @@ int BSmakeServer(char** argv)
 
 	/* save process ID */
 	filename=(char*)malloc(strlen(argv[0])+10);
-	sprintf(filename,"%s.%d",argv[0],getpid());
+        sprintf(filename,"%s.%ld",argv[0],(long)getpid());
 	fd=fopen(filename,"w");
-	fprintf(fd,"%d",getpid());
-	fprintf(stderr,"\npv server pid: %d\n",getpid());
+        fprintf(fd,"%ld",(long)getpid());
+        fprintf(stderr,"\npv server pid: %ld\n",(long)getpid());
 	fclose(fd);
 
 	return 0;
