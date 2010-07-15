@@ -80,10 +80,14 @@ def module_versions(path):
 
     for line in release_file:
         # Remove comments
-        line = line.partition('#')[0]
+        line = line.split('#')[0]
         
         # Turn 'a = b' into a key/value pair and remove leading and trailing whitespace
-        (key, sep, value) = line.partition('=')
+        items = line.split('=', 1)
+        key = items[0]
+        value = ''
+        if (len(items) == 2):
+            value = items[1]
         key = key.strip()
         value = value.strip()
         
