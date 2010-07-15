@@ -117,6 +117,10 @@ static void cpuUsageTask(void *parm)
     }
 }
 
+/* FIXME: When the record is passive and processes long after the cpuUsageTask() finished its round,
+   this function returns old data.
+   Maybe the cpuUsageTask() should restart itself instead of being restarted by this? */
+
 int devIocStatsGetCpuUsage(double *pval)
 {
     if (cpuUsage.startSem) {
@@ -153,7 +157,7 @@ int devIocStatsInitCpuUsage(void)
     if (tToWait > 0) {
         /*wait for a tick*/
         epicsTimeGetCurrent(&tStart);
-        do { 
+        do {
             epicsTimeGetCurrent(&tEnd);
         } while ( epicsTimeDiffInSeconds(&tEnd, &tStart) <= 0.0 );
         epicsTimeGetCurrent(&tStart);

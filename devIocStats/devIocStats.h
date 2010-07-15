@@ -1,29 +1,20 @@
+/*************************************************************************\
+* Copyright (c) 2009-2010 Helmholtz-Zentrum Berlin
+*     fuer Materialien und Energie GmbH.
+* Copyright (c) 2002 The University of Chicago, as Operator of Argonne
+*     National Laboratory.
+* Copyright (c) 2002 The Regents of the University of California, as
+*     Operator of Los Alamos National Laboratory.
+* EPICS BASE Versions 3.13.7
+* and higher are distributed subject to a Software License Agreement found
+* in file LICENSE that is included with this distribution.
+\*************************************************************************/
+
 /* devIocStats.h -  Device Support Include for IOC statistics - based on */
 /* devVXStats.c - Device Support Routines for vxWorks statistics */
 /*
  *	Author: Jim Kowalkowski
  *	Date:  2/1/96
- *
- *	Experimental Physics and Industrial Control System (EPICS)
- *
- *	Copyright 1991, the Regents of the University of California,
- *	and the University of Chicago Board of Governors.
- *
- *	This software was produced under  U.S. Government contracts:
- *	(W-7405-ENG-36) at the Los Alamos National Laboratory,
- *	and (W-31-109-ENG-38) at Argonne National Laboratory.
- *
- *	Initial development by:
- *		The Controls and Automation Group (AT-8)
- *		Ground Test Accelerator
- *		Accelerator Technology Division
- *		Los Alamos National Laboratory
- *
- *	Co-developed with
- *		The Controls and Computing Group
- *		Accelerator Systems Division
- *		Advanced Photon Source
- *		Argonne National Laboratory
  *
  */
 
@@ -68,12 +59,22 @@ typedef struct {
     int oerrors;
 } ifErrInfo;
 
+typedef struct {
+    long noOfCpus;
+    double cpuLoad;
+    double iocLoad;
+} loadInfo;
+
 /* Functions (API) for OSD layer */
 /* All funcs return 0 (OK) / -1 (ERROR) */
 
-/* CPU Usage */
+/* CPU Load */
 extern int devIocStatsInitCpuUsage (void);
-extern int devIocStatsGetCpuUsage (double *pval);
+extern int devIocStatsGetCpuUsage (loadInfo *pval);
+
+/* IOC Load (CPU utilization by this IOC) */
+extern int devIocStatsInitCpuUtilization (loadInfo *pval);
+extern int devIocStatsGetCpuUtilization (loadInfo *pval);
 
 /* FD Usage */
 extern int devIocStatsInitFDUsage (void);

@@ -10,32 +10,20 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
+/* osdCpuUtilization.c - CPU Utilization: default implementation = do nothing */
+
 /*
- *  Author: Eric Norum (LBNL)
+ *  Author: Ralph Lange (HZB/BESSY)
  *
  *  Modification History
- *  2010-07-09 Eric Norum (LBNL)
- *     Minor modificaction to Ralph Lange's posix version
- *  2010-07-14  Ralph Lange (HZB/BESSY)
- *     Added CPU Utilization (IOC load), number of CPUs
  *
  */
 
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include <devIocStats.h>
 
-#include <taskwd.h>
-#include <epicsThread.h>
+int devIocStatsInitCpuUtilization (loadInfo *pval) {
+    pval->noOfCpus = NO_OF_CPUS;
+    return 0;
+}
 
-#define sysBspRev()     "<not implemented>"
-#define kernelVersion() "<not implemented>"
-#define sysBootLine     "<not implemented>"
-#define FDTABLE_INUSE(i) (0)
-#define MAX_FILES 0
-#define CLUSTSIZES 2
-#define NO_OF_CPUS sysconf(_SC_NPROCESSORS_CONF)
-#define TICKS_PER_SEC sysconf(_SC_CLK_TCK)
-
-#include <unistd.h>
-#include <sys/reboot.h>
+int devIocStatsGetCpuUtilization (loadInfo *pval) { return -1; }

@@ -1,5 +1,6 @@
 /*************************************************************************\
-* Copyright (c) 2009 Helmholtz-Zentrum Berlin fuer Materialien und Energie.
+* Copyright (c) 2009-2010 Helmholtz-Zentrum Berlin
+*     fuer Materialien und Energie GmbH.
 * Copyright (c) 2002 The University of Chicago, as Operator of Argonne
 *     National Laboratory.
 * Copyright (c) 2002 The Regents of the University of California, as
@@ -38,6 +39,8 @@
  *              devIocStatTest.
  *  2009-05-15  Ralph Lange (HZB/BESSY)
  *              Restructured OSD parts
+ *  2010-07-14  Ralph Lange (HZB/BESSY)
+ *              Added CPU Utilization (IOC load), number of CPUs
  */
 
 /*
@@ -52,8 +55,11 @@
 		max_free	 - size of largest free block
 		free_blocks	 - number of blocks in IOC not allocated
 		allocated_blocks - number of blocks allocated
-		cpu		 - estimated percent IOC usage by tasks
-		suspended_tasks	 - number of suspended tasks
+                cpu_load	 - estimated percent CPU load on the system
+                ioc_load         - estimated percent CPU utilization by this IOC
+                no_of_cpus       - number of CPU cores on the system
+              ( cpu		 - same as cpu_load [for compatibility] )
+                suspended_tasks	 - number of suspended tasks
 		fd		 - number of file descriptors currently in use
 		max_fd		 - max number of file descriptors
 		ca_clients	 - number of current CA clients
@@ -184,6 +190,8 @@ static void statsAllocBlocks(double*);
 static void statsMaxFree(double*);
 static void statsTotalBytes(double*);
 static void statsCpuUsage(double*);
+static void statsCpuUtilization(double*);
+static void statsNoOfCpus(double*);
 static void statsSuspendedTasks(double*);
 static void statsFdUsage(double*);
 static void statsFdMax(double*);
@@ -208,8 +216,11 @@ static validGetParms statsGetParms[]={
 	{ "allocated_bytes",		statsAllocBytes,	MEMORY_TYPE },
 	{ "allocated_blocks",		statsAllocBlocks,	MEMORY_TYPE },
         { "total_bytes",		statsTotalBytes,	MEMORY_TYPE },
+        { "cpu_load",			statsCpuUsage,		LOAD_TYPE },
+        { "ioc_load",			statsCpuUtilization,	LOAD_TYPE },
         { "cpu",			statsCpuUsage,		LOAD_TYPE },
-	{ "suspended_tasks",		statsSuspendedTasks,	LOAD_TYPE },
+        { "no_of_cpus",			statsNoOfCpus,		STATIC_TYPE },
+        { "suspended_tasks",		statsSuspendedTasks,	LOAD_TYPE },
 	{ "fd",				statsFdUsage,		FD_TYPE },
         { "maxfd",			statsFdMax,	        FD_TYPE },
 	{ "ca_clients",			statsCAClients,		CA_TYPE },
@@ -243,6 +254,7 @@ epicsExportAddress(dset,devAiClusts);
 static memInfo meminfo = {0,0,0,0,0,0};
 static scanInfo scan[TOTAL_TYPES] = {{0}};
 static fdInfo fdusage = {0,0};
+static loadInfo loadinfo = {1,0.,0.};
 static int recordnumber = 0;
 static clustInfo clustinfo[2] = {{{0}},{{0}}};
 static int mbufnumber[2] = {0,0};
@@ -302,6 +314,7 @@ static long ai_init(int pass)
 
     /* Init OSD stuff */
     devIocStatsInitCpuUsage();
+    devIocStatsInitCpuUtilization(&loadinfo);
     devIocStatsInitFDUsage();
     devIocStatsInitMemUsage();
     devIocStatsInitSuspTasks();
@@ -522,6 +535,18 @@ static void read_fd_stats(void)
     }
 }
 
+static void read_load_stats(void)
+{
+    time_t nt;
+    time(&nt);
+
+    if ((nt-scan[LOAD_TYPE].last_read_sec) >= scan[LOAD_TYPE].rate_sec) {
+        devIocStatsGetCpuUsage(&loadinfo);
+        devIocStatsGetCpuUtilization(&loadinfo);
+        scan[LOAD_TYPE].last_read_sec = nt;
+    }
+}
+
 static double minMBuf(int pool)
 {
     int i = 0;
@@ -570,9 +595,17 @@ static void statsTotalBytes(double* val)
 }
 static void statsCpuUsage(double* val)
 {
-        double cpu = 0;
-        devIocStatsGetCpuUsage(&cpu);
-        *val = cpu;
+    read_load_stats();
+    *val = loadinfo.cpuLoad;
+}
+static void statsCpuUtilization(double* val)
+{
+    read_load_stats();
+    *val = loadinfo.iocLoad;
+}
+static void statsNoOfCpus(double* val)
+{
+    *val = (double)loadinfo.noOfCpus;
 }
 static void statsSuspendedTasks(double *val)
 {

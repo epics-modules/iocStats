@@ -1,5 +1,6 @@
 /*************************************************************************\
-* Copyright (c) 2009 Helmholtz-Zentrum Berlin fuer Materialien und Energie.
+* Copyright (c) 2009-2010 Helmholtz-Zentrum Berlin
+*     fuer Materialien und Energie GmbH.
 * Copyright (c) 2002 The University of Chicago, as Operator of Argonne
 *     National Laboratory.
 * Copyright (c) 2002 The Regents of the University of California, as
@@ -9,7 +10,7 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdBootInfo.c - Boot info strings: default implementation = do nothing */
+/* devIocStatsOSD.h - Header for OS dependent implementation part */
 
 /*
  *  Author: Ralph Lange (HZB/BESSY)
@@ -17,10 +18,13 @@
  *  Modification History
  *  2009-05-25 Ralph Lange (HZB/BESSY)
  *     Restructured OSD parts
+ *  2010-07-14  Ralph Lange (HZB/BESSY)
+ *     Added CPU Utilization (IOC load), number of CPUs
  *
  */
 
 #include <string.h>
+#include <unistd.h>
 #include <stdlib.h>
 
 #include <taskwd.h>
@@ -33,3 +37,5 @@
 #define MAX_FILES 0
 #define CLUSTSIZES 2
 #define reboot(x) epicsExit(0)
+#define NO_OF_CPUS sysconf(_SC_NPROCESSORS_CONF)
+#define TICKS_PER_SEC sysconf(_SC_CLK_TCK)
