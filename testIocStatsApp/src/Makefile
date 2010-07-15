@@ -48,6 +48,8 @@ rdbapplist_SRCS += rdbapplist.c
 rdbapplist_SRCS += BSlib.c
 rdbapplist_LIBS += $(EPICS_BASE_HOST_LIBS)
 
+SYS_PROD_LIBS_solaris += socket nsl
+
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
