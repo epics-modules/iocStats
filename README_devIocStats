@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 08/04/2010
+README_devIocStats		Last Updated 08/06/2010
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -72,7 +72,7 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
 				   IOC
 		fd		 - number of file descriptors currently in use
 		max_fd		 - max number of file descriptors
-	  Note - free_bytes, total_bytes, cpu_load, no_of_cpus, max_fd
+	  Note - free_bytes, total_bytes, cpu_load, no_of_cpus
 	         can be instantiated once per system instead of per IOC
 		 if desired (ie, when multiple IOCs run on the same system).
 	The following are implemented for RTEMS and vxWorks IOCs only and
@@ -151,7 +151,7 @@ II - Notes on Soft IOC Implementation of devIocStats
 
 (7) The following records can be instantied per system instead of per IOC 
     if desired (value is the same for all IOCs on the same system):
-	free_bytes, total_bytes, cpu_load, no_of_cpus, max_fd
+	free_bytes, total_bytes, cpu_load, no_of_cpus
 
 
 IV - Notes on RTEMS Implementation of devIocStats by Till Straumann
