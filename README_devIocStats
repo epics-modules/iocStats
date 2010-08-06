@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 07/01/2009
+README_devIocStats		Last Updated 08/04/2010
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -58,7 +58,7 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
 		ca_connections	 - number of current CA connections
 		suspended_tasks	 - number of suspended tasks
 	The following are implemented for RTEMS, vxWorks, and some soft IOCs 
-	(see notes below for exceptions):
+	(see notes below for exceptions and more detail):
 		free_bytes	 - number of bytes not allocated
 				   on this machine
 		allocated_bytes  - number of bytes allocated
@@ -66,9 +66,15 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
 				    at the moment (RSS))
 		total_bytes      - number of bytes physically installed
 				   on this machine
-		cpu		 - estimated percent IOC usage by tasks
+                cpu_load	 - estimated percent CPU load on the system 
+                no_of_cpus       - number of CPU cores on the system
+                ioc_load         - estimated percent CPU utilization by this 
+				   IOC
 		fd		 - number of file descriptors currently in use
 		max_fd		 - max number of file descriptors
+	  Note - free_bytes, total_bytes, cpu_load, no_of_cpus, max_fd
+	         can be instantiated once per system instead of per IOC
+		 if desired (ie, when multiple IOCs run on the same system).
 	The following are implemented for RTEMS and vxWorks IOCs only and
         set to 0 for other types of IOCs:
 		max_free	 - size of largest free block
@@ -106,6 +112,8 @@ Analog Out (ao) Records (DTYP = "IOC stats"), OUT = @one of the following:
 Subroutine (sub) Records, SNAM = one of the following:
 ======================================================
 		rebootProc	 - System reset or epics exit.
+		scanMon		 - Calculate time between record updates.
+				   Set INAM to scanMonInit.
 
 II - Notes on Soft IOC Implementation of devIocStats
 ----------------------------------------------------
@@ -116,7 +124,7 @@ II - Notes on Soft IOC Implementation of devIocStats
                                 TASKWDANYFUNCPRR pcallback = pt->callback;
     to:
                                 TASKWDANYFUNCPRR pcallback = ptany->callback;
-    Note that the suspended task count will only includes tasks that call 
+    Note that the suspended task count will only include tasks that call 
     taskwdInsert on startup, including all of iocCore tasks and all sequence 
     tasks.  Some (many?) support modules that create tasks neglect to call 
     taskwdInsert.
@@ -124,12 +132,29 @@ II - Notes on Soft IOC Implementation of devIocStats
 (2) The reboot subroutine record will exit the IOC process.  It is assumed
     some soft IOC managing process will automatically restart the soft IOC. 
 
-(3) CPU calculation does not work for symmetric multiprocessing (SMP) linux 
-    machines or WIN32 machines.
+(3) None of the available methods returns a true value for CPU utilization 
+    for multi-threaded applications on multi-core systems.  
 
-(4) File descriptor and memory usage available for Linux only.
+(4) Implementation of system CPU utilization on Linux and Solaris show the 
+    same values as "top".  A posix implementation that uses getrusage() is
+    provided for MacOS where everything else seems to be unavailable.
 
-III - Notes on RTEMS Implementation of devIocStats by Till Straumann
+(5) Implementation of IOC CPU utilization return 0%-100% of CPU load with 
+    respect to the system (divided by the number of CPUs where applicable).
+    On Solaris, this matches the "top" results. On Linux, "top" 
+    normalizes the process values per core 
+    (so that top_value = ioc_load*no_of_cpus).  To allow showing or changing 
+    the normalization, support for the number of CPUs is provided so that a 
+    calc record can be used to get the desired value.
+
+(6) Memory usage is available for Linux only.
+
+(7) The following records can be instantied per system instead of per IOC 
+    if desired (value is the same for all IOCs on the same system):
+	free_bytes, total_bytes, cpu_load, no_of_cpus, max_fd
+
+
+IV - Notes on RTEMS Implementation of devIocStats by Till Straumann
 --------------------------------------------------------------------
 
 Memory / Heap Statistics
