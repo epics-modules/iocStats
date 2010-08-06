@@ -15,7 +15,6 @@
 #include <epicsThread.h>
 #include <epicsExport.h>
 #include <epicsPrint.h>
-#include <epicsExit.h>
 
 #include <dbScan.h>
 #include <subRecord.h>
