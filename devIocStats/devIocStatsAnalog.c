@@ -34,7 +34,7 @@
  * Modifications for LCLS/SPEAR at SLAC:
  * ----------------
  *  08-09-29    Stephanie Allison - moved os-specific parts to
- *              os/<os>/devIocStatsOSD.h and devIocStatsOSD.c.  Added reboot.
+ *              os/<os>/devIocStatsOSD.h and devIocStatsOSD.c.
  *              Split into devIocStatsAnalog, devIocStatsString,
  *              devIocStatTest.
  *  2009-05-15  Ralph Lange (HZB/BESSY)
@@ -58,7 +58,7 @@
                 cpu_load	 - estimated percent CPU load on the system
                 ioc_load         - estimated percent CPU utilization by this IOC
                 no_of_cpus       - number of CPU cores on the system
-              ( cpu		 - same as cpu_load [for compatibility] )
+              ( cpu		 - same as ioc_load [for compatibility] )
                 suspended_tasks	 - number of suspended tasks
 		fd		 - number of file descriptors currently in use
 		max_fd		 - max number of file descriptors
@@ -94,21 +94,13 @@
 		15 - CA scan rate
 */
 
-#include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include <time.h>
 
-#include <epicsStdio.h>
-#include <epicsEvent.h>
 #include <epicsThread.h>
 #include <epicsTimer.h>
-#include <epicsTime.h>
 #include <epicsExport.h>
-#include <epicsPrint.h>
-#include <epicsExit.h>
 
-#include <taskwd.h>
 #include <rsrv.h>
 #include <dbAccess.h>
 #include <dbStaticLib.h>
@@ -116,9 +108,7 @@
 #include <devSup.h>
 #include <aiRecord.h>
 #include <aoRecord.h>
-#include <subRecord.h>
 #include <recGbl.h>
-#include <registryFunction.h>
 
 #include "devIocStats.h"
 
@@ -218,7 +208,7 @@ static validGetParms statsGetParms[]={
         { "total_bytes",		statsTotalBytes,	MEMORY_TYPE },
         { "cpu_load",			statsCpuUsage,		LOAD_TYPE },
         { "ioc_load",			statsCpuUtilization,	LOAD_TYPE },
-        { "cpu",			statsCpuUsage,		LOAD_TYPE },
+        { "cpu",			statsCpuUtilization,    LOAD_TYPE },
         { "no_of_cpus",			statsNoOfCpus,		STATIC_TYPE },
         { "suspended_tasks",		statsSuspendedTasks,	LOAD_TYPE },
 	{ "fd",				statsFdUsage,		FD_TYPE },
@@ -672,53 +662,3 @@ static void statsRecords(double *val)
 {
     *val = (double)recordnumber;
 }
-
-/*====================================================
-
-  Name: rebootProc
-
-  Rem:  This function resets the network
-        devices and transfers control to
-        boot ROMs.
-
-        If any input A through F is greater
-        than zero, the reboot is not allowed;
-	these are "inhibits."  Unless input L
-	is equal to one, the reboot is not allowed;
-	this is an "enable."  The intention is to
-	feed a BO record with a one-shot timing of
-	a few seconds to it, which has to be set
-	within a small window before requesting the
-	reboot.
-	
-        Input G is the bitmask for the reboot
-        input argument.  The possible bits are
-        defined in sysLib.h.  If input G is
-        0 (default), the reboot will be normal
-        with countdown.  If the BOOT_CLEAR bit
-        is set, the memory will be cleared first.
-
-        A taskDelay is needed before the reboot
-        to allow the reboot message to be logged.
-
-  Side: Memory is cleared if BOOT_CLEAR is set.
-        A reboot is initiated.
-        A message is sent to the error log.
-
-  Ret: long
-           OK - Successful operation (Always)
-
-=======================================================*/
-static long rebootProc(struct subRecord *psub)
-{
-  if ((psub->a < 0.5) && (psub->b < 0.5) &&
-      (psub->c < 0.5) && (psub->d < 0.5) &&
-      (psub->e < 0.5) && (psub->f < 0.5) &&
-      (psub->l > 0.5)) {
-     epicsPrintf("IOC reboot started\n");
-     epicsThreadSleep(1.0);
-     reboot((int)(psub->g + 0.1));
-  }
-  return(0);
-}
-epicsRegisterFunction(rebootProc);
