@@ -83,6 +83,7 @@
 */
 
 #include <string.h>
+#include <stdlib.h>
 
 #include <epicsStdio.h>
 #include <epicsVersion.h>
