@@ -122,11 +122,11 @@ int devIocStatsInitCpuUsage (void)
     return 0;
 }
 
-extern int devIocStatsGetCpuUsage (double *pval)
+int devIocStatsGetCpuUsage (loadInfo *pval)
 {
 #ifdef SSRLAPPSMISCUTILS
-    *pval = miscu_cpu_load_percentage(&prev_uptime, &prev_idletime);
-    if (isnan(*pval)) return -1; else return 0;
+    pval->cpuLoad = miscu_cpu_load_percentage(&prev_uptime, &prev_idletime);
+    if (isnan(pval->cpuLoad)) return -1; else return 0;
 #else
     double total;
     double idle;
@@ -146,9 +146,9 @@ extern int devIocStatsGetCpuUsage (double *pval)
     prev_idle = idle;
 
     if (delta_idle > delta_total)
-        *pval = 0.0;
+        pval->cpuLoad = 0.0;
     else
-        *pval = 100.0 - (delta_idle * 100.0 / delta_total);
+        pval->cpuLoad = 100.0 - (delta_idle * 100.0 / delta_total);
     return 0;
 #endif
 }

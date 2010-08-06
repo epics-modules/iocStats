@@ -21,7 +21,10 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitCpuUtilization (loadInfo *pval) { return 0; }
+int devIocStatsInitCpuUtilization (loadInfo *pval) {
+  pval->noOfCpus = 1;
+  return 0;
+}
 
 /* FIXME: This relies on the device support calling it after CpuUsage */
 int devIocStatsGetCpuUtilization (loadInfo *pval) {
