@@ -1,4 +1,4 @@
-Instructions for iocAdmin users                    Last Updated 07/14/2009
+Instructions for iocAdmin users                    Last Updated 08/06/2010
 --------------------------------
 
 The iocAdmin package contains databases and libraries to add ioc administration
@@ -34,10 +34,12 @@ IOCADMIN=/afs/slac/g/lcls/epics/modules/iocAdmin/iocAdmin-R<release>
 (4) Install the iocAdmin database and create iocRelease.db by adding to 
     <xxx>App/Db/Makefile:
 
-   DB_INSTALLS += $(IOCADMIN)/db/iocAdmin.db      (VxWorks IOCs)
-   DB_INSTALLS += $(IOCADMIN)/db/iocAdminRTEMS.db (RTEMS   IOCs)
-   DB_INSTALLS += $(IOCADMIN)/db/iocAdminSoft.db  (soft    IOCs)
-   DB_INSTALLS += $(IOCADMIN)/db/access.db        (if required by next step)
+   DB_INSTALLS += $(IOCADMIN)/db/iocAdminVxWorks.db (VxWorks IOCs)
+   DB_INSTALLS += $(IOCADMIN)/db/iocAdminRTEMS.db   (RTEMS   IOCs)
+   DB_INSTALLS += $(IOCADMIN)/db/iocAdminSoft.db    (soft    IOCs)
+   DB_INSTALLS += $(IOCADMIN)/db/access.db          (if required by next step)
+   DB_INSTALLS += $(IOCADMIN)/db/iocAdminScanMon.db (optional - ONLY if SCAN
+                                                     monitoring is required)
    DB_INSTALLS += $(IOCADMIN)/db/baseSecurity.acf
    IOCRELEASE_DB += iocRelease.db
 
@@ -101,7 +103,7 @@ II - Adding iocAdmin to your IOC startup file:
 (2) Add iocAdmin database to st.cmd (before iocInit):
 
     VxWorks IOCs only:
-    dbLoadRecords("db/iocAdmin.db", "IOC=<iocname>")
+    dbLoadRecords("db/iocAdminVxWorks.db", "IOC=<iocname>")
     RTEMS IOCs only:
     dbLoadRecords("db/iocAdminRTEMS.db", "IOC=<iocname>")
     Soft IOCs only:
@@ -111,7 +113,12 @@ II - Adding iocAdmin to your IOC startup file:
 
     dbLoadRecords("db/iocRelease.db", "IOC=<iocname>")
 
-(4) If baseSecurity.acf is not included in the ioc application's own
+(4) If SCAN monitoring is required (most IOCs do not require these
+    records - discuss with Kukhee Kim first):
+
+    dbLoadRecords("db/iocAdminScanMon.db", "IOC=<iocname>")
+
+(5) If baseSecurity.acf is not included in the ioc application's own
     acf file, add these lines (before iocInit):
 
     asSetFilename("<path>/db/baseSecurity.acf")
@@ -152,6 +159,8 @@ III - Adding iocAdmin to CA Clients:
 	ioc_rtems_crat - RTEMS IOC using the crate interface to power cycle.
 	ioc_rtems_none - RTEMS IOC without a crate interface or AC switch.
 	ioc_rtems_nosupport - RTEMS IOC with a unsupported crate interface
+	ioc_rtems_camac_4crat, ioc_rtems_camac_5crat, ioc_rtems_camac_6crat, or
+	ioc_rtems_camac_crat - RTEMS IOC with camac crate(s).
 	ioc_soft       - Soft IOC
 	Set the "ioc" macro to the ioc database name.
 
