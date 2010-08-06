@@ -27,8 +27,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#include <taskwd.h>
-#include <epicsThread.h>
+#include <epicsExit.h>
 
 #define sysBspRev()     "<not implemented>"
 #define kernelVersion() "<not implemented>"
