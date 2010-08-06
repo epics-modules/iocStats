@@ -121,7 +121,7 @@ static void cpuUsageTask(void *parm)
    this function returns old data.
    Maybe the cpuUsageTask() should restart itself instead of being restarted by this? */
 
-int devIocStatsGetCpuUsage(double *pval)
+int devIocStatsGetCpuUsage (loadInfo *pval)
 {
     if (cpuUsage.startSem) {
         if (cpuUsage.didNotComplete && cpuUsage.nBurnNow==0) {
@@ -143,7 +143,7 @@ int devIocStatsGetCpuUsage(double *pval)
     } else {
         cpuUsage.usage = 0.0;
     }
-    *pval = cpuUsage.usage;
+    pval->cpuLoad = cpuUsage.usage;
     return 0;
 }
 
