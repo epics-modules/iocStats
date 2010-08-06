@@ -72,9 +72,9 @@ record(ai, "$(IOCNAME):CA_CONN_CNT") {
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
   field(INP, "@ca_connections")
-  field(HOPR, "2000")
-  field(HIHI, "1750")
-  field(HIGH, "1000")
+  field(HOPR, "5000")
+  field(HIHI, "4500")
+  field(HIGH, "4000")
   field(HHSV, "MAJOR")
   field(HSV, "MINOR")
 }
@@ -114,22 +114,8 @@ record(calc, "$(IOCNAME):FD_FREE") {
   field(LSV, "MINOR")
 }
 
-record(ai, "$(IOCNAME):LOAD") {
-  field(DESC, "CPU Load")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "IOC stats")
-  field(INP, "@cpu")
-  field(EGU, "%")
-  field(PREC, "1")
-  field(HOPR, "100")
-  field(HIHI, "80")
-  field(HIGH, "70")
-  field(HHSV, "MAJOR")
-  field(HSV, "MINOR")
-}
-
-record(ai, "$(IOCNAME):CPULOAD") {
-  field(DESC, "CPU Load")
+record(ai, "$(IOCNAME):SYS_LOAD") {
+  field(DESC, "System CPU Load")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
   field(INP, "@cpu_load")
@@ -142,8 +128,8 @@ record(ai, "$(IOCNAME):CPULOAD") {
   field(HSV, "MINOR")
 }
 
-record(ai, "$(IOCNAME):IOCLOAD") {
-  field(DESC, "IOC Load")
+record(ai, "$(IOCNAME):LOAD") {
+  field(DESC, "IOC CPU Load")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
   field(INP, "@ioc_load")
@@ -156,8 +142,8 @@ record(ai, "$(IOCNAME):IOCLOAD") {
   field(HSV, "MINOR")
 }
 
-record(ai, "$(IOCNAME):NOOFCPUS") {
-  field(DESC, "No. of CPUs")
+record(ai, "$(IOCNAME):CPU_CNT") {
+  field(DESC, "Number of CPUs")
   field(DTYP, "IOC stats")
   field(INP, "@no_of_cpus")
   field(PINI, "YES")
@@ -209,7 +195,7 @@ record(ao, "$(IOCNAME):CA_UPD_TIME") {
 }
 
 record(ao, "$(IOCNAME):FD_UPD_TIME") {
-  field(DESC, "FD Check Update Time")
+  field(DESC, "FD Check Update Period")
   field(DTYP, "IOC stats")
   field(OUT, "@fd_scan_rate")
   field(EGU, "sec")
