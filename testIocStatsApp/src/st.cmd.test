@@ -11,11 +11,13 @@ dbLoadDatabase("dbd/testIocStats.dbd",0,0)
 testIocStats_registerRecordDeviceDriver(pdbbase)
 
 ## Load all record instances (VxWorks)
-dbLoadRecords("db/iocAdmin.db","IOC=IOCTEST")
+dbLoadRecords("db/iocAdminVxWorks.db","IOC=IOCTEST")
 ## or load only those records for RTEMS IOCs
 #dbLoadRecords("db/iocAdminRTEMS.db","IOC=IOCTEST")
 ## or load only those records for Soft IOCs
 #dbLoadRecords("db/iocAdminSoft.db","IOC=IOCTEST")
+## optionally load the SCAN monitoring records
+#dbLoadRecords("db/iocAdminScanMon.db","IOC=IOCTEST")
 dbLoadRecords("db/testIocStatsRelease.db","IOC=IOCTEST")
 
 iocInit()
