@@ -1,0 +1,23 @@
+record(bo, "$(IOCNAME):$(SCANNAME)_MODE") {
+	field(DESC, "$(SCANNAME) Mode")
+	field(DOL, "$(MODE)")
+	field(PINI, "YES")
+	field(ZNAM, "Relative")
+	field(ONAM, "Absolute")
+}
+record(sub, "$(IOCNAME):$(SCANNAME)_UPD_TIME") {
+	field(DESC, "$(SCANNAME) Update Time")
+	field(SCAN, "$(SCAN)")
+	field(EGU, "second")
+	field(PREC, "5")
+	field(INAM, "scanMonInit")
+	field(SNAM, "scanMon")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+	field(BRSV, "INVALID")
+	field(INPA, "$(IOCNAME):$(SCANNAME)_MODE")
+	field(B,    "$(MINOR_TOL)")
+	field(C,    "$(MAJOR_TOL)")
+}

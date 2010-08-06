@@ -16,10 +16,12 @@ DB += iocRTOS.db
 DB += iocVxWorksOnly.db
 DB += iocEnvVar.db
 DB += iocCluster.db
+DB += iocScanMon.db
 DB += access.db
-DB += iocAdmin.db
+DB += iocAdminVxWorks.db
 DB += iocAdminSoft.db
 DB += iocAdminRTEMS.db
+DB += iocAdminScanMon.db
 DB += baseSecurity.acf
 
 #
