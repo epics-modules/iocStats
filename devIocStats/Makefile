@@ -22,6 +22,7 @@ devIocStats_SYS_LIBS_solaris = kstat
 # OSI parts
 SRCS += devIocStatsAnalog.c
 SRCS += devIocStatsString.c
+SRCS += devIocStatsSub.c
 SRCS += devIocStatsTest.c
 
 # OSD parts
