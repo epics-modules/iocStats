@@ -25,9 +25,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#include <taskwd.h>
-#include <epicsThread.h>
-
 #define sysBspRev()     "<not implemented>"
 #define kernelVersion() "<not implemented>"
 #define sysBootLine     "<not implemented>"
@@ -37,5 +34,4 @@
 #define NO_OF_CPUS sysconf(_SC_NPROCESSORS_CONF)
 #define TICKS_PER_SEC sysconf(_SC_CLK_TCK)
 
-#include <unistd.h>
 #include <sys/reboot.h>
