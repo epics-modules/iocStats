@@ -19,12 +19,8 @@
  *
  */
 
-#include <unistd.h>
 #include <sys/time.h>
-#include <sys/times.h>
-
-#include <proc/sysinfo.h>
-#include <proc/readproc.h>
+#include <sys/resource.h>
 
 #include <epicsTime.h>
 #include <devIocStats.h>
