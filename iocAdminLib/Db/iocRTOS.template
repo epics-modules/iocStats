@@ -19,6 +19,7 @@ record(calc, "$(IOCNAME):MEM_BLK_FREE") {
   field(LOW, "500000")
   field(LLSV, "MAJOR")
   field(LSV, "MINOR")
+  info(autosaveFields_pass0, "HOPR LOLO LOW LLSV LSV")
 }
 
 record(stringin, "$(IOCNAME):BOOTLINE1") {
@@ -70,6 +71,7 @@ record(ai, "$(IOCNAME):SYS_MBUF_FREE") {
   field(EGU, "%")
   field(INP, "@min_sys_mbuf")
   field(FLNK, "$(SYS_MBUF_FLNK)")
+  info(autosaveFields_pass0, "LOLO LOW LLSV LSV")
 }
 
 record(ai, "$(IOCNAME):SYS_MBUF_MAX") {
@@ -84,6 +86,7 @@ record(ai, "$(IOCNAME):IFI_ERR_CNT") {
   field(DTYP, "IOC stats")
   field(SCAN, "I/O Intr")
   field(INP, "@inp_errs")
+  info(autosaveFields_pass0, "HIHI HIGH HHSV HSV")
 }
 
 record(ai, "$(IOCNAME):IFO_ERR_CNT") {
@@ -91,4 +94,5 @@ record(ai, "$(IOCNAME):IFO_ERR_CNT") {
   field(DTYP, "IOC stats")
   field(SCAN, "I/O Intr")
   field(INP, "@out_errs")
+  info(autosaveFields_pass0, "HIHI HIGH HHSV HSV")
 }

@@ -12,6 +12,7 @@ record(mbbo, "$(IOCNAME):ACCESS")
   field(TWSV, "MINOR")
   field(THST, "OFFLINE")
   field(THSV, "MAJOR")
+  info(autosaveFields, "VAL")
 }
 record(stringin, "$(IOCNAME):STARTTOD")
 {
@@ -65,6 +66,7 @@ record(ai, "$(IOCNAME):CA_CLNT_CNT") {
   field(HIGH, "100")
   field(HHSV, "MAJOR")
   field(HSV, "MINOR")
+  info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 record(ai, "$(IOCNAME):CA_CONN_CNT") {
@@ -77,6 +79,7 @@ record(ai, "$(IOCNAME):CA_CONN_CNT") {
   field(HIGH, "4000")
   field(HHSV, "MAJOR")
   field(HSV, "MINOR")
+  info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 record(ai, "$(IOCNAME):RECORD_CNT") {
@@ -112,6 +115,7 @@ record(calc, "$(IOCNAME):FD_FREE") {
   field(LOW, "20")
   field(LLSV, "MAJOR")
   field(LSV, "MINOR")
+  info(autosaveFields_pass0, "HOPR LOPR LOW LOLO LSV LLSV")
 }
 
 record(ai, "$(IOCNAME):SYS_LOAD") {
@@ -126,6 +130,7 @@ record(ai, "$(IOCNAME):SYS_LOAD") {
   field(HIGH, "70")
   field(HHSV, "MAJOR")
   field(HSV, "MINOR")
+  info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 record(ai, "$(IOCNAME):LOAD") {
@@ -140,6 +145,7 @@ record(ai, "$(IOCNAME):LOAD") {
   field(HIGH, "70")
   field(HHSV, "MAJOR")
   field(HSV, "MINOR")
+  info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 record(ai, "$(IOCNAME):CPU_CNT") {
@@ -156,6 +162,7 @@ record(ai, "$(IOCNAME):SUSP_TASK_CNT") {
   field(INP, "@suspended_tasks")
   field(HIHI, "1")
   field(HHSV, "MAJOR")
+  info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
 record(ai, "$(IOCNAME):MEM_USED") {
@@ -172,6 +179,7 @@ record(ai, "$(IOCNAME):MEM_FREE") {
   field(DTYP, "IOC stats")
   field(INP, "@free_bytes")
   field(EGU, "byte")
+  info(autosaveFields_pass0, "HOPR LOPR LOW LOLO LSV LLSV")
 }
 
 record(ai, "$(IOCNAME):MEM_MAX") {

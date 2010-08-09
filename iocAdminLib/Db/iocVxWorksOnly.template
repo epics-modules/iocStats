@@ -10,8 +10,11 @@ record(ai, "$(IOCNAME):DAT_MBUF_FREE") {
   field(DTYP, "IOC stats")
   field(SCAN, "I/O Intr")
   field(EGU, "%")
+  field(HOPR, "100")
+  field(LOPR, "0")
   field(INP, "@min_data_mbuf")
   field(FLNK, "$(DAT_MBUF_FLNK)")
+  info(autosaveFields_pass0, "LOLO LOW LLSV LSV")
 }
 
 record(ai, "$(IOCNAME):DAT_MBUF_MAX") {
