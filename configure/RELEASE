@@ -2,6 +2,12 @@
 # Run "gnumake clean uninstall install" in the application
 # top directory each time this file is changed.
 
+# SNCSEQ required only if testIocStatsApp will be built.
+#SNCSEQ     = /usr/local/epics/R3.14.11/modules/soft/synApps_5_5/support/seq-2-0-12
+#MSI        = /usr/local/epics/R3.14.11/extensions/bin/$(EPICS_HOST_ARCH)/msi
+#EPICS_BASE = /usr/local/epics/R3.14.11/base
+
+# The rest of this file is LCLS only and can be removed.
 # =============================================================
 # Define the top of the EPICS tree for your site.
 # We will build some tools/scripts that allow us to
