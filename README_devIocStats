@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 08/06/2010
+README_devIocStats		Last Updated 08/10/2010
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -66,13 +66,13 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
 				    at the moment (RSS))
 		total_bytes      - number of bytes physically installed
 				   on this machine
-                cpu_load	 - estimated percent CPU load on the system 
+                sys_cpuload	 - estimated percent CPU load on the system 
                 no_of_cpus       - number of CPU cores on the system
-                ioc_load         - estimated percent CPU utilization by this 
+                ioc_cpuload      - estimated percent CPU utilization by this 
 				   IOC
 		fd		 - number of file descriptors currently in use
 		max_fd		 - max number of file descriptors
-	  Note - free_bytes, total_bytes, cpu_load, no_of_cpus
+	  Note - free_bytes, total_bytes, sys_cpuload, no_of_cpus
 	         can be instantiated once per system instead of per IOC
 		 if desired (ie, when multiple IOCs run on the same system).
 	The following are implemented for RTEMS and vxWorks IOCs only and
@@ -143,7 +143,7 @@ II - Notes on Soft IOC Implementation of devIocStats
     respect to the system (divided by the number of CPUs where applicable).
     On Solaris, this matches the "top" results. On Linux, "top" 
     normalizes the process values per core 
-    (so that top_value = ioc_load*no_of_cpus).  To allow showing or changing 
+    (so that top_value = ioc_cpuload*no_of_cpus).  To allow showing or changing 
     the normalization, support for the number of CPUs is provided so that a 
     calc record can be used to get the desired value.
 
@@ -151,7 +151,7 @@ II - Notes on Soft IOC Implementation of devIocStats
 
 (7) The following records can be instantied per system instead of per IOC 
     if desired (value is the same for all IOCs on the same system):
-	free_bytes, total_bytes, cpu_load, no_of_cpus
+	free_bytes, total_bytes, sys_cpuload, no_of_cpus
 
 
 IV - Notes on RTEMS Implementation of devIocStats by Till Straumann

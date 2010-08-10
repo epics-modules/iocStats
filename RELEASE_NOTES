@@ -1,18 +1,18 @@
 Release Notes for iocStats
 --------------------------
 
-iocStats-R3-1-3: Aug 06, 2010
+iocStats-R3-1-3: Aug 10, 2010
   * Changes by Ralph Lange:
     - Made python script work for python2.4
     - Fixed Makefiles to work on solaris (gcc)
     - Removed unnecessary posix default for osdMemUsage.c
     - Fixed solaris pid_t (=long) issue in BSlib.c
-    - Added ioc_load (CPU utilization of IOC instance)
-      and cpu_load (CPU load of system) with implementations:
+    - Added ioc_cpuload (CPU utilization of IOC instance)
+      and sys_cpuload (CPU load of system) with implementations:
       - using getrusage() for posix (used on Darwin)
       - using /proc file system reads on Linux
       - using /proc reads and kernel statistics on Solaris
-      - using the cpu_load value for ioc_load on RTEMS and vxWorks
+      - using the sys_cpuload value for ioc_cpuload on RTEMS and vxWorks
   * Changes by Stephanie Allison:
     - Per Ernest, move iocAdmin.db to iocAdminVxWorks.db 
       (deprecate iocAdmin.db).
