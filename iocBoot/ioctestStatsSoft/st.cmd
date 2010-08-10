@@ -22,8 +22,8 @@ testIocStats_registerRecordDeviceDriver(pdbbase)
 ## or load only those records for Soft IOCs
 dbLoadRecords("db/iocAdminSoft.db","IOC=IOCTEST")
 ## optionally load the SCAN monitoring records
-dbLoadRecords("db/iocAdminScanMon.db","IOC=IOCTEST")
-dbLoadRecords("db/testIocAdminRelease.db","IOC=IOCTEST")
+#dbLoadRecords("db/iocAdminScanMon.db","IOC=IOCTEST")
+#dbLoadRecords("db/testIocAdminRelease.db","IOC=IOCTEST")
 
 iocInit()
 
