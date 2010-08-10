@@ -55,10 +55,10 @@
 		max_free	 - size of largest free block
 		free_blocks	 - number of blocks in IOC not allocated
 		allocated_blocks - number of blocks allocated
-                cpu_load	 - estimated percent CPU load on the system
-                ioc_load         - estimated percent CPU utilization by this IOC
+                sys_cpuload	 - estimated percent CPU load on the system
+                ioc_cpuload      - estimated percent CPU utilization by this IOC
                 no_of_cpus       - number of CPU cores on the system
-              ( cpu		 - same as ioc_load [for compatibility] )
+              ( cpu		 - same as ioc_cpuload [for compatibility] )
                 suspended_tasks	 - number of suspended tasks
 		fd		 - number of file descriptors currently in use
 		max_fd		 - max number of file descriptors
@@ -206,8 +206,8 @@ static validGetParms statsGetParms[]={
 	{ "allocated_bytes",		statsAllocBytes,	MEMORY_TYPE },
 	{ "allocated_blocks",		statsAllocBlocks,	MEMORY_TYPE },
         { "total_bytes",		statsTotalBytes,	MEMORY_TYPE },
-        { "cpu_load",			statsCpuUsage,		LOAD_TYPE },
-        { "ioc_load",			statsCpuUtilization,	LOAD_TYPE },
+        { "sys_cpuload",		statsCpuUsage,		LOAD_TYPE },
+        { "ioc_cpuload",		statsCpuUtilization,	LOAD_TYPE },
         { "cpu",			statsCpuUtilization,    LOAD_TYPE },
         { "no_of_cpus",			statsNoOfCpus,		STATIC_TYPE },
         { "suspended_tasks",		statsSuspendedTasks,	LOAD_TYPE },
