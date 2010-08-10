@@ -63,7 +63,7 @@ IOCADMIN=/afs/slac/g/lcls/epics/modules/iocAdmin/iocAdmin-R<release>
     The ACCESS record has state names of Online, Maintenance, Checkout, and 
     Offline and is set by operations.  It is not meant to be used by Channel 
     Access Security or for the actual device state which is set using a 
-    different record name by the IOC itself.  See iocAdminLib/Db/access.doc 
+    different record name by the IOC itself.  See iocAdmin/Db/access.doc 
     for requirements and discussion of the ACCESS record.
 
     The FBCK record has state names of Off, On, and Unavailable.  
@@ -82,7 +82,7 @@ IOCADMIN=/afs/slac/g/lcls/epics/modules/iocAdmin/iocAdmin-R<release>
 	pattern { DEV                                             }
 		{ <device or attribute name including ALL colons> }
 	}
-    See iocAdminLib/Db/access.doc for requirements and discussion.
+    See iocAdmin/Db/access.doc for requirements and discussion.
 
 (6) Optional - include baseSecurity.acf in any existing acf file that is
     built in the ioc application.
