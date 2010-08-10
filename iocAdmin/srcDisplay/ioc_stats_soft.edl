@@ -1418,7 +1418,7 @@ x 430
 y 515
 w 95
 h 30
-controlPv "$(ioc):SYS_LOAD"
+controlPv "$(ioc):SYS_CPU_LOAD"
 fgColor index 16
 fgAlarm
 bgColor index 12

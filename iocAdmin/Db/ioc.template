@@ -118,11 +118,11 @@ record(calc, "$(IOCNAME):FD_FREE") {
   info(autosaveFields_pass0, "HOPR LOPR LOW LOLO LSV LLSV")
 }
 
-record(ai, "$(IOCNAME):SYS_LOAD") {
+record(ai, "$(IOCNAME):SYS_CPU_LOAD") {
   field(DESC, "System CPU Load")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
-  field(INP, "@cpu_load")
+  field(INP, "@sys_cpuload")
   field(EGU, "%")
   field(PREC, "1")
   field(HOPR, "100")
@@ -133,11 +133,13 @@ record(ai, "$(IOCNAME):SYS_LOAD") {
   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
+#record(ai, "$(IOCNAME):IOC_CPU_LOAD") {
+# alias("$(IOCNAME):LOAD")
 record(ai, "$(IOCNAME):LOAD") {
   field(DESC, "IOC CPU Load")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
-  field(INP, "@ioc_load")
+  field(INP, "@ioc_cpuload")
   field(EGU, "%")
   field(PREC, "1")
   field(HOPR, "100")
