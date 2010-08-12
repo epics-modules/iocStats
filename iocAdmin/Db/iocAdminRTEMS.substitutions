@@ -16,6 +16,11 @@ file iocRTOS.template
 pattern { IOCNAME , SYS_MBUF_FLNK     }
 	{ $(IOC)  , $(IOC):CLUST_1_0_0}
 }
+file iocRTEMSOnly.template
+{
+pattern { IOCNAME }
+	{ $(IOC)  }
+}
 file iocEnvVar.template
 {
 pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}

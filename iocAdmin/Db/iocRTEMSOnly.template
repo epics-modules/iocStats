@@ -1,0 +1,23 @@
+record(ai, "$(IOCNAME):RAM_WS_USED") {
+  field(DESC, "Workspace Allocated Memory")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@workspace_alloc_bytes")
+  field(EGU, "byte")
+}
+
+record(ai, "$(IOCNAME):RAM_WS_FREE") {
+  field(DESC, "Workspace Free Memory")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@workspace_free_bytes")
+  field(EGU, "byte")
+}
+
+record(ai, "$(IOCNAME):RAM_WS_MAX") {
+  field(DESC, "Workspace Maximum Memory")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC stats")
+  field(INP, "@workspace_total_bytes")
+  field(EGU, "byte")
+}

@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 296
-y 68
+x 617
+y 69
 w 540
-h 785
+h 830
 font "helvetica-medium-r-12.0"
 ctlFont "helvetica-medium-r-12.0"
 btnFont "helvetica-medium-r-12.0"
@@ -32,9 +32,9 @@ major 4
 minor 0
 release 0
 x 10
-y 610
+y 660
 w 270
-h 165
+h 160
 lineColor index 3
 fill
 fillColor index 3
@@ -1004,7 +1004,7 @@ release 0
 x 10
 y 505
 w 270
-h 100
+h 150
 lineColor index 3
 fill
 fillColor index 3
@@ -1031,8 +1031,8 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 80
-y 530
+x 95
+y 545
 w 85
 h 20
 controlPv "$(ioc):MEM_FREE"
@@ -1053,8 +1053,8 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 80
-y 555
+x 95
+y 570
 w 85
 h 20
 controlPv "$(ioc):MEM_USED"
@@ -1075,8 +1075,8 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 185
-y 560
+x 95
+y 620
 w 85
 h 30
 controlPv "$(ioc):MEM_BLK_FREE"
@@ -1097,7 +1097,7 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 15
+x 130
 y 510
 w 94
 h 14
@@ -1117,8 +1117,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 20
-y 535
+x 15
+y 550
 w 26
 h 14
 font "helvetica-medium-r-12.0"
@@ -1137,8 +1137,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 20
-y 555
+x 15
+y 570
 w 28
 h 14
 font "helvetica-medium-r-12.0"
@@ -1157,8 +1157,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 195
-y 530
+x 15
+y 625
 w 75
 h 28
 font "helvetica-medium-r-12.0"
@@ -1275,7 +1275,7 @@ major 4
 minor 1
 release 0
 x 20
-y 640
+y 690
 w 41
 h 14
 font "helvetica-medium-r-12.0"
@@ -1295,7 +1295,7 @@ major 4
 minor 1
 release 0
 x 20
-y 670
+y 720
 w 24
 h 14
 font "helvetica-medium-r-12.0"
@@ -1314,8 +1314,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 15
-y 615
+x 80
+y 665
 w 85
 h 14
 font "helvetica-medium-r-12.0"
@@ -1335,7 +1335,7 @@ major 10
 minor 0
 release 0
 x 75
-y 635
+y 685
 w 95
 h 20
 controlPv "$(ioc):SYS_MBUF_FREE"
@@ -1477,7 +1477,7 @@ release 0
 x 295
 y 635
 w 235
-h 70
+h 75
 lineColor index 3
 fill
 fillColor index 3
@@ -1639,7 +1639,7 @@ major 10
 minor 0
 release 0
 x 75
-y 660
+y 710
 w 95
 h 20
 controlPv "$(ioc):SYS_MBUF_MAX"
@@ -1659,8 +1659,8 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 80
-y 580
+x 95
+y 595
 w 85
 h 20
 controlPv "$(ioc):MEM_MAX"
@@ -1681,8 +1681,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 20
-y 575
+x 15
+y 590
 w 52
 h 28
 font "helvetica-medium-r-12.0"
@@ -1703,7 +1703,7 @@ major 4
 minor 1
 release 0
 x 50
-y 700
+y 750
 w 24
 h 14
 font "helvetica-medium-r-12.0"
@@ -1723,7 +1723,7 @@ major 4
 minor 1
 release 0
 x 90
-y 700
+y 750
 w 45
 h 14
 font "helvetica-medium-r-12.0"
@@ -1743,7 +1743,7 @@ major 4
 minor 1
 release 0
 x 155
-y 700
+y 750
 w 26
 h 14
 font "helvetica-medium-r-12.0"
@@ -1763,7 +1763,7 @@ major 4
 minor 1
 release 0
 x 205
-y 700
+y 750
 w 35
 h 14
 font "helvetica-medium-r-12.0"
@@ -1783,7 +1783,7 @@ major 4
 minor 1
 release 0
 x 105
-y 685
+y 735
 w 69
 h 14
 font "helvetica-medium-r-12.0"
@@ -1803,7 +1803,7 @@ major 10
 minor 0
 release 0
 x 90
-y 720
+y 770
 w 50
 h 20
 controlPv "$(ioc):CLUST_1_0_1"
@@ -1825,7 +1825,7 @@ major 10
 minor 0
 release 0
 x 200
-y 720
+y 770
 w 50
 h 20
 controlPv "$(ioc):CLUST_1_0_3"
@@ -1847,7 +1847,7 @@ major 10
 minor 0
 release 0
 x 145
-y 720
+y 770
 w 50
 h 20
 controlPv "$(ioc):CLUST_1_0_2"
@@ -1869,7 +1869,7 @@ major 10
 minor 0
 release 0
 x 35
-y 720
+y 770
 w 50
 h 20
 controlPv "$(ioc):CLUST_1_0_0"
@@ -1891,7 +1891,7 @@ major 10
 minor 0
 release 0
 x 90
-y 745
+y 795
 w 50
 h 20
 controlPv "$(ioc):CLUST_1_1_1"
@@ -1913,7 +1913,7 @@ major 10
 minor 0
 release 0
 x 200
-y 745
+y 795
 w 50
 h 20
 controlPv "$(ioc):CLUST_1_1_3"
@@ -1935,7 +1935,7 @@ major 10
 minor 0
 release 0
 x 145
-y 745
+y 795
 w 50
 h 20
 controlPv "$(ioc):CLUST_1_1_2"
@@ -1957,7 +1957,7 @@ major 10
 minor 0
 release 0
 x 35
-y 745
+y 795
 w 50
 h 20
 controlPv "$(ioc):CLUST_1_1_0"
@@ -2005,5 +2005,111 @@ replaceSymbols {
 propagateMacros {
   0 0
 }
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 120
+y 525
+w 30
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Heap"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 190
+y 545
+w 85
+h 20
+controlPv "$(ioc):RAM_WS_FREE"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 190
+y 570
+w 85
+h 20
+controlPv "$(ioc):RAM_WS_USED"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 190
+y 595
+w 85
+h 20
+controlPv "$(ioc):RAM_WS_MAX"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 200
+y 525
+w 62
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Workspace"
+}
+autoSize
 endObjectProperties
 
