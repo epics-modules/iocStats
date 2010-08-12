@@ -30,6 +30,7 @@ SRCS += osdCpuUsage.c
 SRCS += osdCpuUtilization.c
 SRCS += osdFdUsage.c
 SRCS += osdMemUsage.c
+SRCS += osdWorkspaceUsage.c
 SRCS += osdClustInfo.c
 SRCS += osdSuspTasks.c
 SRCS += osdIFErrors.c

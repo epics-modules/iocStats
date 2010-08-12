@@ -84,6 +84,10 @@ extern int devIocStatsGetFDUsage (fdInfo *pval);
 extern int devIocStatsInitMemUsage (void);
 extern int devIocStatsGetMemUsage (memInfo *pval);
 
+/* RAM Workspace Usage */
+extern int devIocStatsInitWorkspaceUsage (void);
+extern int devIocStatsGetWorkspaceUsage (memInfo *pval);
+
 /* Suspended Tasks */
 extern int devIocStatsInitSuspTasks (void);
 extern int devIocStatsGetSuspTasks (int *pval);
