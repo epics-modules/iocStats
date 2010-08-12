@@ -45,35 +45,24 @@
 
 #include <devIocStats.h>
 
-/* Heap implementation changed; we should use
- * malloc_free_space() which handles these changes
- * transparently but then we don't get the
- * 'bytesUsed' information.
- */
-# if   (__RTEMS_MAJOR__ > 4) \
-   || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 7)
-#define RTEMS_MALLOC_IS_HEAP
-#include <rtems/score/protectedheap.h>
-# endif
-
 int devIocStatsInitMemUsage (void) { return 0; }
 
 int devIocStatsGetMemUsage (memInfo *pval)
 {
-#ifdef RTEMS_MALLOC_IS_HEAP
+#ifdef RTEMS_PROTECTED_HEAP
     extern Heap_Control RTEMS_Malloc_Heap;
     Heap_Control *h = &RTEMS_Malloc_Heap;
     Heap_Information_block info;
 
     _Protected_heap_Get_information(h, &info);
-#else /* RTEMS_MALLOC_IS_HEAP */
+#else /* RTEMS_PROTECTED_HEAP */
     extern rtems_id      RTEMS_Malloc_Heap;
     rtems_id h = RTEMS_Malloc_Heap;
     region_information_block info;
 
     rtems_region_get_information(h, &info);
     /* rtems' malloc_free_space() looks at 'largest' -- why not 'total'? */
-#endif /* RTEMS_MALLOC_IS_HEAP */
+#endif /* RTEMS_PROTECTED_HEAP */
     pval->numBytesTotal    = info.Free.total + info.Used.total;
     pval->numBytesFree     = info.Free.total;
     pval->numBytesAlloc    = info.Used.total;

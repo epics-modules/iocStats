@@ -60,6 +60,14 @@
 #undef malloc
 #undef free
 
+# if   (__RTEMS_MAJOR__ > 4) \
+   || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 7)
+#define RTEMS_PROTECTED_HEAP
+#include <rtems/score/protectedheap.h>
+# else
+#include <rtems/score/apimutex.h>
+# endif
+
 #include <string.h>
 #include <stdlib.h>
 
