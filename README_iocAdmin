@@ -1,4 +1,4 @@
-Instructions for iocAdmin users                    Last Updated 08/06/2010
+Instructions for iocAdmin users                    Last Updated 08/12/2010
 --------------------------------
 
 The iocAdmin package contains databases and libraries to add ioc administration
@@ -181,6 +181,7 @@ III - Adding iocAdmin to CA Clients:
 	<iocname>:MEM_FREE
 	<iocname>:MEM_BLK_FREE
 	<iocname>:SYS_MBUF_FREE
+	<iocname>:RAM_WS_FREE
 	<iocname>:LOAD
 	<iocname>:IFI_ERR_CNT
 	<iocname>:IFO_ERR_CNT
@@ -202,5 +203,7 @@ III - Adding iocAdmin to CA Clients:
 
 	RTEMS and VxWorks IOCs only:
 	<iocname>:LOAD
+	<iocname>:MEM_FREE
 	<iocname>:MEM_BLK_FREE
+	<iocname>:RAM_WS_FREE
 

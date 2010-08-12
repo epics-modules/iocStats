@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 08/10/2010
+README_devIocStats		Last Updated 08/12/2010
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -83,11 +83,16 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
                 inp_errs	 - number of IF input  errors 
                 out_errs	 - number of IF output errors
 	The following are implemented for vxWorks IOCs only and
-        set to 0 for other types of IOCs::
+        set to 0 for other types of IOCs:
 		free_blocks	 - number of blocks in IOC not allocated
 		allocated_blocks - number of blocks allocated 
                 min_data_mbuf    - minimum percent free data MBUFs
                 data_mbuf	 - number of data MBUFs
+	The following are implemented for RTEMS IOCs only and
+        set to 0 for other types of IOCs:
+                workspace_alloc_bytes - number of RAM workspace allocated bytes
+                workspace_free_bytes  - number of RAM workspace free bytes
+                workspace_total_bytes - number of RAM workspace total bytes
 
 Analog In (ai) Records for Cluster Statistics (RTEMS and vxWorks IOCs only)
 (DTYP = "IOC stats clusts"), INP = @clust_info <pool> <index> <type> where:
