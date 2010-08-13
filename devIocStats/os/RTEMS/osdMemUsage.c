@@ -21,22 +21,25 @@
  * Modifications for LCLS/SPEAR at SLAC:
  * ----------------
  *  08-08-26    Till Straumann, ported to RTEMS.
+ *              Gathering heap statistics could be expensive;
+ *              I wouldn't want to run this too often w/o
+ *              knowing how it is implemented and how it could
+ *              impact the running system.
  *
- *              RTEMS notes:
- *                - RTEMS also uses a 'workspace' memory
- *                  area which is independent of the malloc heap.
- *                  Some system-internal data structures are
- *                  allocated from the workspace area.
- *                  So far, support for monitoring the workspace area 
- *                  has not been implemented (although it would be
- *                  straightforward to do.
+ *              Furthermore, vxStats reports 'free', 'used' and
+ *              'total' memory.  Unfortunately, it just assumes
+ *              'total = free + used' instead of the correct total
+ *              number (difference could give a hint about
+ *              fragmentation). However, if you know the true total
+ *              amount of memory you can estimate fragmentation in
+ *              your head...
  *
- *              The RTEMS/BSD stack has only one pool of mbufs
- *              and only uses two sizes: MSIZE (128b) for 'ordinary'
- *              mbufs, and MCLBYTES (2048b) for 'mbuf clusters'.
- *                 Therefore, the 'data' pool is empty. However,
- *              the calculation of MinDataMBuf always shows usage
- *              info of 100% free (but 100% of 0 is still 0).
+ *              RTEMS also uses a 'workspace' memory
+ *              area which is independent of the malloc heap.
+ *              Some system-internal data structures are
+ *              allocated from the workspace area.
+ *              Support for monitoring the workspace area 
+ *              is provided in osdWorkspaceUsage.c.
  *
  *  2009-05-15  Ralph Lange (HZB/BESSY)
  *              Restructured OSD parts

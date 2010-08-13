@@ -36,6 +36,14 @@
  *
  * Modifications for LCLS/SPEAR at SLAC:
  * ----------------
+ *  08-08-26    Till Straumann, ported to RTEMS.
+ *              The RTEMS/BSD stack has only one pool of mbufs
+ *              and only uses two sizes: MSIZE (128b) for 'ordinary'
+ *              mbufs, and MCLBYTES (2048b) for 'mbuf clusters'.
+ *              Therefore, the 'data' pool is empty. However,
+ *              the calculation of MinDataMBuf always shows usage
+ *              info of 100% free (but 100% of 0 is still 0).
+ *
  *  08-09-29    Stephanie Allison - moved os-specific parts to
  *              os/<os>/devIocStatsOSD.h and devIocStatsOSD.c.  Added reboot.
  *              Split into devIocStatsAnalog, devIocStatsString,

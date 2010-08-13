@@ -179,9 +179,6 @@ Memory / Heap Statistics
   area which is independent of the malloc heap.
   Some system-internal data structures are
   allocated from the workspace area.
-  So far, support for monitoring the workspace area
-  has not been implemented (although it would be
-  straightforward to do).
 
 CPU Load Estimate from the IDLE Task (from Phil Sorensen at CHESS)
 ====================================
