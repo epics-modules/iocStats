@@ -1,9 +1,21 @@
 Release Notes for iocStats
 --------------------------
 
-iocStats-R?-?-?: Aug 12, 2010
+Note: iocStats releases above R3-1-3 require EPICS base 3.14.11 or above.  
+Edit the following files for EPICS base 3.14.8.2:
+    - iocAdmin/Db/iocAdmin*.substitutions - remove iocGeneralTime.template.
+    - iocAdmin/Db/ioc.template - remove alias line for IOC_CPU_LOAD and 
+      give the record the desired name.
+    - iocAdmin/srcDisplay and srcRestore- change IOC_CPU_LOAD in files to 
+      the desired name.
+ 
+iocStats-R?-?-?: Sep 02, 2010
   * Changes by Stephanie Allison:
     - Add workspace stats by Charlie Xu - implement for RTEMS only. 
+    - Change ioc cpu load record name from "LOAD" to "IOC_CPU_LOAD" 
+      and add an alias for "LOAD".
+    - Add General Time records to iocAdmin*.db and associated 
+      iocAdmin displays.
 
 iocStats-R3-1-3: Aug 10, 2010
   * Changes by Ralph Lange:
