@@ -11,6 +11,11 @@ file ioc.template
 pattern { IOCNAME }
 	{ $(IOC)  }
 }
+file iocGeneralTime.template
+{
+pattern { IOCNAME }
+	{ $(IOC)  }
+}
 file iocEnvVar.template
 {
 pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}

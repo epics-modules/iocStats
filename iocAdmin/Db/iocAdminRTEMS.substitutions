@@ -11,6 +11,11 @@ file ioc.template
 pattern { IOCNAME }
 	{ $(IOC)  }
 }
+file iocGeneralTime.template
+{
+pattern { IOCNAME }
+	{ $(IOC)  }
+}
 file iocRTOS.template
 {
 pattern { IOCNAME , SYS_MBUF_FLNK     }

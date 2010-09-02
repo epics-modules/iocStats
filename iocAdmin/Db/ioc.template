@@ -133,9 +133,8 @@ record(ai, "$(IOCNAME):SYS_CPU_LOAD") {
   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-#record(ai, "$(IOCNAME):IOC_CPU_LOAD") {
-# alias("$(IOCNAME):LOAD")
-record(ai, "$(IOCNAME):LOAD") {
+record(ai, "$(IOCNAME):IOC_CPU_LOAD") {
+  alias("$(IOCNAME):LOAD")
   field(DESC, "IOC CPU Load")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
