@@ -210,7 +210,7 @@ x 210
 y 175
 w 60
 h 20
-controlPv "$(ioc):LOAD.HIGH"
+controlPv "$(ioc):IOC_CPU_LOAD.HIGH"
 font "helvetica-medium-r-14.0"
 fgColor index 14
 bgColor index 5
@@ -234,7 +234,7 @@ x 280
 y 175
 w 60
 h 20
-controlPv "$(ioc):LOAD.HIHI"
+controlPv "$(ioc):IOC_CPU_LOAD.HIHI"
 font "helvetica-medium-r-14.0"
 fgColor index 14
 bgColor index 5
@@ -536,7 +536,7 @@ x 120
 y 175
 w 80
 h 30
-controlPv "$(ioc):LOAD"
+controlPv "$(ioc):IOC_CPU_LOAD"
 fgColor index 16
 fgAlarm
 bgColor index 12

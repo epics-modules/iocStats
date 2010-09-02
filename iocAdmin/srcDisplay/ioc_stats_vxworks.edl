@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 4
-y 81
+x 390
+y 184
 w 540
-h 805
+h 910
 font "helvetica-medium-r-12.0"
 ctlFont "helvetica-medium-r-12.0"
 btnFont "helvetica-medium-r-12.0"
@@ -32,7 +32,7 @@ major 4
 minor 0
 release 0
 x 10
-y 685
+y 790
 w 270
 h 110
 lineColor index 3
@@ -47,7 +47,7 @@ major 4
 minor 0
 release 0
 x 10
-y 255
+y 360
 w 520
 h 35
 lineColor index 3
@@ -92,7 +92,7 @@ major 4
 minor 0
 release 0
 x 10
-y 295
+y 400
 w 520
 h 280
 lineColor index 3
@@ -679,7 +679,7 @@ major 4
 minor 1
 release 0
 x 50
-y 265
+y 370
 w 32
 h 14
 font "helvetica-medium-r-12.0"
@@ -699,7 +699,7 @@ major 4
 minor 0
 release 0
 x 90
-y 260
+y 365
 w 105
 h 25
 fgColor index 14
@@ -718,7 +718,7 @@ major 4
 minor 0
 release 0
 x 205
-y 260
+y 365
 w 170
 h 25
 fgColor index 14
@@ -742,7 +742,7 @@ major 4
 minor 1
 release 0
 x 15
-y 305
+y 410
 w 83
 h 14
 font "helvetica-medium-r-12.0"
@@ -762,7 +762,7 @@ major 10
 minor 0
 release 0
 x 110
-y 300
+y 405
 w 270
 h 20
 controlPv "$(ioc):EPICS_VERS"
@@ -785,7 +785,7 @@ major 4
 minor 1
 release 0
 x 15
-y 375
+y 480
 w 118
 h 14
 font "helvetica-medium-r-12.0"
@@ -805,7 +805,7 @@ major 10
 minor 0
 release 0
 x 15
-y 395
+y 500
 w 230
 h 25
 controlPv "$(ioc):APP_DIR1"
@@ -827,7 +827,7 @@ major 10
 minor 0
 release 0
 x 245
-y 395
+y 500
 w 230
 h 25
 controlPv "$(ioc):APP_DIR2"
@@ -849,7 +849,7 @@ major 4
 minor 1
 release 0
 x 15
-y 425
+y 530
 w 75
 h 14
 font "helvetica-medium-r-12.0"
@@ -869,7 +869,7 @@ major 10
 minor 0
 release 0
 x 15
-y 445
+y 550
 w 230
 h 25
 controlPv "$(ioc):ST_SCRIPT1"
@@ -891,7 +891,7 @@ major 10
 minor 0
 release 0
 x 245
-y 445
+y 550
 w 230
 h 25
 controlPv "$(ioc):ST_SCRIPT2"
@@ -913,7 +913,7 @@ major 4
 minor 2
 release 0
 x 385
-y 260
+y 365
 w 100
 h 25
 fgColor index 14
@@ -940,7 +940,7 @@ major 4
 minor 1
 release 0
 x 15
-y 330
+y 435
 w 65
 h 14
 font "helvetica-medium-r-12.0"
@@ -960,7 +960,7 @@ major 4
 minor 1
 release 0
 x 15
-y 355
+y 460
 w 76
 h 14
 font "helvetica-medium-r-12.0"
@@ -980,7 +980,7 @@ major 10
 minor 0
 release 0
 x 110
-y 350
+y 455
 w 270
 h 20
 controlPv "$(ioc):BSP_REV"
@@ -1003,7 +1003,7 @@ major 4
 minor 1
 release 0
 x 15
-y 475
+y 580
 w 53
 h 14
 font "helvetica-medium-r-12.0"
@@ -1023,7 +1023,7 @@ major 10
 minor 0
 release 0
 x 15
-y 495
+y 600
 w 230
 h 25
 controlPv "$(ioc):BOOTLINE1"
@@ -1045,7 +1045,7 @@ major 4
 minor 0
 release 0
 x 10
-y 580
+y 685
 w 270
 h 100
 lineColor index 3
@@ -1060,7 +1060,7 @@ major 4
 minor 0
 release 0
 x 295
-y 580
+y 685
 w 235
 h 40
 lineColor index 3
@@ -1075,7 +1075,7 @@ major 10
 minor 0
 release 0
 x 80
-y 605
+y 710
 w 85
 h 20
 controlPv "$(ioc):MEM_FREE"
@@ -1097,7 +1097,7 @@ major 10
 minor 0
 release 0
 x 80
-y 630
+y 735
 w 85
 h 20
 controlPv "$(ioc):MEM_USED"
@@ -1119,7 +1119,7 @@ major 10
 minor 0
 release 0
 x 185
-y 635
+y 740
 w 85
 h 30
 controlPv "$(ioc):MEM_BLK_FREE"
@@ -1141,7 +1141,7 @@ major 4
 minor 1
 release 0
 x 15
-y 585
+y 690
 w 94
 h 14
 font "helvetica-medium-r-12.0"
@@ -1161,7 +1161,7 @@ major 4
 minor 1
 release 0
 x 20
-y 610
+y 715
 w 26
 h 14
 font "helvetica-medium-r-12.0"
@@ -1181,7 +1181,7 @@ major 4
 minor 1
 release 0
 x 20
-y 630
+y 735
 w 28
 h 14
 font "helvetica-medium-r-12.0"
@@ -1201,7 +1201,7 @@ major 4
 minor 1
 release 0
 x 195
-y 605
+y 710
 w 75
 h 28
 font "helvetica-medium-r-12.0"
@@ -1222,7 +1222,7 @@ major 4
 minor 1
 release 0
 x 305
-y 595
+y 700
 w 57
 h 14
 font "helvetica-medium-r-12.0"
@@ -1242,10 +1242,10 @@ major 10
 minor 0
 release 0
 x 405
-y 585
+y 690
 w 95
 h 30
-controlPv "$(ioc):LOAD"
+controlPv "$(ioc):IOC_CPU_LOAD"
 fgColor index 16
 fgAlarm
 bgColor index 12
@@ -1263,7 +1263,7 @@ major 4
 minor 1
 release 0
 x 160
-y 690
+y 795
 w 41
 h 14
 font "helvetica-medium-r-12.0"
@@ -1283,7 +1283,7 @@ major 4
 minor 1
 release 0
 x 20
-y 725
+y 830
 w 41
 h 14
 font "helvetica-medium-r-12.0"
@@ -1303,7 +1303,7 @@ major 4
 minor 1
 release 0
 x 20
-y 755
+y 860
 w 24
 h 14
 font "helvetica-medium-r-12.0"
@@ -1323,7 +1323,7 @@ major 4
 minor 2
 release 0
 x 75
-y 770
+y 875
 w 95
 h 20
 fgColor index 14
@@ -1355,7 +1355,7 @@ major 4
 minor 1
 release 0
 x 110
-y 700
+y 805
 w 40
 h 14
 font "helvetica-medium-r-12.0"
@@ -1375,7 +1375,7 @@ major 4
 minor 1
 release 0
 x 215
-y 700
+y 805
 w 26
 h 14
 font "helvetica-medium-r-12.0"
@@ -1395,7 +1395,7 @@ major 10
 minor 0
 release 0
 x 75
-y 720
+y 825
 w 95
 h 20
 controlPv "$(ioc):SYS_MBUF_FREE"
@@ -1416,7 +1416,7 @@ major 10
 minor 0
 release 0
 x 180
-y 720
+y 825
 w 95
 h 20
 controlPv "$(ioc):DAT_MBUF_FREE"
@@ -1437,7 +1437,7 @@ major 10
 minor 0
 release 0
 x 180
-y 745
+y 850
 w 95
 h 20
 controlPv "$(ioc):DAT_MBUF_MAX"
@@ -1458,7 +1458,7 @@ major 4
 minor 0
 release 0
 x 295
-y 630
+y 735
 w 235
 h 80
 lineColor index 3
@@ -1473,7 +1473,7 @@ major 4
 minor 1
 release 0
 x 300
-y 635
+y 740
 w 99
 h 14
 font "helvetica-medium-r-12.0"
@@ -1493,7 +1493,7 @@ major 10
 minor 0
 release 0
 x 405
-y 650
+y 755
 w 95
 h 30
 controlPv "$(ioc):FD_FREE"
@@ -1515,7 +1515,7 @@ major 10
 minor 0
 release 0
 x 405
-y 685
+y 790
 w 95
 h 20
 controlPv "$(ioc):FD_MAX"
@@ -1537,7 +1537,7 @@ major 4
 minor 1
 release 0
 x 315
-y 660
+y 765
 w 26
 h 14
 font "helvetica-medium-r-12.0"
@@ -1557,7 +1557,7 @@ major 4
 minor 1
 release 0
 x 315
-y 690
+y 795
 w 24
 h 14
 font "helvetica-medium-r-12.0"
@@ -1577,7 +1577,7 @@ major 4
 minor 0
 release 0
 x 295
-y 720
+y 825
 w 235
 h 75
 lineColor index 3
@@ -1592,7 +1592,7 @@ major 4
 minor 1
 release 0
 x 300
-y 725
+y 830
 w 55
 h 14
 font "helvetica-medium-r-12.0"
@@ -1612,7 +1612,7 @@ major 4
 minor 1
 release 0
 x 310
-y 750
+y 855
 w 27
 h 14
 font "helvetica-medium-r-12.0"
@@ -1632,7 +1632,7 @@ major 4
 minor 1
 release 0
 x 310
-y 775
+y 880
 w 37
 h 14
 font "helvetica-medium-r-12.0"
@@ -1652,7 +1652,7 @@ major 10
 minor 0
 release 0
 x 405
-y 740
+y 845
 w 95
 h 20
 controlPv "$(ioc):IFI_ERR_CNT"
@@ -1674,7 +1674,7 @@ major 10
 minor 0
 release 0
 x 405
-y 765
+y 870
 w 95
 h 20
 controlPv "$(ioc):IFO_ERR_CNT"
@@ -1696,7 +1696,7 @@ major 10
 minor 0
 release 0
 x 245
-y 495
+y 600
 w 230
 h 25
 controlPv "$(ioc):BOOTLINE2"
@@ -1718,7 +1718,7 @@ major 10
 minor 0
 release 0
 x 110
-y 325
+y 430
 w 270
 h 20
 controlPv "$(ioc):KERNEL_VERS"
@@ -1741,7 +1741,7 @@ major 10
 minor 0
 release 0
 x 75
-y 745
+y 850
 w 95
 h 20
 controlPv "$(ioc):SYS_MBUF_MAX"
@@ -1762,7 +1762,7 @@ major 10
 minor 0
 release 0
 x 80
-y 655
+y 760
 w 85
 h 20
 controlPv "$(ioc):MEM_MAX"
@@ -1784,7 +1784,7 @@ major 4
 minor 1
 release 0
 x 20
-y 650
+y 755
 w 52
 h 28
 font "helvetica-medium-r-12.0"
@@ -1805,7 +1805,7 @@ major 4
 minor 2
 release 0
 x 180
-y 770
+y 875
 w 95
 h 20
 fgColor index 14
@@ -1837,7 +1837,7 @@ major 10
 minor 0
 release 0
 x 15
-y 520
+y 625
 w 230
 h 25
 controlPv "$(ioc):BOOTLINE3"
@@ -1859,7 +1859,7 @@ major 10
 minor 0
 release 0
 x 245
-y 520
+y 625
 w 230
 h 25
 controlPv "$(ioc):BOOTLINE4"
@@ -1881,7 +1881,7 @@ major 10
 minor 0
 release 0
 x 15
-y 545
+y 650
 w 230
 h 25
 controlPv "$(ioc):BOOTLINE5"
@@ -1903,7 +1903,7 @@ major 10
 minor 0
 release 0
 x 245
-y 545
+y 650
 w 230
 h 25
 controlPv "$(ioc):BOOTLINE6"
@@ -2006,5 +2006,277 @@ replaceSymbols {
 propagateMacros {
   0 0
 }
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 10
+y 255
+w 520
+h 100
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 130
+y 260
+w 131
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "General Time Providers"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 90
+y 280
+w 220
+h 20
+controlPv "$(ioc):GTIM_CUR_SRC"
+displayMode "decimal"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 90
+y 305
+w 220
+h 20
+controlPv "$(ioc):GTIM_EVT_SRC"
+displayMode "decimal"
+precision 1
+fgColor index 15
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 0
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 90
+y 330
+w 220
+h 20
+controlPv "$(ioc):GTIM_HI_SRC"
+displayMode "decimal"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 15
+y 285
+w 41
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Current"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 15
+y 310
+w 32
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Event"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 15
+y 335
+w 68
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Highest Prio"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 325
+y 275
+w 62
+h 28
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "# Secs "
+  "since 1990"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 395
+y 280
+w 130
+h 20
+controlPv "$(ioc):GTIM_TIME"
+displayMode "decimal"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 325
+y 315
+w 44
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "# Errors"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 395
+y 310
+w 70
+h 25
+controlPv "$(ioc):GTIM_ERR_CNT"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Message Button)
+object activeMessageButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 475
+y 310
+w 50
+h 25
+fgColor index 14
+onColor index 4
+offColor index 4
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(ioc):GTIM_RESET.PROC"
+pressValue "0"
+onLabel "Reset"
+offLabel "Reset"
+3d
+useEnumNumeric
+font "helvetica-medium-r-12.0"
 endObjectProperties
 
