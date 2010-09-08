@@ -18,6 +18,7 @@ DB += iocRTEMSOnly.db
 DB += iocEnvVar.db
 DB += iocCluster.db
 DB += iocScanMon.db
+DB += iocGeneralTime.db
 DB += access.db
 DB += iocAdminVxWorks.db
 DB += iocAdminSoft.db
