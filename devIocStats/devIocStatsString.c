@@ -276,6 +276,8 @@ static long stringin_read(stringinRecord* pr)
 {
 	pvtArea* pvt=(pvtArea*)pr->dpvt;
 
+	if (!pvt) return S_dev_badInpType;
+
 	statsGetStrParms[pvt->index].func(pr->val);
 	pr->udf=0;
 	return(0);	/* success */
@@ -285,6 +287,8 @@ static long envvar_read(stringinRecord* pr)
 {
 	char **envvar = &notavail;
         char *buf;
+
+	if (!pr->dpvt) return S_dev_badInpType;
         
         if ( (buf=getenv((char *)pr->dpvt)) ) envvar = &buf;
         strncpy(pr->val, *envvar, MAX_NAME_SIZE);

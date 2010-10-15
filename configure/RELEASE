@@ -20,19 +20,20 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 # ========================================================================================
 # #If using macro substitutions, point MSI at the binary:
 EXTENSIONS_MODULE_VERSION=extensions-R3-14-8-2
-MSI=$(EPICS_SITE_TOP)/extensions/$(EXTENSIONS_MODULE_VERSION)/bin/$(EPICS_HOST_ARCH)/msi
+#MSI=$(EPICS_SITE_TOP)/extensions/$(EXTENSIONS_MODULE_VERSION)/bin/$(EPICS_HOST_ARCH)/msi
+MSI=msi
 # ========================================================================================
 
 # =============================================================
 # Define location of module tree with respect to
 # EPICS_SITE_TOP
 # =============================================================
-EPICS_MODULES=$(EPICS_SITE_TOP)/modules
+#EPICS_MODULES=$(EPICS_SITE_TOP)/modules
 
 # ==============================================================
 # Define the cvs module version of EPICS BASE that you will use
 # =============================================================
-BASE_MODULE_VERSION=base-R3-14-8-2-lcls3
+#BASE_MODULE_VERSION=base-R3-14-8-2-lcls3
 
 # =============================================================
 # Define the version of modules needed by
@@ -44,13 +45,12 @@ BASE_MODULE_VERSION=base-R3-14-8-2-lcls3
 # External Support - used by testIocStatsApp
 # ============================================================
 #SNCSEQ=$(EPICS_MODULES)/seq/$(SNCSEQ_MODULE_VERSION)
+SNCSEQ=$(EPICS_BASE)
 
 # =================================================================
 # Define EPICS_BASE
 # EPICS_BASE usually appears last so other apps can override stuff:
 # =================================================================
-EPICS_BASE=$(EPICS_SITE_TOP)/base/$(BASE_MODULE_VERSION)
-
+#EPICS_BASE=$(EPICS_SITE_TOP)/base/$(BASE_MODULE_VERSION)
+EPICS_BASE=/usr/lib/epics
 # End of file
-
-

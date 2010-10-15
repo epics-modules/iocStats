@@ -456,6 +456,8 @@ static long ai_ioint_info(int cmd,aiRecord* pr,IOSCANPVT* iopvt)
 {
 	pvtArea* pvt=(pvtArea*)pr->dpvt;
 
+	if (!pvt) return S_dev_badInpType;
+
 	if(cmd==0) /* added */
 	{
 		if(scan[pvt->type].total++ == 0)
@@ -479,7 +481,11 @@ static long ao_write(aoRecord* pr)
 {
 	unsigned long sec=pr->val;
 	pvtArea	*pvt=(pvtArea*)pr->dpvt;
-	int		type=pvt->type;
+	int type;
+
+	if (!pvt) return S_dev_badInpType;
+
+	type=pvt->type;
         
         if (sec > 0.0)
           scan[type].rate_sec=sec;
@@ -494,6 +500,8 @@ static long ai_clusts_read(aiRecord* prec)
 {
     pvtClustArea* pvt=(pvtClustArea*)prec->dpvt;
 
+    if (!pvt) return S_dev_badInpType;
+
     if (pvt->size < CLUSTSIZES)
         prec->val = clustinfo[pvt->pool][pvt->size][pvt->elem];
     else
@@ -507,6 +515,8 @@ static long ai_read(aiRecord* pr)
 {
     double val;
     pvtArea* pvt=(pvtArea*)pr->dpvt;
+
+    if (!pvt) return S_dev_badInpType;
 
     statsGetParms[pvt->index].func(&val);
     pr->val = val;
