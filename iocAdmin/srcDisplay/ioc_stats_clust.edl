@@ -3,9 +3,9 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 248
-y 77
-w 480
+x 745
+y 145
+w 540
 h 310
 font "helvetica-bold-r-18.0"
 ctlFont "helvetica-bold-r-18.0"
@@ -33,7 +33,7 @@ minor 0
 release 0
 x 10
 y 50
-w 455
+w 520
 h 250
 lineColor index 3
 fill
@@ -46,8 +46,8 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 365
-y 140
+x 430
+y 155
 w 85
 h 25
 controlPv "$(ioc):$(pool)_MBUF_FREE"
@@ -67,8 +67,8 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 365
-y 195
+x 430
+y 210
 w 85
 h 25
 controlPv "$(ioc):$(pool)_MBUF_MAX"
@@ -109,7 +109,7 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 105
+x 100
 y 75
 w 45
 h 14
@@ -129,7 +129,7 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 190
+x 185
 y 75
 w 26
 h 14
@@ -149,7 +149,7 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 270
+x 340
 y 75
 w 35
 h 14
@@ -189,7 +189,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 95
+x 90
 y 95
 w 65
 h 20
@@ -210,7 +210,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 245
+x 315
 y 95
 w 95
 h 20
@@ -231,7 +231,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 170
+x 165
 y 95
 w 65
 h 20
@@ -273,7 +273,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 95
+x 90
 y 120
 w 65
 h 20
@@ -294,7 +294,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 245
+x 315
 y 120
 w 95
 h 20
@@ -315,7 +315,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 170
+x 165
 y 120
 w 65
 h 20
@@ -357,7 +357,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 95
+x 90
 y 145
 w 65
 h 20
@@ -378,7 +378,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 245
+x 315
 y 145
 w 95
 h 20
@@ -399,7 +399,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 170
+x 165
 y 145
 w 65
 h 20
@@ -441,7 +441,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 95
+x 90
 y 170
 w 65
 h 20
@@ -462,7 +462,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 245
+x 315
 y 170
 w 95
 h 20
@@ -483,7 +483,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 170
+x 165
 y 170
 w 65
 h 20
@@ -525,7 +525,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 95
+x 90
 y 195
 w 65
 h 20
@@ -546,7 +546,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 245
+x 315
 y 195
 w 95
 h 20
@@ -567,7 +567,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 170
+x 165
 y 195
 w 65
 h 20
@@ -609,7 +609,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 95
+x 90
 y 220
 w 65
 h 20
@@ -630,7 +630,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 245
+x 315
 y 220
 w 95
 h 20
@@ -651,7 +651,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 170
+x 165
 y 220
 w 65
 h 20
@@ -693,7 +693,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 95
+x 90
 y 245
 w 65
 h 20
@@ -714,7 +714,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 245
+x 315
 y 245
 w 95
 h 20
@@ -735,7 +735,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 170
+x 165
 y 245
 w 65
 h 20
@@ -777,7 +777,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 95
+x 90
 y 270
 w 65
 h 20
@@ -798,7 +798,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 245
+x 315
 y 270
 w 95
 h 20
@@ -819,7 +819,7 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 170
+x 165
 y 270
 w 65
 h 20
@@ -840,8 +840,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 370
-y 120
+x 435
+y 135
 w 72
 h 14
 font "helvetica-medium-r-12.0"
@@ -860,8 +860,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 390
-y 175
+x 455
+y 190
 w 24
 h 14
 font "helvetica-medium-r-12.0"
@@ -880,8 +880,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 380
-y 85
+x 445
+y 100
 w 49
 h 16
 font "helvetica-medium-r-14.0"
@@ -902,7 +902,7 @@ minor 0
 release 0
 x 0
 y 0
-w 480
+w 540
 h 40
 lineColor index 54
 fill
@@ -916,7 +916,7 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 415
+x 480
 y 10
 w 50
 h 25
@@ -935,7 +935,7 @@ beginObjectProperties
 major 4
 minor 2
 release 0
-x 310
+x 375
 y 10
 w 95
 h 25
@@ -989,6 +989,194 @@ y 95
 w 65
 h 20
 controlPv "$(ioc):CLUST_$(idx)_0_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 260
+y 75
+w 41
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Free %"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 95
+w 65
+h 20
+controlPv "$(ioc):$(pool)_CLUST_LOAD_0"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 120
+w 65
+h 20
+controlPv "$(ioc):$(pool)_CLUST_LOAD_1"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 145
+w 65
+h 20
+controlPv "$(ioc):$(pool)_CLUST_LOAD_2"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 170
+w 65
+h 20
+controlPv "$(ioc):$(pool)_CLUST_LOAD_3"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 195
+w 65
+h 20
+controlPv "$(ioc):$(pool)_CLUST_LOAD_4"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 220
+w 65
+h 20
+controlPv "$(ioc):$(pool)_CLUST_LOAD_5"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 245
+w 65
+h 20
+controlPv "$(ioc):$(pool)_CLUST_LOAD_6"
+displayMode "decimal"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 270
+w 65
+h 20
+controlPv "$(ioc):$(pool)_CLUST_LOAD_7"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
