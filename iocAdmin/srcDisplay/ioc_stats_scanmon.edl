@@ -1,0 +1,1033 @@
+4 0 1
+beginScreenProperties
+major 4
+minor 0
+release 1
+x 529
+y 33
+w 540
+h 350
+font "helvetica-bold-r-18.0"
+ctlFont "helvetica-bold-r-18.0"
+btnFont "helvetica-bold-r-18.0"
+fgColor index 14
+bgColor index 6
+textColor index 14
+ctlFgColor1 index 14
+ctlFgColor2 index 1
+ctlBgColor1 index 3
+ctlBgColor2 index 49
+topShadowColor index 1
+botShadowColor index 14
+title "$(ioc) ScanMon"
+showGrid
+snapToGrid
+gridSize 5
+endScreenProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 15
+y 50
+w 510
+h 290
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 540
+h 40
+lineColor index 54
+fill
+fillColor index 54
+lineWidth 0
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 5
+y 0
+w 200
+h 40
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 53
+useDisplayBg
+value {
+  "IOC Diagnostics ScanMon"
+  "$(ioc)"
+}
+endObjectProperties
+
+# (Exit Button)
+object activeExitButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 475
+y 10
+w 50
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+label "Exit"
+font "helvetica-medium-r-12.0"
+3d
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 370
+y 10
+w 95
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Home Screen..."
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "lcls_main"
+}
+setPosition {
+  0 "parentWindow"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 35
+y 145
+w 98
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "5Hz Thread Scan"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 150
+y 142
+w 80
+h 20
+controlPv "$(ioc):5HZ_UPD_TIME"
+displayMode "decimal"
+precision 5
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 35
+y 235
+w 108
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "0.5Hz Thread Scan"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 35
+y 265
+w 108
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "0.2Hz Thread Scan"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 35
+y 205
+w 98
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "1Hz Thread Scan"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 35
+y 175
+w 98
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "2Hz Thread Scan"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 35
+y 295
+w 108
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "0.1Hz Thread Scan"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 150
+y 172
+w 80
+h 20
+controlPv "$(ioc):2HZ_UPD_TIME"
+displayMode "decimal"
+precision 5
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 150
+y 202
+w 80
+h 20
+controlPv "$(ioc):1HZ_UPD_TIME"
+displayMode "decimal"
+precision 5
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 150
+y 260
+w 80
+h 20
+controlPv "$(ioc):02HZ_UPD_TIME"
+displayMode "decimal"
+precision 5
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 150
+y 232
+w 80
+h 20
+controlPv "$(ioc):05HZ_UPD_TIME"
+displayMode "decimal"
+precision 5
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 150
+y 290
+w 80
+h 20
+controlPv "$(ioc):01HZ_UPD_TIME"
+displayMode "decimal"
+precision 5
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 265
+y 80
+w 65
+h 14
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Scan Mode"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 35
+y 115
+w 105
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "10Hz Thread Scan"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 150
+y 112
+w 80
+h 20
+controlPv "$(ioc):10HZ_UPD_TIME"
+displayMode "decimal"
+precision 5
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 155
+y 80
+w 58
+h 14
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Time (sec)"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 395
+y 80
+w 32
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Minor"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 460
+y 80
+w 32
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Major"
+}
+autoSize
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 450
+y 110
+w 65
+h 20
+controlPv "$(ioc):10HZ_UPD_TIME.C"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Choice Button)
+object activeChoiceButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 240
+y 110
+w 120
+h 20
+fgColor index 14
+bgColor index 3
+selectColor index 4
+inconsistentColor index 49
+topShadowColor index 1
+botShadowColor index 14
+controlPv "$(ioc):10HZ_MODE"
+indicatorPv "$(ioc):10HZ_MODE"
+font "helvetica-bold-r-12.0"
+orientation "horizontal"
+endObjectProperties
+
+# (Choice Button)
+object activeChoiceButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 240
+y 140
+w 120
+h 20
+fgColor index 14
+bgColor index 3
+selectColor index 4
+inconsistentColor index 49
+topShadowColor index 1
+botShadowColor index 14
+controlPv "$(ioc):5HZ_MODE"
+indicatorPv "$(ioc):5HZ_MODE"
+font "helvetica-bold-r-12.0"
+orientation "horizontal"
+endObjectProperties
+
+# (Choice Button)
+object activeChoiceButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 240
+y 170
+w 120
+h 20
+fgColor index 14
+bgColor index 3
+selectColor index 4
+inconsistentColor index 49
+topShadowColor index 1
+botShadowColor index 14
+controlPv "$(ioc):2HZ_MODE"
+indicatorPv "$(ioc):2HZ_MODE"
+font "helvetica-bold-r-12.0"
+orientation "horizontal"
+endObjectProperties
+
+# (Choice Button)
+object activeChoiceButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 240
+y 200
+w 120
+h 20
+fgColor index 14
+bgColor index 3
+selectColor index 4
+inconsistentColor index 49
+topShadowColor index 1
+botShadowColor index 14
+controlPv "$(ioc):1HZ_MODE"
+indicatorPv "$(ioc):1HZ_MODE"
+font "helvetica-bold-r-12.0"
+orientation "horizontal"
+endObjectProperties
+
+# (Choice Button)
+object activeChoiceButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 240
+y 230
+w 120
+h 20
+fgColor index 14
+bgColor index 3
+selectColor index 4
+inconsistentColor index 49
+topShadowColor index 1
+botShadowColor index 14
+controlPv "$(ioc):05HZ_MODE"
+indicatorPv "$(ioc):05HZ_MODE"
+font "helvetica-bold-r-12.0"
+orientation "horizontal"
+endObjectProperties
+
+# (Choice Button)
+object activeChoiceButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 240
+y 260
+w 120
+h 20
+fgColor index 14
+bgColor index 3
+selectColor index 4
+inconsistentColor index 49
+topShadowColor index 1
+botShadowColor index 14
+controlPv "$(ioc):02HZ_MODE"
+indicatorPv "$(ioc):02HZ_MODE"
+font "helvetica-bold-r-12.0"
+orientation "horizontal"
+endObjectProperties
+
+# (Choice Button)
+object activeChoiceButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 240
+y 290
+w 120
+h 20
+fgColor index 14
+bgColor index 3
+selectColor index 4
+inconsistentColor index 49
+topShadowColor index 1
+botShadowColor index 14
+controlPv "$(ioc):01HZ_MODE"
+indicatorPv "$(ioc):01HZ_MODE"
+font "helvetica-bold-r-12.0"
+orientation "horizontal"
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 370
+y 110
+w 70
+h 20
+controlPv "$(ioc):10HZ_UPD_TIME.B"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 450
+y 140
+w 65
+h 20
+controlPv "$(ioc):5HZ_UPD_TIME.C"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 370
+y 140
+w 70
+h 20
+controlPv "$(ioc):5HZ_UPD_TIME.B"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 450
+y 200
+w 65
+h 20
+controlPv "$(ioc):1HZ_UPD_TIME.C"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 370
+y 200
+w 70
+h 20
+controlPv "$(ioc):1HZ_UPD_TIME.B"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 450
+y 230
+w 65
+h 20
+controlPv "$(ioc):05HZ_UPD_TIME.C"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 370
+y 230
+w 70
+h 20
+controlPv "$(ioc):05HZ_UPD_TIME.B"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 450
+y 170
+w 65
+h 20
+controlPv "$(ioc):2HZ_UPD_TIME.C"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 370
+y 170
+w 70
+h 20
+controlPv "$(ioc):2HZ_UPD_TIME.B"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 450
+y 260
+w 65
+h 20
+controlPv "$(ioc):02HZ_UPD_TIME.C"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 370
+y 260
+w 70
+h 20
+controlPv "$(ioc):02HZ_UPD_TIME.B"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 450
+y 290
+w 65
+h 20
+controlPv "$(ioc):01HZ_UPD_TIME.C"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 5
+release 0
+x 370
+y 290
+w 70
+h 20
+controlPv "$(ioc):01HZ_UPD_TIME.B"
+font "helvetica-medium-r-14.0"
+fgColor index 14
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 1
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 405
+y 60
+w 79
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Tolerance (%)"
+}
+autoSize
+endObjectProperties
+
