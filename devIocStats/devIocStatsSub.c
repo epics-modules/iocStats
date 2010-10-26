@@ -158,10 +158,14 @@ static long scanMon(struct subRecord *psub)
      (which is not allowed)
      so it's just easier recalculating them every time. */
   psub->hihi = scan_period * (psub->a + psub->c/100.);
-  psub->lolo = scan_period * (psub->a - psub->c/100.);
   psub->high = scan_period * (psub->a + psub->b/100.);
-  psub->low  = scan_period * (psub->a - psub->b/100.);
-
+  if (psub->a < 0.5) {
+    psub->lolo = scan_period * (psub->a - psub->c/100.);
+    psub->low  = scan_period * (psub->a - psub->b/100.);
+  } else {
+    psub->lolo = -scan_period;
+    psub->low  = -scan_period;
+  }
   return(status);
 }
 
