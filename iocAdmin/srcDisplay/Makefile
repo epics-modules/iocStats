@@ -12,6 +12,7 @@ EDLS += ioc_stats_reboot_confirm.edl
 EDLS += ioc_stats_release.edl
 EDLS += ioc_stats_soft.edl
 EDLS += ioc_stats_vxworks.edl
+EDLS += ioc_stats_scanmon.edl
 
 include $(TOP)/configure/RULES
 #----------------------------------------
