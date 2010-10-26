@@ -23,5 +23,18 @@ record(ai, "$(IOCNAME):CLUST_$(P)_$(S)_3") {
   field(DESC, "$(TYPE) Usage")
   field(DTYP, "IOC stats clusts")
   field(INP, "@clust_info $(P) $(S) 3")
+  field(FLNK, "$(IOCNAME):$(TYPE)_CLUST_LOAD_$(S)")
+}
+
+record(calc, "$(IOCNAME):$(TYPE)_CLUST_LOAD_$(S)") {
+  field(DESC, "$(TYPE) Free percentage")
+  field(EGU,  "%")
+  field(PREC, "2")
+  field(CALC, "A>0?(B/A)*100:B=0?0:-1")
+  field(INPA, "$(IOCNAME):CLUST_$(P)_$(S)_1 MS")
+  field(INPB, "$(IOCNAME):CLUST_$(P)_$(S)_2 MS")
+  field(LOLO, "-0.1")
+  field(LLSV, "INVALID")
   field(FLNK, "$(FLNK)")
 }
+

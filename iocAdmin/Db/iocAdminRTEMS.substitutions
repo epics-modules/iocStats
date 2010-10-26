@@ -47,8 +47,8 @@ pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
 file iocCluster.template
 {
 #                   Pool   Size
-pattern { IOCNAME ,  P   ,  S   , TYPE   , FLNK              }
+pattern { IOCNAME ,  P   ,  S   , TYPE , FLNK               }
 # System Pool
-	{ $(IOC)  ,  1   ,  0   , System , $(IOC):CLUST_1_1_0}
-	{ $(IOC)  ,  1   ,  1   , System , ""                }
+	{ $(IOC)  ,  1   ,  0   , SYS  , $(IOC):CLUST_1_1_0 }
+	{ $(IOC)  ,  1   ,  1   , SYS  , ""                 }
 }
