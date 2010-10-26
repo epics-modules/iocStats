@@ -1,0 +1,14 @@
+
+record(calc, "$(IOCNAME):SCANMON_SEVR") {
+    field(DESC, "ScanMon Max Severity")
+    field(SCAN, "1 second")
+    field(CALC, "0")
+    field(INPA, "$(IOCNAME):$(SCANNAME0)_UPD_TIME.SEVR MS")
+    field(INPB, "$(IOCNAME):$(SCANNAME1)_UPD_TIME.SEVR MS")
+    field(INPC, "$(IOCNAME):$(SCANNAME2)_UPD_TIME.SEVR MS")
+    field(INPD, "$(IOCNAME):$(SCANNAME3)_UPD_TIME.SEVR MS")
+    field(INPE, "$(IOCNAME):$(SCANNAME4)_UPD_TIME.SEVR MS")
+    field(INPF, "$(IOCNAME):$(SCANNAME5)_UPD_TIME.SEVR MS")
+    field(INPG, "$(IOCNAME):$(SCANNAME6)_UPD_TIME.SEVR MS")
+}
+
