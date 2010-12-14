@@ -2,9 +2,10 @@
 # Run "gnumake clean uninstall install" in the application
 # top directory each time this file is changed.
 
+#NOTE: MSI moved to CONFIG_SITE.
+
 # SNCSEQ required only if testIocStatsApp will be built.
 #SNCSEQ     = /usr/local/epics/R3.14.11/modules/soft/synApps_5_5/support/seq-2-0-12
-#MSI        = /usr/local/epics/R3.14.11/extensions/bin/$(EPICS_HOST_ARCH)/msi
 #EPICS_BASE = /usr/local/epics/R3.14.11/base
 
 # The rest of this file is LCLS only and can be removed.
@@ -15,25 +16,17 @@
 # ==============================================================
 include $(TOP)/RELEASE_SITE
 #EPICS_SITE_TOP=/afs/slac/g/lcls/epics
-TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
-
-# ========================================================================================
-# #If using macro substitutions, point MSI at the binary:
-EXTENSIONS_MODULE_VERSION=extensions-R3-14-8-2
-#MSI=$(EPICS_SITE_TOP)/extensions/$(EXTENSIONS_MODULE_VERSION)/bin/$(EPICS_HOST_ARCH)/msi
-MSI=msi
-# ========================================================================================
 
 # =============================================================
 # Define location of module tree with respect to
 # EPICS_SITE_TOP
 # =============================================================
-#EPICS_MODULES=$(EPICS_SITE_TOP)/modules
+EPICS_MODULES=$(EPICS_SITE_TOP)/modules
 
 # ==============================================================
 # Define the cvs module version of EPICS BASE that you will use
 # =============================================================
-#BASE_MODULE_VERSION=base-R3-14-8-2-lcls3
+BASE_MODULE_VERSION=base-R3-14-8-2-lcls3
 
 # =============================================================
 # Define the version of modules needed by
@@ -45,12 +38,11 @@ MSI=msi
 # External Support - used by testIocStatsApp
 # ============================================================
 #SNCSEQ=$(EPICS_MODULES)/seq/$(SNCSEQ_MODULE_VERSION)
-SNCSEQ=$(EPICS_BASE)
 
 # =================================================================
 # Define EPICS_BASE
 # EPICS_BASE usually appears last so other apps can override stuff:
 # =================================================================
-#EPICS_BASE=$(EPICS_SITE_TOP)/base/$(BASE_MODULE_VERSION)
-EPICS_BASE=/usr/lib/epics
+EPICS_BASE=$(EPICS_SITE_TOP)/base/$(BASE_MODULE_VERSION)
+
 # End of file
