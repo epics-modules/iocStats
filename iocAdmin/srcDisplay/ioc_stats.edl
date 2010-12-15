@@ -2305,7 +2305,7 @@ x 180
 y 865
 w 50
 h 20
-controlPv "$(ioc):SYS_CLUST_LOAD_0"
+controlPv "$(ioc):SYS_CLUST_AVAIL_0"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -2327,7 +2327,7 @@ x 180
 y 890
 w 50
 h 20
-controlPv "$(ioc):SYS_CLUST_LOAD_1"
+controlPv "$(ioc):SYS_CLUST_AVAIL_1"
 displayMode "decimal"
 fgColor index 16
 fgAlarm

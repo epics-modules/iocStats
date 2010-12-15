@@ -1029,7 +1029,7 @@ x 240
 y 95
 w 65
 h 20
-controlPv "$(ioc):$(pool)_CLUST_LOAD_0"
+controlPv "$(ioc):$(pool)_CLUST_AVAIL_0"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -1050,7 +1050,7 @@ x 240
 y 120
 w 65
 h 20
-controlPv "$(ioc):$(pool)_CLUST_LOAD_1"
+controlPv "$(ioc):$(pool)_CLUST_AVAIL_1"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -1071,7 +1071,7 @@ x 240
 y 145
 w 65
 h 20
-controlPv "$(ioc):$(pool)_CLUST_LOAD_2"
+controlPv "$(ioc):$(pool)_CLUST_AVAIL_2"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -1092,7 +1092,7 @@ x 240
 y 170
 w 65
 h 20
-controlPv "$(ioc):$(pool)_CLUST_LOAD_3"
+controlPv "$(ioc):$(pool)_CLUST_AVAIL_3"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -1113,7 +1113,7 @@ x 240
 y 195
 w 65
 h 20
-controlPv "$(ioc):$(pool)_CLUST_LOAD_4"
+controlPv "$(ioc):$(pool)_CLUST_AVAIL_4"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -1134,7 +1134,7 @@ x 240
 y 220
 w 65
 h 20
-controlPv "$(ioc):$(pool)_CLUST_LOAD_5"
+controlPv "$(ioc):$(pool)_CLUST_AVAIL_5"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -1155,7 +1155,7 @@ x 240
 y 245
 w 65
 h 20
-controlPv "$(ioc):$(pool)_CLUST_LOAD_6"
+controlPv "$(ioc):$(pool)_CLUST_AVAIL_6"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -1176,7 +1176,7 @@ x 240
 y 270
 w 65
 h 20
-controlPv "$(ioc):$(pool)_CLUST_LOAD_7"
+controlPv "$(ioc):$(pool)_CLUST_AVAIL_7"
 displayMode "decimal"
 fgColor index 16
 fgAlarm

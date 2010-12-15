@@ -23,10 +23,10 @@ record(ai, "$(IOCNAME):CLUST_$(P)_$(S)_3") {
   field(DESC, "$(TYPE) Usage")
   field(DTYP, "IOC stats clusts")
   field(INP, "@clust_info $(P) $(S) 3")
-  field(FLNK, "$(IOCNAME):$(TYPE)_CLUST_LOAD_$(S)")
+  field(FLNK, "$(IOCNAME):$(TYPE)_CLUST_AVAIL_$(S)")
 }
 
-record(calc, "$(IOCNAME):$(TYPE)_CLUST_LOAD_$(S)") {
+record(calc, "$(IOCNAME):$(TYPE)_CLUST_AVAIL_$(S)") {
   field(DESC, "$(TYPE) Free percentage")
   field(EGU,  "%")
   field(PREC, "2")
