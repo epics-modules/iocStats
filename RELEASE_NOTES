@@ -9,9 +9,13 @@ Edit the following files for EPICS base 3.14.8.2:
     - iocAdmin/srcDisplay and srcRestore - change IOC_CPU_LOAD in files to 
       the desired name.
  
-iocStats-R?-?-?: Sep 08, 2010
+iocStats-R3-1-4: Dec 14, 2010
+  * Changes by Ralph Lange:
+    - Add fixes by M. Davidsaver to avoid segfaults when devsup init failed.
   * Changes by Stephanie Allison:
-    - Add workspace stats by Charlie Xu - implement for RTEMS only. 
+    - Add workspace stats by Charlie Xu - implement for RTEMS only.
+    - Add cluster available calc records by Charlie Xu.
+    - Set low alarm limits very low when scan mon absolute mode is chosen. 
     - Change ioc cpu load record name from "LOAD" to "IOC_CPU_LOAD" 
       and add an alias for "LOAD".
     - Add General Time records to iocAdmin<RTEMS and VxWorks>.db and 
