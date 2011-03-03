@@ -272,7 +272,7 @@ static void timerQCreate(void*unused)
 }
 
 static epicsTimerId
-wdogCreate(void (*fn)(int), int arg)
+wdogCreate(void (*fn)(int), long arg)
 {
 	static epicsThreadOnceId inited = EPICS_THREAD_ONCE_INIT;
 
@@ -301,7 +301,7 @@ static long ai_clusts_init(int pass)
 
 static long ai_init(int pass)
 {
-    int i;
+    long i;
 
     if (pass) return 0;
 
