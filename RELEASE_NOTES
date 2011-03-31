@@ -9,6 +9,13 @@ Edit the following files for EPICS base 3.14.8.2:
     - iocAdmin/srcDisplay and srcRestore - change IOC_CPU_LOAD in files to 
       the desired name.
  
+iocStats-R3-1-5: Mar 31, 2011
+  * Change by Eric Bjorklund:
+    - devIocStats/os/vxWorks/osdMemUsage.c - correct vxWorks meminfo structure
+      update.  vxWorks 6 has a completely different layout.
+  * Change by Stephanie Allison:
+    - devIocStatsAnalog.c - correction for 64 bit.
+
 iocStats-R3-1-4: Dec 14, 2010
   * Changes by Ralph Lange:
     - Add fixes by M. Davidsaver to avoid segfaults when devsup init failed.
