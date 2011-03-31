@@ -16,6 +16,10 @@
  *  2009-05-15 Ralph Lange (HZB/BESSY)
  *     Restructured OSD parts
  *
+ *  2011-03-25 E.Bjorklund (LANSCE)
+ *     Translate between the devIocStats memeory info structure
+ *     and its vxWorks 6 counterpart.
+ *
  */
 
 /* osdMemUsage.c - vxWorks implementation */
@@ -31,8 +35,29 @@ int devIocStatsInitMemUsage (void) { return OK; }
 
 int devIocStatsGetMemUsage (memInfo *pmi) {
 
+/*==============================================================================
+ * For VxWorks 6 and above, use memPartGetInfo to retrieve the data
+ */
 #if _WRS_VXWORKS_MAJOR >= 6
-    return memPartInfoGet(memSysPartId, pmi);
+
+    *pmi = nope; /* Clear out the memory info structure */
+    MEM_PART_STATS vxPmi;       /* vxWorks memory partition info structure   */
+
+    int status = memPartInfoGet (memSysPartId, &vxPmi);
+    if (0 == status) {
+        pmi->numBytesTotal    = vxPmi.numBytesFree + vxPmi.numBytesAlloc;
+        pmi->numBytesFree     = vxPmi.numBytesFree;
+        pmi->numBytesAlloc    = vxPmi.numBytesAlloc;
+        pmi->numBlocksFree    = vxPmi.numBlocksFree;
+        pmi->numBlocksAlloc   = vxPmi.numBlocksAlloc;
+        pmi->maxBlockSizeFree = vxPmi.maxBlockSizeFree;
+    }/* end if memPartInfoGet succeeded*/
+
+    return status;
+
+/*==============================================================================
+ * For VxWorks 5, walk the list manually
+ */
 #else
     /* Added by LTH because memPartInfoGet() has a bug when "walking" the list */
     FAST PART_ID partId = memSysPartId;
