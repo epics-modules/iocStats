@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 536
-y 334
+x 622
+y 503
 w 540
 h 585
 font "helvetica-medium-r-12.0"
@@ -696,30 +696,6 @@ controlPv "$(ioc):ACCESS"
 font "helvetica-medium-r-12.0"
 endObjectProperties
 
-# (Message Button)
-object activeMessageButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 205
-y 260
-w 170
-h 25
-fgColor index 14
-onColor index 4
-offColor index 4
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(ioc):READACF.PROC"
-pressValue "0"
-onLabel "Reload Access Conf File"
-offLabel "Reload Access Conf File"
-3d
-useEnumNumeric
-font "helvetica-medium-r-12.0"
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
@@ -889,33 +865,6 @@ fill
 font "helvetica-medium-r-12.0"
 lineWidth 2
 lineAlarm
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 2
-release 0
-x 385
-y 260
-w 100
-h 25
-fgColor index 14
-bgColor index 4
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-buttonLabel "Reboot..."
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "ioc_stats_reboot_confirm"
-}
-setPosition {
-  0 "button"
-}
-colorPv "$(ioc):SYSRESET.SEVR"
 endObjectProperties
 
 # (Static Text)
@@ -1524,6 +1473,59 @@ replaceSymbols {
 }
 propagateMacros {
   0 0
+}
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 425
+y 260
+w 100
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Reboot..."
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "ioc_stats_reboot_confirm"
+}
+setPosition {
+  0 "button"
+}
+colorPv "$(ioc):SYSRESET.SEVR"
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 205
+y 260
+w 210
+h 25
+fgColor index 14
+bgColor index 4
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Reload Access Security Conf File..."
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "ioc_stats_reloadacf_confirm"
+}
+setPosition {
+  0 "button"
 }
 endObjectProperties
 
