@@ -2,7 +2,6 @@
 record(mbbo, "$(IOCNAME):ACCESS")
 {
   field(DESC, "$(IOCNAME) Acc Mode")
-  field(ASG,  "IOCMANAGERS")
   field(PINI, "YES")
   field(ZRST, "Running")
   field(ZRSV, "NO_ALARM")
@@ -43,7 +42,6 @@ record(calcout, "$(IOCNAME):HEARTBEAT")
 record( sub, "$(IOCNAME):READACF")
 {
     field( DESC, "$(IOCNAME) ACF Update")
-    field( ASG,  "IOCMANAGERS")
     field( INAM, "asSubInit")
     field( SNAM, "asSubProcess")
     field( BRSV, "INVALID")
