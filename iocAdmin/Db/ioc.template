@@ -18,14 +18,14 @@ record(stringin, "$(IOCNAME):STARTTOD")
     field(DESC, "Time and date of startup")
     field(DTYP, "Soft Timestamp")
     field(PINI, "YES")
-    field(INP, "@%m/%d/%Y %H:%M:%S")
+    field(INP, "@$(TODFORMAT)")
 }
 record(stringin, "$(IOCNAME):TOD")
 {
     field(DESC, "Current time and date")
     field(DTYP, "Soft Timestamp")
     field(SCAN, "1 second")
-    field(INP, "@%m/%d/%Y %H:%M:%S")
+    field(INP, "@$(TODFORMAT)")
 }
 record(calcout, "$(IOCNAME):HEARTBEAT")
 {

@@ -8,8 +8,8 @@
 #
 file ioc.template
 {
-pattern { IOCNAME }
-	{ $(IOC)  }
+pattern { IOCNAME , TODFORMAT           }
+	{ $(IOC)  , "%m/%d/%Y %H:%M:%S" }
 }
 file iocGeneralTime.template
 {
