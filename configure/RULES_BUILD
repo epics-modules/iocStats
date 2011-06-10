@@ -15,9 +15,9 @@ build : $(IOCRELEASE_DB)
 buildInstall : $(INSTALL_IOCRELEASE_DBS)
 
 # Create database for module version PVs
-$(IOCRELEASE_DB)   : $(TOP)/configure/RELEASE
+$(IOCRELEASE_DB)   : $(TOP)/configure/RELEASE $(TOP)/RELEASE_SITE
 	$(RM) $@
-	$(IOCADMIN)/bin/$(EPICS_HOST_ARCH)/iocReleaseCreateDb.py $< >$@
+	$(IOCADMIN)/bin/$(EPICS_HOST_ARCH)/iocReleaseCreateDb.py $^ >$@
 
 $(INSTALL_DB)/%: %
 	@echo "Installing db file $@"
