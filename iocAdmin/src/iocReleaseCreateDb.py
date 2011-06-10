@@ -19,7 +19,7 @@ def export_db_file(module_versions, path=None):
     out_file = sys.stdout
     idx = 0
     idxMax = 20
-
+    
     if path:
         try:
             out_file = open(path, 'w')
@@ -65,37 +65,71 @@ def export_db_file(module_versions, path=None):
         out_file.close()
     
 
-def module_versions(path):
+def module_versions(release_path, site_path):
     """
     Return a dictionary containing module names and versions.
     """
     
+    # first grab EPICS_BASE_VER from RELEASE_SITE file, if it's there
+    siteBaseVer = "Nada"
+    openSiteFile = 1
+
     try:
-        release_file = open(path, 'r')
+        site_file = open(site_path, 'r')
     except IOError, e:
-        sys.stderr.write('Could not open "%s": %s\n' % (path, e.strerror))
+        #sys.stderr.write('Could not open "%s": %s\n' % (site_path, e.strerror))
+        openSiteFile = 0
+
+    if openSiteFile:
+        for line in site_file:
+            # Remove comments
+            line = line.partition('#')[0]
+        
+            # Turn 'a = b' into a key/value pair and remove leading and trailing whitespace
+            (key, sep, value) = line.partition('=')
+            key = key.strip()
+            value = value.strip()
+        
+            # save EPICS_BASE_VER, if it's in there
+            if key.startswith('EPICS_BASE_VER'):
+                siteBaseVer = value
+                break
+            
+        site_file.close()
+        
+    # now get all the modules
+    try:
+        release_file = open(release_path, 'r')
+    except IOError, e:
+        sys.stderr.write('Could not open "%s": %s\n' % (release_path, e.strerror))
         return None
 
     release_file_dict = {}
 
     for line in release_file:
         # Remove comments
-        line = line.split('#')[0]
+        line = line.partition('#')[0]
         
         # Turn 'a = b' into a key/value pair and remove leading and trailing whitespace
-        items = line.split('=', 1)
-        key = items[0]
-        value = ''
-        if (len(items) == 2):
-            value = items[1]
+        (key, sep, value) = line.partition('=')
         key = key.strip()
         value = value.strip()
         
         # Add the key/value pair to the dictionary if the key ends with _MODULE_VERSION
         if key.endswith('_MODULE_VERSION'):
-            release_file_dict[key] = value
+            # if BASE_MODULE_VERSION is set to EPICS_BASE_VER macro from RELEASE_SITE,
+            # capture it here  
+            if key == "BASE_MODULE_VERSION" and value == "$(EPICS_BASE_VER)":  
+                if siteBaseVer != "Nada": 
+                    release_file_dict[key] = siteBaseVer
+                else:
+                    # don't set BASE at all
+                    pass
+            else:
+                release_file_dict[key] = value
     
     release_file.close()
+
         
     return release_file_dict
 
@@ -103,13 +137,14 @@ def module_versions(path):
 def process_options(argv):
     """
     Return parsed command-line options found in the list of
-    arguments, `argv`, or ``sys.argv[1:]`` if `argv` is `None`.
+    arguments, `argv`, or ``sys.argv[2:]`` if `argv` is `None`.
     """
 
     if argv is None:
         argv = sys.argv[1:]
 
-    usage = 'Usage: %prog RELEASE_FILE [options]'    
+    #    usage = 'Usage: %prog RELEASE_FILE [options]'    
+    usage = 'Usage: %prog RELEASE_FILE RELEASE_SITE_FILE [options]'    
     version = '%prog 0.1'
     parser = optparse.OptionParser(usage=usage, version=version)
 
@@ -121,18 +156,18 @@ def process_options(argv):
 
     (options, args) = parser.parse_args(argv)
 
-    if len(args) != 1:
+    if len(args) != 2:
         parser.error("incorrect number of arguments")
 
     options.release_file_path = os.path.normcase(args[0])
+    options.release_site_file_path = os.path.normcase(args[1])
 
     return options 
 
 
 def main(argv=None):
     options = process_options(argv)
-
-    versions = module_versions(options.release_file_path)
+    versions = module_versions(options.release_file_path, options.release_site_file_path)
     export_db_file(versions, options.db_file)
 
     return 0
