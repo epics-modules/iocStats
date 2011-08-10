@@ -50,6 +50,8 @@ int devIocStatsGetIFErrors (ifErrInfo *pval)
     struct ifnet *ifp;
 
     /* add all interfaces' errors */
+    pval->ierrors = 0;
+    pval->oerrors = 0;
     for (ifp = ifnet; ifp != NULL; ifp = ifp->if_next) {
         pval->ierrors += ifp->if_ierrors;
         pval->oerrors += ifp->if_oerrors;
