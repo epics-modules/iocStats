@@ -45,6 +45,10 @@
  *              restructured OSD parts
  */
 
+#ifdef CPUBURNSQRT
+#include <math.h>
+#endif
+
 #include <epicsEvent.h>
 #include <epicsTime.h>
 #include <epicsThread.h>
@@ -65,7 +69,7 @@ typedef struct cpuUsageInfo cpuUsageInfo;
 
 static cpuUsageInfo cpuUsage = {0};
 
-#if 0
+#ifdef CPUBURNSQRT
 /* This is not going to burn anything with a modern gcc
  * (which pre-computes the result AND knows that
  * sqrt has no side-effects). Unless we use the result
