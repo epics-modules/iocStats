@@ -293,3 +293,17 @@ record(stringin, "$(IOCNAME):UPTIME") {
   field(INP, "@up_time")
   field(PINI, "YES")
 }
+
+record(stringin, "$(IOCNAME):ENGINEER") {
+  field(DESC, "Engineer")
+  field(DTYP, "IOC stats")
+  field(INP, "@engineer")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(IOCNAME):LOCATION") {
+  field(DESC, "Location")
+  field(DTYP, "IOC stats")
+  field(INP, "@location")
+  field(PINI, "YES")
+}

@@ -14,8 +14,6 @@ pattern { IOCNAME , TODFORMAT           }
 file iocEnvVar.template
 {
 pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
-	{ $(IOC) , LOCATION     , LOCATION                        , env    }
-	{ $(IOC) , ENGINEER     , ENGINEER                        , env    }
 	{ $(IOC) , CA_ADDR_LIST , EPICS_CA_ADDR_LIST              , epics  } 
 	{ $(IOC) , CA_CONN_TIME , EPICS_CA_CONN_TMO               , epics  } 
 	{ $(IOC) , CA_AUTO_ADDR , EPICS_CA_AUTO_ADDR_LIST         , epics  }
