@@ -53,8 +53,14 @@ int devIocStatsInitMemUsage (void) { return 0; }
 int devIocStatsGetMemUsage (memInfo *pval)
 {
 #ifdef RTEMS_PROTECTED_HEAP
+# if   (__RTEMS_MAJOR__ > 4) \
+   || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
+    extern Heap_Control *RTEMS_Malloc_Heap;
+    Heap_Control *h = RTEMS_Malloc_Heap;
+# else
     extern Heap_Control RTEMS_Malloc_Heap;
     Heap_Control *h = &RTEMS_Malloc_Heap;
+# endif
     Heap_Information_block info;
 
     _Protected_heap_Get_information(h, &info);

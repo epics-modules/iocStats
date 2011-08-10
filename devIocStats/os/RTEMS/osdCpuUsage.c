@@ -62,7 +62,9 @@ typedef char * objName;
 #define RTEMS_OBJ_GET_NAME(tc,name) name = (tc)->Object.name
 # endif
 
-#ifdef RTEMS_ENABLE_NANOSECOND_CPU_USAGE_STATISTICS
+#if defined(RTEMS_ENABLE_NANOSECOND_CPU_USAGE_STATISTICS) || \
+    (__RTEMS_MAJOR__ > 4) || \
+    (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
 #define CPU_ELAPSED_TIME(tc) ((double)(tc)->cpu_time_used.tv_sec + ((double)tc->cpu_time_used.tv_nsec/1E9))
 #else
 #define CPU_ELAPSED_TIME(tc) ((double)(tc)->ticks_executed)
@@ -100,8 +102,8 @@ static void cpu_ticks(double *total, double *idle)
                 tc = (Thread_Control *)obj->local_table[y];
                 if (tc) {
                     *total += CPU_ELAPSED_TIME(tc);
-                    if (obj->is_string) {
-                        RTEMS_OBJ_GET_NAME( tc,  name );
+                    RTEMS_OBJ_GET_NAME( tc,  name );
+                    if (name && name[0]) {
                         if (name[0] == 'I' && name[1] == 'D' &&
                             name[2] == 'L' && name[3] == 'E') {
                             *idle = CPU_ELAPSED_TIME(tc);

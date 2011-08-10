@@ -38,7 +38,12 @@ int devIocStatsGetWorkspaceUsage (memInfo *pval)
     _Heap_Get_information( &_Workspace_Area, &info);  /*_Heap_Get_information is part of the RTEMS API */
     _RTEMS_Unlock_allocator();
 #endif /* RTEMS_PROTECTED_HEAP */
+# if   (__RTEMS_MAJOR__ > 4) \
+   || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
+    pval->numBytesTotal    = Configuration.work_space_size;
+#else
     pval->numBytesTotal    = _Configuration_Table->work_space_size;
+#endif
     pval->numBytesFree    = info.Free.total;
     pval->numBytesAlloc   = info.Used.total;
     return 0;
