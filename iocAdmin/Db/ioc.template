@@ -48,6 +48,7 @@ record( sub, "$(IOCNAME):READACF")
 }
 record(sub, "$(IOCNAME):SYSRESET")
 {
+    alias("$(IOCNAME):SysReset")
     field(DESC, "IOC Restart" )
     field(SNAM, "rebootProc")
     field(BRSV,"INVALID")
