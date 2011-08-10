@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 08/12/2010
+README_devIocStats		Last Updated 08/9/2011
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -8,19 +8,26 @@ String (stringin) Records (DTYP = "IOC stats"), INP = @one of the following:
 ============================================================================
 		startup_script_[12]	-path of startup script (2 records)
 					Default - uses STARTUP and ST_CMD
-					environment variables.
+					environment variables or startup and
+				        st_cmd symbols.  If STARTUP
+					is not available, uses 
+					IOCSH_STARTUP_SCRIPT.
 		bootline_[1-6]		-CPU bootline (6 records)
-					 (not implemented for soft IOCs and
-					  set to "<not implemented>")
+					 (set to "<not implemented> for all
+					  except RTEMS and vxWorks)
  		bsp_rev			-CPU board support package revision
-					 (not available for soft IOCs and
-					  set to "<not available>")
+					 (set to "<not available> for all
+					  except RTEMS and vxWorks)
 		kernel_ver		-OS kernel build version
 		epics_ver		-EPICS base version
                 engineer                -IOC Engineer
-					Default - uses ENGINEER env var.
+					Default - uses ENGINEER env var or
+					engineer symbol.  If ENGINEER is
+					not available, uses LOGNAME or USER
+					env var.
                 location                -IOC Location
-					Default - uses LOCATION env var.
+					Default - uses LOCATION env var or
+					location symbol.
                 hostname                -IOC Host Name from gethostname
                 pwd[1-2]                -IOC Current Working Directory 
 					  (2 records) from getcwd
@@ -123,13 +130,7 @@ Subroutine (sub) Records, SNAM = one of the following:
 II - Notes on Soft IOC Implementation of devIocStats
 ----------------------------------------------------
 
-(1) There is a bug in EPICS 3.14.8.2 base/src/libCom/taskwd/taskwd.c which
-    results in the soft IOC crashing when a task suspends.  The taskwd.c fix
-    is to change this line in the taskwdTask function from:
-                                TASKWDANYFUNCPRR pcallback = pt->callback;
-    to:
-                                TASKWDANYFUNCPRR pcallback = ptany->callback;
-    Note that the suspended task count will only include tasks that call 
+(1) The suspended task count will only include tasks that call 
     taskwdInsert on startup, including all of iocCore tasks and all sequence 
     tasks.  Some (many?) support modules that create tasks neglect to call 
     taskwdInsert.
