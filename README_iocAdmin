@@ -1,4 +1,4 @@
-Instructions for iocAdmin users                    Last Updated 09/02/2010
+Instructions for iocAdmin users                    Last Updated 05/19/2011
 --------------------------------
 
 The iocAdmin package contains databases and libraries to add ioc administration
@@ -10,9 +10,6 @@ ioc application.  This package includes general time records and IOC stats
 iocAdmin also provides access.db, a database template defining records for
 device attributes that are common across many IOC applications.  See I-5 
 below for more detail.
-
-Also provided is baseSecurity.acf, an access control file with ioc-related
-access rules and groups.
 
 I - Adding the iocAdmin package to your IOC application:
 -------------------------------------------------------
@@ -40,7 +37,6 @@ IOCADMIN=/afs/slac/g/lcls/epics/modules/iocAdmin/iocAdmin-R<release>
    DB_INSTALLS += $(IOCADMIN)/db/access.db          (if required by next step)
    DB_INSTALLS += $(IOCADMIN)/db/iocAdminScanMon.db (optional - ONLY if SCAN
                                                      monitoring is required)
-   DB_INSTALLS += $(IOCADMIN)/db/baseSecurity.acf
    IOCRELEASE_DB += iocRelease.db
 
     NOTE: The iocRelease database assumes that each 
@@ -84,8 +80,6 @@ IOCADMIN=/afs/slac/g/lcls/epics/modules/iocAdmin/iocAdmin-R<release>
 	}
     See iocAdmin/Db/access.doc for requirements and discussion.
 
-(6) Optional - include baseSecurity.acf in any existing acf file that is
-    built in the ioc application.
 
 II - Adding iocAdmin to your IOC startup file:
 -----------------------------------------------
@@ -118,13 +112,6 @@ II - Adding iocAdmin to your IOC startup file:
 
     dbLoadRecords("db/iocAdminScanMon.db", "IOC=<iocname>")
 
-(5) If baseSecurity.acf is not included in the ioc application's own
-    acf file, add these lines (before iocInit):
-
-    asSetFilename("<path>/db/baseSecurity.acf")
-    asSetSubstitutions("IOC=<iocname>")
-
-    where <path> must be absolute.
 
 III - Adding iocAdmin to CA Clients:
 ------------------------------------
