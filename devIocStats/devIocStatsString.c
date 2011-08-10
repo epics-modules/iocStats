@@ -89,6 +89,7 @@
 #include <epicsVersion.h>
 #include <epicsTime.h>
 #include <epicsExport.h>
+#include <epicsFindSymbol.h>
 
 #include <dbAccess.h>
 #include <devSup.h>
@@ -154,6 +155,9 @@ static void statsHostName(char *);
 static void statsPwd1(char *);
 static void statsPwd2(char *);
 
+static int devIocStatsGetEngineer (char **pval);
+static int devIocStatsGetLocation (char **pval);
+
 static validGetStrParms statsGetStrParms[]={
 	{ "startup_script_1",		statsSScript1,		STATIC_TYPE },
 	{ "startup_script_2",		statsSScript2, 		STATIC_TYPE },
@@ -183,6 +187,9 @@ epicsExportAddress(dset,devStringinEnvVar);
 epicsExportAddress(dset,devStringinEpics);
 
 static char *notavail = "<not available>";
+static char *empty    = "";
+static char *script = 0;
+static int scriptlen = 0;
 static epicsTimeStamp starttime;
 
 /* ---------------------------------------------------------------------- */
@@ -374,4 +381,58 @@ static void statsUpTime(char *d)
     sprintf(&timest[count], "%02lu:%02lu:%02lu", hours, mins, secs);
     strncpy(d, timest, 40);
     return;
+}
+static int devIocStatsGetEngineer (char **pval)
+{
+    char *spbuf;
+    char *sp = notavail;
+
+    /* Get value from environment or global variable */
+    if ((spbuf = getenv(ENGINEER)) ||
+        (spbuf = epicsFindSymbol("engineer")) ||
+        (spbuf = getenv("LOGNAME")) ||
+        (spbuf = getenv("USER"))) sp = spbuf;
+    *pval = sp;
+    if (sp == notavail) return -1;
+    return 0;
+}
+static int devIocStatsGetLocation (char **pval)
+{
+    char *spbuf;
+    char *sp = notavail;
+
+    /* Get value from environment or global variable */
+    if ((spbuf = getenv(LOCATION)) || (spbuf = epicsFindSymbol("location"))) sp = spbuf;
+    *pval = sp;
+    if (sp == notavail) return -1;
+    return 0;
+}
+int devIocStatsGetStartupScriptDefault (char **pval)
+{
+    char *spbuf;
+    char *stbuf;
+    char *sp = notavail;
+    char *st = empty;
+    int plen, len;
+
+    /* Get values from environment or global variable */
+    if ((spbuf = getenv(STARTUP)) ||
+        (spbuf = epicsFindSymbol("startup")) ||
+        (spbuf = getenv("IOCSH_STARTUP_SCRIPT"))) sp = spbuf;
+    if ((stbuf = getenv(ST_CMD )) || (stbuf = epicsFindSymbol("st_cmd" ))) st = stbuf;
+
+    /* Concatenate with a '/' inbetween */
+    plen = strlen(sp);
+    len = plen + strlen (st) + 2;
+    if (len > scriptlen) { /* we need more space */
+        script = realloc(script, len);
+        if (script) scriptlen = len; else scriptlen = 0;
+    }
+    strcpy(script, sp);
+    if (sp == notavail) script[plen] = '\0';
+    else if (strlen(st) > 0) script[plen] = '/';
+    strcpy(script+plen+1, st);
+    *pval = script;
+    if (sp == notavail) return -1;
+    return 0;
 }

@@ -103,10 +103,9 @@ extern int devIocStatsGetIFErrors (ifErrInfo *pval);
 
 /* Boot Info */
 extern int devIocStatsInitBootInfo (void);
-extern int devIocStatsGetStartupScript (char **pval);
 extern int devIocStatsGetBootLine (char **pval);
-extern int devIocStatsGetEngineer (char **pval);
-extern int devIocStatsGetLocation (char **pval);
+extern int devIocStatsGetStartupScript (char **pval);
+extern int devIocStatsGetStartupScriptDefault (char **pval);
 
 /* System Info */
 extern int devIocStatsInitSystemInfo (void);
