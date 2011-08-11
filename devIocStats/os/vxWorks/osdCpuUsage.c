@@ -156,7 +156,8 @@ int devIocStatsInitCpuUsage(void)
     int    nBurnNoContention = 0;
     double tToWait = SECONDS_TO_BURN;
     epicsTimeStamp tStart, tEnd;
-
+    
+    if (cpuUsage.startSem) return 0;
     /* Initialize only if OS wants to spin */
     if (tToWait > 0) {
         /*wait for a tick*/
