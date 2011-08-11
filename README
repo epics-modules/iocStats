@@ -7,7 +7,8 @@ RELEASE_NOTES		- release notes
 RELEASE_SITE		- LCLS-unique - included by configure/RELEASE, location of epics
 configure		- build configuration files
 devIocStats		- IOC statistics device support
-iocAdmin		- LCLS-unique database, displays, and config files,
+op			- Non-LCLS MEDM displays
+iocAdmin		- LCLS-unique EDM database, displays, and config files,
 			  includes general time records
 iocBoot			- test startup files
 testIocAdminApp		- LCLS-unique app for testing devIocStats and iocAdmin
