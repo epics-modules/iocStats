@@ -5,10 +5,35 @@ Note: iocStats releases above R3-1-3 require EPICS base 3.14.11 or above.
 Edit the following files for EPICS base 3.14.8.2:
     - iocAdmin/Db/iocAdmin*.substitutions - remove iocGeneralTime.template.
     - iocAdmin/Db/ioc.template - remove alias line for IOC_CPU_LOAD and 
-      give the record the desired name.
+      give the record the desired name. Remove alias for SYSRESET.
     - iocAdmin/srcDisplay and srcRestore - change IOC_CPU_LOAD in files to 
       the desired name.
  
+iocStats-R3-1-6: Aug 11, 2011
+  * Change by Robert Henning and Stephanie Allison:
+    - Add medm displays to op/adl.  Original displays by Robert
+      and brought up-to-date with the edm display by Stephanie.
+  * Change by Eric Norum and Stephanie Allison:
+    - Add check for IOCSH_STARTUP_SCRIPT when setting startup script.
+    - Support for RTEMS 4.10.
+    - Move ENGINEER and LOCATION records from general env vars back to 
+      IOC stats support.
+  * Change by Judy Rock:
+    - iocAdmin/src/iocReleaseCreateDb.py - look for epics base version in 2nd
+      argument if not found in the first.
+    - configure/RULES_BUILD - add 2nd argument to iocReleaseCreateDb.py rule.
+  * Change by Sonya Hoobler:
+    - iocAdmin/srcDisplay/ioc_stats*.edl - correct READACF command.  Add
+      confirm display for reloading the access security file.
+  * Change by Stephanie Allison:
+    - iocAdmin/Db - remove baseSecurity.acf, remove ASGs in templates.
+      Add TODFORMAT macro to TOD (time-of-day) records.
+    - Move common logic from os/*/osdBootInfo.c to devIocStatsString.c.
+    - Bug fix for RTEMS - initialize IF error counters before loop.
+    - Add CPUBURNSQRT compile switch use the sqrt burn instead of the
+      epicsTime burn in devIocStats/os/vxWorks/osdCpuUsage.c.  The default
+      is epicsTime which gives a CPU load of 0% when ioc is not busy.
+
 iocStats-R3-1-5: Mar 31, 2011
   * Change by Eric Bjorklund:
     - devIocStats/os/vxWorks/osdMemUsage.c - correct vxWorks meminfo structure
