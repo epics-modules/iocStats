@@ -1,0 +1,1669 @@
+
+file {
+	name="/u/qb/saa/spear/iocStats/op/adl/ioc_stats_rtems.adl"
+	version=030105
+}
+display {
+	object {
+		x=903
+		y=166
+		width=540
+		height=756
+	}
+	clr=14
+	bclr=3
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=6
+		y=4
+		width=211
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IOC Diagnostics"
+}
+text {
+	object {
+		x=5
+		y=29
+		width=212
+		height=27
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="$(ioc):"
+}
+rectangle {
+	object {
+		x=0
+		y=58
+		width=540
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=10
+		y=66
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Startup Time"
+}
+text {
+	object {
+		x=10
+		y=86
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current Time"
+}
+text {
+	object {
+		x=10
+		y=106
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Up Time"
+}
+text {
+	object {
+		x=10
+		y=126
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Heartbeat"
+}
+text {
+	object {
+		x=10
+		y=146
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# Records"
+}
+text {
+	object {
+		x=10
+		y=166
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Host Name"
+}
+text {
+	object {
+		x=10
+		y=186
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="User Name"
+}
+text {
+	object {
+		x=10
+		y=206
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Location"
+}
+polyline {
+	object {
+		x=330
+		y=60
+		width=0
+		height=170
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(330,60)
+		(330,230)
+	}
+}
+text {
+	object {
+		x=340
+		y=70
+		width=120
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# CA Clients"
+}
+text {
+	object {
+		x=340
+		y=100
+		width=120
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# CA PV Conns"
+}
+text {
+	object {
+		x=340
+		y=130
+		width=120
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# Susp Tasks"
+}
+"text update" {
+	object {
+		x=125
+		y=66
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):STARTTOD"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=125
+		y=86
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):TOD"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=125
+		y=106
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):UPTIME"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=125
+		y=126
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):HEARTBEAT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=125
+		y=146
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):RECORD_CNT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=125
+		y=166
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):HOSTNAME"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=125
+		y=186
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):ENGINEER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=125
+		y=206
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):LOCATION"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=470
+		y=70
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CA_CLNT_CNT"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=470
+		y=100
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CA_CONN_CNT"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=470
+		y=130
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):SUSP_TASK_CNT"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=230
+		width=540
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=496
+		width=540
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=5
+		y=357
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EPICS Version"
+}
+text {
+	object {
+		x=5
+		y=398
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Application Directory"
+}
+text {
+	object {
+		x=5
+		y=431
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Startup Script"
+}
+"text update" {
+	object {
+		x=112
+		y=357
+		width=350
+		height=15
+	}
+	monitor {
+		chan="$(ioc):EPICS_VERS"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=5
+		y=413
+		width=265
+		height=13
+	}
+	monitor {
+		chan="$(ioc):APP_DIR1"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=5
+		y=446
+		width=265
+		height=12
+	}
+	monitor {
+		chan="$(ioc):ST_SCRIPT1"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=270
+		y=413
+		width=265
+		height=13
+	}
+	monitor {
+		chan="$(ioc):APP_DIR2"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=270
+		y=446
+		width=265
+		height=12
+	}
+	monitor {
+		chan="$(ioc):ST_SCRIPT2"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=314
+		y=497
+		width=1
+		height=260
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=136
+		y=508
+		width=120
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Memory (# bytes)"
+}
+text {
+	object {
+		x=9
+		y=541
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Free"
+}
+text {
+	object {
+		x=9
+		y=559
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Used"
+}
+text {
+	object {
+		x=9
+		y=576
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Machine"
+}
+text {
+	object {
+		x=9
+		y=589
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Maximum"
+}
+text {
+	object {
+		x=369
+		y=504
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="CPU Load"
+}
+text {
+	object {
+		x=374
+		y=532
+		width=105
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# File Desciptors"
+}
+text {
+	object {
+		x=374
+		y=557
+		width=30
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Free"
+}
+text {
+	object {
+		x=374
+		y=577
+		width=30
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Max"
+}
+"text update" {
+	object {
+		x=427
+		y=505
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):IOC_CPU_LOAD"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=414
+		y=557
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):FD_FREE"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=414
+		y=577
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):FD_MAX"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=89
+		y=540
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(ioc):MEM_FREE"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=89
+		y=560
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(ioc):MEM_USED"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=89
+		y=580
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(ioc):MEM_MAX"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=338
+		y=162
+		width=110
+		height=20
+	}
+	display[0] {
+		label="Alarm Limits"
+		name="ioc_stats_limits.adl"
+		args="ioc=$(ioc)"
+	}
+	clr=14
+	bclr=6
+	label="Alarm Limits"
+}
+"related display" {
+	object {
+		x=339
+		y=191
+		width=110
+		height=21
+	}
+	display[0] {
+		label="EPICS Env Vars"
+		name="ioc_stats_epics_env.adl"
+		args="ioc=$(ioc)"
+	}
+	clr=14
+	bclr=6
+	label="EPICS Env Vars"
+}
+text {
+	object {
+		x=5
+		y=377
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OS Version"
+}
+"text update" {
+	object {
+		x=112
+		y=377
+		width=350
+		height=15
+	}
+	monitor {
+		chan="$(ioc):KERNEL_VERS"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=1
+		y=343
+		width=540
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+menu {
+	object {
+		x=36
+		y=320
+		width=96
+		height=21
+	}
+	control {
+		chan="$(ioc):ACCESS"
+		clr=14
+		bclr=6
+	}
+}
+text {
+	object {
+		x=7
+		y=323
+		width=30
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+}
+"related display" {
+	object {
+		x=150
+		y=320
+		width=226
+		height=21
+	}
+	display[0] {
+		label="Reload ACF"
+		name="ioc_stats_reloadacf_confirm.adl"
+		args="ioc=$(ioc)"
+	}
+	clr=14
+	bclr=6
+	label="Reload Access Security Conf File"
+}
+"related display" {
+	object {
+		x=394
+		y=320
+		width=110
+		height=21
+	}
+	display[0] {
+		label="Reboot"
+		name="ioc_stats_reboot_confirm.adl"
+		args="ioc=$(ioc)"
+	}
+	clr=14
+	bclr=6
+	label="Reboot"
+}
+text {
+	object {
+		x=139
+		y=236
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="General Time Providers"
+}
+text {
+	object {
+		x=9
+		y=254
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+}
+text {
+	object {
+		x=9
+		y=274
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Event"
+}
+text {
+	object {
+		x=9
+		y=294
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Highest Priority"
+}
+"text update" {
+	object {
+		x=124
+		y=254
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_CUR_SRC"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=124
+		y=274
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_EVT_SRC"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=124
+		y=294
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_HI_SRC"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=342
+		y=250
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# Secs"
+}
+text {
+	object {
+		x=341
+		y=262
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="since 1990"
+}
+"text update" {
+	object {
+		x=409
+		y=254
+		width=120
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_TIME"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=340
+		y=282
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# Errors"
+}
+"text update" {
+	object {
+		x=409
+		y=279
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_ERR_CNT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=478
+		y=277
+		width=53
+		height=17
+	}
+	control {
+		chan="$(ioc):GTIM_RESET.PROC"
+		clr=14
+		bclr=7
+	}
+	label="Reset"
+	press_msg="0"
+}
+rectangle {
+	object {
+		x=2
+		y=312
+		width=540
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=4
+		y=466
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RTEMS Boot Line"
+}
+"text update" {
+	object {
+		x=4
+		y=481
+		width=265
+		height=12
+	}
+	monitor {
+		chan="$(ioc):BOOTLINE1"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=269
+		y=481
+		width=265
+		height=12
+	}
+	monitor {
+		chan="$(ioc):BOOTLINE2"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=113
+		y=523
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Heap"
+}
+text {
+	object {
+		x=225
+		y=522
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Workspace"
+}
+"text update" {
+	object {
+		x=202
+		y=540
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(ioc):RAM_WS_FREE"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=202
+		y=560
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(ioc):RAM_WS_USED"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=202
+		y=580
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(ioc):RAM_WS_MAX"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=8
+		y=617
+		width=80
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RAM Block"
+}
+text {
+	object {
+		x=8
+		y=604
+		width=80
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Largest Free"
+}
+"text update" {
+	object {
+		x=89
+		y=609
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(ioc):MEM_BLK_FREE"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=315
+		y=525
+		width=225
+		height=1
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+rectangle {
+	object {
+		x=315
+		y=596
+		width=225
+		height=1
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=374
+		y=602
+		width=105
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# IF Errors"
+}
+text {
+	object {
+		x=374
+		y=627
+		width=30
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Input"
+}
+text {
+	object {
+		x=374
+		y=647
+		width=30
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Output"
+}
+"text update" {
+	object {
+		x=414
+		y=627
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):IFI_ERR_CNT"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=414
+		y=647
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):IFO_ERR_CNT"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=7
+		y=655
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="% Free"
+}
+text {
+	object {
+		x=7
+		y=675
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Max"
+}
+"text update" {
+	object {
+		x=89
+		y=655
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(ioc):SYS_MBUF_FREE"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=89
+		y=675
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(ioc):SYS_MBUF_MAX"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=98
+		y=637
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="System MBUFs"
+}
+rectangle {
+	object {
+		x=0
+		y=634
+		width=315
+		height=1
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+"text update" {
+	object {
+		x=11
+		y=716
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CLUST_1_0_0"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=11
+		y=736
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CLUST_1_1_0"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=21
+		y=699
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Size"
+}
+text {
+	object {
+		x=72
+		y=698
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Clusters"
+}
+"text update" {
+	object {
+		x=69
+		y=716
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CLUST_1_0_1"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=69
+		y=736
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CLUST_1_1_1"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=138
+		y=698
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Free"
+}
+"text update" {
+	object {
+		x=127
+		y=716
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CLUST_1_0_2"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=127
+		y=736
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CLUST_1_1_2"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=188
+		y=698
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Free (%)"
+}
+"text update" {
+	object {
+		x=185
+		y=716
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):SYS_CLUST_AVAIL_0"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=185
+		y=736
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):SYS_CLUST_AVAIL_1"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=243
+		y=716
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CLUST_1_0_3"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=243
+		y=736
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(ioc):CLUST_1_1_3"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=254
+		y=698
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Usage"
+}
