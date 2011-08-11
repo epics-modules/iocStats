@@ -1,8 +1,13 @@
-README_devIocStats		Last Updated 08/9/2011
+README_devIocStats		Last Updated 08/11/2011
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
 --------------------------------------------------------
+
+Include either devIocStats.dbd OR devVxStats.dbd in the IOC application, 
+not both.  devIocStats.dbd (preferred) provides DTYPs that start with 
+"IOC" and devVxStats.dbd provides DTYPs that start with "VX" 
+(included for backwards compatibility).
 
 String (stringin) Records (DTYP = "IOC stats"), INP = @one of the following:
 ============================================================================
