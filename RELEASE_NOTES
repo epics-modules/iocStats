@@ -12,9 +12,11 @@ Edit the following files for EPICS base 3.14.8.2:
 iocStats-R3-1-6: Aug 11, 2011
   * Change by Robert Henning and Stephanie Allison:
     - Add medm displays to op/adl.  Original displays by Robert
-      and brought up-to-date with the edm display by Stephanie.
+      and brought up-to-date with the edm display by Stephanie.  Could
+      use more work.
   * Change by Eric Norum and Stephanie Allison:
-    - Add check for IOCSH_STARTUP_SCRIPT when setting startup script.
+    - Add check for IOCSH_STARTUP_SCRIPT when setting startup script (after
+      all the other existing env vars).
     - Support for RTEMS 4.10.
     - Move ENGINEER and LOCATION records from general env vars back to 
       IOC stats support.
@@ -33,6 +35,7 @@ iocStats-R3-1-6: Aug 11, 2011
     - Add CPUBURNSQRT compile switch use the sqrt burn instead of the
       epicsTime burn in devIocStats/os/vxWorks/osdCpuUsage.c.  The default
       is epicsTime which gives a CPU load of 0% when ioc is not busy.
+      Add code to prevent double init of vxWorks osdCpuUsage.
 
 iocStats-R3-1-5: Mar 31, 2011
   * Change by Eric Bjorklund:
