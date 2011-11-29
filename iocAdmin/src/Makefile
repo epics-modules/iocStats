@@ -15,9 +15,9 @@ DBD += iocAdmin.dbd
 
 SCRIPTS_HOST += iocReleaseCreateDb.py
 
-LIBRARY = iocAdmin
+#LIBRARY = iocAdmin
 
-iocAdmin_LIBS = $(EPICS_BASE_IOC_LIBS)
+#iocAdmin_LIBS = $(EPICS_BASE_IOC_LIBS)
 
 #===========================
 
