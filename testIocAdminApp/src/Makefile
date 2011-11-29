@@ -14,7 +14,18 @@ IOCRELEASE_DB += testIocAdminRelease.db
 
 #=============================
 
-PROD_IOC += testIocAdmin
+PROD_IOC_solaris += testIocAdmin
+PROD_IOC_Linux += testIocAdmin
+PROD_IOC_vxWorks += testIocAdmin
+PROD_IOC_RTEMS += testIocAdmin
+PROD_IOC_Darwin += testIocAdmin
+PROD_IOC_cygwin32 += testIocAdmin
+# WIN32 does not build.
+#PROD_IOC_WIN32 += testIocAdmin
+# Do these build?
+#PROD_IOC_AIX += testIocAdmin
+#PROD_IOC_iOS += testIocAdmin
+#PROD_IOC_freebsd += testIocAdmin
 
 testIocAdmin_SRCS += testIocAdmin_registerRecordDeviceDriver.cpp
 testIocAdmin_SRCS += testIocAdminMain.cpp
