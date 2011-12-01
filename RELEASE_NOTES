@@ -9,9 +9,11 @@ Edit the following files for EPICS base 3.14.8.2:
     - iocAdmin/srcDisplay and srcRestore - change IOC_CPU_LOAD in files to 
       the desired name.
  
-iocStats-R3-1-7: Nov 29, 2011
+iocStats-R3-1-7: Dec 1, 2011
   * iocAdmin/srcDisplay/Makefile - use EDL file type.
-  * Per Tim Mooney - copy all devIocStats/os/Linux to devIocStats/os/cygwin32.
+  * Changes by Tim Mooney:
+    - copy all devIocStats/os/Linux to devIocStats/os/cygwin32.
+    - add devIocStats/op/opi CSS/BOY display files.
   * all src Makefiles - build only for 
     RTEMS, vxWorks, Linux, solaris, Darwin, cygwin32.
     Mark Rivers reports that iocStats will not build for WIN32.
