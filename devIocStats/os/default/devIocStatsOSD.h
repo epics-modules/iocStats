@@ -12,3 +12,12 @@
 
 /* devIocStatsOSD.h - Header for OS dependent implementation part */
 
+#include <epicsExit.h>
+
+#define sysBspRev()     "<not implemented>"
+#define kernelVersion() "<not implemented>"
+#define sysBootLine     "<not implemented>"
+#define FDTABLE_INUSE(i) (0)
+#define MAX_FILES 0
+#define CLUSTSIZES 2
+#define reboot(x) epicsExit(0)
