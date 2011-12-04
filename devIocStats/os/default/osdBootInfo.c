@@ -20,6 +20,7 @@
  *
  */
 
+#define SYSBOOTLINE_NEEDED
 #include <devIocStats.h>
 
 int devIocStatsInitBootInfo (void) { return 0; }
