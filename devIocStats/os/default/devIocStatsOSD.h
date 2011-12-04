@@ -14,10 +14,12 @@
 
 #include <epicsExit.h>
 
-#define sysBspRev()     "<not implemented>"
-#define kernelVersion() "<not implemented>"
-#define sysBootLine     "<not implemented>"
+#ifdef SYSBOOTLINE_NEEDED
+static char *sysBootLine = "<not implemented>";
+#endif
 #define FDTABLE_INUSE(i) (0)
 #define MAX_FILES 0
 #define CLUSTSIZES 2
+#define NO_OF_CPUS 1
+#define TICKS_PER_SEC 1
 #define reboot(x) epicsExit(0)
