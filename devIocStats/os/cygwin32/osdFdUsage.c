@@ -22,6 +22,7 @@
 
 #include <sys/resource.h>
 #include <dirent.h>
+#include <stdlib.h>
 
 #include <devIocStats.h>
 
