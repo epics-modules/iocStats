@@ -12,6 +12,8 @@
 
 /* devIocStatsSub.c - Subroutine Routines for IOC statistics */
 
+#include <string.h>
+
 #include <epicsThread.h>
 #include <epicsExport.h>
 #include <epicsPrint.h>
