@@ -14,18 +14,7 @@ testIocStats_DBD += test.dbd
 
 #=============================
 
-PROD_IOC_solaris += testIocStats
-PROD_IOC_Linux += testIocStats
-PROD_IOC_vxWorks += testIocStats
-PROD_IOC_RTEMS += testIocStats
-PROD_IOC_Darwin += testIocStats
-PROD_IOC_cygwin32 += testIocStats
-# WIN32 does not build.
-#PROD_IOC_WIN32 += testIocStats
-# Do these build?
-#PROD_IOC_AIX += testIocStats
-#PROD_IOC_iOS += testIocStats
-#PROD_IOC_freebsd += testIocStats
+PROD_IOC += testIocStats
 
 testIocStats_SRCS += testIocStats_registerRecordDeviceDriver.cpp
 testIocStats_SRCS += testIocStatsMain.cpp
