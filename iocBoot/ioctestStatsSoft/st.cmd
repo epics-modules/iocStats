@@ -1,4 +1,4 @@
-#!../../bin/linux-x86/testIocStats
+#!../../bin/linux-x86_64/testIocStats
 < envPaths
 
 cd ${TOP}
