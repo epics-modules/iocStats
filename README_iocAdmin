@@ -1,4 +1,4 @@
-Instructions for iocAdmin users                    Last Updated 05/19/2011
+Instructions for iocAdmin users                    Last Updated 03/07/2012
 --------------------------------
 
 The iocAdmin package contains databases and libraries to add ioc administration
@@ -137,7 +137,10 @@ III - Adding iocAdmin to CA Clients:
 	<device name including ALL colons>FBCK /LOG
 
 (2) EDM:
-    (2a) IOC Display - Choose the correct machine area for the IOC and add 
+    (2a) For a new version of iocAdmin, copy or merge required display files 
+         from $(IOCADMIN)/display to $EDM/misc.
+
+    (2b) IOC Display - Choose the correct machine area for the IOC and add 
 	 the ioc to the proper network EDM displays:
 		$EDM/lcls/ntwk_<area>_main.edl
 		$EDM/lcls/ntwk_<area>_iocstatus.edl
@@ -151,7 +154,7 @@ III - Adding iocAdmin to CA Clients:
 	ioc_soft       - Soft IOC
 	Set the "ioc" macro to the ioc database name.
 
-    (2b) Device-Specific Display - For each device instantiating the access.db
+    (2c) Device-Specific Display - For each device instantiating the access.db
 	 database, add choice or menu buttons for ACCESS and FBCK on the 
 	 device single-unit diagnostic display and/or subsystem display 
 	 showing the device status.
@@ -188,9 +191,9 @@ III - Adding iocAdmin to CA Clients:
 	<iocname>:FD_FREE
 	<iocname>:IOC_CPU_LOAD
 	<iocname>:HEARTBEATSUM (from the ALH soft IOC)
+	<iocname>:GTIM_ERR_CNT
 
 	RTEMS and VxWorks IOCs only:
-	<iocname>:GTIM_ERR_CNT
 	<iocname>:MEM_FREE
 	<iocname>:MEM_BLK_FREE
 	<iocname>:RAM_WS_FREE

@@ -9,6 +9,9 @@ Edit the following files for EPICS base 3.14.8.2:
     - iocAdmin/srcDisplay and srcRestore - change IOC_CPU_LOAD in files to 
       the desired name.
  
+iocStats-R3-1-9: Mar 13, 2012
+  * add generalTime records to soft IOCs (database and display).
+
 iocStats-R3-1-8: Dec 4, 2011
   * improvements for non-posix targets.
 
