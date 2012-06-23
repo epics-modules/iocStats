@@ -50,7 +50,6 @@ int devIocStatsInitIFErrors (void) { return 0; }
 
 int devIocStatsGetIFErrors (ifErrInfo *pval)
 {
-    struct ifnet *ifp;
 
     /* add all interfaces' errors */
 #if _WRS_VXWORKS_MAJOR >= 6
@@ -61,6 +60,7 @@ int devIocStatsGetIFErrors (ifErrInfo *pval)
     return -1;
 #endif
 #else
+    struct ifnet *ifp;
     for (ifp = ifnet; ifp != NULL; ifp = ifp->if_next) {
 #ifdef END_MIB_2233 /* This is defined in end.h if 2233 drivers are supported on the OS */
         /* This block localizes the 2233 variables so we wont get unused variable warnings */
