@@ -62,6 +62,9 @@ int devIocStatsGetClusterInfo (int pool, clustInfo *pval)
         pNetPool = _pNetSysPool;
     else
         pNetPool = _pNetDpool;
+    if (!pNetPool) {
+      return -1;
+    }
 
     test = pNetPool->clTbl[0]->clSize; 
     for (i = 0; i < CL_TBL_SIZE; i++)
@@ -98,6 +101,10 @@ int devIocStatsGetClusterUsage (int pool, int *pval)
         pNetPool = _pNetSysPool;
     else
         pNetPool = _pNetDpool;
+    if (!pNetPool) {
+      *pval = 0;
+      return -1;
+    }
 
     for (i = 0; i < NUM_MBLK_TYPES; i++) {
 #if _WRS_VXWORKS_MAJOR >= 6
