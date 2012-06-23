@@ -68,9 +68,9 @@ int devIocStatsGetMemUsage (memInfo *pval)
         fclose(fp);
     }
 
-    pval->numBytesAlloc = resident * pagesize;
-    pval->numBytesFree  = memfree;
-    pval->numBytesTotal = total;
+    pval->numBytesAlloc = (double)resident * (double)pagesize;
+    pval->numBytesFree  = (double)memfree;
+    pval->numBytesTotal = (double)total;
 
     return 0;
 }

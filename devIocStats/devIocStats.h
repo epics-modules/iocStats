@@ -41,12 +41,12 @@
 typedef int clustInfo[CLUSTSIZES][4];
 
 typedef struct {
-    unsigned long numBytesTotal;
-    unsigned long numBytesFree;
-    unsigned long numBytesAlloc;
-    unsigned long numBlocksFree;
-    unsigned long numBlocksAlloc;
-    unsigned long maxBlockSizeFree;
+    double numBytesTotal;
+    double numBytesFree;
+    double numBytesAlloc;
+    double numBlocksFree;
+    double numBlocksAlloc;
+    double maxBlockSizeFree;
 } memInfo;
 
 typedef struct {

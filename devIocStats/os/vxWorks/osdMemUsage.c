@@ -45,12 +45,13 @@ int devIocStatsGetMemUsage (memInfo *pmi) {
 
     int status = memPartInfoGet (memSysPartId, &vxPmi);
     if (0 == status) {
-        pmi->numBytesTotal    = vxPmi.numBytesFree + vxPmi.numBytesAlloc;
-        pmi->numBytesFree     = vxPmi.numBytesFree;
-        pmi->numBytesAlloc    = vxPmi.numBytesAlloc;
-        pmi->numBlocksFree    = vxPmi.numBlocksFree;
-        pmi->numBlocksAlloc   = vxPmi.numBlocksAlloc;
-        pmi->maxBlockSizeFree = vxPmi.maxBlockSizeFree;
+        pmi->numBytesTotal    = (double)vxPmi.numBytesFree + 
+	                        (double)vxPmi.numBytesAlloc;
+        pmi->numBytesFree     = (double)vxPmi.numBytesFree;
+        pmi->numBytesAlloc    = (double)vxPmi.numBytesAlloc;
+        pmi->numBlocksFree    = (double)vxPmi.numBlocksFree;
+        pmi->numBlocksAlloc   = (double)vxPmi.numBlocksAlloc;
+        pmi->maxBlockSizeFree = (double)vxPmi.maxBlockSizeFree;
     }/* end if memPartInfoGet succeeded*/
 
     return status;
@@ -63,6 +64,7 @@ int devIocStatsGetMemUsage (memInfo *pmi) {
     FAST PART_ID partId = memSysPartId;
     BLOCK_HDR *  pHdr;
     DL_NODE *    pNode;
+    double nbf;
     *pmi = nope;
     if (ID_IS_SHARED (partId))  /* partition is shared? */
     {
@@ -79,16 +81,17 @@ int devIocStatsGetMemUsage (memInfo *pmi) {
         pHdr = NODE_TO_HDR (pNode);
         {
             pmi->numBlocksFree ++ ;
-            pmi->numBytesFree += 2 * pHdr->nWords;
-            if(2 * pHdr->nWords > pmi->maxBlockSizeFree) 
-                pmi->maxBlockSizeFree = 2 * pHdr->nWords;
+	    nbf = 2.0 * (double)pHdr->nWords;
+            pmi->numBytesFree += nbf;
+            if(nbf > pmi->maxBlockSizeFree) 
+	        pmi->maxBlockSizeFree = nbf;
         }
     }
-    pmi->numBytesAlloc = 2 * partId->curWordsAllocated;
-    pmi->numBlocksAlloc = partId->curBlocksAllocated;
+    pmi->numBytesAlloc = 2.0 * (double)partId->curWordsAllocated;
+    pmi->numBlocksAlloc = (double)partId->curBlocksAllocated;
     semGive (&partId->sem);
 
-    pmi->numBytesTotal = sysPhysMemTop();
+    pmi->numBytesTotal = (double)((unsigned long)sysPhysMemTop());
     return (OK);
 #endif
 }

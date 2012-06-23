@@ -105,7 +105,6 @@
 
 #include <epicsThread.h>
 #include <epicsTimer.h>
-#include <epicsExport.h>
 
 #include <rsrv.h>
 #include <dbAccess.h>
@@ -115,6 +114,7 @@
 #include <aiRecord.h>
 #include <aoRecord.h>
 #include <recGbl.h>
+#include <epicsExport.h>
 
 #include "devIocStats.h"
 
@@ -253,8 +253,8 @@ epicsExportAddress(dset,devAoStats);
 aStats devAiClusts = {6,NULL,ai_clusts_init,ai_clusts_init_record,NULL,ai_clusts_read,NULL };
 epicsExportAddress(dset,devAiClusts);
 
-static memInfo meminfo = {0,0,0,0,0,0};
-static memInfo workspaceinfo = {0,0,0,0,0,0};
+static memInfo meminfo = {0.0,0.0,0.0,0.0,0.0,0.0};
+static memInfo workspaceinfo = {0.0,0.0,0.0,0.0,0.0,0.0};
 static scanInfo scan[TOTAL_TYPES] = {{0}};
 static fdInfo fdusage = {0,0};
 static loadInfo loadinfo = {1,0.,0.};
@@ -581,47 +581,47 @@ static double minMBuf(int pool)
 static void statsFreeBytes(double* val)
 {
 	read_mem_stats();
-	*val=(double)meminfo.numBytesFree;
+	*val=meminfo.numBytesFree;
 }
 static void statsFreeBlocks(double* val)
 {
 	read_mem_stats();
-	*val=(double)meminfo.numBlocksFree;
+	*val=meminfo.numBlocksFree;
 }
 static void statsAllocBytes(double* val)
 {
 	read_mem_stats();
-	*val=(double)meminfo.numBytesAlloc;
+	*val=meminfo.numBytesAlloc;
 }
 static void statsAllocBlocks(double* val)
 {
 	read_mem_stats();
-	*val=(double)meminfo.numBlocksAlloc;
+	*val=meminfo.numBlocksAlloc;
 }
 static void statsMaxFree(double* val)
 {
 	read_mem_stats();
-	*val=(double)meminfo.maxBlockSizeFree;
+	*val=meminfo.maxBlockSizeFree;
 }
 static void statsTotalBytes(double* val)
 {
     read_mem_stats();
-    *val=(double)meminfo.numBytesTotal;
+    *val=meminfo.numBytesTotal;
 }
 static void statsWSAllocBytes(double* val)
 {
     read_mem_stats();
-    *val=(double)workspaceinfo.numBytesAlloc;
+    *val=workspaceinfo.numBytesAlloc;
 }
 static void statsWSFreeBytes(double* val)
 {
     read_mem_stats();
-    *val=(double)workspaceinfo.numBytesFree;
+    *val=workspaceinfo.numBytesFree;
 }
 static void statsWSTotalBytes(double* val)
 {
     read_mem_stats();
-    *val=(double)workspaceinfo.numBytesTotal;
+    *val=workspaceinfo.numBytesTotal;
 }
 static void statsCpuUsage(double* val)
 {
