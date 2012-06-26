@@ -1,10 +1,13 @@
 Release Notes for iocStats
 --------------------------
 
-iocStats-R3-1-10: Jun 22, 2012
+iocStats-R3-1-10: Jun 26, 2012
   * Changes by Helge Brands:
     - add ioc_stats_scanmon.adl
     - add devIocStats/os/WIN32 files.
+      NOTE: For EPICS base 3.14.12.2 and below, this patch to rsrv.h
+      for casStatsFetch is required (and a rebuild of epics base):
+      http://epics.aps.anl.gov/epics/base/R3-14/12-docs/rsrv2.patch
     - move epicsExport.h inclusion to later for WIN32 builds.
     - bug fix for total memory more than 4GB.
   * Changes by Stephanie Allison:
