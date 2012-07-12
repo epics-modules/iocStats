@@ -179,6 +179,8 @@ record(ai, "$(IOCNAME):MEM_FREE") {
   field(DTYP, "IOC stats")
   field(INP, "@free_bytes")
   field(EGU, "byte")
+  field(LLSV, "MAJOR")
+  field(LSV, "MINOR")
   info(autosaveFields_pass0, "HOPR LOPR LOW LOLO LSV LLSV")
 }
 

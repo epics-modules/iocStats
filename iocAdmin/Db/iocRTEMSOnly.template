@@ -12,6 +12,8 @@ record(ai, "$(IOCNAME):RAM_WS_FREE") {
   field(DTYP, "IOC stats")
   field(INP, "@workspace_free_bytes")
   field(EGU, "byte")
+  field(LLSV, "MAJOR")
+  field(LSV, "MINOR")
 }
 
 record(ai, "$(IOCNAME):RAM_WS_MAX") {
