@@ -1,6 +1,13 @@
 Release Notes for iocStats
 --------------------------
 
+iocStats-R3-1-11: Dec 5, 2012
+  * Changes by Stephanie Allison:
+    Add LSV and LLSV for MEM_FREE and RAM_WS_FREE.  
+    Add MEM_FREE to limits display.
+  * Changes by Judy Rock:
+    Add START_CNT (ioc startup counter) to database and displays.
+
 iocStats-R3-1-10: Jun 26, 2012
   * Changes by Helge Brands:
     - add ioc_stats_scanmon.adl

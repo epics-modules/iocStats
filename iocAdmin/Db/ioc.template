@@ -29,10 +29,20 @@ record(stringin, "$(IOCNAME):TOD")
 }
 record(calcout, "$(IOCNAME):HEARTBEAT")
 {
-    field(DESC, "1 Hz counter since boot")
+    field(DESC, "1 Hz counter since startup")
     field(CALC, "(A<2147483647)?A+1:1")
     field(SCAN, "1 second")
     field(INPA, "$(IOCNAME):HEARTBEAT")
+}
+# if autosave is working, START_CNT creates a running count of 
+# number of times the IOC was started.
+record(calcout, "$(IOCNAME):START_CNT")
+{
+    field(DESC, "Increments at startup")
+    field(CALC, "A+1")
+    field(PINI, "YES")
+    field(INPA, "$(IOCNAME):START_CNT")
+    info(autosaveFields_pass0, "VAL")
 }
 #
 # Using an existing internal set of subroutines, this

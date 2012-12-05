@@ -1,4 +1,4 @@
-Instructions for iocAdmin users                    Last Updated 03/07/2012
+Instructions for iocAdmin users                    Last Updated 12/05/2012
 --------------------------------
 
 The iocAdmin package contains databases and libraries to add ioc administration
@@ -129,7 +129,12 @@ III - Adding iocAdmin to CA Clients:
 	Soft IOCs only:
 	$(IOCADMIN)/restore/iocAdminSoft.cwConfig
 
-    (1b) Device-Specific Records - For every device instantiating the 
+    (1b) IOC Startup Counter - <iocname>:START_CNT keeps a count of the
+         number of times the ioc has started up.  In order for it to 
+	 work properly, the record must be saved and restored across
+	 ioc startup.  It is included in the above templates.
+
+    (1c) Device-Specific Records - For every device instantiating the 
          access.db database, add these lines to the channel watcher 
          configuration file:
 
@@ -166,6 +171,7 @@ III - Adding iocAdmin to CA Clients:
 	<iocname>:CA_CLNT_CNT
 	<iocname>:CA_CONN_CNT
 	<iocname>:FD_FREE
+	<iocname>:START_CNT
 
 	RTEMS and VxWorks IOCs only:
 	<iocname>:MEM_FREE

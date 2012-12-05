@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 509
-y 46
+x 235
+y 59
 w 540
-h 690
+h 715
 font "helvetica-medium-r-12.0"
 ctlFont "helvetica-medium-r-12.0"
 btnFont "helvetica-medium-r-12.0"
@@ -32,7 +32,7 @@ major 4
 minor 0
 release 0
 x 10
-y 360
+y 385
 w 520
 h 35
 lineColor index 3
@@ -49,7 +49,7 @@ release 0
 x 320
 y 45
 w 210
-h 205
+h 230
 lineColor index 3
 fill
 fillColor index 3
@@ -64,7 +64,7 @@ release 0
 x 10
 y 45
 w 305
-h 205
+h 230
 lineColor index 3
 fill
 fillColor index 3
@@ -77,7 +77,7 @@ major 4
 minor 0
 release 0
 x 10
-y 400
+y 425
 w 520
 h 155
 lineColor index 3
@@ -299,7 +299,7 @@ major 4
 minor 1
 release 0
 x 15
-y 130
+y 155
 w 54
 h 14
 font "helvetica-medium-r-12.0"
@@ -319,7 +319,7 @@ major 4
 minor 1
 release 0
 x 15
-y 155
+y 180
 w 57
 h 14
 font "helvetica-medium-r-12.0"
@@ -385,7 +385,7 @@ major 10
 minor 0
 release 0
 x 90
-y 125
+y 150
 w 220
 h 20
 controlPv "$(ioc):HEARTBEAT"
@@ -407,7 +407,7 @@ major 10
 minor 0
 release 0
 x 90
-y 150
+y 175
 w 220
 h 20
 controlPv "$(ioc):RECORD_CNT"
@@ -535,7 +535,7 @@ major 10
 minor 0
 release 0
 x 90
-y 175
+y 200
 w 220
 h 20
 controlPv "$(ioc):HOSTNAME"
@@ -558,7 +558,7 @@ major 10
 minor 0
 release 0
 x 90
-y 200
+y 225
 w 220
 h 20
 controlPv "$(ioc):ENGINEER"
@@ -581,7 +581,7 @@ major 10
 minor 0
 release 0
 x 90
-y 225
+y 250
 w 220
 h 20
 controlPv "$(ioc):LOCATION"
@@ -604,7 +604,7 @@ major 4
 minor 1
 release 0
 x 15
-y 180
+y 205
 w 61
 h 14
 font "helvetica-medium-r-12.0"
@@ -624,7 +624,7 @@ major 4
 minor 1
 release 0
 x 15
-y 205
+y 230
 w 61
 h 14
 font "helvetica-medium-r-12.0"
@@ -644,7 +644,7 @@ major 4
 minor 1
 release 0
 x 15
-y 230
+y 255
 w 48
 h 14
 font "helvetica-medium-r-12.0"
@@ -664,7 +664,7 @@ major 4
 minor 1
 release 0
 x 50
-y 370
+y 395
 w 32
 h 14
 font "helvetica-medium-r-12.0"
@@ -684,7 +684,7 @@ major 4
 minor 0
 release 0
 x 90
-y 365
+y 390
 w 105
 h 25
 fgColor index 14
@@ -703,7 +703,7 @@ major 4
 minor 1
 release 0
 x 15
-y 410
+y 435
 w 83
 h 14
 font "helvetica-medium-r-12.0"
@@ -723,7 +723,7 @@ major 10
 minor 0
 release 0
 x 110
-y 405
+y 430
 w 270
 h 20
 controlPv "$(ioc):EPICS_VERS"
@@ -746,7 +746,7 @@ major 4
 minor 1
 release 0
 x 15
-y 455
+y 480
 w 118
 h 14
 font "helvetica-medium-r-12.0"
@@ -766,7 +766,7 @@ major 10
 minor 0
 release 0
 x 15
-y 475
+y 500
 w 230
 h 25
 controlPv "$(ioc):APP_DIR1"
@@ -788,7 +788,7 @@ major 10
 minor 0
 release 0
 x 245
-y 475
+y 500
 w 230
 h 25
 controlPv "$(ioc):APP_DIR2"
@@ -810,7 +810,7 @@ major 4
 minor 1
 release 0
 x 15
-y 505
+y 530
 w 75
 h 14
 font "helvetica-medium-r-12.0"
@@ -830,7 +830,7 @@ major 10
 minor 0
 release 0
 x 15
-y 525
+y 550
 w 230
 h 25
 controlPv "$(ioc):ST_SCRIPT1"
@@ -852,7 +852,7 @@ major 10
 minor 0
 release 0
 x 245
-y 525
+y 550
 w 230
 h 25
 controlPv "$(ioc):ST_SCRIPT2"
@@ -874,7 +874,7 @@ major 4
 minor 1
 release 0
 x 15
-y 435
+y 460
 w 65
 h 14
 font "helvetica-medium-r-12.0"
@@ -894,7 +894,7 @@ major 4
 minor 0
 release 0
 x 10
-y 560
+y 585
 w 160
 h 120
 lineColor index 3
@@ -909,7 +909,7 @@ major 4
 minor 0
 release 0
 x 325
-y 560
+y 585
 w 205
 h 120
 lineColor index 3
@@ -924,7 +924,7 @@ major 10
 minor 0
 release 0
 x 80
-y 585
+y 610
 w 85
 h 20
 controlPv "$(ioc):MEM_FREE"
@@ -946,7 +946,7 @@ major 10
 minor 0
 release 0
 x 80
-y 610
+y 635
 w 85
 h 20
 controlPv "$(ioc):MEM_USED"
@@ -968,7 +968,7 @@ major 4
 minor 1
 release 0
 x 15
-y 565
+y 590
 w 94
 h 14
 font "helvetica-medium-r-12.0"
@@ -988,7 +988,7 @@ major 4
 minor 1
 release 0
 x 20
-y 590
+y 615
 w 26
 h 14
 font "helvetica-medium-r-12.0"
@@ -1008,7 +1008,7 @@ major 4
 minor 1
 release 0
 x 20
-y 610
+y 635
 w 28
 h 14
 font "helvetica-medium-r-12.0"
@@ -1028,7 +1028,7 @@ major 4
 minor 1
 release 0
 x 330
-y 565
+y 590
 w 57
 h 14
 font "helvetica-medium-r-12.0"
@@ -1048,7 +1048,7 @@ major 10
 minor 0
 release 0
 x 430
-y 585
+y 610
 w 95
 h 30
 controlPv "$(ioc):IOC_CPU_LOAD"
@@ -1069,7 +1069,7 @@ major 4
 minor 0
 release 0
 x 175
-y 560
+y 585
 w 145
 h 120
 lineColor index 3
@@ -1084,7 +1084,7 @@ major 4
 minor 1
 release 0
 x 180
-y 565
+y 590
 w 99
 h 14
 font "helvetica-medium-r-12.0"
@@ -1104,7 +1104,7 @@ major 10
 minor 0
 release 0
 x 220
-y 585
+y 610
 w 95
 h 30
 controlPv "$(ioc):FD_FREE"
@@ -1126,7 +1126,7 @@ major 10
 minor 0
 release 0
 x 220
-y 620
+y 645
 w 95
 h 20
 controlPv "$(ioc):FD_MAX"
@@ -1148,7 +1148,7 @@ major 4
 minor 1
 release 0
 x 185
-y 595
+y 620
 w 26
 h 14
 font "helvetica-medium-r-12.0"
@@ -1168,7 +1168,7 @@ major 4
 minor 1
 release 0
 x 185
-y 625
+y 650
 w 24
 h 14
 font "helvetica-medium-r-12.0"
@@ -1188,7 +1188,7 @@ major 10
 minor 0
 release 0
 x 110
-y 430
+y 455
 w 270
 h 20
 controlPv "$(ioc):KERNEL_VERS"
@@ -1211,7 +1211,7 @@ major 10
 minor 0
 release 0
 x 80
-y 635
+y 660
 w 85
 h 20
 controlPv "$(ioc):MEM_MAX"
@@ -1233,7 +1233,7 @@ major 4
 minor 1
 release 0
 x 20
-y 630
+y 655
 w 52
 h 28
 font "helvetica-medium-r-12.0"
@@ -1254,7 +1254,7 @@ major 4
 minor 1
 release 0
 x 335
-y 595
+y 620
 w 84
 h 14
 font "helvetica-medium-r-12.0"
@@ -1274,7 +1274,7 @@ major 10
 minor 0
 release 0
 x 430
-y 620
+y 645
 w 95
 h 30
 controlPv "$(ioc):SYS_CPU_LOAD"
@@ -1295,7 +1295,7 @@ major 4
 minor 1
 release 0
 x 335
-y 620
+y 645
 w 56
 h 28
 font "helvetica-medium-r-12.0"
@@ -1316,7 +1316,7 @@ major 10
 minor 0
 release 0
 x 430
-y 655
+y 680
 w 95
 h 20
 controlPv "$(ioc):CPU_CNT"
@@ -1338,7 +1338,7 @@ major 4
 minor 1
 release 0
 x 335
-y 660
+y 685
 w 86
 h 14
 font "helvetica-medium-r-12.0"
@@ -1357,9 +1357,9 @@ beginObjectProperties
 major 4
 minor 2
 release 0
-x 325
-y 160
-w 85
+x 365
+y 155
+w 115
 h 25
 fgColor index 14
 bgColor index 4
@@ -1386,9 +1386,9 @@ beginObjectProperties
 major 4
 minor 2
 release 0
-x 415
-y 160
-w 110
+x 365
+y 185
+w 115
 h 25
 fgColor index 14
 bgColor index 4
@@ -1412,8 +1412,8 @@ beginObjectProperties
 major 4
 minor 2
 release 0
-x 325
-y 190
+x 365
+y 215
 w 115
 h 25
 fgColor index 14
@@ -1447,8 +1447,8 @@ beginObjectProperties
 major 4
 minor 2
 release 0
-x 325
-y 220
+x 365
+y 245
 w 115
 h 25
 fgColor index 14
@@ -1483,7 +1483,7 @@ major 4
 minor 2
 release 0
 x 425
-y 365
+y 390
 w 100
 h 25
 fgColor index 14
@@ -1510,7 +1510,7 @@ major 4
 minor 2
 release 0
 x 205
-y 365
+y 390
 w 210
 h 25
 fgColor index 14
@@ -1536,7 +1536,7 @@ major 4
 minor 0
 release 0
 x 10
-y 255
+y 280
 w 520
 h 100
 lineColor index 3
@@ -1551,7 +1551,7 @@ major 4
 minor 1
 release 0
 x 130
-y 260
+y 285
 w 131
 h 14
 font "helvetica-medium-r-12.0"
@@ -1571,7 +1571,7 @@ major 10
 minor 0
 release 0
 x 90
-y 280
+y 305
 w 220
 h 20
 controlPv "$(ioc):GTIM_CUR_SRC"
@@ -1594,7 +1594,7 @@ major 10
 minor 0
 release 0
 x 90
-y 305
+y 330
 w 220
 h 20
 controlPv "$(ioc):GTIM_EVT_SRC"
@@ -1615,7 +1615,7 @@ major 10
 minor 0
 release 0
 x 90
-y 330
+y 355
 w 220
 h 20
 controlPv "$(ioc):GTIM_HI_SRC"
@@ -1638,7 +1638,7 @@ major 4
 minor 1
 release 0
 x 15
-y 285
+y 310
 w 41
 h 14
 font "helvetica-medium-r-12.0"
@@ -1658,7 +1658,7 @@ major 4
 minor 1
 release 0
 x 15
-y 310
+y 335
 w 32
 h 14
 font "helvetica-medium-r-12.0"
@@ -1678,7 +1678,7 @@ major 4
 minor 1
 release 0
 x 15
-y 335
+y 360
 w 68
 h 14
 font "helvetica-medium-r-12.0"
@@ -1698,7 +1698,7 @@ major 4
 minor 1
 release 0
 x 325
-y 275
+y 300
 w 62
 h 28
 font "helvetica-medium-r-12.0"
@@ -1719,7 +1719,7 @@ major 10
 minor 0
 release 0
 x 395
-y 280
+y 305
 w 130
 h 20
 controlPv "$(ioc):GTIM_TIME"
@@ -1742,7 +1742,7 @@ major 4
 minor 1
 release 0
 x 325
-y 315
+y 340
 w 44
 h 14
 font "helvetica-medium-r-12.0"
@@ -1762,7 +1762,7 @@ major 10
 minor 0
 release 0
 x 395
-y 310
+y 335
 w 70
 h 25
 controlPv "$(ioc):GTIM_ERR_CNT"
@@ -1784,7 +1784,7 @@ major 4
 minor 0
 release 0
 x 475
-y 310
+y 335
 w 50
 h 25
 fgColor index 14
@@ -1799,5 +1799,48 @@ offLabel "Reset"
 3d
 useEnumNumeric
 font "helvetica-medium-r-12.0"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 15
+y 130
+w 56
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "# Startups"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 90
+y 125
+w 220
+h 20
+controlPv "$(ioc):START_CNT"
+displayMode "decimal"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
 endObjectProperties
 
