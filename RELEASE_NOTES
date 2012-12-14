@@ -1,6 +1,14 @@
 Release Notes for iocStats
 --------------------------
 
+iocStats-R3-1-12: ?, 2013
+  * Change by Eric Bjorklund:
+    Change devIocStatsGetClusterInfo().  The fundamental problem is that 
+    vxWorks -- at least ours (6.8) -- does not fill in all of the entries 
+    in the cluster table.  In our example, only 8 of the 13 allocated table 
+    entries are filled in, and when devIocStatsGetClusterInfo() tries to 
+    process the 9th it gets a page fault exception from the null pointer.
+
 iocStats-R3-1-11: Dec 5, 2012
   * Changes by Stephanie Allison:
     Add LSV and LLSV for MEM_FREE and RAM_WS_FREE.  
