@@ -21,6 +21,8 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 # =============================================================
 EPICS_MODULES=$(MODULES_SITE_TOP)
 
+MAKE_TEST_IOC_APP=YES
+ifeq '$(MAKE_TEST_IOC_APP)' 'YES'
 # =============================================================
 # Define the version of modules needed by
 # IOC apps or other Support apps - used by testIocStatsApp
@@ -31,6 +33,7 @@ EPICS_MODULES=$(MODULES_SITE_TOP)
 # External Support - used by testIocStatsApp
 # ============================================================
 #SNCSEQ=$(EPICS_MODULES)/seq/$(SNCSEQ_MODULE_VERSION)
+endif
 
 # =================================================================
 # Define EPICS_BASE
