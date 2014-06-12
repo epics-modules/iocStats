@@ -65,13 +65,4 @@
 
 #define CLUSTSIZES CL_TBL_SIZE
 
-/* Must use cpuBurn to determine cpu usage */
-#ifndef SECONDS_TO_BURN
-#define SECONDS_TO_BURN 5
-#endif
-
 extern char *sysBootLine;
-
-
-
-

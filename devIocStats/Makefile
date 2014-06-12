@@ -38,6 +38,8 @@ SRCS += osdBootInfo.c
 SRCS += osdSystemInfo.c
 SRCS += osdHostInfo.c
 
+OBJS_vxWorks += osdCpuUsageTest.o
+
 #===========================
 
 include $(TOP)/configure/RULES

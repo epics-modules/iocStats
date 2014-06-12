@@ -1,4 +1,5 @@
 /*************************************************************************\
+* Copyright (c) 2013 Helmholtz-Zentrum Berlin fuer Materialien und Energie.
 * Copyright (c) 2009 Helmholtz-Zentrum Berlin fuer Materialien und Energie.
 * Copyright (c) 2002 The University of Chicago, as Operator of Argonne
 *     National Laboratory.
@@ -43,154 +44,184 @@
  *
  *  2009-05-15  Ralph Lange (HZB/BESSY)
  *              restructured OSD parts
+ *
+ * ----------------
+ *  2013-04-11  Ben Franksen (HZB/BESSY)
+ *              New implementation using a simple counter to burn CPU,
+ *              added some tests, added variables for re-configuration
  */
 
-#ifdef CPUBURNSQRT
-#include <math.h>
-#endif
+#include <stdio.h>
+#include <wdLib.h>
+#include <sysLib.h>
 
-#include <epicsEvent.h>
-#include <epicsTime.h>
-#include <epicsThread.h>
+#include "epicsAssert.h"
+#include "epicsMutex.h"
+#include "epicsThread.h"
 
-#include <devIocStats.h>
+#include "devIocStats.h"
 
-struct cpuUsageInfo
-{
-    epicsEventId startSem;
-    int          didNotComplete;
-    double       tNoContention;
-    double       tNow;
-    int          nBurnNoContention;
-    int          nBurnNow;
-    double       usage;
-};
-typedef struct cpuUsageInfo cpuUsageInfo;
-
-static cpuUsageInfo cpuUsage = {0};
-
-#ifdef CPUBURNSQRT
-/* This is not going to burn anything with a modern gcc
- * (which pre-computes the result AND knows that
- * sqrt has no side-effects). Unless we use the result
- * the whole routine is probably optimized away...
- * T.S, 2008.
+/*
+ * Implementation Notes
+ * 
+ * Incrementing a counter is the most straight-forward way to burn cpu, just take
+ * care that the counter variable is declared volatile. This should tell even
+ * modern highly optimizing compilers not to optimize away the memory access.
+ * 
+ * We use a vxWorks watchdog timer to start the counter and to stop it after a
+ * given amount of clock ticks so we can run the counter for a precisely defined
+ * period of time.
+ * 
+ * Initial calibration runs exactly the same procedure as the measurement, but
+ * saves the final value of the counter in a global variable (nBurnNoContention),
+ * assuming that at the time we calibrate there is no contention for the CPU yet.
+ * 
+ * 
+ * The actual measurement is done in a background task that periodically sleeps,
+ * burns cpu, and then calculates the load from the value of the counter by
+ * comparing it to the value of nBurnNoContention.
+ * Sleep and burn periods of the measurement task can be re-configured by
+ * setting global variables (cpuBurnTicks, cpuSleepTicks), both are initialized so
+ * that they correspond to 5 seconds each.
+ * 
+ * The devIocStatsGetCpuUsage routine just returns the last value computed by the
+ * background task.
  */
-static double cpuBurn()
+
+/*
+ * global variables
+ */
+static unsigned nBurnNoContention;  /* counts per clock tick w/o cpu contention */
+static epicsMutexId mutex;          /* protect usage against concurrent access */
+static double usage;                /* current cpu load measurement result */
+
+/* these are public so can be re-configured at runtime */
+int cpuBurnTicks;                   /* number of clock ticks to burn */
+int cpuSleepTicks;                  /* number of clock ticks to sleep */
+int cpuBurnCalibrateTicks = 30;     /* number of ticks to burn when calibrating */
+int cpuBurnCalibrateTests = 0;      /* number of calibration tests to run */
+
+/*
+ *  These variables are strictly reserved for communication between
+ *  cpuBurn, startCounter, and stopCounter. Do not use elsewhere.
+ */
+static WDOG_ID wd;
+static volatile unsigned burn;      /* run burn loop while this is true */
+static volatile unsigned counter;   /* gets incremented in a loop to burn cpu */
+static unsigned start;              /* value of counter on start tick */
+static int nTicks;                  /* number of clock ticks to burn */
+
+/* called from clock ISR */
+static int stopCounter()
 {
-	 int i;
-	 double result = 0.0;
-
-	 for(i=0;i<5; i++) result += sqrt((double)i);
-	 return(result);
+    burn = 0;
+    return 0;
 }
-#else
-static double cpuBurn(void)
+
+/* called from clock ISR */
+static int startCounter()
 {
-    epicsTimeStamp then, now;
-    double         diff;
-
-    /* poll the clock for 500us */
-    epicsTimeGetCurrent(&then);
-    do {
-        epicsTimeGetCurrent(&now);
-        diff = epicsTimeDiffInSeconds(&now,&then);
-    } while ( diff < 0.0005 );
-    return diff;
+    wdStart(wd, nTicks, stopCounter, 0);
+    start = counter;
+    return 0;
 }
-#endif
 
+/* Warning: not re-entrant */
+static unsigned cpuBurn(int numTicks)
+{
+    burn = TRUE;
+    nTicks = numTicks;
+    /* wait for the next tick to have a precise start time */
+    wdStart(wd, 1, startCounter, 0);
+    while (burn) {
+        counter++;
+    }
+    return counter - start;
+}
+
+/*
+ * Determine the variance of the results of cpuBurn.
+ * To run this routine at startup before calibration,
+ * set cpuBurnCalibrateTests to a positive number (e.g. 100)
+ * somewhere in the startup file before the iocInit call.
+ */
+void cpuBurnCalibrateTest(int numTicks, int numTests)
+{
+    int i;
+    unsigned minv = UINT_MAX, maxv = 0, sumv = 0;
+
+    for (i = 0; i < numTests; i++) {
+        unsigned v = cpuBurn(numTicks);
+
+        sumv += v;
+        if (v < minv)
+            minv = v;
+        if (v > maxv)
+            maxv = v;
+    }
+    if (numTests > 0) {
+        printf("cpuBurnMeasureTest: min=%u max=%u avg=%u rel_diff=%f\n",
+            minv, maxv, sumv / numTests, (maxv - minv) / (double)minv);
+        printf("  counts per %d ticks\n", numTicks);
+    }
+}
+
+/*
+ * Note by default this task keeps "real" cpu load at a minimum of 50% --
+ * do not use with multicore ;-)
+ *
+ * Set cpuSleepTicks and cpuBurnTicks to re-configure how much cpu gets
+ * burned and how often.
+ */
 static void cpuUsageTask(void *parm)
 {
-    while(TRUE)
-    {
-        int	 i;
-        epicsTimeStamp tStart, tEnd;
+    while (TRUE) {
+        unsigned nBurnRef = nBurnNoContention * cpuBurnTicks;
+        unsigned nBurnNow = cpuBurn(cpuBurnTicks);
 
-        epicsEventWait(cpuUsage.startSem);
-        cpuUsage.nBurnNow=0;
-        epicsTimeGetCurrent(&tStart);
-        for(i=0; i< cpuUsage.nBurnNoContention; i++)
-        {
-            cpuBurn();
-            epicsTimeGetCurrent(&tEnd);
-            cpuUsage.tNow = epicsTimeDiffInSeconds(&tEnd, &tStart);
-            ++cpuUsage.nBurnNow;
+        /* if we are near zero load, this could happen due to small
+           variations in timing */
+        if (nBurnNow > nBurnRef) {
+            nBurnNow = nBurnRef;
         }
-        cpuUsage.didNotComplete = FALSE;
+        epicsMutexLock(mutex);
+        usage = 100.0 * (double)(nBurnRef - nBurnNow) / (double)nBurnRef;
+        epicsMutexUnlock(mutex);
+        taskDelay(cpuSleepTicks);
     }
 }
 
-/* FIXME: When the record is passive and processes long after the cpuUsageTask() finished its round,
-   this function returns old data.
-   Maybe the cpuUsageTask() should restart itself instead of being restarted by this? */
-
-int devIocStatsGetCpuUsage (loadInfo *pval)
+int devIocStatsGetCpuUsage(loadInfo *pinfo)
 {
-    if (cpuUsage.startSem) {
-        if (cpuUsage.didNotComplete && cpuUsage.nBurnNow==0) {
-            cpuUsage.usage = 100.0;
-        } else {
-            double temp;
-            double ticksNow,nBurnNow;
-
-            ticksNow = cpuUsage.tNow;
-            nBurnNow = (double)cpuUsage.nBurnNow;
-            ticksNow *= (double)cpuUsage.nBurnNoContention/nBurnNow;
-            temp = ticksNow - cpuUsage.tNoContention;
-            temp = 100.0 * temp/ticksNow;
-            if(temp<0.0 || temp>100.0) temp=0.0;/*take care of tick overflow*/
-            cpuUsage.usage = temp;
-        }
-        cpuUsage.didNotComplete = TRUE;
-        epicsEventSignal(cpuUsage.startSem);
-    } else {
-        cpuUsage.usage = 0.0;
-    }
-    pval->cpuLoad = cpuUsage.usage;
+    epicsMutexLock(mutex);
+    pinfo->cpuLoad = usage;
+    epicsMutexUnlock(mutex);
     return 0;
 }
 
 int devIocStatsInitCpuUsage(void)
 {
-    int    nBurnNoContention = 0;
-    double tToWait = SECONDS_TO_BURN;
-    epicsTimeStamp tStart, tEnd;
-    
-    if (cpuUsage.startSem) return 0;
-    /* Initialize only if OS wants to spin */
-    if (tToWait > 0) {
-        /*wait for a tick*/
-        epicsTimeGetCurrent(&tStart);
-        do {
-            epicsTimeGetCurrent(&tEnd);
-        } while ( epicsTimeDiffInSeconds(&tEnd, &tStart) <= 0.0 );
-        epicsTimeGetCurrent(&tStart);
-        while(TRUE)
-        {
-            cpuBurn();
-            epicsTimeGetCurrent(&tEnd);
-            cpuUsage.tNow = epicsTimeDiffInSeconds(&tEnd, &tStart);
-            if (cpuUsage.tNow >= tToWait ) break;
-            nBurnNoContention++;
-        }
-        cpuUsage.nBurnNoContention = nBurnNoContention;
-        cpuUsage.nBurnNow          = nBurnNoContention;
-        cpuUsage.startSem = epicsEventMustCreate(epicsEventFull);
-        cpuUsage.tNoContention = cpuUsage.tNow;
-  /*
-        * FIXME: epicsThreadPriorityMin is not really the lowest
-        *        priority. We could use a native call to
-        *        lower our priority further but OTOH there is not
-        *        much going on at these low levels...
-  */
-        epicsThreadCreate("cpuUsageTask",
-                          epicsThreadPriorityMin,
-                          epicsThreadGetStackSize(epicsThreadStackMedium),
-                                  (EPICSTHREADFUNC)cpuUsageTask,
-                                   0);
-    } else {
-        cpuUsage.startSem = 0;
-    }
+    wd = wdCreate();
+    assert(wd);
+
+    mutex = epicsMutexMustCreate();
+
+    cpuBurnCalibrateTest(cpuBurnCalibrateTicks, cpuBurnCalibrateTests);
+
+    /* default values: measure 5 seconds, then sleep 5 seconds */
+    cpuSleepTicks = cpuBurnTicks = 5 * sysClkRateGet();
+
+    /*
+     * Calibration: determine number of counts to burn 1 clock tick,
+     * then calculate the result up to cpuBurnTicks ticks.
+     */
+    nBurnNoContention =
+        cpuBurn(cpuBurnCalibrateTicks) / cpuBurnCalibrateTicks;
+
+    /* assume initial load is zero */
+    usage = 0.0;
+
+    epicsThreadMustCreate("cpuUsageTask", epicsThreadPriorityMin,
+        epicsThreadGetStackSize(epicsThreadStackMedium), cpuUsageTask, 0);
     return 0;
 }
