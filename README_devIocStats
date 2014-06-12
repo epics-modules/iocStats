@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 08/11/2011
+README_devIocStats		Last Updated 04/26/2013
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -249,44 +249,6 @@ CPU Load Estimate from miscu_cpu_load_percentage in ssrlApps
 	Cexp@ioclab1> miscu_cpu_load_percentage()
 	3.603457
 	Cexp@ioclab1>
-
-CPU Load Estimate using the cpuBurn Method (no longer available for RTEMS)
-==========================================
-
-- The CPU load estimate works as follows:
-
-       1) during initialization (it is assumed the CPU is otherwise
-          idle at this time) a busy loop is executed for a fixed amount
-          of time and the code uses the number of iterations done
-          as a measure for a 'unloaded' CPU.
-
-       2) when EPICS is up, a very low priority task is scheduled
-          periodically and executes the same busy loop counting
-          iterations during a fixed time interval.
-          The idea is that any higher priority work will preempt
-          the spinning task and thus reduce the number of iterations
-          it is able to perform. The ratio of iterations under load
-          to iterations while idle is an estimate for CPU load.
-
-   This algorithm has a few gotchas:
-
-       1) implementation of the busy-loop was inappropriate for a
-          modern compiler (which could notice that the loop doesn't
-          do anything and therefore optimize it away).
-          I replaced the code by something that should not be removed
-          by the compiler.
-       2) CPU load is only estimated during intervals the measuring
-          task is burning cycles. The algorithm is blind while the
-          task is sleeping.
-       3) Some modern CPUs would rather go into low-power sleep when
-          idle instead of burning cycles -- (unfortunately a chip-errata
-          of the mpc7450 prevents us from using sleep on the MVME6100)
-
-   Summary: IMO it would be better to use info from the OS scheduler
-            about CPU usage. Unfortunately, this info is not very
-            meaningful unless the scheduler uses a high-resolution
-            clock for billing [available with RTEMS 4.9 on select
-            architectures].
 
 Networking (Mbufs)
 ==================
