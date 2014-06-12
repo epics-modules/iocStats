@@ -30,9 +30,6 @@
 # provided by Till Straumann.
 #USR_CFLAGS_RTEMS += -DSSRLAPPSMISCUTILS
 
-# Uncomment this to use the sqrt function to burn CPU (instead of epicsTime).
-#USR_CFLAGS_vxWorks += -DCPUBURNSQRT
-
 #EXTENSIONS_MODULE_VERSION=extensions-R3-14-8-2
 #MSI=$(EPICS_SITE_TOP)/extensions/$(EXTENSIONS_MODULE_VERSION)/bin/$(EPICS_HOST_ARCH)/msi
 MSI=msi
