@@ -64,6 +64,15 @@ record(stringin, "$(IOCNAME):BOOTLINE6") {
   field(PINI, "YES")
 }
 
+record(waveform, "$(IOCNAME):BOOTLINE") {
+  field(DESC, "Boot Line")
+  field(DTYP, "IOC stats")
+  field(INP, "@bootline")
+  field(NELM, "240")
+  field(FTVL, "CHAR")
+  field(PINI, "YES")
+}
+
 record(ai, "$(IOCNAME):SYS_MBUF_FREE") {
   field(DESC, "Min % Free Sys MBUFs")
   field(DTYP, "IOC stats")
