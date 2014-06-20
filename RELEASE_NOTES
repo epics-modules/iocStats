@@ -1,13 +1,48 @@
 Release Notes for iocStats
 --------------------------
 
-iocStats-R3-1-12: ?, 2013
+iocStats-R3-1-12: June 19, 2014
   * Change by Eric Bjorklund:
     Change devIocStatsGetClusterInfo().  The fundamental problem is that 
     vxWorks -- at least ours (6.8) -- does not fill in all of the entries 
     in the cluster table.  In our example, only 8 of the 13 allocated table 
     entries are filled in, and when devIocStatsGetClusterInfo() tries to 
     process the 9th it gets a page fault exception from the null pointer.
+  * Change by Tim Mooney:
+    Add caQtDM displays, translated from the .adl files using caQtDM 3.7.8. 
+  * Change by Stephanie Allison:
+    Added waveform support for epics version, startup script, 
+    application directory, and bootline.
+  * Changes by Ben Franksen and Ralph Lange:
+    - Scan rates now floating point instead of integer.
+    - we have recently discovered some bugs in devIocStats in the vxWorks
+      implementation that measures the cpu load, which result in wrong 
+      results to be displayed. I hacked away at the problem for some days 
+      and ended up with a complete re-write. The solution considerably 
+      reduces code size and complexity, is therefore much easier to 
+      understand and maintain, and --most importantly--
+      works correctly. It also contains some additional features:
+
+      * A test procedure that measures how well the initial calibration 
+        works by doing it for a number of times and gathering statistics 
+	(min, max, avg). This was useful to determine how long initial 
+	calibration should run (the default is 30 clock ticks which on a 
+	mv2100 gives me a variation of less than 0.4%).
+
+      * Another test procedure (to be called from the shell) adds exactly 
+        50% load to the IOC (it burns cpu for one clock tick, then sleeps 
+	for one, and repeats that in a loop for the given duration), so one 
+	can see whether the measured cpu load increases appropriately 
+	(it does on my test machines).
+
+      * Experienced users can customize behaviour to a certain extent by 
+        changing the values of some global variables.
+
+      * I moved the cpuBurnLoad50 test routine to a separate file, since 
+        it is independent of the new implementation of osdCpuUsage; it gets 
+	compiled to a stand-alone object file which you must link to your 
+	IOC binary if you want to use it, e.g.
+	TESTIOC_OBJS_vxWorks += $(IOCSTATS_BIN)/osdCpuUsageTest.o
 
 iocStats-R3-1-11: Dec 5, 2012
   * Changes by Stephanie Allison:
