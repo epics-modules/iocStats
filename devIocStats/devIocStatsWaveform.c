@@ -177,10 +177,11 @@ static long waveform_read(waveformRecord* pr)
 	pvtArea* pvt=(pvtArea*)pr->dpvt;
 
 	if (!pvt) return S_dev_badInpType;
-
-	statsGetWfmParms[pvt->index].func((char *)pr->bptr, pr->nelm);
-	pr->nord = strlen((char *)pr->bptr);
-	pr->udf=0;
+	if (pr->nelm > 0) { 
+	  statsGetWfmParms[pvt->index].func((char *)pr->bptr, pr->nelm-1);
+	  pr->nord = strlen((char *)pr->bptr) + 1;
+	  pr->udf=0;
+	}
 	return(0);	/* success */
 }
 
