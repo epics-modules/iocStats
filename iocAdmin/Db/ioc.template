@@ -321,7 +321,7 @@ record(waveform, "$(IOCNAME):APP_DIR") {
   field(DESC, "Application Directory")
   field(DTYP, "IOC stats")
   field(INP, "@pwd")
-  field(NELM, "120")
+  field(NELM, "160")
   field(FTVL, "CHAR")
   field(PINI, "YES")
 }
