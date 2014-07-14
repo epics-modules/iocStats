@@ -1,6 +1,8 @@
 Release Notes for iocStats
 --------------------------
 
+iocStats-R3-1-13: July 13, 2014
+  * Bug fix in update period AO record initialization.
 iocStats-R3-1-12: June 19, 2014
   * Change by Eric Bjorklund:
     Change devIocStatsGetClusterInfo().  The fundamental problem is that 
