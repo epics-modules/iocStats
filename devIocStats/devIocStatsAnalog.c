@@ -444,6 +444,7 @@ static long ao_init_record(aoRecord* pr)
 	/* Initialize value with default if not set in db */
 	if (!pr->val)
 		pr->val=parmTypes[pvt->type].scan_rate;
+	pr->rbv=pr->rval=pr->val;
 
 	/* Make sure record processing routine does not perform any conversion*/
 	pr->linr=0;
