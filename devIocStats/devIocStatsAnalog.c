@@ -111,6 +111,7 @@
 #include <dbStaticLib.h>
 #include <dbScan.h>
 #include <devSup.h>
+#include <menuConvert.h>
 #include <aiRecord.h>
 #include <aoRecord.h>
 #include <recGbl.h>
@@ -444,12 +445,11 @@ static long ao_init_record(aoRecord* pr)
 	/* Initialize value with default if not set in db */
 	if (!pr->val)
 		pr->val=parmTypes[pvt->type].scan_rate;
-	pr->rbv=pr->rval=pr->val;
 
 	/* Make sure record processing routine does not perform any conversion*/
-	pr->linr=0;
+	pr->linr=menuConvertNO_CONVERSION;
 	pr->dpvt=pvt;
-	return 0;
+	return 2;
 }
 
 static long ai_ioint_info(int cmd,aiRecord* pr,IOSCANPVT* iopvt)
