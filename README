@@ -1,8 +1,16 @@
-Files and Directories:
+iocStats - EPICS IOC Status and Control
+
+For a detail description and usage, visit:
+http://www.slac.stanford.edu/grp/ssrl/spear/epics/site/devIocStats/
+
+For tar file, visit:
+http://sourceforge.net/projects/epics/files/devIocStats/
+
+Files and Directories under iocStats:
 
 README			- this file
 README_devIocStats	- devIocStats information
-README_iocAdmin		- iocAdmin usage
+README_iocAdmin		- LCLS iocAdmin usage
 RELEASE_NOTES		- release notes
 RELEASE_SITE		- LCLS-unique - included by configure/RELEASE, location of epics
 configure		- build configuration files
