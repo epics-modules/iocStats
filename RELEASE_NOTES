@@ -1,6 +1,17 @@
 Release Notes for iocStats
 --------------------------
 
+iocStats-R3-1-14: Apr 29, 2015
+  * Change to vxWorks osdFdUsage.c to not check the first 3 FDs by Scott Baily:
+    Unfortunately, the first 3 file descriptors on vxWorks are special 
+    (standard in, standard out, and standard error).  The pointers in 
+    iosFdTable have the value FFFFFFFF. For 6.6 and above the reference 
+    count isn't checked so there's no problem. But some of our systems use 
+    6.3 and this code causes reads from page 0 of RAM.  
+  * Change to add process ID and parent process ID records.
+  * Change to use github.
+  * Change to perform most statistics in a thread separate from record
+    processing.
 iocStats-R3-1-13: July 13, 2014
   * Bug fix in update period AO record initialization.
 iocStats-R3-1-12: June 19, 2014
