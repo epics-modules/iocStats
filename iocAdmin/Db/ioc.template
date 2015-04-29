@@ -347,3 +347,17 @@ record(stringin, "$(IOCNAME):LOCATION") {
   field(INP, "@location")
   field(PINI, "YES")
 }
+
+record(ai, "$(IOCNAME):PROCESS_ID") {
+  field(DESC, "Process ID")
+  field(PINI, "YES")
+  field(DTYP, "IOC stats")
+  field(INP, "@proc_id")
+}
+
+record(ai, "$(IOCNAME):PARENT_ID") {
+  field(DESC, "Parent Process ID")
+  field(PINI, "YES")
+  field(DTYP, "IOC stats")
+  field(INP, "@parent_proc_id")
+}

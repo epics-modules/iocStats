@@ -116,3 +116,5 @@ extern int devIocStatsGetKernelVersion (char **pval);
 extern int devIocStatsInitHostInfo (void);
 extern int devIocStatsGetPwd (char **pval);
 extern int devIocStatsGetHostname (char **pval);
+extern int devIocStatsGetPID (double *proc_id);
+extern int devIocStatsGetPPID (double *proc_id);

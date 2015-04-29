@@ -65,4 +65,8 @@
 
 #define CLUSTSIZES CL_TBL_SIZE
 
+/* No support of getpid for vxWorks 5.4.  Maybe vxWorks 6? */
+#define getpid() -1
+#define getppid() -1
+
 extern char *sysBootLine;

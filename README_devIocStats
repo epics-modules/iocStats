@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 04/26/2013
+README_devIocStats		Last Updated 04/16/2015
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -69,6 +69,9 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
 		ca_clients	 - number of current CA clients
 		ca_connections	 - number of current CA connections
 		suspended_tasks	 - number of suspended tasks
+	The following two are implemented for posix systems only: 
+		proc_id	 	 - process ID
+		parent_proc_id   - parent process ID
 	The following are implemented for RTEMS, vxWorks, and some soft IOCs 
 	(see notes below for exceptions and more detail):
 		free_bytes	 - number of bytes not allocated
