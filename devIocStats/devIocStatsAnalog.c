@@ -281,11 +281,12 @@ static epicsMutexId scan_mutex;
 
 /* 
  * Run timer task just below the low priority callback task and higher
- * than the default for the channel access tasks.
+ * than the default for the channel access tasks.  Also, set okToShare to 0
+ * so that the task is dedicated to devIocStats.
  */
 static void timerQCreate(void*unused)
 {
-	timerQ = epicsTimerQueueAllocate(1, epicsThreadPriorityScanLow - 2);
+	timerQ = epicsTimerQueueAllocate(0, epicsThreadPriorityScanLow - 2);
 }
 
 static epicsTimerId
