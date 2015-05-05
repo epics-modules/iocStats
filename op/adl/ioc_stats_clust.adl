@@ -1,7 +1,7 @@
 
 file {
-	name="/u/qb/saa/spear/iocStats/op/adl/ioc_stats_clust.adl"
-	version=030105
+	name="/home/epics/devel/devIocStats/op/adl/ioc_stats_clust.adl"
+	version=030107
 }
 display {
 	object {
@@ -104,7 +104,7 @@ text {
 		x=5
 		y=29
 		width=212
-		height=27
+		height=25
 	}
 	"basic attribute" {
 		clr=14
@@ -124,9 +124,9 @@ rectangle {
 }
 text {
 	object {
-		x=328
+		x=311
 		y=122
-		width=100
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -136,9 +136,9 @@ text {
 }
 text {
 	object {
-		x=343
+		x=352
 		y=165
-		width=50
+		width=27
 		height=15
 	}
 	"basic attribute" {
@@ -148,7 +148,7 @@ text {
 }
 "text update" {
 	object {
-		x=312
+		x=315
 		y=139
 		width=100
 		height=15
@@ -165,7 +165,7 @@ text {
 }
 "text update" {
 	object {
-		x=312
+		x=315
 		y=183
 		width=100
 		height=15
@@ -182,166 +182,9 @@ text {
 }
 text {
 	object {
-		x=251
-		y=100
-		width=79
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="MBUFs"
-}
-"text update" {
-	object {
-		x=8
-		y=102
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_0_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=21
-		y=84
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Size"
-}
-text {
-	object {
-		x=72
-		y=83
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Clusters"
-}
-"text update" {
-	object {
-		x=66
-		y=102
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_0_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=138
-		y=83
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Free"
-}
-"text update" {
-	object {
-		x=124
-		y=102
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_0_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=188
-		y=83
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Free (%)"
-}
-"text update" {
-	object {
-		x=182
-		y=102
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):$(pool)_CLUST_AVAIL_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=240
-		y=102
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_0_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=254
-		y=83
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Usage"
-}
-text {
-	object {
 		x=100
 		y=65
-		width=100
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -351,9 +194,9 @@ text {
 }
 text {
 	object {
-		x=340
+		x=343
 		y=102
-		width=50
+		width=45
 		height=15
 	}
 	"basic attribute" {
@@ -361,598 +204,798 @@ text {
 	}
 	textix="MBUFs"
 }
-"text update" {
+composite {
 	object {
 		x=8
-		y=122
+		y=84
 		width=50
-		height=15
+		height=173
 	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_1_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=8
+				y=102
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_0_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=15
+				y=84
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Size"
+		}
+		"text update" {
+			object {
+				x=8
+				y=122
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_1_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=8
+				y=162
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_3_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=8
+				y=182
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_4_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=8
+				y=142
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_2_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=8
+				y=202
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_5_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=8
+				y=222
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_6_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=8
+				y=242
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_7_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
 	}
 }
-"text update" {
+composite {
 	object {
-		x=66
-		y=122
-		width=50
-		height=15
+		x=63
+		y=83
+		width=72
+		height=174
 	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_1_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=63
+				y=83
+				width=72
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Clusters"
+		}
+		"text update" {
+			object {
+				x=74
+				y=102
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_0_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=74
+				y=122
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_1_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=74
+				y=162
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_3_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=74
+				y=182
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_4_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=74
+				y=142
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_2_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=74
+				y=202
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_5_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=74
+				y=222
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_6_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=74
+				y=242
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_7_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
 	}
 }
-"text update" {
+composite {
 	object {
-		x=124
-		y=122
+		x=140
+		y=83
 		width=50
-		height=15
+		height=174
 	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_1_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=147
+				y=83
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Free"
+		}
+		"text update" {
+			object {
+				x=140
+				y=102
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_0_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=140
+				y=122
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_1_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=140
+				y=162
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_3_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=140
+				y=182
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_4_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=140
+				y=142
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_2_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=140
+				y=202
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_5_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=140
+				y=222
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_6_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=140
+				y=242
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_7_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
 	}
 }
-"text update" {
+composite {
 	object {
-		x=182
-		y=122
-		width=50
-		height=15
+		x=195
+		y=83
+		width=54
+		height=174
 	}
-	monitor {
-		chan="$(ioc):$(pool)_CLUST_AVAIL_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=195
+				y=83
+				width=54
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Free %"
+		}
+		"text update" {
+			object {
+				x=197
+				y=102
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):$(pool)_CLUST_AVAIL_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=197
+				y=122
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):$(pool)_CLUST_AVAIL_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=197
+				y=162
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):$(pool)_CLUST_AVAIL_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=197
+				y=182
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):$(pool)_CLUST_AVAIL_4"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=197
+				y=142
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):$(pool)_CLUST_AVAIL_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=197
+				y=202
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):$(pool)_CLUST_AVAIL_5"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=197
+				y=222
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):$(pool)_CLUST_AVAIL_6"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=197
+				y=242
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):$(pool)_CLUST_AVAIL_7"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
 	}
 }
-"text update" {
+composite {
 	object {
-		x=240
-		y=122
+		x=254
+		y=83
 		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_1_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=8
-		y=162
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_3_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=66
-		y=162
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_3_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=124
-		y=162
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_3_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=182
-		y=162
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):$(pool)_CLUST_AVAIL_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=240
-		y=162
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_3_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=8
-		y=182
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_4_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=66
-		y=182
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_4_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=124
-		y=182
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_4_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=182
-		y=182
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):$(pool)_CLUST_AVAIL_4"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=240
-		y=182
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_4_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=8
-		y=142
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_2_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=66
-		y=142
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_2_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=124
-		y=142
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_2_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=182
-		y=142
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):$(pool)_CLUST_AVAIL_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=240
-		y=142
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_2_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=8
-		y=202
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_5_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=66
-		y=202
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_5_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=124
-		y=202
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_5_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=182
-		y=202
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):$(pool)_CLUST_AVAIL_5"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=240
-		y=202
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_5_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=8
-		y=222
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_6_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=66
-		y=222
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_6_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=124
-		y=222
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_6_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=182
-		y=222
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):$(pool)_CLUST_AVAIL_6"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=240
-		y=222
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_6_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=8
-		y=242
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_7_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=66
-		y=242
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_7_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=124
-		y=242
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_7_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=182
-		y=242
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):$(pool)_CLUST_AVAIL_7"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=240
-		y=242
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_$(idx)_7_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
+		height=174
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=254
+				y=102
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_0_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=257
+				y=83
+				width=45
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Usage"
+		}
+		"text update" {
+			object {
+				x=254
+				y=122
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_1_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=254
+				y=162
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_3_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=254
+				y=182
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_4_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=254
+				y=142
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_2_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=254
+				y=202
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_5_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=254
+				y=222
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_6_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=254
+				y=242
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_$(idx)_7_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
 	}
 }

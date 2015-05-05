@@ -1,12 +1,12 @@
 
 file {
-	name="/u/qb/saa/spear/iocStats/op/adl/ioc_stats_rtems.adl"
-	version=030105
+	name="/home/epics/devel/devIocStats-3-1-14/op/adl/ioc_stats_rtems.adl"
+	version=030107
 }
 display {
 	object {
-		x=903
-		y=166
+		x=698
+		y=153
 		width=540
 		height=756
 	}
@@ -126,7 +126,7 @@ text {
 	object {
 		x=10
 		y=66
-		width=110
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -138,7 +138,7 @@ text {
 	object {
 		x=10
 		y=86
-		width=110
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -150,7 +150,7 @@ text {
 	object {
 		x=10
 		y=106
-		width=110
+		width=63
 		height=15
 	}
 	"basic attribute" {
@@ -162,7 +162,7 @@ text {
 	object {
 		x=10
 		y=126
-		width=110
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -174,7 +174,7 @@ text {
 	object {
 		x=10
 		y=146
-		width=110
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -186,7 +186,7 @@ text {
 	object {
 		x=10
 		y=166
-		width=110
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -198,7 +198,7 @@ text {
 	object {
 		x=10
 		y=186
-		width=110
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -210,7 +210,7 @@ text {
 	object {
 		x=10
 		y=206
-		width=110
+		width=72
 		height=15
 	}
 	"basic attribute" {
@@ -237,7 +237,7 @@ text {
 	object {
 		x=340
 		y=70
-		width=120
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -249,7 +249,7 @@ text {
 	object {
 		x=340
 		y=100
-		width=120
+		width=117
 		height=15
 	}
 	"basic attribute" {
@@ -261,7 +261,7 @@ text {
 	object {
 		x=340
 		y=130
-		width=120
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -466,7 +466,7 @@ text {
 	object {
 		x=5
 		y=357
-		width=110
+		width=117
 		height=15
 	}
 	"basic attribute" {
@@ -478,7 +478,7 @@ text {
 	object {
 		x=5
 		y=398
-		width=150
+		width=189
 		height=15
 	}
 	"basic attribute" {
@@ -490,7 +490,7 @@ text {
 	object {
 		x=5
 		y=431
-		width=150
+		width=126
 		height=15
 	}
 	"basic attribute" {
@@ -525,6 +525,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -540,6 +541,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -588,7 +590,7 @@ text {
 	object {
 		x=136
 		y=508
-		width=120
+		width=144
 		height=15
 	}
 	"basic attribute" {
@@ -600,7 +602,7 @@ text {
 	object {
 		x=9
 		y=541
-		width=50
+		width=36
 		height=15
 	}
 	"basic attribute" {
@@ -612,7 +614,7 @@ text {
 	object {
 		x=9
 		y=559
-		width=50
+		width=36
 		height=15
 	}
 	"basic attribute" {
@@ -624,7 +626,7 @@ text {
 	object {
 		x=9
 		y=576
-		width=50
+		width=63
 		height=15
 	}
 	"basic attribute" {
@@ -636,7 +638,7 @@ text {
 	object {
 		x=9
 		y=589
-		width=50
+		width=63
 		height=15
 	}
 	"basic attribute" {
@@ -646,9 +648,9 @@ text {
 }
 text {
 	object {
-		x=369
+		x=347
 		y=504
-		width=50
+		width=72
 		height=15
 	}
 	"basic attribute" {
@@ -658,9 +660,9 @@ text {
 }
 text {
 	object {
-		x=374
+		x=353
 		y=532
-		width=105
+		width=153
 		height=15
 	}
 	"basic attribute" {
@@ -672,7 +674,7 @@ text {
 	object {
 		x=374
 		y=557
-		width=30
+		width=36
 		height=15
 	}
 	"basic attribute" {
@@ -684,7 +686,7 @@ text {
 	object {
 		x=374
 		y=577
-		width=30
+		width=27
 		height=15
 	}
 	"basic attribute" {
@@ -745,7 +747,7 @@ text {
 }
 "text update" {
 	object {
-		x=89
+		x=96
 		y=540
 		width=100
 		height=15
@@ -762,7 +764,7 @@ text {
 }
 "text update" {
 	object {
-		x=89
+		x=96
 		y=560
 		width=100
 		height=15
@@ -779,7 +781,7 @@ text {
 }
 "text update" {
 	object {
-		x=89
+		x=96
 		y=580
 		width=100
 		height=15
@@ -798,7 +800,7 @@ text {
 	object {
 		x=338
 		y=162
-		width=110
+		width=120
 		height=20
 	}
 	display[0] {
@@ -814,7 +816,7 @@ text {
 	object {
 		x=339
 		y=191
-		width=110
+		width=120
 		height=21
 	}
 	display[0] {
@@ -830,7 +832,7 @@ text {
 	object {
 		x=5
 		y=377
-		width=110
+		width=90
 		height=15
 	}
 	"basic attribute" {
@@ -853,264 +855,11 @@ text {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=1
-		y=343
-		width=540
-		height=2
-	}
-	"basic attribute" {
-		clr=14
-	}
-}
-menu {
-	object {
-		x=36
-		y=320
-		width=96
-		height=21
-	}
-	control {
-		chan="$(ioc):ACCESS"
-		clr=14
-		bclr=6
-	}
-}
-text {
-	object {
-		x=7
-		y=323
-		width=30
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Mode"
-}
-"related display" {
-	object {
-		x=150
-		y=320
-		width=226
-		height=21
-	}
-	display[0] {
-		label="Reload ACF"
-		name="ioc_stats_reloadacf_confirm.adl"
-		args="ioc=$(ioc)"
-	}
-	clr=14
-	bclr=6
-	label="Reload Access Security Conf File"
-}
-"related display" {
-	object {
-		x=394
-		y=320
-		width=110
-		height=21
-	}
-	display[0] {
-		label="Reboot"
-		name="ioc_stats_reboot_confirm.adl"
-		args="ioc=$(ioc)"
-	}
-	clr=14
-	bclr=6
-	label="Reboot"
-}
-text {
-	object {
-		x=139
-		y=236
-		width=150
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="General Time Providers"
-}
-text {
-	object {
-		x=9
-		y=254
-		width=110
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Current"
-}
-text {
-	object {
-		x=9
-		y=274
-		width=110
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Event"
-}
-text {
-	object {
-		x=9
-		y=294
-		width=110
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Highest Priority"
-}
-"text update" {
-	object {
-		x=124
-		y=254
-		width=190
-		height=15
-	}
-	monitor {
-		chan="$(ioc):GTIM_CUR_SRC"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=124
-		y=274
-		width=190
-		height=15
-	}
-	monitor {
-		chan="$(ioc):GTIM_EVT_SRC"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=124
-		y=294
-		width=190
-		height=15
-	}
-	monitor {
-		chan="$(ioc):GTIM_HI_SRC"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=342
-		y=250
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="# Secs"
-}
-text {
-	object {
-		x=341
-		y=262
-		width=60
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="since 1990"
-}
-"text update" {
-	object {
-		x=409
-		y=254
-		width=120
-		height=15
-	}
-	monitor {
-		chan="$(ioc):GTIM_TIME"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=340
-		y=282
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="# Errors"
-}
-"text update" {
-	object {
-		x=409
-		y=279
-		width=60
-		height=15
-	}
-	monitor {
-		chan="$(ioc):GTIM_ERR_CNT"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=478
-		y=277
-		width=53
-		height=17
-	}
-	control {
-		chan="$(ioc):GTIM_RESET.PROC"
-		clr=14
-		bclr=7
-	}
-	label="Reset"
-	press_msg="0"
-}
-rectangle {
-	object {
-		x=2
-		y=312
-		width=540
-		height=2
-	}
-	"basic attribute" {
-		clr=14
-	}
-}
 text {
 	object {
 		x=4
 		y=466
-		width=150
+		width=135
 		height=15
 	}
 	"basic attribute" {
@@ -1130,6 +879,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -1150,9 +900,9 @@ text {
 }
 text {
 	object {
-		x=113
+		x=128
 		y=523
-		width=50
+		width=36
 		height=15
 	}
 	"basic attribute" {
@@ -1162,9 +912,9 @@ text {
 }
 text {
 	object {
-		x=225
+		x=218
 		y=522
-		width=50
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -1174,7 +924,7 @@ text {
 }
 "text update" {
 	object {
-		x=202
+		x=208
 		y=540
 		width=100
 		height=15
@@ -1191,7 +941,7 @@ text {
 }
 "text update" {
 	object {
-		x=202
+		x=208
 		y=560
 		width=100
 		height=15
@@ -1208,7 +958,7 @@ text {
 }
 "text update" {
 	object {
-		x=202
+		x=208
 		y=580
 		width=100
 		height=15
@@ -1227,7 +977,7 @@ text {
 	object {
 		x=8
 		y=617
-		width=80
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -1239,7 +989,7 @@ text {
 	object {
 		x=8
 		y=604
-		width=80
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -1249,7 +999,7 @@ text {
 }
 "text update" {
 	object {
-		x=89
+		x=124
 		y=609
 		width=100
 		height=15
@@ -1290,7 +1040,7 @@ text {
 	object {
 		x=374
 		y=602
-		width=105
+		width=99
 		height=15
 	}
 	"basic attribute" {
@@ -1300,9 +1050,9 @@ text {
 }
 text {
 	object {
-		x=374
+		x=354
 		y=627
-		width=30
+		width=45
 		height=15
 	}
 	"basic attribute" {
@@ -1312,9 +1062,9 @@ text {
 }
 text {
 	object {
-		x=374
+		x=354
 		y=647
-		width=30
+		width=54
 		height=15
 	}
 	"basic attribute" {
@@ -1358,9 +1108,9 @@ text {
 }
 text {
 	object {
-		x=7
+		x=29
 		y=655
-		width=50
+		width=54
 		height=15
 	}
 	"basic attribute" {
@@ -1370,9 +1120,9 @@ text {
 }
 text {
 	object {
-		x=7
+		x=29
 		y=675
-		width=50
+		width=27
 		height=15
 	}
 	"basic attribute" {
@@ -1418,7 +1168,7 @@ text {
 	object {
 		x=98
 		y=637
-		width=100
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -1437,233 +1187,552 @@ rectangle {
 		clr=14
 	}
 }
-"text update" {
+composite {
 	object {
-		x=11
-		y=716
-		width=50
-		height=15
+		x=62
+		y=698
+		width=72
+		height=53
 	}
-	monitor {
-		chan="$(ioc):CLUST_1_0_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=62
+				y=698
+				width=72
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Clusters"
+		}
+		"text update" {
+			object {
+				x=73
+				y=716
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_1_0_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=73
+				y=736
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_1_1_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
 	}
 }
-"text update" {
+composite {
 	object {
-		x=11
-		y=736
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_1_1_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=21
+		x=7
 		y=699
 		width=50
-		height=15
+		height=52
 	}
-	"basic attribute" {
-		clr=14
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=7
+				y=716
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_1_0_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=7
+				y=736
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_1_1_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=14
+				y=699
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Size"
+		}
 	}
-	textix="Size"
 }
-text {
+composite {
 	object {
-		x=72
+		x=139
 		y=698
 		width=50
-		height=15
+		height=53
 	}
-	"basic attribute" {
-		clr=14
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=146
+				y=698
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Free"
+		}
+		"text update" {
+			object {
+				x=139
+				y=716
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_1_0_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=139
+				y=736
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_1_1_2"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
 	}
-	textix="Clusters"
 }
-"text update" {
+composite {
 	object {
-		x=69
-		y=716
-		width=50
-		height=15
+		x=194
+		y=698
+		width=54
+		height=53
 	}
-	monitor {
-		chan="$(ioc):CLUST_1_0_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=194
+				y=698
+				width=54
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Free %"
+		}
+		"text update" {
+			object {
+				x=196
+				y=716
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):SYS_CLUST_AVAIL_0"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=196
+				y=736
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):SYS_CLUST_AVAIL_1"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
 	}
 }
-"text update" {
+composite {
 	object {
-		x=69
-		y=736
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_1_1_1"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=138
+		x=253
 		y=698
 		width=50
-		height=15
+		height=53
 	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Free"
-}
-"text update" {
-	object {
-		x=127
-		y=716
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_1_0_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=127
-		y=736
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_1_1_2"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=188
-		y=698
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Free (%)"
-}
-"text update" {
-	object {
-		x=185
-		y=716
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):SYS_CLUST_AVAIL_0"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=253
+				y=716
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_1_0_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=253
+				y=736
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(ioc):CLUST_1_1_3"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=256
+				y=698
+				width=45
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Usage"
+		}
 	}
 }
-"text update" {
+composite {
 	object {
-		x=185
-		y=736
-		width=50
-		height=15
+		x=2
+		y=236
+		width=540
+		height=109
 	}
-	monitor {
-		chan="$(ioc):SYS_CLUST_AVAIL_1"
-		clr=14
-		bclr=9
+	"composite name"=""
+	children {
+		menu {
+			object {
+				x=49
+				y=320
+				width=96
+				height=21
+			}
+			control {
+				chan="$(ioc):ACCESS"
+				clr=14
+				bclr=6
+			}
+		}
+		text {
+			object {
+				x=8
+				y=323
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Mode"
+		}
+		"related display" {
+			object {
+				x=150
+				y=320
+				width=250
+				height=21
+			}
+			display[0] {
+				label="Reload ACF"
+				name="ioc_stats_reloadacf_confirm.adl"
+				args="ioc=$(ioc)"
+			}
+			clr=14
+			bclr=6
+			label="Reload Access Security Conf File"
+		}
+		"related display" {
+			object {
+				x=405
+				y=320
+				width=110
+				height=21
+			}
+			display[0] {
+				label="Reboot"
+				name="ioc_stats_reboot_confirm.adl"
+				args="ioc=$(ioc)"
+			}
+			clr=14
+			bclr=6
+			label="Reboot"
+		}
+		text {
+			object {
+				x=139
+				y=236
+				width=198
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="General Time Providers"
+		}
+		text {
+			object {
+				x=9
+				y=254
+				width=63
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Current"
+		}
+		text {
+			object {
+				x=9
+				y=274
+				width=45
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Event"
+		}
+		text {
+			object {
+				x=9
+				y=294
+				width=108
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Highest Prio"
+		}
+		"text update" {
+			object {
+				x=122
+				y=254
+				width=190
+				height=15
+			}
+			monitor {
+				chan="$(ioc):GTIM_CUR_SRC"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=122
+				y=274
+				width=190
+				height=15
+			}
+			monitor {
+				chan="$(ioc):GTIM_EVT_SRC"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=122
+				y=294
+				width=190
+				height=15
+			}
+			monitor {
+				chan="$(ioc):GTIM_HI_SRC"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=322
+				y=250
+				width=54
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="# Secs"
+		}
+		text {
+			object {
+				x=322
+				y=262
+				width=90
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="since 1990"
+		}
+		"text update" {
+			object {
+				x=416
+				y=254
+				width=120
+				height=15
+			}
+			monitor {
+				chan="$(ioc):GTIM_TIME"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=322
+				y=288
+				width=72
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="# Errors"
+		}
+		"text update" {
+			object {
+				x=409
+				y=288
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(ioc):GTIM_ERR_CNT"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=478
+				y=287
+				width=53
+				height=17
+			}
+			control {
+				chan="$(ioc):GTIM_RESET.PROC"
+				clr=14
+				bclr=7
+			}
+			label="Reset"
+			press_msg="0"
+		}
+		rectangle {
+			object {
+				x=2
+				y=343
+				width=540
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+			}
+		}
+		rectangle {
+			object {
+				x=2
+				y=312
+				width=540
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+			}
+		}
 	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=243
-		y=716
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_1_0_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=243
-		y=736
-		width=50
-		height=15
-	}
-	monitor {
-		chan="$(ioc):CLUST_1_1_3"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=254
-		y=698
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Usage"
 }

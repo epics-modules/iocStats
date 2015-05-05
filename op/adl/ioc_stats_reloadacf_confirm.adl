@@ -1,13 +1,13 @@
 
 file {
-	name="/u/qb/saa/spear/iocStats/op/adl/ioc_stats_reloadacf_confirm.adl"
-	version=030105
+	name="/home/epics/devel/devIocStats/op/adl/ioc_stats_reloadacf_confirm.adl"
+	version=030107
 }
 display {
 	object {
 		x=903
 		y=166
-		width=273
+		width=410
 		height=158
 	}
 	clr=14
@@ -91,8 +91,8 @@ text {
 	object {
 		x=6
 		y=4
-		width=250
-		height=25
+		width=400
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -104,7 +104,7 @@ text {
 		x=5
 		y=29
 		width=212
-		height=27
+		height=25
 	}
 	"basic attribute" {
 		clr=14
@@ -124,7 +124,7 @@ rectangle {
 }
 text {
 	object {
-		x=8
+		x=16
 		y=66
 		width=250
 		height=15
@@ -136,7 +136,7 @@ text {
 }
 text {
 	object {
-		x=8
+		x=16
 		y=83
 		width=250
 		height=15
@@ -148,7 +148,7 @@ text {
 }
 "message button" {
 	object {
-		x=65
+		x=144
 		y=111
 		width=123
 		height=30

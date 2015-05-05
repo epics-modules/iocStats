@@ -1,7 +1,7 @@
 
 file {
-	name="/u/qb/saa/spear/iocStats/op/adl/ioc_stats_reboot_confirm.adl"
-	version=030105
+	name="/home/epics/devel/devIocStats-3-1-14/op/adl/ioc_stats_reboot_confirm.adl"
+	version=030107
 }
 display {
 	object {
@@ -89,10 +89,10 @@ display {
 }
 text {
 	object {
-		x=6
+		x=4
 		y=4
-		width=250
-		height=25
+		width=230
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -104,7 +104,7 @@ text {
 		x=5
 		y=29
 		width=212
-		height=27
+		height=25
 	}
 	"basic attribute" {
 		clr=14
@@ -124,9 +124,9 @@ rectangle {
 }
 text {
 	object {
-		x=42
+		x=12
 		y=66
-		width=250
+		width=216
 		height=15
 	}
 	"basic attribute" {
@@ -136,9 +136,9 @@ text {
 }
 text {
 	object {
-		x=42
+		x=12
 		y=83
-		width=250
+		width=126
 		height=15
 	}
 	"basic attribute" {

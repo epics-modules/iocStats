@@ -1,14 +1,14 @@
 
 file {
-	name="/u/qb/saa/spear/iocStats/op/adl/ioc_stats_soft.adl"
-	version=030105
+	name="/home/epics/devel/devIocStats-3-1-14/op/adl/ioc_stats_soft.adl"
+	version=030107
 }
 display {
 	object {
-		x=903
-		y=166
-		width=542
-		height=488
+		x=570
+		y=161
+		width=540
+		height=560
 	}
 	clr=14
 	bclr=3
@@ -89,9 +89,9 @@ display {
 }
 text {
 	object {
-		x=6
-		y=4
-		width=211
+		x=5
+		y=8
+		width=180
 		height=25
 	}
 	"basic attribute" {
@@ -101,10 +101,10 @@ text {
 }
 text {
 	object {
-		x=5
-		y=29
-		width=212
-		height=27
+		x=210
+		y=8
+		width=84
+		height=25
 	}
 	"basic attribute" {
 		clr=14
@@ -113,8 +113,8 @@ text {
 }
 rectangle {
 	object {
-		x=0
-		y=58
+		x=1
+		y=40
 		width=540
 		height=2
 	}
@@ -125,7 +125,7 @@ rectangle {
 text {
 	object {
 		x=10
-		y=66
+		y=48
 		width=110
 		height=15
 	}
@@ -137,7 +137,7 @@ text {
 text {
 	object {
 		x=10
-		y=86
+		y=68
 		width=110
 		height=15
 	}
@@ -149,7 +149,7 @@ text {
 text {
 	object {
 		x=10
-		y=106
+		y=88
 		width=110
 		height=15
 	}
@@ -161,7 +161,7 @@ text {
 text {
 	object {
 		x=10
-		y=126
+		y=108
 		width=110
 		height=15
 	}
@@ -173,7 +173,7 @@ text {
 text {
 	object {
 		x=10
-		y=146
+		y=128
 		width=110
 		height=15
 	}
@@ -185,7 +185,7 @@ text {
 text {
 	object {
 		x=10
-		y=166
+		y=148
 		width=110
 		height=15
 	}
@@ -197,7 +197,7 @@ text {
 text {
 	object {
 		x=10
-		y=186
+		y=168
 		width=110
 		height=15
 	}
@@ -209,7 +209,7 @@ text {
 text {
 	object {
 		x=10
-		y=206
+		y=188
 		width=110
 		height=15
 	}
@@ -221,7 +221,7 @@ text {
 polyline {
 	object {
 		x=330
-		y=60
+		y=42
 		width=0
 		height=170
 	}
@@ -229,14 +229,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(330,60)
-		(330,230)
+		(330,42)
+		(330,212)
 	}
 }
 text {
 	object {
 		x=340
-		y=70
+		y=52
 		width=120
 		height=15
 	}
@@ -248,7 +248,7 @@ text {
 text {
 	object {
 		x=340
-		y=100
+		y=82
 		width=120
 		height=15
 	}
@@ -260,7 +260,7 @@ text {
 text {
 	object {
 		x=340
-		y=130
+		y=112
 		width=120
 		height=15
 	}
@@ -272,7 +272,7 @@ text {
 "text update" {
 	object {
 		x=125
-		y=66
+		y=48
 		width=190
 		height=15
 	}
@@ -287,7 +287,7 @@ text {
 "text update" {
 	object {
 		x=125
-		y=86
+		y=68
 		width=190
 		height=15
 	}
@@ -302,7 +302,7 @@ text {
 "text update" {
 	object {
 		x=125
-		y=106
+		y=88
 		width=190
 		height=15
 	}
@@ -317,7 +317,7 @@ text {
 "text update" {
 	object {
 		x=125
-		y=126
+		y=108
 		width=190
 		height=15
 	}
@@ -332,7 +332,7 @@ text {
 "text update" {
 	object {
 		x=125
-		y=146
+		y=128
 		width=190
 		height=15
 	}
@@ -347,7 +347,7 @@ text {
 "text update" {
 	object {
 		x=125
-		y=166
+		y=148
 		width=190
 		height=15
 	}
@@ -362,7 +362,7 @@ text {
 "text update" {
 	object {
 		x=125
-		y=186
+		y=168
 		width=190
 		height=15
 	}
@@ -377,7 +377,7 @@ text {
 "text update" {
 	object {
 		x=125
-		y=206
+		y=188
 		width=190
 		height=15
 	}
@@ -392,7 +392,7 @@ text {
 "text update" {
 	object {
 		x=470
-		y=70
+		y=52
 		width=60
 		height=15
 	}
@@ -409,7 +409,7 @@ text {
 "text update" {
 	object {
 		x=470
-		y=100
+		y=82
 		width=60
 		height=15
 	}
@@ -426,7 +426,7 @@ text {
 "text update" {
 	object {
 		x=470
-		y=130
+		y=112
 		width=60
 		height=15
 	}
@@ -443,7 +443,7 @@ text {
 rectangle {
 	object {
 		x=0
-		y=230
+		y=212
 		width=540
 		height=2
 	}
@@ -451,10 +451,42 @@ rectangle {
 		clr=14
 	}
 }
+"related display" {
+	object {
+		x=338
+		y=144
+		width=120
+		height=20
+	}
+	display[0] {
+		label="Alarm Limits"
+		name="ioc_stats_limits.adl"
+		args="ioc=$(ioc)"
+	}
+	clr=14
+	bclr=6
+	label="Alarm Limits"
+}
+"related display" {
+	object {
+		x=339
+		y=173
+		width=120
+		height=21
+	}
+	display[0] {
+		label="EPICS Env Vars"
+		name="ioc_stats_epics_env.adl"
+		args="ioc=$(ioc)"
+	}
+	clr=14
+	bclr=6
+	label="EPICS Env Vars"
+}
 rectangle {
 	object {
 		x=1
-		y=380
+		y=448
 		width=540
 		height=2
 	}
@@ -465,7 +497,7 @@ rectangle {
 text {
 	object {
 		x=6
-		y=271
+		y=339
 		width=110
 		height=15
 	}
@@ -477,7 +509,7 @@ text {
 text {
 	object {
 		x=6
-		y=312
+		y=380
 		width=150
 		height=15
 	}
@@ -489,7 +521,7 @@ text {
 text {
 	object {
 		x=6
-		y=345
+		y=413
 		width=150
 		height=15
 	}
@@ -500,8 +532,8 @@ text {
 }
 "text update" {
 	object {
-		x=113
-		y=271
+		x=130
+		y=339
 		width=350
 		height=15
 	}
@@ -516,7 +548,7 @@ text {
 "text update" {
 	object {
 		x=6
-		y=327
+		y=395
 		width=265
 		height=13
 	}
@@ -525,13 +557,14 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
 "text update" {
 	object {
 		x=6
-		y=360
+		y=428
 		width=265
 		height=12
 	}
@@ -540,13 +573,14 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
 "text update" {
 	object {
 		x=271
-		y=327
+		y=395
 		width=265
 		height=13
 	}
@@ -561,7 +595,7 @@ text {
 "text update" {
 	object {
 		x=271
-		y=360
+		y=428
 		width=265
 		height=12
 	}
@@ -575,8 +609,8 @@ text {
 }
 rectangle {
 	object {
-		x=340
-		y=382
+		x=344
+		y=450
 		width=1
 		height=110
 	}
@@ -586,8 +620,8 @@ rectangle {
 }
 rectangle {
 	object {
-		x=195
-		y=381
+		x=186
+		y=449
 		width=1
 		height=110
 	}
@@ -598,7 +632,7 @@ rectangle {
 text {
 	object {
 		x=16
-		y=386
+		y=454
 		width=120
 		height=15
 	}
@@ -610,7 +644,7 @@ text {
 text {
 	object {
 		x=11
-		y=411
+		y=479
 		width=50
 		height=15
 	}
@@ -622,7 +656,7 @@ text {
 text {
 	object {
 		x=11
-		y=428
+		y=496
 		width=50
 		height=15
 	}
@@ -634,7 +668,7 @@ text {
 text {
 	object {
 		x=11
-		y=446
+		y=514
 		width=50
 		height=15
 	}
@@ -646,7 +680,7 @@ text {
 text {
 	object {
 		x=11
-		y=459
+		y=527
 		width=50
 		height=15
 	}
@@ -658,7 +692,7 @@ text {
 text {
 	object {
 		x=401
-		y=386
+		y=454
 		width=85
 		height=15
 	}
@@ -669,8 +703,8 @@ text {
 }
 text {
 	object {
-		x=205
-		y=386
+		x=189
+		y=454
 		width=105
 		height=15
 	}
@@ -682,7 +716,7 @@ text {
 text {
 	object {
 		x=205
-		y=411
+		y=479
 		width=30
 		height=15
 	}
@@ -694,7 +728,7 @@ text {
 text {
 	object {
 		x=205
-		y=431
+		y=499
 		width=30
 		height=15
 	}
@@ -705,8 +739,8 @@ text {
 }
 "text update" {
 	object {
-		x=454
-		y=411
+		x=475
+		y=479
 		width=60
 		height=15
 	}
@@ -723,7 +757,7 @@ text {
 "text update" {
 	object {
 		x=245
-		y=411
+		y=479
 		width=60
 		height=15
 	}
@@ -740,7 +774,7 @@ text {
 "text update" {
 	object {
 		x=245
-		y=431
+		y=499
 		width=60
 		height=15
 	}
@@ -756,8 +790,8 @@ text {
 }
 "text update" {
 	object {
-		x=60
-		y=411
+		x=79
+		y=479
 		width=100
 		height=15
 	}
@@ -773,8 +807,8 @@ text {
 }
 "text update" {
 	object {
-		x=60
-		y=431
+		x=79
+		y=499
 		width=100
 		height=15
 	}
@@ -790,8 +824,8 @@ text {
 }
 "text update" {
 	object {
-		x=60
-		y=451
+		x=79
+		y=520
 		width=100
 		height=15
 	}
@@ -805,42 +839,10 @@ text {
 	limits {
 	}
 }
-"related display" {
-	object {
-		x=338
-		y=162
-		width=110
-		height=20
-	}
-	display[0] {
-		label="Alarm Limits"
-		name="ioc_stats_limits.adl"
-		args="ioc=$(ioc)"
-	}
-	clr=14
-	bclr=6
-	label="Alarm Limits"
-}
-"related display" {
-	object {
-		x=339
-		y=191
-		width=110
-		height=21
-	}
-	display[0] {
-		label="EPICS Env Vars"
-		name="ioc_stats_epics_env.adl"
-		args="ioc=$(ioc)"
-	}
-	clr=14
-	bclr=6
-	label="EPICS Env Vars"
-}
 text {
 	object {
 		x=6
-		y=291
+		y=359
 		width=110
 		height=15
 	}
@@ -851,8 +853,8 @@ text {
 }
 "text update" {
 	object {
-		x=113
-		y=291
+		x=130
+		y=359
 		width=350
 		height=15
 	}
@@ -866,8 +868,8 @@ text {
 }
 text {
 	object {
-		x=347
-		y=411
+		x=351
+		y=479
 		width=100
 		height=15
 	}
@@ -878,8 +880,8 @@ text {
 }
 "text update" {
 	object {
-		x=454
-		y=431
+		x=475
+		y=507
 		width=60
 		height=15
 	}
@@ -895,20 +897,8 @@ text {
 }
 text {
 	object {
-		x=346
-		y=431
-		width=100
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="System (all CPUs)"
-}
-text {
-	object {
-		x=346
-		y=450
+		x=350
+		y=534
 		width=100
 		height=15
 	}
@@ -919,8 +909,8 @@ text {
 }
 "text update" {
 	object {
-		x=454
-		y=451
+		x=475
+		y=534
 		width=60
 		height=15
 	}
@@ -934,21 +924,45 @@ text {
 	limits {
 	}
 }
-rectangle {
+composite {
 	object {
-		x=2
-		y=257
-		width=540
-		height=2
+		x=350
+		y=499
+		width=100
+		height=30
 	}
-	"basic attribute" {
-		clr=14
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=350
+				y=499
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="System"
+		}
+		text {
+			object {
+				x=350
+				y=514
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="(all CPUs)"
+		}
 	}
 }
 menu {
 	object {
-		x=37
-		y=234
+		x=49
+		y=302
 		width=96
 		height=21
 	}
@@ -961,8 +975,8 @@ menu {
 text {
 	object {
 		x=8
-		y=237
-		width=30
+		y=305
+		width=36
 		height=15
 	}
 	"basic attribute" {
@@ -972,9 +986,9 @@ text {
 }
 "related display" {
 	object {
-		x=151
-		y=234
-		width=226
+		x=150
+		y=302
+		width=250
 		height=21
 	}
 	display[0] {
@@ -988,8 +1002,8 @@ text {
 }
 "related display" {
 	object {
-		x=395
-		y=234
+		x=405
+		y=302
 		width=110
 		height=21
 	}
@@ -1001,4 +1015,200 @@ text {
 	clr=14
 	bclr=6
 	label="Reboot"
+}
+text {
+	object {
+		x=139
+		y=218
+		width=198
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="General Time Providers"
+}
+text {
+	object {
+		x=9
+		y=236
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+}
+text {
+	object {
+		x=9
+		y=256
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Event"
+}
+text {
+	object {
+		x=9
+		y=276
+		width=108
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Highest Prio"
+}
+"text update" {
+	object {
+		x=122
+		y=236
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_CUR_SRC"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=122
+		y=256
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_EVT_SRC"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=122
+		y=276
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_HI_SRC"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=322
+		y=232
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# Secs"
+}
+text {
+	object {
+		x=322
+		y=244
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="since 1990"
+}
+"text update" {
+	object {
+		x=416
+		y=236
+		width=120
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_TIME"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=322
+		y=270
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# Errors"
+}
+"text update" {
+	object {
+		x=409
+		y=270
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(ioc):GTIM_ERR_CNT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=478
+		y=269
+		width=53
+		height=17
+	}
+	control {
+		chan="$(ioc):GTIM_RESET.PROC"
+		clr=14
+		bclr=7
+	}
+	label="Reset"
+	press_msg="0"
+}
+rectangle {
+	object {
+		x=2
+		y=325
+		width=540
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+rectangle {
+	object {
+		x=2
+		y=294
+		width=540
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+	}
 }

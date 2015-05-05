@@ -1,7 +1,7 @@
 
 file {
-	name="/afs/psi.ch/user/b/brands/iocstats/ioc_stats_scanmon.adl"
-	version=030104
+	name="/home/epics/devel/devIocStats/op/adl/ioc_stats_scanmon.adl"
+	version=030107
 }
 display {
 	object {
@@ -89,8 +89,8 @@ display {
 }
 text {
 	object {
-		x=6
-		y=4
+		x=5
+		y=5
 		width=211
 		height=25
 	}
@@ -102,9 +102,9 @@ text {
 text {
 	object {
 		x=296
-		y=2
+		y=5
 		width=212
-		height=27
+		height=25
 	}
 	"basic attribute" {
 		clr=14
@@ -660,7 +660,7 @@ text {
 text {
 	object {
 		x=424
-		y=51
+		y=55
 		width=105
 		height=15
 	}

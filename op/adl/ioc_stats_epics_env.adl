@@ -1,7 +1,7 @@
 
 file {
-	name="/u/qb/saa/spear/iocStats/op/adl/ioc_stats_epics_env.adl"
-	version=030105
+	name="/home/epics/devel/devIocStats/op/adl/ioc_stats_epics_env.adl"
+	version=030107
 }
 display {
 	object {
@@ -89,10 +89,10 @@ display {
 }
 text {
 	object {
-		x=10
-		y=10
+		x=5
+		y=5
 		width=450
-		height=30
+		height=25
 	}
 	"basic attribute" {
 		clr=14
