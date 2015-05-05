@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/devel/devIocStats/op/adl/ioc_stats_vxworks.adl"
+	name="/home/epics/devel/devIocStats-3-1-14/op/adl/ioc_stats_vxworks.adl"
 	version=030107
 }
 display {
 	object {
-		x=1023
-		y=87
+		x=777
+		y=108
 		width=540
 		height=735
 	}
@@ -525,6 +525,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -540,6 +541,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -945,6 +947,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -1182,6 +1185,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -1212,6 +1216,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }

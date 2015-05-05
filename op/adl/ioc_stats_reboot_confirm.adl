@@ -1,6 +1,6 @@
 
 file {
-	name="/home/epics/devel/devIocStats/op/adl/ioc_stats_reboot_confirm.adl"
+	name="/home/epics/devel/devIocStats-3-1-14/op/adl/ioc_stats_reboot_confirm.adl"
 	version=030107
 }
 display {
@@ -89,10 +89,10 @@ display {
 }
 text {
 	object {
-		x=6
+		x=4
 		y=4
-		width=250
-		height=25
+		width=230
+		height=20
 	}
 	"basic attribute" {
 		clr=14

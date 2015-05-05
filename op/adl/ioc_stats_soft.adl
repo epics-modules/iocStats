@@ -557,6 +557,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -572,6 +573,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
