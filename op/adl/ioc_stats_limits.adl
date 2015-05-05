@@ -1,13 +1,13 @@
 
 file {
-	name="/u/qb/saa/spear/iocStats/op/adl/ioc_stats_limits.adl"
-	version=030105
+	name="/home/epics/devel/devIocStats/op/adl/ioc_stats_limits.adl"
+	version=030107
 }
 display {
 	object {
-		x=1090
-		y=60
-		width=350
+		x=845
+		y=329
+		width=380
 		height=288
 	}
 	clr=14
@@ -103,7 +103,7 @@ rectangle {
 	object {
 		x=0
 		y=40
-		width=350
+		width=380
 		height=2
 	}
 	"basic attribute" {
@@ -112,9 +112,9 @@ rectangle {
 }
 text {
 	object {
-		x=9
+		x=39
 		y=80
-		width=89
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -124,9 +124,9 @@ text {
 }
 text {
 	object {
-		x=9
+		x=30
 		y=110
-		width=89
+		width=117
 		height=15
 	}
 	"basic attribute" {
@@ -136,9 +136,9 @@ text {
 }
 text {
 	object {
-		x=9
+		x=39
 		y=140
-		width=89
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -148,125 +148,9 @@ text {
 }
 text {
 	object {
-		x=216
-		y=195
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="LOLO"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=279
-		y=195
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="LOW"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=125
-		y=53
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Value"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=212
-		y=53
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="HIGH"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=275
-		y=53
-		width=50
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="HIHI"
-	align="horiz. centered"
-}
-"text update" {
-	object {
-		x=106
-		y=77
-		width=100
-		height=20
-	}
-	monitor {
-		chan="$(ioc):CA_CLNT_CNT"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=106
-		y=107
-		width=100
-		height=20
-	}
-	monitor {
-		chan="$(ioc):CA_CONN_CNT"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=106
-		y=137
-		width=100
-		height=20
-	}
-	monitor {
-		chan="$(ioc):SUSP_TASK_CNT"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=9
+		x=57
 		y=223
-		width=89
+		width=90
 		height=15
 	}
 	"basic attribute" {
@@ -274,28 +158,11 @@ text {
 	}
 	textix="# Free FDs"
 }
-"text update" {
-	object {
-		x=106
-		y=220
-		width=100
-		height=20
-	}
-	monitor {
-		chan="$(ioc):FD_FREE"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
 text {
 	object {
-		x=9
+		x=39
 		y=170
-		width=69
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -303,163 +170,11 @@ text {
 	}
 	textix="CPU Load (%)"
 }
-"text update" {
-	object {
-		x=106
-		y=167
-		width=100
-		height=20
-	}
-	monitor {
-		chan="$(ioc):IOC_CPU_LOAD"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=216
-		y=77
-		width=56
-		height=20
-	}
-	control {
-		chan="$(ioc):CA_CLNT_CNT.HIGH"
-		clr=14
-		bclr=7
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=277
-		y=77
-		width=56
-		height=20
-	}
-	control {
-		chan="$(ioc):CA_CLNT_CNT.HIHI"
-		clr=14
-		bclr=7
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=216
-		y=107
-		width=56
-		height=20
-	}
-	control {
-		chan="$(ioc):CA_CONN_CNT.HIGH"
-		clr=14
-		bclr=7
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=277
-		y=107
-		width=56
-		height=20
-	}
-	control {
-		chan="$(ioc):CA_CONN_CNT.HIHI"
-		clr=14
-		bclr=7
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=277
-		y=137
-		width=56
-		height=20
-	}
-	control {
-		chan="$(ioc):SUSP_TASK_CNT.HIHI"
-		clr=14
-		bclr=7
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=216
-		y=167
-		width=56
-		height=20
-	}
-	control {
-		chan="$(ioc):IOC_CPU_LOAD.HIGH"
-		clr=14
-		bclr=7
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=277
-		y=167
-		width=56
-		height=20
-	}
-	control {
-		chan="$(ioc):IOC_CPU_LOAD.HIHI"
-		clr=14
-		bclr=7
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=216
-		y=219
-		width=56
-		height=20
-	}
-	control {
-		chan="$(ioc):FD_FREE.LOLO"
-		clr=14
-		bclr=7
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=277
-		y=219
-		width=56
-		height=20
-	}
-	control {
-		chan="$(ioc):FD_FREE.LOW"
-		clr=14
-		bclr=7
-	}
-	limits {
-	}
-}
 text {
 	object {
-		x=8
+		x=3
 		y=250
-		width=89
+		width=144
 		height=15
 	}
 	"basic attribute" {
@@ -467,50 +182,368 @@ text {
 	}
 	textix="Free Mem (bytes)"
 }
-"text update" {
+composite {
 	object {
-		x=106
-		y=247
+		x=152
+		y=53
 		width=100
-		height=20
+		height=214
 	}
-	monitor {
-		chan="$(ioc):MEM_FREE"
-		clr=14
-		bclr=9
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=177
+				y=53
+				width=50
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Value"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=152
+				y=77
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(ioc):CA_CLNT_CNT"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=152
+				y=107
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(ioc):CA_CONN_CNT"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=152
+				y=137
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(ioc):SUSP_TASK_CNT"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=152
+				y=220
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(ioc):FD_FREE"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=152
+				y=167
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(ioc):IOC_CPU_LOAD"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=152
+				y=247
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(ioc):MEM_FREE"
+				clr=14
+				bclr=9
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
 	}
 }
-"text entry" {
+composite {
 	object {
-		x=216
-		y=246
+		x=257
+		y=53
 		width=56
-		height=20
+		height=213
 	}
-	control {
-		chan="$(ioc):MEM_FREE.LOLO"
-		clr=14
-		bclr=7
-	}
-	limits {
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=260
+				y=195
+				width=50
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="LOLO"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=260
+				y=53
+				width=50
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="HIGH"
+			align="horiz. centered"
+		}
+		"text entry" {
+			object {
+				x=257
+				y=77
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):CA_CLNT_CNT.HIGH"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=257
+				y=107
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):CA_CONN_CNT.HIGH"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=257
+				y=167
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):IOC_CPU_LOAD.HIGH"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=257
+				y=219
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):FD_FREE.LOLO"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=257
+				y=246
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):MEM_FREE.LOLO"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
 	}
 }
-"text entry" {
+composite {
 	object {
-		x=277
-		y=246
+		x=318
+		y=53
 		width=56
-		height=20
+		height=213
 	}
-	control {
-		chan="$(ioc):MEM_FREE.LOW"
-		clr=14
-		bclr=7
-	}
-	limits {
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=321
+				y=195
+				width=50
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="LOW"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=321
+				y=53
+				width=50
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="HIHI"
+			align="horiz. centered"
+		}
+		"text entry" {
+			object {
+				x=318
+				y=77
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):CA_CLNT_CNT.HIHI"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=318
+				y=107
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):CA_CONN_CNT.HIHI"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=318
+				y=137
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):SUSP_TASK_CNT.HIHI"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=318
+				y=167
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):IOC_CPU_LOAD.HIHI"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=318
+				y=219
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):FD_FREE.LOW"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=318
+				y=246
+				width=56
+				height=20
+			}
+			control {
+				chan="$(ioc):MEM_FREE.LOW"
+				clr=14
+				bclr=7
+			}
+			limits {
+			}
+		}
 	}
 }
