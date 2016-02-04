@@ -29,6 +29,7 @@ SRCS += devIocStatsTest.c
 # OSD parts
 SRCS += osdCpuUsage.c
 SRCS += osdCpuUtilization.c
+SRCS += osdCpuTemp.c
 SRCS += osdFdUsage.c
 SRCS += osdMemUsage.c
 SRCS += osdWorkspaceUsage.c

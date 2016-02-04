@@ -29,6 +29,7 @@
 #define CA_TYPE		3
 #define STATIC_TYPE	4
 #define TOTAL_TYPES	5
+#define TEMP_TYPES      6
 
 /* Names of environment variables (may be redefined in OSD include) */
 #define STARTUP  "STARTUP"
@@ -65,12 +66,20 @@ typedef struct {
     double iocLoad;
 } loadInfo;
 
+typedef struct {
+  double cpuTemp;
+} tempInfo;
+
 /* Functions (API) for OSD layer */
 /* All funcs return 0 (OK) / -1 (ERROR) */
 
 /* CPU Load */
 extern int devIocStatsInitCpuUsage (void);
 extern int devIocStatsGetCpuUsage (loadInfo *pval);
+
+/* CPU Temp */
+extern int devIocStatsInitCpuTemp (void);
+extern int devIocStatsGetCpuTemp (tempInfo *pval);
 
 /* IOC Load (CPU utilization by this IOC) */
 extern int devIocStatsInitCpuUtilization (loadInfo *pval);

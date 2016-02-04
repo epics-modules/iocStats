@@ -197,6 +197,7 @@ static void statsWSAllocBytes(double*);
 static void statsWSTotalBytes(double*);
 static void statsCpuUsage(double*);
 static void statsCpuUtilization(double*);
+static void statsCpuTemp(double *);
 static void statsNoOfCpus(double*);
 static void statsSuspendedTasks(double*);
 static void statsFdUsage(double*);
@@ -212,6 +213,7 @@ static void statsIFOErrs(double *);
 static void statsRecords(double *);
 static void statsPID(double *);
 static void statsPPID(double *);
+
 
 struct {
 	char *name;
@@ -252,6 +254,7 @@ static validGetParms statsGetParms[]={
 	{ "records",			statsRecords,           STATIC_TYPE },
 	{ "proc_id",			statsPID,               STATIC_TYPE },
 	{ "parent_proc_id",		statsPPID,              STATIC_TYPE },
+	{ "temp",			statsCpuTemp,           TEMP_TYPES },
 	{ NULL,NULL,0 }
 };
 
@@ -276,6 +279,7 @@ static unsigned cainfo_clients = 0;
 static unsigned cainfo_connex  = 0;
 static epicsTimerQueueId timerQ = 0;
 static epicsMutexId scan_mutex;
+static tempInfo tempinfo = {0.0};
 
 /* ---------------------------------------------------------------------- */
 
@@ -359,6 +363,15 @@ static void scan_time(int type)
         epicsMutexUnlock(scan_mutex);
 	break;
       }
+    case TEMP_TYPES:
+      {
+	tempInfo tempinfo_local = {0.0};
+        devIocStatsGetCpuTemp(&tempinfo_local);
+	epicsMutexLock(scan_mutex);
+	tempinfo       = tempinfo_local;
+        epicsMutexUnlock(scan_mutex);
+	break;
+      }
       default:
         break;
     }
@@ -395,6 +408,7 @@ static long ai_init(int pass)
     scan_mutex = epicsMutexMustCreate();
     devIocStatsInitCpuUsage();
     devIocStatsInitCpuUtilization(&loadinfo);
+    devIocStatsInitCpuTemp();
     devIocStatsInitFDUsage();
     devIocStatsInitMemUsage();
     devIocStatsInitWorkspaceUsage();
@@ -738,4 +752,8 @@ static void statsPPID(double *val)
 {
     *val = 0;
     devIocStatsGetPPID(val);
+}
+static void statsCpuTemp(double* val)
+{
+    *val = tempinfo.cpuTemp;
 }

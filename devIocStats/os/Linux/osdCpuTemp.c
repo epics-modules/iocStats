@@ -1,0 +1,49 @@
+/*************************************************************************\
+* Copyright (c) 2009-2010 Helmholtz-Zentrum Berlin
+*     fuer Materialien und Energie GmbH.
+* Copyright (c) 2002 The University of Chicago, as Operator of Argonne
+*     National Laboratory.
+* Copyright (c) 2002 The Regents of the University of California, as
+*     Operator of Los Alamos National Laboratory.
+* EPICS BASE Versions 3.13.7
+* and higher are distributed subject to a Software License Agreement found
+* in file LICENSE that is included with this distribution.
+\*************************************************************************/
+
+/* osdCpuTemp.c - CPU Temperature: Linux implementation = use /sys/class/thermal/thermal_zone0/temp  */
+
+/*
+ *  Author: Jeong Han Lee (ESS)
+ *
+ *  Modification History
+ *
+ */
+
+#include <stdio.h>
+#include <fcntl.h>
+
+#include <devIocStats.h>
+
+static double cpuTempFromSysfs (void) {
+  static char statfile[] = "/sys/class/thermal/thermal_zone0/temp";
+  long temp = 0;
+  FILE *fp;
+  
+  fp = fopen(statfile, O_RDONLY);
+  if (fp) {
+    fscanf(fp, "%lu", &temp);
+    fclose(fp);
+  }
+  return temp;
+}
+
+int devIocStatsInitCpuTemp (void) {
+  return 0;
+}
+
+int devIocStatsGetCpuTemp (tempInfo *pval) {
+  /* double curTemp; */
+  /* curTemp = cpuTempFromSysfs(); */
+  pval->cpuTemp = cpuTempFromSysfs();
+  return 0;
+}
