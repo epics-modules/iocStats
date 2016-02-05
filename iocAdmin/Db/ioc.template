@@ -168,12 +168,12 @@ record(ai, "$(IOCNAME):CPU_CNT") {
 }
 
 
-record(ai, "$(IOCNAME):IOC_CPU_TEMP") {
-  field(DESC, "IOC CPU Temperature")
+record(ai, "$(IOCNAME):SYS_ZONE_TEMP") {
+  field(DESC, "System Thermal Zone0 Temperature")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
-  field(INP, "@ioc_cputemp")
-  field(EGU, "mC")
+  field(INP, "@sys_zonetemp")
+  field(EGU, "mCelsius")
   field(PREC, "1")
 }
 

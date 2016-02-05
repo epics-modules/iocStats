@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 04/16/2015
+README_devIocStats		Last Updated 02/05/2016
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -85,6 +85,7 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
                 no_of_cpus       - number of CPU cores on the system
                 ioc_cpuload      - estimated percent CPU utilization by this 
 				   IOC
+   		sys_zonetemp     - Thermal Zone 0 temperature 
 		fd		 - number of file descriptors currently in use
 		max_fd		 - max number of file descriptors
 	  Note - free_bytes, total_bytes, sys_cpuload, no_of_cpus

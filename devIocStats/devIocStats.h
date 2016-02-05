@@ -67,9 +67,11 @@ typedef struct {
     double iocLoad;
 } loadInfo;
 
+
 typedef struct {
-  int cpuTemp;
+  int sysZoneTemp;
 } tempInfo;
+
 
 /* Functions (API) for OSD layer */
 /* All funcs return 0 (OK) / -1 (ERROR) */
@@ -77,10 +79,6 @@ typedef struct {
 /* CPU Load */
 extern int devIocStatsInitCpuUsage (void);
 extern int devIocStatsGetCpuUsage (loadInfo *pval);
-
-/* CPU Temp */
-extern int devIocStatsInitCpuTemp (void);
-extern int devIocStatsGetCpuTemp (tempInfo *pval);
 
 /* IOC Load (CPU utilization by this IOC) */
 extern int devIocStatsInitCpuUtilization (loadInfo *pval);
@@ -121,6 +119,11 @@ extern int devIocStatsGetStartupScriptDefault (char **pval);
 extern int devIocStatsInitSystemInfo (void);
 extern int devIocStatsGetBSPVersion (char **pval);
 extern int devIocStatsGetKernelVersion (char **pval);
+
+/* System Thermal Zone Temperature */
+extern int devIocStatsInitSysZoneTemp (void);
+extern int devIocStatsGetSysZoneTemp (tempInfo *pval);
+
 
 /* Host Info */
 extern int devIocStatsInitHostInfo (void);

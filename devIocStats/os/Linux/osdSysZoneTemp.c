@@ -10,7 +10,7 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdCpuTemp.c - CPU Temperature: Linux implementation = use /sys/class/thermal/thermal_zone0/temp  */
+/* osdSysZoneTemp.c - Temperature of the themal zone 0 : Linux implementation = use /sys/class/thermal/thermal_zone0/temp  */
 
 /*
  *  Author: Jeong Han Lee (ESS)
@@ -20,15 +20,14 @@
  */
 
 #include <stdio.h>
-
 #include "devIocStats.h"
 
 
-int devIocStatsInitCpuTemp (void) {
+int devIocStatsInitSysZoneTemp (void) {
   return 0;
 }
 
-int devIocStatsGetCpuTemp (tempInfo *pval) {
+int devIocStatsGetSysZoneTemp (tempInfo *pval) {
   static char statfile[] = "/sys/class/thermal/thermal_zone0/temp";
   int temp = 0;
   FILE *fp;
@@ -38,6 +37,6 @@ int devIocStatsGetCpuTemp (tempInfo *pval) {
     fclose(fp);
   }
 
-  pval->cpuTemp = temp;
+  pval->sysZoneTemp = temp;
   return 0;
 }

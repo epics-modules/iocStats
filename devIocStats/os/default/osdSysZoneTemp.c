@@ -4,7 +4,7 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdCpuTemp.c - CPU Temperature: default implementation = do nothing */
+/* osdSysZoneTemp.c - Temperature of the themal zone 0 : default implementation = do nothing */
 
 /*
  *  Author: Jeong Han Lee (ESS)
@@ -13,7 +13,7 @@
  *
  */
 
-#include <devIocStats.h>
+#include "devIocStats.h"
 
-int devIocStatsInitCpuTemp (void) { return 0; }
-int devIocStatsGetCpuTemp (tempInfo *pval) { return -1; }
+int devIocStatsInitSysZoneTemp (void) { return 0; }
+int devIocStatsGetSysZoneTemp (tempInfo *pval) { return -1; }
