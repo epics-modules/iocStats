@@ -223,6 +223,7 @@ struct {
 	{ "cpu_scan_rate",	20.0 },
 	{ "fd_scan_rate",	10.0 },
 	{ "ca_scan_rate", 	15.0 },
+	{ "cputemp_scan_rate", 	20.0 },
 	{ NULL,			0.0  },
 };
 
@@ -254,7 +255,7 @@ static validGetParms statsGetParms[]={
 	{ "records",			statsRecords,           STATIC_TYPE },
 	{ "proc_id",			statsPID,               STATIC_TYPE },
 	{ "parent_proc_id",		statsPPID,              STATIC_TYPE },
-	{ "temp",			statsCpuTemp,           TEMP_TYPES },
+	{ "ioc_cputemp",		statsCpuTemp,           TEMP_TYPE },
 	{ NULL,NULL,0 }
 };
 
@@ -279,7 +280,7 @@ static unsigned cainfo_clients = 0;
 static unsigned cainfo_connex  = 0;
 static epicsTimerQueueId timerQ = 0;
 static epicsMutexId scan_mutex;
-static tempInfo tempinfo = {0.0};
+static tempInfo tempinfo = {0};
 
 /* ---------------------------------------------------------------------- */
 
@@ -363,9 +364,9 @@ static void scan_time(int type)
         epicsMutexUnlock(scan_mutex);
 	break;
       }
-    case TEMP_TYPES:
+    case TEMP_TYPE:
       {
-	tempInfo tempinfo_local = {0.0};
+	tempInfo tempinfo_local = {0};
         devIocStatsGetCpuTemp(&tempinfo_local);
 	epicsMutexLock(scan_mutex);
 	tempinfo       = tempinfo_local;

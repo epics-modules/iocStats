@@ -20,30 +20,24 @@
  */
 
 #include <stdio.h>
-#include <fcntl.h>
 
-#include <devIocStats.h>
+#include "devIocStats.h"
 
-static double cpuTempFromSysfs (void) {
-  static char statfile[] = "/sys/class/thermal/thermal_zone0/temp";
-  long temp = 0;
-  FILE *fp;
-  
-  fp = fopen(statfile, O_RDONLY);
-  if (fp) {
-    fscanf(fp, "%lu", &temp);
-    fclose(fp);
-  }
-  return temp;
-}
 
 int devIocStatsInitCpuTemp (void) {
   return 0;
 }
 
 int devIocStatsGetCpuTemp (tempInfo *pval) {
-  /* double curTemp; */
-  /* curTemp = cpuTempFromSysfs(); */
-  pval->cpuTemp = cpuTempFromSysfs();
+  static char statfile[] = "/sys/class/thermal/thermal_zone0/temp";
+  int temp = 0;
+  FILE *fp;
+  fp = fopen(statfile, "r");
+  if (fp) {
+    fscanf(fp, "%d", &temp);
+    fclose(fp);
+  }
+
+  pval->cpuTemp = temp;
   return 0;
 }

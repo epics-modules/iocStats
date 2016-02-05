@@ -28,8 +28,9 @@
 #define FD_TYPE		2
 #define CA_TYPE		3
 #define STATIC_TYPE	4
-#define TOTAL_TYPES	5
-#define TEMP_TYPES      6
+#define TEMP_TYPE       5
+#define TOTAL_TYPES	6
+
 
 /* Names of environment variables (may be redefined in OSD include) */
 #define STARTUP  "STARTUP"
@@ -67,7 +68,7 @@ typedef struct {
 } loadInfo;
 
 typedef struct {
-  double cpuTemp;
+  int cpuTemp;
 } tempInfo;
 
 /* Functions (API) for OSD layer */
