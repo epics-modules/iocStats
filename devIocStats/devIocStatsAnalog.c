@@ -760,5 +760,5 @@ static void statsPPID(double *val)
 }
 static void statsZoneTemperature(double* val)
 {
-    *val = tempinfo.sysZoneTemp;
+  *val = (double) tempinfo.sysZoneTemp;
 }
