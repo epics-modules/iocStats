@@ -227,7 +227,7 @@ struct {
 	{ "cpu_scan_rate",	20.0 },
 	{ "fd_scan_rate",	10.0 },
 	{ "ca_scan_rate", 	15.0 },
-	{ "temp_scan_rate", 	20.0 },
+	{ "cpu_scan_rate", 	20.0 },
 	{ NULL,			0.0  },
 };
 
