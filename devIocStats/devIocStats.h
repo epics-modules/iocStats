@@ -28,8 +28,7 @@
 #define FD_TYPE		2
 #define CA_TYPE		3
 #define STATIC_TYPE	4
-#define TEMP_TYPE       5
-#define TOTAL_TYPES	6
+#define TOTAL_TYPES	5
 
 
 /* Names of environment variables (may be redefined in OSD include) */
@@ -84,6 +83,13 @@ extern int devIocStatsGetCpuUsage (loadInfo *pval);
 extern int devIocStatsInitCpuUtilization (loadInfo *pval);
 extern int devIocStatsGetCpuUtilization (loadInfo *pval);
 
+
+
+/* System Thermal Zone Temperature */
+extern int devIocStatsInitSysZoneTemp (void);
+extern int devIocStatsGetSysZoneTemp (tempInfo *pval);
+
+
 /* FD Usage */
 extern int devIocStatsInitFDUsage (void);
 extern int devIocStatsGetFDUsage (fdInfo *pval);
@@ -119,10 +125,6 @@ extern int devIocStatsGetStartupScriptDefault (char **pval);
 extern int devIocStatsInitSystemInfo (void);
 extern int devIocStatsGetBSPVersion (char **pval);
 extern int devIocStatsGetKernelVersion (char **pval);
-
-/* System Thermal Zone Temperature */
-extern int devIocStatsInitSysZoneTemp (void);
-extern int devIocStatsGetSysZoneTemp (tempInfo *pval);
 
 
 /* Host Info */

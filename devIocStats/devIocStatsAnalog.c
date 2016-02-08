@@ -107,7 +107,6 @@
 		20 - cpu scan rate
 		10 - fd scan rate
 		15 - CA scan rate
-		20 - temperature scan rate
 */
 
 #include <string.h>
@@ -227,7 +226,6 @@ struct {
 	{ "cpu_scan_rate",	20.0 },
 	{ "fd_scan_rate",	10.0 },
 	{ "ca_scan_rate", 	15.0 },
-	{ "cpu_scan_rate", 	20.0 },
 	{ NULL,			0.0  },
 };
 
@@ -259,7 +257,7 @@ static validGetParms statsGetParms[]={
 	{ "records",			statsRecords,           STATIC_TYPE },
 	{ "proc_id",			statsPID,               STATIC_TYPE },
 	{ "parent_proc_id",		statsPPID,              STATIC_TYPE },
-	{ "sys_zonetemp", 	        statsZoneTemperature,   TEMP_TYPE },
+	{ "sys_zonetemp", 	        statsZoneTemperature,   LOAD_TYPE },
 	{ NULL,NULL,0 }
 };
 
@@ -339,12 +337,15 @@ static void scan_time(int type)
       {
 	loadInfo loadinfo_local = {1,0.,0.};
 	int      susptasknumber_local = 0;
+	tempInfo tempinfo_local = {0};
         devIocStatsGetCpuUsage(&loadinfo_local);
         devIocStatsGetCpuUtilization(&loadinfo_local);
         devIocStatsGetSuspTasks(&susptasknumber_local);
+        devIocStatsGetSysZoneTemp(&tempinfo_local);
         epicsMutexLock(scan_mutex);
 	loadinfo       = loadinfo_local;
 	susptasknumber = susptasknumber_local;
+	tempinfo       = tempinfo_local;
         epicsMutexUnlock(scan_mutex);
 	break;
       }
@@ -368,16 +369,7 @@ static void scan_time(int type)
         epicsMutexUnlock(scan_mutex);
 	break;
       }
-    case TEMP_TYPE:
-      {
-	tempInfo tempinfo_local = {0};
-        devIocStatsGetSysZoneTemp(&tempinfo_local);
-	epicsMutexLock(scan_mutex);
-	tempinfo       = tempinfo_local;
-        epicsMutexUnlock(scan_mutex);
-	break;
-      }
-      default:
+    default:
         break;
     }
     scanIoRequest(scan[type].ioscan);
@@ -760,5 +752,6 @@ static void statsPPID(double *val)
 }
 static void statsZoneTemperature(double* val)
 {
+  
   *val = (double) tempinfo.sysZoneTemp;
 }
