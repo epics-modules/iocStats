@@ -30,6 +30,7 @@
 #define STATIC_TYPE	4
 #define TOTAL_TYPES	5
 
+
 /* Names of environment variables (may be redefined in OSD include) */
 #define STARTUP  "STARTUP"
 #define ST_CMD   "ST_CMD"
@@ -65,6 +66,12 @@ typedef struct {
     double iocLoad;
 } loadInfo;
 
+
+typedef struct {
+  int sysZoneTemp;
+} tempInfo;
+
+
 /* Functions (API) for OSD layer */
 /* All funcs return 0 (OK) / -1 (ERROR) */
 
@@ -75,6 +82,10 @@ extern int devIocStatsGetCpuUsage (loadInfo *pval);
 /* IOC Load (CPU utilization by this IOC) */
 extern int devIocStatsInitCpuUtilization (loadInfo *pval);
 extern int devIocStatsGetCpuUtilization (loadInfo *pval);
+
+/* System Thermal Zone Temperature */
+extern int devIocStatsInitSysZoneTemp (void);
+extern int devIocStatsGetSysZoneTemp (tempInfo *pval);
 
 /* FD Usage */
 extern int devIocStatsInitFDUsage (void);
@@ -111,6 +122,7 @@ extern int devIocStatsGetStartupScriptDefault (char **pval);
 extern int devIocStatsInitSystemInfo (void);
 extern int devIocStatsGetBSPVersion (char **pval);
 extern int devIocStatsGetKernelVersion (char **pval);
+
 
 /* Host Info */
 extern int devIocStatsInitHostInfo (void);

@@ -10,29 +10,30 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
+/* osdSysZoneTemp.c - Temperature of the themal zone 0 : Linux implementation = use /sys/class/thermal/thermal_zone0/temp  */
+
 /*
- *  Author: Eric Norum (LBNL)
+ *  Author: Jeong Han Lee (ESS)
  *
  *  Modification History
- *  2010-07-09 Eric Norum (LBNL)
- *     Minor modificaction to Ralph Lange's posix version
- *  2010-07-14  Ralph Lange (HZB/BESSY)
- *     Added CPU Utilization (IOC load), number of CPUs
- *  2016-02-05  Jeong Han Lee (ESS)
- *     Replaced _SC_NPROCESSORS_CONF with _SC_NPROCESSORS_ONLN
+ *
  */
 
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include <stdio.h>
+#include "devIocStats.h"
 
-#ifdef SYSBOOTLINE_NEEDED
-static char *sysBootLine = "<not implemented>";
-#endif
-#define FDTABLE_INUSE(i) (0)
-#define MAX_FILES 0
-#define CLUSTSIZES 2
-#define NO_OF_CPUS sysconf(_SC_NPROCESSORS_ONLN)
-#define TICKS_PER_SEC sysconf(_SC_CLK_TCK)
 
-#include <sys/reboot.h>
+int devIocStatsInitSysZoneTemp (void) { return 0; }
+
+int devIocStatsGetSysZoneTemp (tempInfo *pval) {
+  static char statfile[] = "/sys/class/thermal/thermal_zone0/temp";
+  int temp = 0;
+  FILE *fp;
+  fp = fopen(statfile, "r");
+  if (fp) {
+    fscanf(fp, "%d", &temp);
+    fclose(fp);
+  }
+  pval->sysZoneTemp = temp;
+  return 0;
+}

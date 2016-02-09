@@ -48,6 +48,8 @@
  *              Added process ID and parent process ID.
  *              Perform statistics in a task separate from the low priority
  *              callback task.
+ *  2016-02-05  Jeong Han Lee (ESS):
+ *              Added the thermal zone 0 temperature.
  */
 
 /*
@@ -66,6 +68,7 @@
                 ioc_cpuload      - estimated percent CPU utilization by this IOC
                 no_of_cpus       - number of CPU cores on the system
               ( cpu		 - same as ioc_cpuload [for compatibility] )
+		sys_zonetemp     - temperature of thermal zone 0
                 suspended_tasks	 - number of suspended tasks
 		fd		 - number of file descriptors currently in use
 		max_fd		 - max number of file descriptors
@@ -170,7 +173,7 @@ struct scanInfo
 	epicsTimerId  wd;
 	volatile int total;			/* total users connected */
 	volatile int on;			/* watch dog on? */
-	double rate_sec;	/* seconds */
+        double rate_sec;	                /* seconds */
 };
 typedef struct scanInfo scanInfo;
 
@@ -197,6 +200,7 @@ static void statsWSAllocBytes(double*);
 static void statsWSTotalBytes(double*);
 static void statsCpuUsage(double*);
 static void statsCpuUtilization(double*);
+static void statsZoneTemperature(double *);
 static void statsNoOfCpus(double*);
 static void statsSuspendedTasks(double*);
 static void statsFdUsage(double*);
@@ -212,6 +216,7 @@ static void statsIFOErrs(double *);
 static void statsRecords(double *);
 static void statsPID(double *);
 static void statsPPID(double *);
+
 
 struct {
 	char *name;
@@ -252,6 +257,7 @@ static validGetParms statsGetParms[]={
 	{ "records",			statsRecords,           STATIC_TYPE },
 	{ "proc_id",			statsPID,               STATIC_TYPE },
 	{ "parent_proc_id",		statsPPID,              STATIC_TYPE },
+	{ "sys_zonetemp", 	        statsZoneTemperature,   LOAD_TYPE },
 	{ NULL,NULL,0 }
 };
 
@@ -276,6 +282,7 @@ static unsigned cainfo_clients = 0;
 static unsigned cainfo_connex  = 0;
 static epicsTimerQueueId timerQ = 0;
 static epicsMutexId scan_mutex;
+static tempInfo tempinfo = {0};
 
 /* ---------------------------------------------------------------------- */
 
@@ -330,12 +337,15 @@ static void scan_time(int type)
       {
 	loadInfo loadinfo_local = {1,0.,0.};
 	int      susptasknumber_local = 0;
+	tempInfo tempinfo_local = {0};
         devIocStatsGetCpuUsage(&loadinfo_local);
         devIocStatsGetCpuUtilization(&loadinfo_local);
         devIocStatsGetSuspTasks(&susptasknumber_local);
+        devIocStatsGetSysZoneTemp(&tempinfo_local);
         epicsMutexLock(scan_mutex);
 	loadinfo       = loadinfo_local;
 	susptasknumber = susptasknumber_local;
+	tempinfo       = tempinfo_local;
         epicsMutexUnlock(scan_mutex);
 	break;
       }
@@ -359,7 +369,7 @@ static void scan_time(int type)
         epicsMutexUnlock(scan_mutex);
 	break;
       }
-      default:
+    default:
         break;
     }
     scanIoRequest(scan[type].ioscan);
@@ -395,6 +405,7 @@ static long ai_init(int pass)
     scan_mutex = epicsMutexMustCreate();
     devIocStatsInitCpuUsage();
     devIocStatsInitCpuUtilization(&loadinfo);
+    devIocStatsInitSysZoneTemp();
     devIocStatsInitFDUsage();
     devIocStatsInitMemUsage();
     devIocStatsInitWorkspaceUsage();
@@ -738,4 +749,8 @@ static void statsPPID(double *val)
 {
     *val = 0;
     devIocStatsGetPPID(val);
+}
+static void statsZoneTemperature(double* val)
+{
+  *val = (double) tempinfo.sysZoneTemp;
 }

@@ -158,12 +158,31 @@ record(ai, "$(IOCNAME):IOC_CPU_LOAD") {
   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
+
+
 record(ai, "$(IOCNAME):CPU_CNT") {
   field(DESC, "Number of CPUs")
   field(DTYP, "IOC stats")
   field(INP, "@no_of_cpus")
   field(PINI, "YES")
 }
+
+
+record(ai, "$(IOCNAME):SYS_ZONE_TEMP") {
+    field(DESC, "System Thermal Zone0 Temperature")
+    field(SCAN, "I/O Intr")
+    field(DTYP, "IOC stats")
+    field( INP, "@sys_zonetemp")
+    field( EGU, "mCelsius")
+    field(LOPR, "0")
+    field(HIHI, "90000")
+    field(HIGH, "80000")
+    field(HHSV, "MAJOR")
+    field( HSV, "MINOR")
+    info(autosaveFields_pass0, "LOPR HIHI HIGH HHSV HSV")
+}
+
+
 
 record(ai, "$(IOCNAME):SUSP_TASK_CNT") {
   field(DESC, "Number Suspended Tasks")
