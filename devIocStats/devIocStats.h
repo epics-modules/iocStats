@@ -83,12 +83,9 @@ extern int devIocStatsGetCpuUsage (loadInfo *pval);
 extern int devIocStatsInitCpuUtilization (loadInfo *pval);
 extern int devIocStatsGetCpuUtilization (loadInfo *pval);
 
-
-
 /* System Thermal Zone Temperature */
 extern int devIocStatsInitSysZoneTemp (void);
 extern int devIocStatsGetSysZoneTemp (tempInfo *pval);
-
 
 /* FD Usage */
 extern int devIocStatsInitFDUsage (void);

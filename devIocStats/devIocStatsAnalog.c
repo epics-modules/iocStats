@@ -173,7 +173,7 @@ struct scanInfo
 	epicsTimerId  wd;
 	volatile int total;			/* total users connected */
 	volatile int on;			/* watch dog on? */
-	double rate_sec;	/* seconds */
+        double rate_sec;	                /* seconds */
 };
 typedef struct scanInfo scanInfo;
 
@@ -752,6 +752,5 @@ static void statsPPID(double *val)
 }
 static void statsZoneTemperature(double* val)
 {
-  
   *val = (double) tempinfo.sysZoneTemp;
 }

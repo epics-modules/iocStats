@@ -23,9 +23,7 @@
 #include "devIocStats.h"
 
 
-int devIocStatsInitSysZoneTemp (void) {
-  return 0;
-}
+int devIocStatsInitSysZoneTemp (void) { return 0; }
 
 int devIocStatsGetSysZoneTemp (tempInfo *pval) {
   static char statfile[] = "/sys/class/thermal/thermal_zone0/temp";
@@ -36,7 +34,6 @@ int devIocStatsGetSysZoneTemp (tempInfo *pval) {
     fscanf(fp, "%d", &temp);
     fclose(fp);
   }
-
   pval->sysZoneTemp = temp;
   return 0;
 }
