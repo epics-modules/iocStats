@@ -48,6 +48,8 @@
  *              Added process ID and parent process ID.
  *              Perform statistics in a task separate from the low priority
  *              callback task.
+ *  2016-02-25  Jeong Han Lee (ESS):
+ *              Added the thermal zone 0 temperature.
  */
 
 /*
@@ -83,6 +85,8 @@
                 workspace_alloc_bytes - number of RAM workspace allocated bytes
                 workspace_free_bytes  - number of RAM workspace free bytes
                 workspace_total_bytes - number of RAM workspace total bytes
+
+		sys_zonetemp     - temperature of thermal zone 0
 
 	ai (DTYP="IOC stats clusts"):
                 clust_info <pool> <index> <type> where:
@@ -212,6 +216,8 @@ static void statsIFOErrs(double *);
 static void statsRecords(double *);
 static void statsPID(double *);
 static void statsPPID(double *);
+static void statsZoneTemperature(double *);
+
 
 struct {
 	char *name;
@@ -252,6 +258,7 @@ static validGetParms statsGetParms[]={
 	{ "records",			statsRecords,           STATIC_TYPE },
 	{ "proc_id",			statsPID,               STATIC_TYPE },
 	{ "parent_proc_id",		statsPPID,              STATIC_TYPE },
+	{ "sys_zonetemp", 	        statsZoneTemperature,   LOAD_TYPE },
 	{ NULL,NULL,0 }
 };
 
@@ -276,6 +283,7 @@ static unsigned cainfo_clients = 0;
 static unsigned cainfo_connex  = 0;
 static epicsTimerQueueId timerQ = 0;
 static epicsMutexId scan_mutex;
+static tempInfo tempinfo = {0};
 
 /* ---------------------------------------------------------------------- */
 
@@ -330,12 +338,15 @@ static void scan_time(int type)
       {
 	loadInfo loadinfo_local = {1,0.,0.};
 	int      susptasknumber_local = 0;
+	tempInfo tempinfo_local = {0};
         devIocStatsGetCpuUsage(&loadinfo_local);
         devIocStatsGetCpuUtilization(&loadinfo_local);
         devIocStatsGetSuspTasks(&susptasknumber_local);
+	devIocStatsGetSysZoneTemp(&tempinfo_local);
         epicsMutexLock(scan_mutex);
 	loadinfo       = loadinfo_local;
 	susptasknumber = susptasknumber_local;
+	tempinfo       = tempinfo_local;
         epicsMutexUnlock(scan_mutex);
 	break;
       }
@@ -400,6 +411,7 @@ static long ai_init(int pass)
     devIocStatsInitWorkspaceUsage();
     devIocStatsInitSuspTasks();
     devIocStatsInitIFErrors();
+    devIocStatsInitSysZoneTemp();
     /* Get initial values of a few things that don't change much */
     devIocStatsGetClusterInfo(SYS_POOL, &clustinfo[SYS_POOL]);
     devIocStatsGetClusterInfo(DATA_POOL, &clustinfo[DATA_POOL]);
@@ -738,4 +750,8 @@ static void statsPPID(double *val)
 {
     *val = 0;
     devIocStatsGetPPID(val);
+}
+static void statsZoneTemperature(double* val)
+{
+  *val = (double) tempinfo.sysZoneTemp;
 }
