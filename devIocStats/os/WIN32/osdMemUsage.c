@@ -21,10 +21,13 @@
  *     Restructured OSD parts
  *
  */
+/* MEMORYSTATUSEX is only defined on XP and later so we only build for that */
+#define _WIN32_WINNT 0x501
 #include <windows.h>
+#include <winbase.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <Psapi.h>
+#include <psapi.h>
 #pragma comment (lib, "Psapi.lib")
 
 
