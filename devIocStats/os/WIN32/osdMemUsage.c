@@ -16,13 +16,17 @@
  *  Author: Ralph Lange (HZB/BESSY)
  *
  *  Modification History
+ *  2015-10-22 Keenan Lang (APS)
  *  2012-03-16 Helge Brands (PSI)
  *  2009-05-13 Ralph Lange (HZB/BESSY)
  *     Restructured OSD parts
  *
  */
-/* MEMORYSTATUSEX is only defined on XP and later so we only build for that */
-#define _WIN32_WINNT 0x501
+
+#if defined(__MINGW32__) || defined(__MINGW64__)
+#define WINVER 0x0500
+#endif
+
 #include <windows.h>
 #include <winbase.h>
 #include <stdio.h>

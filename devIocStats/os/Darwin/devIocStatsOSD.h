@@ -18,7 +18,9 @@
  *     Minor modificaction to Ralph Lange's posix version
  *  2010-07-14  Ralph Lange (HZB/BESSY)
  *     Added CPU Utilization (IOC load), number of CPUs
- *
+ *  2016-02-25  Jeong Han Lee (ESS)
+ *     Replaced _SC_NPROCESSORS_CONF with _SC_NPROCESSORS_ONLN
+ */
  */
 
 #include <string.h>
@@ -31,7 +33,7 @@ static char *sysBootLine = "<not implemented>";
 #define FDTABLE_INUSE(i) (0)
 #define MAX_FILES 0
 #define CLUSTSIZES 2
-#define NO_OF_CPUS sysconf(_SC_NPROCESSORS_CONF)
+#define NO_OF_CPUS sysconf(_SC_NPROCESSORS_ONLN)
 #define TICKS_PER_SEC sysconf(_SC_CLK_TCK)
 
 #include <sys/reboot.h>
