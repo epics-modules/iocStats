@@ -24,7 +24,7 @@
  */
 
 #if defined(__MINGW32__) || defined(__MINGW64__)
-#define WINVER 0x0500
+#define WINVER 0x0501
 #endif
 
 #include <windows.h>
