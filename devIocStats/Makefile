@@ -28,6 +28,10 @@ SRCS += devIocStatsSub.c
 SRCS += devIocStatsTest.c
 
 # OSD parts
+# Base 3.14 does not correctly define POSIX=NO for mingw
+ifeq (mingw,$(findstring mingw, $(T_A)))
+  POSIX=NO
+endif
 SRCS += osdCpuUsage.c
 SRCS += osdCpuUtilization.c
 SRCS += osdFdUsage.c
