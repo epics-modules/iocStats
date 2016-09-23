@@ -23,7 +23,7 @@
  */
 
 #include <windows.h>
-#include <epicsstdio.h>
+#include <epicsStdio.h>
 #include <devIocStats.h>
 
 static char* versionstring;

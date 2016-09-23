@@ -20,6 +20,11 @@
  *  2012-03-16 Helge Brands (PSI) 
  *
  */
+
+#if defined(__MINGW32__) || defined(__MINGW64__)
+#define WINVER 0x0501
+#endif
+
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,8 +33,8 @@
 
 //#include <iostream>
 //#include <iomanip>
-#include <Winbase.h>
-#include <Winperf.h>
+#include <winbase.h>
+#include <winperf.h>
 #pragma comment (lib, "Advapi32.lib")
 #include <devIocStats.h>
 

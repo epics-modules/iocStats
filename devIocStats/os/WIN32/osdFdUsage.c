@@ -22,6 +22,10 @@
  *
  */
 
+#if defined(__MINGW32__) || defined(__MINGW64__)
+#define WINVER 0x0501
+#endif
+
 #include <devIocStats.h>
 #include <windows.h>
 #include <stdio.h>

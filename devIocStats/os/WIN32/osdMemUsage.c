@@ -24,13 +24,14 @@
  */
 
 #if defined(__MINGW32__) || defined(__MINGW64__)
-#define WINVER 0x0500
+#define WINVER 0x0501
 #endif
 
 #include <windows.h>
+#include <winbase.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <Psapi.h>
+#include <psapi.h>
 #pragma comment (lib, "Psapi.lib")
 
 
