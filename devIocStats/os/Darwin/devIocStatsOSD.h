@@ -21,7 +21,6 @@
  *  2016-02-25  Jeong Han Lee (ESS)
  *     Replaced _SC_NPROCESSORS_CONF with _SC_NPROCESSORS_ONLN
  */
- */
 
 #include <string.h>
 #include <unistd.h>
