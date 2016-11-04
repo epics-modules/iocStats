@@ -5,40 +5,20 @@
 #NOTE: MSI moved to CONFIG_SITE.
 
 # SNCSEQ required only if testIocStatsApp will be built.
-#SNCSEQ     = /usr/local/epics/R3.14.11/modules/soft/synApps_5_5/support/seq-2-0-12
-#EPICS_BASE = /usr/local/epics/R3.14.11/base
-
-# The rest of this file is LCLS only and can be removed.
-# =============================================================
-# All needed variables come in via the following include:
-# =============================================================
-include $(TOP)/RELEASE_SITE
-
-TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
-
-# =============================================================
-# Define location of the modules tree
-# =============================================================
-EPICS_MODULES=$(MODULES_SITE_TOP)
-
 MAKE_TEST_IOC_APP=YES
 ifeq '$(MAKE_TEST_IOC_APP)' 'YES'
 # =============================================================
 # Define the version of modules needed by
 # IOC apps or other Support apps - used by testIocStatsApp
 # =============================================================
-#SNCSEQ_MODULE_VERSION=seq-R2-0-11-lcls5
-
-# ============================================================
-# External Support - used by testIocStatsApp
-# ============================================================
-#SNCSEQ=$(EPICS_MODULES)/seq/$(SNCSEQ_MODULE_VERSION)
+#SNCSEQ     = /usr/local/epics/R3.14.11/modules/soft/synApps_5_5/support/seq-2-0-12
+SNCSEQ = /afs/slac/g/spear/epics/modules/seq/seq
+#SNCSEQ = /afs/slac/g/lcls/epics/R3-15-1_1-0/modules/seq/seq-R2-1-17_1-0
+#SNCSEQ = /afs/slac/g/lcls/epics/R3-16-0/modules/seq/seq-2.2.3
 endif
-
-# =================================================================
-# Define EPICS_BASE
-# EPICS_BASE usually appears last so other apps can override stuff:
-# =================================================================
-EPICS_BASE=$(BASE_SITE_TOP)/$(EPICS_BASE_VER)
+#EPICS_BASE = /usr/local/epics/R3.14.11/base
+EPICS_BASE=/afs/slac/g/spear/epics/base
+#EPICS_BASE=/afs/slac/g/lcls/epics/R3-15-1_1-0/base/base-R3-15-1_1-0
+#EPICS_BASE=/afs/slac/g/lcls/epics/R3-16-0/base/base-R3-16-0
 
 # End of file
