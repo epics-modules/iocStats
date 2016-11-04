@@ -1,7 +1,13 @@
 # Object and generated files
 O.*/
-envPaths
+*~
+*.swp
 *BAK.adl
+cdCommands
+envPaths
+dllPath.bat
+auto_settings.sav*
+auto_positions.sav*
 
 # EPICS installation dirs
 /bin/
@@ -13,6 +19,7 @@ envPaths
 /include/
 /edl/
 /restore/
+/templates/
 
 # Local configuration
 *.local
