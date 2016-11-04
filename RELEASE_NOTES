@@ -1,6 +1,26 @@
 Release Notes for iocStats
 --------------------------
-
+iocStats-R3-1-15: Nov 3, 2016
+  * Changes by Mark Rivers:
+    - Improved the layout of the medm files to avoid overlapping widgets, etc.
+    - Added ioc_stats_reloadacf_confirm.edl to iocAdmin/srcDisplay/Makefile, 
+      and put files in that Makefile in alphabetical order to help spot 
+      missing files.  
+    - Fixes for mingw compiler.  
+      Define WINVER to be XP on MINGW to avoid compiler warnings.
+      Define WINVER to be XP (0x501) rather than WIN2K (0x500) for consistency.
+  * Changes by Keenan Lang:
+    - Define WINVER on MinGW.
+  * Changes by Tim Mooney:
+    - Don't build testIocStats unless SNCSEQ is defined in configure/RELEASE.
+  * Changes by Ronald Mercado:
+    - Fix devIocStatsGetPwd return value to make WIN32 consistent with posix.
+  * Changes by Jeong Han Lee:
+    - Replaced _SC_NPROCESSORS_CONF (The number of processors configured) 
+      with _SC_NPROCESSORS_ONLN (The number of processors currently online).
+  * Changes by S. Allison:
+    - Use standard RELEASE file instead of LCLS-style RELEASE/RELEASE_SITE.
+    - Update .gitignore.
 iocStats-R3-1-14: Apr 29, 2015
   * Change to vxWorks osdFdUsage.c to not check the first 3 FDs by Scott Baily:
     Unfortunately, the first 3 file descriptors on vxWorks are special 
