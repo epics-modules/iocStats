@@ -10,7 +10,9 @@
 #==============================================================================
 EPICS_SITE_TOP=/usr/local/lcls/epics
 BASE_SITE_TOP=/usr/local/lcls/epics/base
-MODULES_SITE_TOP=/usr/local/lcls/epics/modules/R3-14-12
 IOC_SITE_TOP=/usr/local/lcls/epics/iocTop
 EPICS_BASE_VER=base-R3-14-12
 #==============================================================================
+# This definition goes last due to the build system requiring it to be "close"
+# to its usage in configure/RELEASE
+MODULES_SITE_TOP=/usr/local/lcls/epics/modules/R3-14-12
