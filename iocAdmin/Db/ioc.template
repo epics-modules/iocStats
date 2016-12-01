@@ -361,3 +361,19 @@ record(ai, "$(IOCNAME):PARENT_ID") {
   field(DTYP, "IOC stats")
   field(INP, "@parent_proc_id")
 }
+
+
+
+record(ai, "$(IOCNAME):SYS_ZONE_TEMP") {
+    field(DESC, "System Thermal Zone0 Temperature")
+    field(SCAN, "I/O Intr")
+    field(DTYP, "IOC stats")
+    field( INP, "@sys_zonetemp")
+    field( EGU, "mCelsius")
+    field(LOPR, "0")
+    field(HIHI, "90000")
+    field(HIGH, "80000")
+    field(HHSV, "MAJOR")
+    field( HSV, "MINOR")
+    info(autosaveFields_pass0, "LOPR HIHI HIGH HHSV HSV")
+}

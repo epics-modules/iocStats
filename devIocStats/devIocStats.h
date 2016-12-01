@@ -65,6 +65,11 @@ typedef struct {
     double iocLoad;
 } loadInfo;
 
+typedef struct {
+  int sysZoneTemp;
+} tempInfo;
+
+
 /* Functions (API) for OSD layer */
 /* All funcs return 0 (OK) / -1 (ERROR) */
 
@@ -118,3 +123,7 @@ extern int devIocStatsGetPwd (char **pval);
 extern int devIocStatsGetHostname (char **pval);
 extern int devIocStatsGetPID (double *proc_id);
 extern int devIocStatsGetPPID (double *proc_id);
+
+/* System Thermal Zone Temperature */
+extern int devIocStatsInitSysZoneTemp (void);
+extern int devIocStatsGetSysZoneTemp (tempInfo *pval);

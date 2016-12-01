@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 04/16/2015
+README_devIocStats		Last Updated 02/25/2016
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -108,6 +108,7 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
                 workspace_alloc_bytes - number of RAM workspace allocated bytes
                 workspace_free_bytes  - number of RAM workspace free bytes
                 workspace_total_bytes - number of RAM workspace total bytes
+   		sys_zonetemp     - Thermal Zone 0 temperature 
 
 Analog In (ai) Records for Cluster Statistics (RTEMS and vxWorks IOCs only)
 (DTYP = "IOC stats clusts"), INP = @clust_info <pool> <index> <type> where:
