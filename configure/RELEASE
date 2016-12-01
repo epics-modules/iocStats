@@ -20,5 +20,6 @@ endif
 EPICS_BASE=/afs/slac/g/spear/epics/base
 #EPICS_BASE=/afs/slac/g/lcls/epics/R3-15-1_1-0/base/base-R3-15-1_1-0
 #EPICS_BASE=/afs/slac/g/lcls/epics/R3-16-0/base/base-R3-16-0
+-include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
 
 # End of file
