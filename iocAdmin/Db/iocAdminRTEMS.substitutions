@@ -9,44 +9,44 @@
 file ioc.template
 {
 pattern { IOCNAME , TODFORMAT           }
-	{ $(IOC)  , "%m/%d/%Y %H:%M:%S" }
+	{ "$(IOC)"  , "%m/%d/%Y %H:%M:%S" }
 }
 file iocGeneralTime.template
 {
 pattern { IOCNAME }
-	{ $(IOC)  }
+	{ "$(IOC)"  }
 }
 file iocRTOS.template
 {
 pattern { IOCNAME , SYS_MBUF_FLNK     }
-	{ $(IOC)  , $(IOC):CLUST_1_0_0}
+	{ "$(IOC)"  , "$(IOC):CLUST_1_0_0"}
 }
 file iocRTEMSOnly.template
 {
 pattern { IOCNAME }
-	{ $(IOC)  }
+	{ "$(IOC)"  }
 }
 file iocEnvVar.template
 {
 pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
-	{ $(IOC) , CA_ADDR_LIST , EPICS_CA_ADDR_LIST              , epics  } 
-	{ $(IOC) , CA_CONN_TIME , EPICS_CA_CONN_TMO               , epics  } 
-	{ $(IOC) , CA_AUTO_ADDR , EPICS_CA_AUTO_ADDR_LIST         , epics  }
-	{ $(IOC) , CA_RPTR_PORT , EPICS_CA_REPEATER_PORT          , epics  }
-	{ $(IOC) , CA_SRVR_PORT , EPICS_CA_SERVER_PORT            , epics  }
-	{ $(IOC) , CA_MAX_ARRAY , EPICS_CA_MAX_ARRAY_BYTES        , epics  }
-	{ $(IOC) , CA_SRCH_TIME , EPICS_CA_MAX_SEARCH_PERIOD      , epics  }
-	{ $(IOC) , CA_BEAC_TIME , EPICS_CA_BEACON_PERIOD          , epics  }
-	{ $(IOC) , TIMEZONE     , EPICS_TIMEZONE                  , epics  }
-	{ $(IOC) , TS_NTP_INET  , EPICS_TS_NTP_INET               , epics  }
-	{ $(IOC) , IOC_LOG_PORT , EPICS_IOC_LOG_PORT              , epics  }
-	{ $(IOC) , IOC_LOG_INET , EPICS_IOC_LOG_INET              , epics  }
+	{ "$(IOC)" , CA_ADDR_LIST , EPICS_CA_ADDR_LIST              , epics  } 
+	{ "$(IOC)" , CA_CONN_TIME , EPICS_CA_CONN_TMO               , epics  } 
+	{ "$(IOC)" , CA_AUTO_ADDR , EPICS_CA_AUTO_ADDR_LIST         , epics  }
+	{ "$(IOC)" , CA_RPTR_PORT , EPICS_CA_REPEATER_PORT          , epics  }
+	{ "$(IOC)" , CA_SRVR_PORT , EPICS_CA_SERVER_PORT            , epics  }
+	{ "$(IOC)" , CA_MAX_ARRAY , EPICS_CA_MAX_ARRAY_BYTES        , epics  }
+	{ "$(IOC)" , CA_SRCH_TIME , EPICS_CA_MAX_SEARCH_PERIOD      , epics  }
+	{ "$(IOC)" , CA_BEAC_TIME , EPICS_CA_BEACON_PERIOD          , epics  }
+	{ "$(IOC)" , TIMEZONE     , EPICS_TIMEZONE                  , epics  }
+	{ "$(IOC)" , TS_NTP_INET  , EPICS_TS_NTP_INET               , epics  }
+	{ "$(IOC)" , IOC_LOG_PORT , EPICS_IOC_LOG_PORT              , epics  }
+	{ "$(IOC)" , IOC_LOG_INET , EPICS_IOC_LOG_INET              , epics  }
 }
 file iocCluster.template
 {
 #                   Pool   Size
 pattern { IOCNAME ,  P   ,  S   , TYPE , FLNK               }
 # System Pool
-	{ $(IOC)  ,  1   ,  0   , SYS  , $(IOC):CLUST_1_1_0 }
-	{ $(IOC)  ,  1   ,  1   , SYS  , ""                 }
+	{ "$(IOC)"  ,  1   ,  0   , SYS  , "$(IOC):CLUST_1_1_0" }
+	{ "$(IOC)"  ,  1   ,  1   , SYS  , ""                 }
 }

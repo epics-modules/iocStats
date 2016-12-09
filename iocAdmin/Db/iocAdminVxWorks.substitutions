@@ -9,59 +9,59 @@
 file ioc.template
 {
 pattern { IOCNAME , TODFORMAT           }
-	{ $(IOC)  , "%m/%d/%Y %H:%M:%S" }
+	{ "$(IOC)"  , "%m/%d/%Y %H:%M:%S" }
 }
 file iocGeneralTime.template
 {
 pattern { IOCNAME }
-	{ $(IOC)  }
+	{ "$(IOC)"  }
 }
 file iocRTOS.template
 {
 pattern { IOCNAME , SYS_MBUF_FLNK     }
-	{ $(IOC)  , $(IOC):CLUST_1_0_0}
+	{ "$(IOC)"  , "$(IOC):CLUST_1_0_0"}
 }
 file iocVxWorksOnly.template
 {
 pattern { IOCNAME , DAT_MBUF_FLNK     }
-	{ $(IOC)  , $(IOC):CLUST_0_0_0}
+	{ "$(IOC)"  , "$(IOC):CLUST_0_0_0"}
 }
 file iocEnvVar.template
 {
 pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
-	{ $(IOC) , CA_ADDR_LIST , EPICS_CA_ADDR_LIST              , epics  } 
-	{ $(IOC) , CA_CONN_TIME , EPICS_CA_CONN_TMO               , epics  } 
-	{ $(IOC) , CA_AUTO_ADDR , EPICS_CA_AUTO_ADDR_LIST         , epics  }
-	{ $(IOC) , CA_RPTR_PORT , EPICS_CA_REPEATER_PORT          , epics  }
-	{ $(IOC) , CA_SRVR_PORT , EPICS_CA_SERVER_PORT            , epics  }
-	{ $(IOC) , CA_MAX_ARRAY , EPICS_CA_MAX_ARRAY_BYTES        , epics  }
-	{ $(IOC) , CA_SRCH_TIME , EPICS_CA_MAX_SEARCH_PERIOD      , epics  }
-	{ $(IOC) , CA_BEAC_TIME , EPICS_CA_BEACON_PERIOD          , epics  }
-	{ $(IOC) , TIMEZONE     , EPICS_TIMEZONE                  , epics  }
-	{ $(IOC) , TS_NTP_INET  , EPICS_TS_NTP_INET               , epics  }
-	{ $(IOC) , IOC_LOG_PORT , EPICS_IOC_LOG_PORT              , epics  }
-	{ $(IOC) , IOC_LOG_INET , EPICS_IOC_LOG_INET              , epics  }
+	{ "$(IOC)" , CA_ADDR_LIST , EPICS_CA_ADDR_LIST              , epics  } 
+	{ "$(IOC)" , CA_CONN_TIME , EPICS_CA_CONN_TMO               , epics  } 
+	{ "$(IOC)" , CA_AUTO_ADDR , EPICS_CA_AUTO_ADDR_LIST         , epics  }
+	{ "$(IOC)" , CA_RPTR_PORT , EPICS_CA_REPEATER_PORT          , epics  }
+	{ "$(IOC)" , CA_SRVR_PORT , EPICS_CA_SERVER_PORT            , epics  }
+	{ "$(IOC)" , CA_MAX_ARRAY , EPICS_CA_MAX_ARRAY_BYTES        , epics  }
+	{ "$(IOC)" , CA_SRCH_TIME , EPICS_CA_MAX_SEARCH_PERIOD      , epics  }
+	{ "$(IOC)" , CA_BEAC_TIME , EPICS_CA_BEACON_PERIOD          , epics  }
+	{ "$(IOC)" , TIMEZONE     , EPICS_TIMEZONE                  , epics  }
+	{ "$(IOC)" , TS_NTP_INET  , EPICS_TS_NTP_INET               , epics  }
+	{ "$(IOC)" , IOC_LOG_PORT , EPICS_IOC_LOG_PORT              , epics  }
+	{ "$(IOC)" , IOC_LOG_INET , EPICS_IOC_LOG_INET              , epics  }
 }
 file iocCluster.template
 {
 #                   Pool   Size
 pattern { IOCNAME ,  P   ,  S   , TYPE , FLNK               }
 # Data Pool
-	{ $(IOC)  ,  0   ,  0   , DAT  , $(IOC):CLUST_0_1_0 }
-	{ $(IOC)  ,  0   ,  1   , DAT  , $(IOC):CLUST_0_2_0 }
-	{ $(IOC)  ,  0   ,  2   , DAT  , $(IOC):CLUST_0_3_0 }
-	{ $(IOC)  ,  0   ,  3   , DAT  , $(IOC):CLUST_0_4_0 }
-	{ $(IOC)  ,  0   ,  4   , DAT  , $(IOC):CLUST_0_5_0 }
-	{ $(IOC)  ,  0   ,  5   , DAT  , $(IOC):CLUST_0_6_0 }
-	{ $(IOC)  ,  0   ,  6   , DAT  , $(IOC):CLUST_0_7_0 }
-	{ $(IOC)  ,  0   ,  7   , DAT  , ""                 }
+	{ "$(IOC)"  ,  0   ,  0   , DAT  , "$(IOC):CLUST_0_1_0" }
+	{ "$(IOC)"  ,  0   ,  1   , DAT  , "$(IOC):CLUST_0_2_0" }
+	{ "$(IOC)"  ,  0   ,  2   , DAT  , "$(IOC):CLUST_0_3_0" }
+	{ "$(IOC)"  ,  0   ,  3   , DAT  , "$(IOC):CLUST_0_4_0" }
+	{ "$(IOC)"  ,  0   ,  4   , DAT  , "$(IOC):CLUST_0_5_0" }
+	{ "$(IOC)"  ,  0   ,  5   , DAT  , "$(IOC):CLUST_0_6_0" }
+	{ "$(IOC)"  ,  0   ,  6   , DAT  , "$(IOC):CLUST_0_7_0" }
+	{ "$(IOC)"  ,  0   ,  7   , DAT  , ""                 }
 # System Pool
-	{ $(IOC)  ,  1   ,  0   , SYS  , $(IOC):CLUST_1_1_0 }
-	{ $(IOC)  ,  1   ,  1   , SYS  , $(IOC):CLUST_1_2_0 }
-	{ $(IOC)  ,  1   ,  2   , SYS  , $(IOC):CLUST_1_3_0 }
-	{ $(IOC)  ,  1   ,  3   , SYS  , $(IOC):CLUST_1_4_0 }
-	{ $(IOC)  ,  1   ,  4   , SYS  , $(IOC):CLUST_1_5_0 }
-	{ $(IOC)  ,  1   ,  5   , SYS  , $(IOC):CLUST_1_6_0 }
-	{ $(IOC)  ,  1   ,  6   , SYS  , $(IOC):CLUST_1_7_0 }
-	{ $(IOC)  ,  1   ,  7   , SYS  , ""                 }
+	{ "$(IOC)"  ,  1   ,  0   , SYS  , "$(IOC):CLUST_1_1_0" }
+	{ "$(IOC)"  ,  1   ,  1   , SYS  , "$(IOC):CLUST_1_2_0" }
+	{ "$(IOC)"  ,  1   ,  2   , SYS  , "$(IOC):CLUST_1_3_0" }
+	{ "$(IOC)"  ,  1   ,  3   , SYS  , "$(IOC):CLUST_1_4_0" }
+	{ "$(IOC)"  ,  1   ,  4   , SYS  , "$(IOC):CLUST_1_5_0" }
+	{ "$(IOC)"  ,  1   ,  5   , SYS  , "$(IOC):CLUST_1_6_0" }
+	{ "$(IOC)"  ,  1   ,  6   , SYS  , "$(IOC):CLUST_1_7_0" }
+	{ "$(IOC)"  ,  1   ,  7   , SYS  , ""                 }
 }
