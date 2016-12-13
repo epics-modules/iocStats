@@ -123,6 +123,7 @@
 #include <aoRecord.h>
 #include <recGbl.h>
 #include <epicsExport.h>
+#include <initHooks.h>
 
 #include "devIocStats.h"
 
@@ -276,6 +277,7 @@ static unsigned cainfo_clients = 0;
 static unsigned cainfo_connex  = 0;
 static epicsTimerQueueId timerQ = 0;
 static epicsMutexId scan_mutex;
+static int caServInitialized = 0;
 
 /* ---------------------------------------------------------------------- */
 
@@ -299,6 +301,13 @@ wdogCreate(void (*fn)(int), long arg)
 		epicsThreadOnce( &inited, timerQCreate, 0);
 
 	return epicsTimerQueueCreateTimer(timerQ, (void (*)(void*))fn, (void*)arg);
+}
+
+static void notifyOnCaServInit(initHookState state)
+{
+    if (state == initHookAfterCaServerInit) {
+        caServInitialized = 1;
+    }
 }
 
 static void scan_time(int type)
@@ -350,14 +359,20 @@ static void scan_time(int type)
       }
       case CA_TYPE:
       {
-        unsigned cainfo_clients_local = 0;
-        unsigned cainfo_connex_local  = 0;
-	casStatsFetch(&cainfo_connex_local, &cainfo_clients_local);
-        epicsMutexLock(scan_mutex);
-        cainfo_clients = cainfo_clients_local;
-        cainfo_connex  = cainfo_connex_local;
-        epicsMutexUnlock(scan_mutex);
-	break;
+          unsigned cainfo_clients_local = 0;
+          unsigned cainfo_connex_local  = 0;
+
+          /* Guard to ensure that the caServ is initialized */
+          if (!caServInitialized) {
+              break;
+          }
+
+          casStatsFetch(&cainfo_connex_local, &cainfo_clients_local);
+          epicsMutexLock(scan_mutex);
+          cainfo_clients = cainfo_clients_local;
+          cainfo_connex  = cainfo_connex_local;
+          epicsMutexUnlock(scan_mutex);
+          break;
       }
       default:
         break;
@@ -381,6 +396,8 @@ static long ai_init(int pass)
     long i;
 
     if (pass) return 0;
+
+    initHookRegister(&notifyOnCaServInit);
 
     /* Create timers */
     for (i = 0; i < TOTAL_TYPES; i++) {
