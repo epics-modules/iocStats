@@ -12,6 +12,9 @@
 
 /* devIocStatsOSD.h - Header for OS dependent implementation part */
 
+#ifndef devIocStatsOSD_H
+#define devIocStatsOSD_H
+
 #include <epicsExit.h>
 
 #ifdef SYSBOOTLINE_NEEDED
@@ -22,4 +25,11 @@ static char *sysBootLine = "<not implemented>";
 #define CLUSTSIZES 2
 #define NO_OF_CPUS 1
 #define TICKS_PER_SEC 1
-#define reboot(x) epicsExit(0)
+
+#if EPICS_VERSION_INT>=VERSION_INT(3,15,1,0)
+#  define reboot(x) epicsExitLater(0)
+#else
+#  define reboot(x) epicsExit(0)
+#endif
+
+#endif /* devIocStatsOSD_H */

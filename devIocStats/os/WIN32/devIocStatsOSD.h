@@ -46,12 +46,20 @@
  *              info of 100% free (but 100% of 0 is still 0).
  *
  */
+
+#ifndef devIocStatsOSD_H
+#define devIocStatsOSD_H
+
 #include <string.h>
 #include <stdlib.h>
 
 #include <epicsExit.h>
 
-
-
 #define CLUSTSIZES 2
-#define reboot(x) epicsExit(0)
+#if EPICS_VERSION_INT>=VERSION_INT(3,15,1,0)
+#  define reboot(x) epicsExitLater(0)
+#else
+#  define reboot(x) epicsExit(0)
+#endif
+
+#endif /* devIocStatsOSD_H */
