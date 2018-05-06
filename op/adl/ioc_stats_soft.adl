@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/devel/devIocStats-3-1-14/op/adl/ioc_stats_soft.adl"
-	version=030107
+	name="/home/epics/devel/devIocStats-3-1-15/op/adl/ioc_stats_soft.adl"
+	version=030109
 }
 display {
 	object {
-		x=570
-		y=161
+		x=807
+		y=119
 		width=540
 		height=560
 	}
@@ -103,7 +103,7 @@ text {
 	object {
 		x=210
 		y=8
-		width=84
+		width=250
 		height=25
 	}
 	"basic attribute" {
@@ -126,7 +126,7 @@ text {
 	object {
 		x=10
 		y=48
-		width=110
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -138,7 +138,7 @@ text {
 	object {
 		x=10
 		y=68
-		width=110
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -150,7 +150,7 @@ text {
 	object {
 		x=10
 		y=88
-		width=110
+		width=63
 		height=15
 	}
 	"basic attribute" {
@@ -162,7 +162,7 @@ text {
 	object {
 		x=10
 		y=108
-		width=110
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -174,7 +174,7 @@ text {
 	object {
 		x=10
 		y=128
-		width=110
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -186,7 +186,7 @@ text {
 	object {
 		x=10
 		y=148
-		width=110
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -198,7 +198,7 @@ text {
 	object {
 		x=10
 		y=168
-		width=110
+		width=81
 		height=15
 	}
 	"basic attribute" {
@@ -210,7 +210,7 @@ text {
 	object {
 		x=10
 		y=188
-		width=110
+		width=72
 		height=15
 	}
 	"basic attribute" {
@@ -237,7 +237,7 @@ text {
 	object {
 		x=340
 		y=52
-		width=120
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -249,7 +249,7 @@ text {
 	object {
 		x=340
 		y=82
-		width=120
+		width=117
 		height=15
 	}
 	"basic attribute" {
@@ -261,7 +261,7 @@ text {
 	object {
 		x=340
 		y=112
-		width=120
+		width=108
 		height=15
 	}
 	"basic attribute" {
@@ -281,6 +281,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -296,6 +297,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -311,6 +313,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -326,6 +329,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -341,6 +345,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -356,6 +361,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -371,6 +377,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -386,6 +393,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -498,7 +506,7 @@ text {
 	object {
 		x=6
 		y=339
-		width=110
+		width=117
 		height=15
 	}
 	"basic attribute" {
@@ -510,7 +518,7 @@ text {
 	object {
 		x=6
 		y=380
-		width=150
+		width=189
 		height=15
 	}
 	"basic attribute" {
@@ -522,7 +530,7 @@ text {
 	object {
 		x=6
 		y=413
-		width=150
+		width=126
 		height=15
 	}
 	"basic attribute" {
@@ -542,6 +550,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -558,6 +567,7 @@ text {
 		bclr=4
 	}
 	align="horiz. right"
+	format="string"
 	limits {
 	}
 }
@@ -574,6 +584,7 @@ text {
 		bclr=4
 	}
 	align="horiz. right"
+	format="string"
 	limits {
 	}
 }
@@ -589,6 +600,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -604,6 +616,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -633,7 +646,7 @@ text {
 	object {
 		x=16
 		y=454
-		width=120
+		width=144
 		height=15
 	}
 	"basic attribute" {
@@ -645,7 +658,7 @@ text {
 	object {
 		x=11
 		y=479
-		width=50
+		width=36
 		height=15
 	}
 	"basic attribute" {
@@ -657,7 +670,7 @@ text {
 	object {
 		x=11
 		y=496
-		width=50
+		width=36
 		height=15
 	}
 	"basic attribute" {
@@ -669,7 +682,7 @@ text {
 	object {
 		x=11
 		y=514
-		width=50
+		width=63
 		height=15
 	}
 	"basic attribute" {
@@ -681,7 +694,7 @@ text {
 	object {
 		x=11
 		y=527
-		width=50
+		width=63
 		height=15
 	}
 	"basic attribute" {
@@ -693,7 +706,7 @@ text {
 	object {
 		x=401
 		y=454
-		width=85
+		width=72
 		height=15
 	}
 	"basic attribute" {
@@ -705,7 +718,7 @@ text {
 	object {
 		x=189
 		y=454
-		width=105
+		width=153
 		height=15
 	}
 	"basic attribute" {
@@ -717,7 +730,7 @@ text {
 	object {
 		x=205
 		y=479
-		width=30
+		width=36
 		height=15
 	}
 	"basic attribute" {
@@ -729,7 +742,7 @@ text {
 	object {
 		x=205
 		y=499
-		width=30
+		width=27
 		height=15
 	}
 	"basic attribute" {
@@ -843,7 +856,7 @@ text {
 	object {
 		x=6
 		y=359
-		width=110
+		width=90
 		height=15
 	}
 	"basic attribute" {
@@ -863,6 +876,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -870,7 +884,7 @@ text {
 	object {
 		x=351
 		y=479
-		width=100
+		width=117
 		height=15
 	}
 	"basic attribute" {
@@ -899,7 +913,7 @@ text {
 	object {
 		x=350
 		y=534
-		width=100
+		width=117
 		height=15
 	}
 	"basic attribute" {
@@ -1076,6 +1090,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -1091,6 +1106,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }
@@ -1106,6 +1122,7 @@ text {
 		clr=14
 		bclr=4
 	}
+	format="string"
 	limits {
 	}
 }

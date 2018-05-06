@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/devel/devIocStats/op/adl/ioc_stats_limits.adl"
-	version=030107
+	name="/home/epics/devel/devIocStats-3-1-15/op/adl/ioc_stats_limits.adl"
+	version=030109
 }
 display {
 	object {
@@ -91,7 +91,7 @@ text {
 	object {
 		x=7
 		y=8
-		width=250
+		width=370
 		height=25
 	}
 	"basic attribute" {
@@ -182,368 +182,335 @@ text {
 	}
 	textix="Free Mem (bytes)"
 }
-composite {
+text {
+	object {
+		x=177
+		y=53
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Value"
+	align="horiz. centered"
+}
+"text update" {
 	object {
 		x=152
-		y=53
+		y=77
 		width=100
-		height=214
+		height=20
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=177
-				y=53
-				width=50
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Value"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=152
-				y=77
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(ioc):CA_CLNT_CNT"
-				clr=14
-				bclr=9
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=152
-				y=107
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(ioc):CA_CONN_CNT"
-				clr=14
-				bclr=9
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=152
-				y=137
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(ioc):SUSP_TASK_CNT"
-				clr=14
-				bclr=9
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=152
-				y=220
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(ioc):FD_FREE"
-				clr=14
-				bclr=9
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=152
-				y=167
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(ioc):IOC_CPU_LOAD"
-				clr=14
-				bclr=9
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=152
-				y=247
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(ioc):MEM_FREE"
-				clr=14
-				bclr=9
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
+	monitor {
+		chan="$(ioc):CA_CLNT_CNT"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
 	}
 }
-composite {
+"text update" {
+	object {
+		x=152
+		y=107
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(ioc):CA_CONN_CNT"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=152
+		y=137
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(ioc):SUSP_TASK_CNT"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=152
+		y=220
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(ioc):FD_FREE"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=152
+		y=167
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(ioc):IOC_CPU_LOAD"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=152
+		y=247
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(ioc):MEM_FREE"
+		clr=14
+		bclr=9
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=260
+		y=195
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LOLO"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=260
+		y=53
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="HIGH"
+	align="horiz. centered"
+}
+"text entry" {
 	object {
 		x=257
-		y=53
+		y=77
 		width=56
-		height=213
+		height=20
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=260
-				y=195
-				width=50
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="LOLO"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=260
-				y=53
-				width=50
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="HIGH"
-			align="horiz. centered"
-		}
-		"text entry" {
-			object {
-				x=257
-				y=77
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):CA_CLNT_CNT.HIGH"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=257
-				y=107
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):CA_CONN_CNT.HIGH"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=257
-				y=167
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):IOC_CPU_LOAD.HIGH"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=257
-				y=219
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):FD_FREE.LOLO"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=257
-				y=246
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):MEM_FREE.LOLO"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
+	control {
+		chan="$(ioc):CA_CLNT_CNT.HIGH"
+		clr=14
+		bclr=7
+	}
+	limits {
 	}
 }
-composite {
+"text entry" {
+	object {
+		x=257
+		y=107
+		width=56
+		height=20
+	}
+	control {
+		chan="$(ioc):CA_CONN_CNT.HIGH"
+		clr=14
+		bclr=7
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=257
+		y=167
+		width=56
+		height=20
+	}
+	control {
+		chan="$(ioc):IOC_CPU_LOAD.HIGH"
+		clr=14
+		bclr=7
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=257
+		y=219
+		width=56
+		height=20
+	}
+	control {
+		chan="$(ioc):FD_FREE.LOLO"
+		clr=14
+		bclr=7
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=257
+		y=246
+		width=56
+		height=20
+	}
+	control {
+		chan="$(ioc):MEM_FREE.LOLO"
+		clr=14
+		bclr=7
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=321
+		y=195
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LOW"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=321
+		y=53
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="HIHI"
+	align="horiz. centered"
+}
+"text entry" {
 	object {
 		x=318
-		y=53
+		y=77
 		width=56
-		height=213
+		height=20
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=321
-				y=195
-				width=50
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="LOW"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=321
-				y=53
-				width=50
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="HIHI"
-			align="horiz. centered"
-		}
-		"text entry" {
-			object {
-				x=318
-				y=77
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):CA_CLNT_CNT.HIHI"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=318
-				y=107
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):CA_CONN_CNT.HIHI"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=318
-				y=137
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):SUSP_TASK_CNT.HIHI"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=318
-				y=167
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):IOC_CPU_LOAD.HIHI"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=318
-				y=219
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):FD_FREE.LOW"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=318
-				y=246
-				width=56
-				height=20
-			}
-			control {
-				chan="$(ioc):MEM_FREE.LOW"
-				clr=14
-				bclr=7
-			}
-			limits {
-			}
-		}
+	control {
+		chan="$(ioc):CA_CLNT_CNT.HIHI"
+		clr=14
+		bclr=7
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=318
+		y=107
+		width=56
+		height=20
+	}
+	control {
+		chan="$(ioc):CA_CONN_CNT.HIHI"
+		clr=14
+		bclr=7
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=318
+		y=137
+		width=56
+		height=20
+	}
+	control {
+		chan="$(ioc):SUSP_TASK_CNT.HIHI"
+		clr=14
+		bclr=7
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=318
+		y=167
+		width=56
+		height=20
+	}
+	control {
+		chan="$(ioc):IOC_CPU_LOAD.HIHI"
+		clr=14
+		bclr=7
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=318
+		y=219
+		width=56
+		height=20
+	}
+	control {
+		chan="$(ioc):FD_FREE.LOW"
+		clr=14
+		bclr=7
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=318
+		y=246
+		width=56
+		height=20
+	}
+	control {
+		chan="$(ioc):MEM_FREE.LOW"
+		clr=14
+		bclr=7
+	}
+	limits {
 	}
 }

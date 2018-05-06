@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/devel/devIocStats/op/adl/ioc_stats_scanmon.adl"
-	version=030107
+	name="/home/epics/devel/devIocStats-3-1-15/op/adl/ioc_stats_scanmon.adl"
+	version=030109
 }
 display {
 	object {
@@ -91,7 +91,7 @@ text {
 	object {
 		x=5
 		y=5
-		width=211
+		width=276
 		height=25
 	}
 	"basic attribute" {
@@ -103,7 +103,7 @@ text {
 	object {
 		x=296
 		y=5
-		width=212
+		width=270
 		height=25
 	}
 	"basic attribute" {
@@ -126,7 +126,7 @@ text {
 	object {
 		x=10
 		y=108
-		width=147
+		width=153
 		height=15
 	}
 	"basic attribute" {
@@ -138,7 +138,7 @@ text {
 	object {
 		x=10
 		y=130
-		width=110
+		width=153
 		height=15
 	}
 	"basic attribute" {
@@ -150,7 +150,7 @@ text {
 	object {
 		x=10
 		y=152
-		width=110
+		width=153
 		height=15
 	}
 	"basic attribute" {
@@ -162,7 +162,7 @@ text {
 	object {
 		x=10
 		y=174
-		width=110
+		width=153
 		height=15
 	}
 	"basic attribute" {
@@ -174,7 +174,7 @@ text {
 	object {
 		x=10
 		y=196
-		width=110
+		width=153
 		height=15
 	}
 	"basic attribute" {
@@ -186,7 +186,7 @@ text {
 	object {
 		x=10
 		y=218
-		width=110
+		width=153
 		height=15
 	}
 	"basic attribute" {
@@ -198,7 +198,7 @@ text {
 	object {
 		x=10
 		y=240
-		width=110
+		width=153
 		height=15
 	}
 	"basic attribute" {
