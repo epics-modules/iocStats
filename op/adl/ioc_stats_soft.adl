@@ -329,7 +329,6 @@ text {
 		clr=14
 		bclr=4
 	}
-	format="string"
 	limits {
 	}
 }
@@ -345,7 +344,6 @@ text {
 		clr=14
 		bclr=4
 	}
-	format="string"
 	limits {
 	}
 }

@@ -387,7 +387,7 @@ fastUpdate
 fgColor index 14
 bgColor index 4
 autoHeight
-format "string"
+format decimal
 nullColor index 32
 useHexPrefix
 objType "controls"
@@ -411,7 +411,7 @@ fastUpdate
 fgColor index 14
 bgColor index 4
 autoHeight
-format "string"
+format decimal
 nullColor index 32
 useHexPrefix
 objType "controls"
