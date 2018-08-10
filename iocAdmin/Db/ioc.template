@@ -361,3 +361,28 @@ record(ai, "$(IOCNAME):PARENT_ID") {
   field(DTYP, "IOC stats")
   field(INP, "@parent_proc_id")
 }
+
+record(ai, "$(IOCNAME):SCANONCE_Q_SIZE") {
+  field(DESC, "max # entries in IOC scanOnce queue")
+  field(DTYP, "IOC stats")
+  field(INP,  "@scanOnceQueueSize")
+  field(PINI, "YES")
+}
+record(ai, "$(IOCNAME):CB_Q_SIZE") {
+  field(DESC, "max # entries in IOC callback queues")
+  field(DTYP, "IOC stats")
+  field(INP,  "@cbQueueSize")
+  field(PINI, "YES")
+}
+
+substitute "QUEUE=scanOnce, QUEUE_CAPS=SCANONCE, QUEUE_TYPE=SCANONCE"
+include "iocQueue.db"
+
+substitute "QUEUE=cbLow, QUEUE_CAPS=CBLOW, QUEUE_TYPE=CB"
+include "iocQueue.db"
+
+substitute "QUEUE=cbMedium, QUEUE_CAPS=CBMEDIUM, QUEUE_TYPE=CB"
+include "iocQueue.db"
+
+substitute "QUEUE=cbHigh, QUEUE_CAPS=CBHIGH, QUEUE_TYPE=CB"
+include "iocQueue.db"
