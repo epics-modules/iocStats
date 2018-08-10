@@ -75,9 +75,9 @@ case "$BASE" in
     echo "Build MSI"
     install -d "$HOME/msi/extensions/src"
     
-    curl https://www.aps.anl.gov/epics/download/extensions/extensionsTop_20120904.tar.gz | tar -C "$HOME/msi" -xvz
+    curl -L https://epics.anl.gov/download/extensions/extensionsTop_20120904.tar.gz | tar -C "$HOME/msi" -xvz
 
-    curl https://www.aps.anl.gov/epics/download/extensions/msi1-7.tar.gz | tar -C "$HOME/msi/extensions/src" -xvz
+    curl -L https://epics.anl.gov/download/extensions/msi1-7.tar.gz | tar -C "$HOME/msi/extensions/src" -xvz
 
     mv "$HOME/msi/extensions/src/msi1-7" "$HOME/msi/extensions/src/msi"
 
