@@ -4,6 +4,9 @@
 
 #NOTE: MSI moved to CONFIG_SITE.
 
+SUPPORT=C:/epics/SynApps/support
+-include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
+
 # SNCSEQ required only if testIocStatsApp will be built.
 MAKE_TEST_IOC_APP=YES
 ifeq '$(MAKE_TEST_IOC_APP)' 'YES'
