@@ -6,7 +6,7 @@
 
 # SNCSEQ required only if testIocStatsApp will be built.
 MAKE_TEST_IOC_APP=YES
-ifeq '$(MAKE_TEST_IOC_APP)' 'YES'
+
 # =============================================================
 # Define the version of modules needed by
 # IOC apps or other Support apps - used by testIocStatsApp
@@ -18,11 +18,12 @@ SNCSEQ     = $(SUPPORT)/seq-2-0-12
 #SNCSEQ = /afs/slac/g/spear/epics/modules/seq/seq
 #SNCSEQ = /afs/slac/g/lcls/epics/R3-15-1_1-0/modules/seq/seq-R2-1-17_1-0
 #SNCSEQ = /afs/slac/g/lcls/epics/R3-16-0/modules/seq/seq-2.2.3
-endif
+
 #EPICS_BASE = /usr/local/epics/R3.14.11/base
 EPICS_BASE=/afs/slac/g/spear/epics/base
 #EPICS_BASE=/afs/slac/g/lcls/epics/R3-15-1_1-0/base/base-R3-15-1_1-0
 #EPICS_BASE=/afs/slac/g/lcls/epics/R3-16-0/base/base-R3-16-0
+
 -include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
 
 # End of file
