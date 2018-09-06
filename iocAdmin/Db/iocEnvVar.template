@@ -1,4 +1,4 @@
-record(stringin, "$(IOCNAME):$(ENVNAME)") {
+record(stringin, "$(IOCNAME)$(SEP=:)$(ENVNAME)") {
   field(DESC, "$(ENVVAR)")
   field(DTYP, "IOC $(ENVTYPE) var")
   field(INP, "@$(ENVVAR)")

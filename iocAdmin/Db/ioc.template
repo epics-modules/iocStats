@@ -1,5 +1,5 @@
 # Used by Channel Access Security to determine access to this IOC.
-record(mbbo, "$(IOCNAME):ACCESS")
+record(mbbo, "$(IOCNAME)$(SEP=:)ACCESS")
 {
   field(DESC, "$(IOCNAME) Acc Mode")
   field(PINI, "YES")
@@ -13,35 +13,35 @@ record(mbbo, "$(IOCNAME):ACCESS")
   field(THSV, "MAJOR")
   info(autosaveFields, "VAL")
 }
-record(stringin, "$(IOCNAME):STARTTOD")
+record(stringin, "$(IOCNAME)$(SEP=:)STARTTOD")
 {
     field(DESC, "Time and date of startup")
     field(DTYP, "Soft Timestamp")
     field(PINI, "YES")
     field(INP, "@$(TODFORMAT)")
 }
-record(stringin, "$(IOCNAME):TOD")
+record(stringin, "$(IOCNAME)$(SEP=:)TOD")
 {
     field(DESC, "Current time and date")
     field(DTYP, "Soft Timestamp")
     field(SCAN, "1 second")
     field(INP, "@$(TODFORMAT)")
 }
-record(calcout, "$(IOCNAME):HEARTBEAT")
+record(calcout, "$(IOCNAME)$(SEP=:)HEARTBEAT")
 {
     field(DESC, "1 Hz counter since startup")
     field(CALC, "(A<2147483647)?A+1:1")
     field(SCAN, "1 second")
-    field(INPA, "$(IOCNAME):HEARTBEAT")
+    field(INPA, "$(IOCNAME)$(SEP=:)HEARTBEAT")
 }
 # if autosave is working, START_CNT creates a running count of 
 # number of times the IOC was started.
-record(calcout, "$(IOCNAME):START_CNT")
+record(calcout, "$(IOCNAME)$(SEP=:)START_CNT")
 {
     field(DESC, "Increments at startup")
     field(CALC, "A+1")
     field(PINI, "YES")
-    field(INPA, "$(IOCNAME):START_CNT")
+    field(INPA, "$(IOCNAME)$(SEP=:)START_CNT")
     info(autosaveFields_pass0, "VAL")
 }
 #
@@ -49,23 +49,23 @@ record(calcout, "$(IOCNAME):START_CNT")
 # PV updates the Access Security mechanism dynamically.
 # The .acf file is re-read.
 #
-record( sub, "$(IOCNAME):READACF")
+record( sub, "$(IOCNAME)$(SEP=:)READACF")
 {
     field( DESC, "$(IOCNAME) ACF Update")
     field( INAM, "asSubInit")
     field( SNAM, "asSubProcess")
     field( BRSV, "INVALID")
 }
-record(sub, "$(IOCNAME):SYSRESET")
+record(sub, "$(IOCNAME)$(SEP=:)SYSRESET")
 {
-    alias("$(IOCNAME):SysReset")
+    alias("$(IOCNAME)$(SEP=:)SysReset")
     field(DESC, "IOC Restart" )
     field(SNAM, "rebootProc")
     field(BRSV,"INVALID")
     field(L,"1")
 }
 
-record(ai, "$(IOCNAME):CA_CLNT_CNT") {
+record(ai, "$(IOCNAME)$(SEP=:)CA_CLNT_CNT") {
   field(DESC, "Number of CA Clients")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -78,7 +78,7 @@ record(ai, "$(IOCNAME):CA_CLNT_CNT") {
   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-record(ai, "$(IOCNAME):CA_CONN_CNT") {
+record(ai, "$(IOCNAME)$(SEP=:)CA_CONN_CNT") {
   field(DESC, "Number of CA Connections")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -91,33 +91,33 @@ record(ai, "$(IOCNAME):CA_CONN_CNT") {
   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-record(ai, "$(IOCNAME):RECORD_CNT") {
+record(ai, "$(IOCNAME)$(SEP=:)RECORD_CNT") {
   field(DESC, "Number of Records")
   field(PINI, "YES")
   field(DTYP, "IOC stats")
   field(INP, "@records")
 }
 
-record(ai, "$(IOCNAME):FD_MAX") {
+record(ai, "$(IOCNAME)$(SEP=:)FD_MAX") {
   field(DESC, "Max File Descriptors")
   field(PINI, "YES")
   field(DTYP, "IOC stats")
   field(INP, "@maxfd")
 }
 
-record(ai, "$(IOCNAME):FD_CNT") {
+record(ai, "$(IOCNAME)$(SEP=:)FD_CNT") {
   field(DESC, "Allocated File Descriptors")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
-  field(FLNK, "$(IOCNAME):FD_FREE  PP MS")
+  field(FLNK, "$(IOCNAME)$(SEP=:)FD_FREE  PP MS")
   field(INP, "@fd")
 }
 
-record(calc, "$(IOCNAME):FD_FREE") {
+record(calc, "$(IOCNAME)$(SEP=:)FD_FREE") {
   field(DESC, "Available FDs")
   field(CALC, "B>0?B-A:C")
-  field(INPA, "$(IOCNAME):FD_CNT  NPP MS")
-  field(INPB, "$(IOCNAME):FD_MAX  NPP MS")
+  field(INPA, "$(IOCNAME)$(SEP=:)FD_CNT  NPP MS")
+  field(INPB, "$(IOCNAME)$(SEP=:)FD_MAX  NPP MS")
   field(INPC, "1000")
   field(HOPR, "150")
   field(LOLO, "5")
@@ -127,7 +127,7 @@ record(calc, "$(IOCNAME):FD_FREE") {
   info(autosaveFields_pass0, "HOPR LOPR LOW LOLO LSV LLSV")
 }
 
-record(ai, "$(IOCNAME):SYS_CPU_LOAD") {
+record(ai, "$(IOCNAME)$(SEP=:)SYS_CPU_LOAD") {
   field(DESC, "System CPU Load")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -142,8 +142,8 @@ record(ai, "$(IOCNAME):SYS_CPU_LOAD") {
   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-record(ai, "$(IOCNAME):IOC_CPU_LOAD") {
-  alias("$(IOCNAME):LOAD")
+record(ai, "$(IOCNAME)$(SEP=:)IOC_CPU_LOAD") {
+  alias("$(IOCNAME)$(SEP=:)LOAD")
   field(DESC, "IOC CPU Load")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -158,14 +158,14 @@ record(ai, "$(IOCNAME):IOC_CPU_LOAD") {
   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-record(ai, "$(IOCNAME):CPU_CNT") {
+record(ai, "$(IOCNAME)$(SEP=:)CPU_CNT") {
   field(DESC, "Number of CPUs")
   field(DTYP, "IOC stats")
   field(INP, "@no_of_cpus")
   field(PINI, "YES")
 }
 
-record(ai, "$(IOCNAME):SUSP_TASK_CNT") {
+record(ai, "$(IOCNAME)$(SEP=:)SUSP_TASK_CNT") {
   field(DESC, "Number Suspended Tasks")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -175,7 +175,7 @@ record(ai, "$(IOCNAME):SUSP_TASK_CNT") {
   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
-record(ai, "$(IOCNAME):MEM_USED") {
+record(ai, "$(IOCNAME)$(SEP=:)MEM_USED") {
   field(DESC, "Allocated Memory")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -183,7 +183,7 @@ record(ai, "$(IOCNAME):MEM_USED") {
   field(EGU, "byte")
 }
 
-record(ai, "$(IOCNAME):MEM_FREE") {
+record(ai, "$(IOCNAME)$(SEP=:)MEM_FREE") {
   field(DESC, "Free Memory")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -194,7 +194,7 @@ record(ai, "$(IOCNAME):MEM_FREE") {
   info(autosaveFields_pass0, "HOPR LOPR LOW LOLO LSV LLSV")
 }
 
-record(ai, "$(IOCNAME):MEM_MAX") {
+record(ai, "$(IOCNAME)$(SEP=:)MEM_MAX") {
   field(DESC, "Maximum Memory")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -202,7 +202,7 @@ record(ai, "$(IOCNAME):MEM_MAX") {
   field(EGU, "byte")
 }
 
-record(ao, "$(IOCNAME):CA_UPD_TIME") {
+record(ao, "$(IOCNAME)$(SEP=:)CA_UPD_TIME") {
   field(DESC, "CA Check Update Period")
   field(DTYP, "IOC stats")
   field(OUT, "@ca_scan_rate")
@@ -214,7 +214,7 @@ record(ao, "$(IOCNAME):CA_UPD_TIME") {
   field(PINI, "YES")
 }
 
-record(ao, "$(IOCNAME):FD_UPD_TIME") {
+record(ao, "$(IOCNAME)$(SEP=:)FD_UPD_TIME") {
   field(DESC, "FD Check Update Period")
   field(DTYP, "IOC stats")
   field(OUT, "@fd_scan_rate")
@@ -226,7 +226,7 @@ record(ao, "$(IOCNAME):FD_UPD_TIME") {
   field(PINI, "YES")
 }
 
-record(ao, "$(IOCNAME):LOAD_UPD_TIME") {
+record(ao, "$(IOCNAME)$(SEP=:)LOAD_UPD_TIME") {
   field(DESC, "CPU Check Update Period")
   field(DTYP, "IOC stats")
   field(OUT, "@cpu_scan_rate")
@@ -238,7 +238,7 @@ record(ao, "$(IOCNAME):LOAD_UPD_TIME") {
   field(PINI, "YES")
 }
 
-record(ao, "$(IOCNAME):MEM_UPD_TIME") {
+record(ao, "$(IOCNAME)$(SEP=:)MEM_UPD_TIME") {
   field(DESC, "Memory Check Update Period")
   field(DTYP, "IOC stats")
   field(OUT, "@memory_scan_rate")
@@ -250,21 +250,21 @@ record(ao, "$(IOCNAME):MEM_UPD_TIME") {
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):ST_SCRIPT1") {
+record(stringin, "$(IOCNAME)$(SEP=:)ST_SCRIPT1") {
   field(DESC, "Startup Script Part1")
   field(DTYP, "IOC stats")
   field(INP, "@startup_script_1")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):ST_SCRIPT2") {
+record(stringin, "$(IOCNAME)$(SEP=:)ST_SCRIPT2") {
   field(DESC, "Startup Script Part2")
   field(DTYP, "IOC stats")
   field(INP, "@startup_script_2")
   field(PINI, "YES")
 }
 
-record(waveform, "$(IOCNAME):ST_SCRIPT") {
+record(waveform, "$(IOCNAME)$(SEP=:)ST_SCRIPT") {
   field(DESC, "Startup Script")
   field(DTYP, "IOC stats")
   field(INP, "@startup_script")
@@ -273,21 +273,21 @@ record(waveform, "$(IOCNAME):ST_SCRIPT") {
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):KERNEL_VERS") {
+record(stringin, "$(IOCNAME)$(SEP=:)KERNEL_VERS") {
   field(DESC, "Kernel Version")
   field(DTYP, "IOC stats")
   field(INP, "@kernel_ver")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):EPICS_VERS") {
+record(stringin, "$(IOCNAME)$(SEP=:)EPICS_VERS") {
   field(DESC, "EPICS Version")
   field(DTYP, "IOC stats")
   field(INP, "@epics_ver")
   field(PINI, "YES")
 }
 
-record(waveform, "$(IOCNAME):EPICS_VERSION") {
+record(waveform, "$(IOCNAME)$(SEP=:)EPICS_VERSION") {
   field(DESC, "EPICS Version")
   field(DTYP, "IOC stats")
   field(INP, "@epics_ver")
@@ -296,28 +296,28 @@ record(waveform, "$(IOCNAME):EPICS_VERSION") {
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):HOSTNAME") {
+record(stringin, "$(IOCNAME)$(SEP=:)HOSTNAME") {
   field(DESC, "Host Name")
   field(DTYP, "IOC stats")
   field(INP, "@hostname")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):APP_DIR1") {
+record(stringin, "$(IOCNAME)$(SEP=:)APP_DIR1") {
   field(DESC, "Application Directory Part 1")
   field(DTYP, "IOC stats")
   field(INP, "@pwd1")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):APP_DIR2") {
+record(stringin, "$(IOCNAME)$(SEP=:)APP_DIR2") {
   field(DESC, "Application Directory Part 2")
   field(DTYP, "IOC stats")
   field(INP, "@pwd2")
   field(PINI, "YES")
 }
 
-record(waveform, "$(IOCNAME):APP_DIR") {
+record(waveform, "$(IOCNAME)$(SEP=:)APP_DIR") {
   field(DESC, "Application Directory")
   field(DTYP, "IOC stats")
   field(INP, "@pwd")
@@ -326,7 +326,7 @@ record(waveform, "$(IOCNAME):APP_DIR") {
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):UPTIME") {
+record(stringin, "$(IOCNAME)$(SEP=:)UPTIME") {
   field(DESC, "Elapsed Time since Start")
   field(SCAN, "1 second")
   field(DTYP, "IOC stats")
@@ -334,28 +334,28 @@ record(stringin, "$(IOCNAME):UPTIME") {
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):ENGINEER") {
+record(stringin, "$(IOCNAME)$(SEP=:)ENGINEER") {
   field(DESC, "Engineer")
   field(DTYP, "IOC stats")
   field(INP, "@engineer")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):LOCATION") {
+record(stringin, "$(IOCNAME)$(SEP=:)LOCATION") {
   field(DESC, "Location")
   field(DTYP, "IOC stats")
   field(INP, "@location")
   field(PINI, "YES")
 }
 
-record(ai, "$(IOCNAME):PROCESS_ID") {
+record(ai, "$(IOCNAME)$(SEP=:)PROCESS_ID") {
   field(DESC, "Process ID")
   field(PINI, "YES")
   field(DTYP, "IOC stats")
   field(INP, "@proc_id")
 }
 
-record(ai, "$(IOCNAME):PARENT_ID") {
+record(ai, "$(IOCNAME)$(SEP=:)PARENT_ID") {
   field(DESC, "Parent Process ID")
   field(PINI, "YES")
   field(DTYP, "IOC stats")

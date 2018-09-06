@@ -1,17 +1,17 @@
-record(ai, "$(IOCNAME):MEM_BLK") {
+record(ai, "$(IOCNAME)$(SEP=:)MEM_BLK") {
   field(DESC, "Maximum Free Memory Block")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
   field(INP, "@max_free")
   field(EGU, "byte")
   field(HOPR, "50000000")
-  field(FLNK, "$(IOCNAME):MEM_BLK_FREE  PP MS")
+  field(FLNK, "$(IOCNAME)$(SEP=:)MEM_BLK_FREE  PP MS")
 }
 
-record(calc, "$(IOCNAME):MEM_BLK_FREE") {
+record(calc, "$(IOCNAME)$(SEP=:)MEM_BLK_FREE") {
   field(DESC, "Maximum Free Memory Block")
   field(CALC, "A>0?A:B")
-  field(INPA, "$(IOCNAME):MEM_BLK  NPP MS")
+  field(INPA, "$(IOCNAME)$(SEP=:)MEM_BLK  NPP MS")
   field(INPB, "1000000000")
   field(EGU, "byte")
   field(HOPR, "50000000")
@@ -22,49 +22,49 @@ record(calc, "$(IOCNAME):MEM_BLK_FREE") {
   info(autosaveFields_pass0, "HOPR LOLO LOW LLSV LSV")
 }
 
-record(stringin, "$(IOCNAME):BOOTLINE1") {
+record(stringin, "$(IOCNAME)$(SEP=:)BOOTLINE1") {
   field(DESC, "Boot Line Part1")
   field(DTYP, "IOC stats")
   field(INP, "@bootline_1")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):BOOTLINE2") {
+record(stringin, "$(IOCNAME)$(SEP=:)BOOTLINE2") {
   field(DESC, "Boot Line Part2")
   field(DTYP, "IOC stats")
   field(INP, "@bootline_2")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):BOOTLINE3") {
+record(stringin, "$(IOCNAME)$(SEP=:)BOOTLINE3") {
   field(DESC, "Boot Line Part3")
   field(DTYP, "IOC stats")
   field(INP, "@bootline_3")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):BOOTLINE4") {
+record(stringin, "$(IOCNAME)$(SEP=:)BOOTLINE4") {
   field(DESC, "Boot Line Part4")
   field(DTYP, "IOC stats")
   field(INP, "@bootline_4")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):BOOTLINE5") {
+record(stringin, "$(IOCNAME)$(SEP=:)BOOTLINE5") {
   field(DESC, "Boot Line Part5")
   field(DTYP, "IOC stats")
   field(INP, "@bootline_5")
   field(PINI, "YES")
 }
 
-record(stringin, "$(IOCNAME):BOOTLINE6") {
+record(stringin, "$(IOCNAME)$(SEP=:)BOOTLINE6") {
   field(DESC, "Boot Line Part6")
   field(DTYP, "IOC stats")
   field(INP, "@bootline_6")
   field(PINI, "YES")
 }
 
-record(waveform, "$(IOCNAME):BOOTLINE") {
+record(waveform, "$(IOCNAME)$(SEP=:)BOOTLINE") {
   field(DESC, "Boot Line")
   field(DTYP, "IOC stats")
   field(INP, "@bootline")
@@ -73,7 +73,7 @@ record(waveform, "$(IOCNAME):BOOTLINE") {
   field(PINI, "YES")
 }
 
-record(ai, "$(IOCNAME):SYS_MBUF_FREE") {
+record(ai, "$(IOCNAME)$(SEP=:)SYS_MBUF_FREE") {
   field(DESC, "Min % Free Sys MBUFs")
   field(DTYP, "IOC stats")
   field(SCAN, "I/O Intr")
@@ -83,14 +83,14 @@ record(ai, "$(IOCNAME):SYS_MBUF_FREE") {
   info(autosaveFields_pass0, "LOLO LOW LLSV LSV")
 }
 
-record(ai, "$(IOCNAME):SYS_MBUF_MAX") {
+record(ai, "$(IOCNAME)$(SEP=:)SYS_MBUF_MAX") {
   field(DESC, "Number of System MBUFs")
   field(DTYP, "IOC stats")
   field(INP, "@sys_mbuf")
   field(PINI, "YES")
 }
 
-record(ai, "$(IOCNAME):IFI_ERR_CNT") {
+record(ai, "$(IOCNAME)$(SEP=:)IFI_ERR_CNT") {
   field(DESC, "IF Input Errors")
   field(DTYP, "IOC stats")
   field(SCAN, "I/O Intr")
@@ -98,7 +98,7 @@ record(ai, "$(IOCNAME):IFI_ERR_CNT") {
   info(autosaveFields_pass0, "HIHI HIGH HHSV HSV")
 }
 
-record(ai, "$(IOCNAME):IFO_ERR_CNT") {
+record(ai, "$(IOCNAME)$(SEP=:)IFO_ERR_CNT") {
   field(DESC, "IF Output Errors")
   field(DTYP, "IOC stats")
   field(SCAN, "I/O Intr")

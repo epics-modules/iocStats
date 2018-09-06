@@ -1,11 +1,11 @@
-record(stringin, "$(IOCNAME):BSP_REV") {
+record(stringin, "$(IOCNAME)$(SEP=:)BSP_REV") {
   field(DESC, "BSP Revision")
   field(DTYP, "IOC stats")
   field(INP, "@bsp_rev")
   field(PINI, "YES")
 }
 
-record(ai, "$(IOCNAME):DAT_MBUF_FREE") {
+record(ai, "$(IOCNAME)$(SEP=:)DAT_MBUF_FREE") {
   field(DESC, "Min % Free Data MBUFs")
   field(DTYP, "IOC stats")
   field(SCAN, "I/O Intr")
@@ -17,7 +17,7 @@ record(ai, "$(IOCNAME):DAT_MBUF_FREE") {
   info(autosaveFields_pass0, "LOLO LOW LLSV LSV")
 }
 
-record(ai, "$(IOCNAME):DAT_MBUF_MAX") {
+record(ai, "$(IOCNAME)$(SEP=:)DAT_MBUF_MAX") {
   field(DESC, "Number of Data MBUFs")
   field(DTYP, "IOC stats")
   field(INP, "@data_mbuf")

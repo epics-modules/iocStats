@@ -1,4 +1,4 @@
-record(ai, "$(IOCNAME):RAM_WS_USED") {
+record(ai, "$(IOCNAME)$(SEP=:)RAM_WS_USED") {
   field(DESC, "Workspace Allocated Memory")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -6,7 +6,7 @@ record(ai, "$(IOCNAME):RAM_WS_USED") {
   field(EGU, "byte")
 }
 
-record(ai, "$(IOCNAME):RAM_WS_FREE") {
+record(ai, "$(IOCNAME)$(SEP=:)RAM_WS_FREE") {
   field(DESC, "Workspace Free Memory")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
@@ -16,7 +16,7 @@ record(ai, "$(IOCNAME):RAM_WS_FREE") {
   field(LSV, "MINOR")
 }
 
-record(ai, "$(IOCNAME):RAM_WS_MAX") {
+record(ai, "$(IOCNAME)$(SEP=:)RAM_WS_MAX") {
   field(DESC, "Workspace Maximum Memory")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC stats")
