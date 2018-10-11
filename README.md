@@ -4,7 +4,7 @@
 
 ## Detailed description and usage
 See:
-http://www.slac.stanford.edu/grp/ssrl/spear/epics/site/devIocStats/
+https://www.slac.stanford.edu/grp/ssrl/spear/epics/site/devIocStats/
 
 ## Download release tars
 See:
