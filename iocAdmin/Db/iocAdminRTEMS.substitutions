@@ -16,6 +16,12 @@ file iocGeneralTime.template
 pattern { IOCNAME }
 	{ "$(IOC)"  }
 }
+file iocAdminScanMon.db
+{
+	pattern
+	{	IOCNAME	 }
+	{	"$(IOC)" }
+}
 file iocRTOS.template
 {
 pattern { IOCNAME , SYS_MBUF_FLNK     }

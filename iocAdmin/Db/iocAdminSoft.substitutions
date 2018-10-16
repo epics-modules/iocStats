@@ -16,6 +16,12 @@ file iocGeneralTime.template
 pattern { IOCNAME }
 	{ "$(IOC)"  }
 }
+file iocAdminScanMon.db
+{
+	pattern
+	{	IOCNAME	 }
+	{	"$(IOC)" }
+}
 file iocEnvVar.template
 {
 pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
