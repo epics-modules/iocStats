@@ -31,4 +31,18 @@ pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
 	{ "$(IOC)" , TS_NTP_INET  , EPICS_TS_NTP_INET               , epics  }
 	{ "$(IOC)" , IOC_LOG_PORT , EPICS_IOC_LOG_PORT              , epics  }
 	{ "$(IOC)" , IOC_LOG_INET , EPICS_IOC_LOG_INET              , epics  }
+
+    { "$(IOC)" , PVA_ADDR_LIST ,      EPICS_PVA_ADDR_LIST       , epics  }
+    { "$(IOC)" , PVA_AUTO_ADDR ,      EPICS_PVA_AUTO_ADDR       , epics  }
+    { "$(IOC)" , PVA_DEBUG ,          EPICS_PVA_DEBUG           , epics  }
+    { "$(IOC)" , PVA_CONN_TMO ,       EPICS_PVA_CONN_TMO        , epics  }
+    { "$(IOC)" , PVA_BEACON_PERIOD ,  EPICS_PVA_BEACON_PERIOD   , epics  }
+    { "$(IOC)" , PVA_BROADCAST_PORT , EPICS_PVA_BROADCAST_PORT  , epics  }
+    { "$(IOC)" , PVA_SERVER_PORT ,    EPICS_PVA_SERVER_PORT     , epics  }
+
+    { "$(IOC)" , PVAS_BEACON_ADDR_LIST ,      EPICS_PVAS_BEACON_ADDR_LIST      , epics  }
+    { "$(IOC)" , PVAS_AUTO_BEACON_ADDR_LIST , EPICS_PVAS_AUTO_BEACON_ADDR_LIST , epics  }
+    { "$(IOC)" , PVAS_SERVER_PORT ,           EPICS_PVAS_SERVER_PORT           , epics  }
+    { "$(IOC)" , PVAS_BEACON_PERIOD ,         EPICS_PVAS_BEACON_PERIOD         , epics  }
+    { "$(IOC)" , PVAS_BROADCAST_PORT ,        EPICS_PVAS_BROADCAST_PORT        , epics  }
 }
