@@ -275,7 +275,7 @@ static long epics_init_record(stringinRecord* pr)
         }
         pr->dpvt = 0;
         recGblRecordError(S_db_badField,(void*)pr,
-                "devStringinEnvVar (init_record) Illegal INP parm field");
+                "devStringinEpics (init_record) INP field is not an EPICS env var");
         return S_db_badField;
 }
 
