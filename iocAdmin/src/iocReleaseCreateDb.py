@@ -83,13 +83,15 @@ def module_versions(release_path, site_path):
     if openSiteFile:
         for line in site_file:
             # Remove comments
-            line = line.partition('#')[0]
+            line = line.split('#')[0]
         
             # Turn 'a = b' into a key/value pair and remove leading and trailing whitespace
-            (key, sep, value) = line.partition('=')
-            key = key.strip()
-            value = value.strip()
-        
+            key_value = line.split('=')
+            if len(key_value) != 2:
+                continue
+            key   = key_value[0].strip()
+            value = key_value[1].strip()
+
             # save EPICS_BASE_VER, if it's in there
             if key.startswith('EPICS_BASE_VER'):
                 siteBaseVer = value
@@ -108,13 +110,15 @@ def module_versions(release_path, site_path):
 
     for line in release_file:
         # Remove comments
-        line = line.partition('#')[0]
+        line = line.split('#')[0]
         
         # Turn 'a = b' into a key/value pair and remove leading and trailing whitespace
-        (key, sep, value) = line.partition('=')
-        key = key.strip()
-        value = value.strip()
-        
+        key_value = line.split('=')
+        if len(key_value) != 2:
+            continue
+        key   = key_value[0].strip()
+        value = key_value[1].strip()
+
         # Add the key/value pair to the dictionary if the key ends with _MODULE_VERSION
         if key.endswith('_MODULE_VERSION'):
             # if BASE_MODULE_VERSION is set to EPICS_BASE_VER macro from RELEASE_SITE,
