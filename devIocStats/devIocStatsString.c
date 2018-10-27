@@ -12,23 +12,23 @@
 /* devIocStatsString.c - String Device Support Routines for IOC statistics - based on */
 /* devVXStats.c - Device Support Routines for vxWorks statistics */
 /*
- *	Author: Jim Kowalkowski
- *	Date:  2/1/96
+ *      Author: Jim Kowalkowski
+ *      Date:  2/1/96
  *
  * Modifications at LBNL:
  * -----------------
- * 	97-11-21	SRJ	Added reports of max free mem block,
- *				Channel Access connections and CA clients.
- *				Repaired "artificial load" function.
- *	98-01-28	SRJ	Changes per M. Kraimer's devVXStats of 97-11-19:
- *				explicitly reports file descriptors used;
- *				uses Kraimer's method for CPU load average;
- *				some code simplification and name changes.
+ *      97-11-21        SRJ     Added reports of max free mem block,
+ *                              Channel Access connections and CA clients.
+ *                              Repaired "artificial load" function.
+ *      98-01-28        SRJ     Changes per M. Kraimer's devVXStats of 97-11-19:
+ *                              explicitly reports file descriptors used;
+ *                              uses Kraimer's method for CPU load average;
+ *                              some code simplification and name changes.
  *
  * Modifications for SNS at ORNL:
  * -----------------
- *	03-01-29	CAL 	Add stringin device support.
- *	03-05-08	CAL	Add minMBuf
+ *      03-01-29        CAL     Add stringin device support.
+ *      03-05-08        CAL     Add minMBuf
  *
  * Modifications for LCLS/SPEAR at SLAC:
  * ----------------
@@ -43,41 +43,41 @@
  */
 
 /*
-	--------------------------------------------------------------------
-	Note that the valid values for the parm field of the link
-	information are:
+        --------------------------------------------------------------------
+        Note that the valid values for the parm field of the link
+        information are:
 
-	stringin (DTYP = "IOC stats"):
+        stringin (DTYP = "IOC stats"):
 
-		Some values displayed by the string records are
-	 	longer than the 40 char string record length, so multiple 
-		records must be used to display them.
+                Some values displayed by the string records are
+                longer than the 40 char string record length, so multiple 
+                records must be used to display them.
 
-		The supported stringin devices are all static; except for
+                The supported stringin devices are all static; except for
                 up_time, the record only needs to be processed once, for
                 which PINI is convenient.
 
-		startup_script_[12]	-path of startup script (2 records)
-					Default - uses STARTUP and ST_CMD
-					environment variables.
-		bootline_[1-6]		-CPU bootline (6 records)
- 		bsp_rev			-CPU board support package revision
-		kernel_ver		-OS kernel build version
-		epics_ver		-EPICS base version
+                startup_script_[12]     -path of startup script (2 records)
+                                        Default - uses STARTUP and ST_CMD
+                                        environment variables.
+                bootline_[1-6]          -CPU bootline (6 records)
+                bsp_rev                 -CPU board support package revision
+                kernel_ver              -OS kernel build version
+                epics_ver               -EPICS base version
                 engineer                -IOC Engineer
-					Default - uses ENGINEER env var.
+                                        Default - uses ENGINEER env var.
                 location                -IOC Location
-					Default - uses LOCATION env var.
+                                        Default - uses LOCATION env var.
                 hostname                -IOC Host Name from gethostname
                 pwd[1-2]                -IOC Current Working Directory
                                         (2 records) from getcwd
                 up_time                 -IOC Up Time
 
-	stringin (DTYP = "IOC env var"):
+        stringin (DTYP = "IOC env var"):
 
                 <environment variable>
 
-	stringin (DTYP = "IOC epics var"):
+        stringin (DTYP = "IOC epics var"):
 
                 <EPICS environment variable from envDefs.h>
 */
@@ -103,19 +103,19 @@
 
 struct sStats
 {
-	long      number;
-	DEVSUPFUN report;
-	DEVSUPFUN init;
-	DEVSUPFUN init_record;
-	DEVSUPFUN get_ioint_info;
-	DEVSUPFUN read_stringin;
+        long      number;
+        DEVSUPFUN report;
+        DEVSUPFUN init;
+        DEVSUPFUN init_record;
+        DEVSUPFUN get_ioint_info;
+        DEVSUPFUN read_stringin;
 };
 typedef struct sStats sStats;
 
 struct pvtArea
 {
-	int index;
-	int type;
+        int index;
+        int type;
 };
 typedef struct pvtArea pvtArea;
 
@@ -123,9 +123,9 @@ typedef void (*statGetStrFunc)(char*);
 
 struct validGetStrParms
 {
-	char* name;
-	statGetStrFunc func;
-	int type;
+        char* name;
+        statGetStrFunc func;
+        int type;
 };
 typedef struct validGetStrParms validGetStrParms;
 
@@ -159,24 +159,24 @@ static int devIocStatsGetEngineer (char **pval);
 static int devIocStatsGetLocation (char **pval);
 
 static validGetStrParms statsGetStrParms[]={
-	{ "startup_script_1",		statsSScript1,		STATIC_TYPE },
-	{ "startup_script_2",		statsSScript2, 		STATIC_TYPE },
-	{ "bootline_1",			statsBootline1,		STATIC_TYPE },
-	{ "bootline_2",			statsBootline2,		STATIC_TYPE },
-	{ "bootline_3",			statsBootline3,		STATIC_TYPE },
-	{ "bootline_4",			statsBootline4,		STATIC_TYPE },
-	{ "bootline_5",			statsBootline5,		STATIC_TYPE },
-	{ "bootline_6",			statsBootline6,		STATIC_TYPE },
-	{ "bsp_rev",			statsBSPRev, 		STATIC_TYPE },
-	{ "kernel_ver",			statsKernelVer,		STATIC_TYPE },
-	{ "epics_ver",			statsEPICSVer,		STATIC_TYPE },
-	{ "engineer",			statsEngineer,		STATIC_TYPE },
-	{ "location",			statsLocation,		STATIC_TYPE },
-	{ "up_time",			statsUpTime,		STATIC_TYPE },
-        { "hostname",			statsHostName,		STATIC_TYPE },
-        { "pwd1",			statsPwd1,		STATIC_TYPE },
-        { "pwd2",			statsPwd2,		STATIC_TYPE },
-	{ NULL,NULL,0 }
+        { "startup_script_1",           statsSScript1,          STATIC_TYPE },
+        { "startup_script_2",           statsSScript2,          STATIC_TYPE },
+        { "bootline_1",                 statsBootline1,         STATIC_TYPE },
+        { "bootline_2",                 statsBootline2,         STATIC_TYPE },
+        { "bootline_3",                 statsBootline3,         STATIC_TYPE },
+        { "bootline_4",                 statsBootline4,         STATIC_TYPE },
+        { "bootline_5",                 statsBootline5,         STATIC_TYPE },
+        { "bootline_6",                 statsBootline6,         STATIC_TYPE },
+        { "bsp_rev",                    statsBSPRev,            STATIC_TYPE },
+        { "kernel_ver",                 statsKernelVer,         STATIC_TYPE },
+        { "epics_ver",                  statsEPICSVer,          STATIC_TYPE },
+        { "engineer",                   statsEngineer,          STATIC_TYPE },
+        { "location",                   statsLocation,          STATIC_TYPE },
+        { "up_time",                    statsUpTime,            STATIC_TYPE },
+        { "hostname",                   statsHostName,          STATIC_TYPE },
+        { "pwd1",                       statsPwd1,              STATIC_TYPE },
+        { "pwd2",                       statsPwd2,              STATIC_TYPE },
+        { NULL,NULL,0 }
 };
 
 sStats devStringinStats  ={5,NULL,stringin_init,stringin_init_record,NULL,stringin_read};
@@ -209,52 +209,52 @@ static long stringin_init(int pass)
 
 static long stringin_init_record(stringinRecord* pr)
 {
-	int		i;
-	char	*parm;
-	pvtArea	*pvt = NULL;
-	if(pr->inp.type!=INST_IO)
-	{
-		recGblRecordError(S_db_badField,(void*)pr,
-			"devStringinStats (init_record) Illegal INP field");
-		return S_db_badField;
-	}
-	parm = pr->inp.value.instio.string;
-	for(i=0;statsGetStrParms[i].name && pvt==NULL;i++)
-	{
-		if(strcmp(parm,statsGetStrParms[i].name)==0)
-		{
-			pvt=(pvtArea*)malloc(sizeof(pvtArea));
-			pvt->index=i;
-			pvt->type=statsGetStrParms[i].type;
-		}
-	}
-	if(pvt==NULL)
-	{
-		recGblRecordError(S_db_badField,(void*)pr, 
-		   "devStringinStats (init_record) Illegal INP parm field");
-		return S_db_badField;
-	}
+        int             i;
+        char    *parm;
+        pvtArea *pvt = NULL;
+        if(pr->inp.type!=INST_IO)
+        {
+                recGblRecordError(S_db_badField,(void*)pr,
+                        "devStringinStats (init_record) Illegal INP field");
+                return S_db_badField;
+        }
+        parm = pr->inp.value.instio.string;
+        for(i=0;statsGetStrParms[i].name && pvt==NULL;i++)
+        {
+                if(strcmp(parm,statsGetStrParms[i].name)==0)
+                {
+                        pvt=(pvtArea*)malloc(sizeof(pvtArea));
+                        pvt->index=i;
+                        pvt->type=statsGetStrParms[i].type;
+                }
+        }
+        if(pvt==NULL)
+        {
+                recGblRecordError(S_db_badField,(void*)pr, 
+                   "devStringinStats (init_record) Illegal INP parm field");
+                return S_db_badField;
+        }
 
-	pr->dpvt=pvt;
-	return 0;	/* success */
+        pr->dpvt=pvt;
+        return 0;       /* success */
 }
 
 static long envvar_init_record(stringinRecord* pr)
 {
-	if(pr->inp.type!=INST_IO)
-	{
-		recGblRecordError(S_db_badField,(void*)pr,
-			"devStringinEnvVar (init_record) Illegal INP field");
-		return S_db_badField;
-	}
-	pr->dpvt = pr->inp.value.instio.string;
-	if(pr->dpvt==NULL)
-	{
-		recGblRecordError(S_db_badField,(void*)pr, 
-		   "devStringinEnvVar (init_record) Illegal INP parm field");
-		return S_db_badField;
-	}
-	return 0;	/* success */
+        if(pr->inp.type!=INST_IO)
+        {
+                recGblRecordError(S_db_badField,(void*)pr,
+                        "devStringinEnvVar (init_record) Illegal INP field");
+                return S_db_badField;
+        }
+        pr->dpvt = pr->inp.value.instio.string;
+        if(pr->dpvt==NULL)
+        {
+                recGblRecordError(S_db_badField,(void*)pr, 
+                   "devStringinEnvVar (init_record) Illegal INP parm field");
+                return S_db_badField;
+        }
+        return 0;       /* success */
 }
 
 static long epics_init_record(stringinRecord* pr)
@@ -262,8 +262,8 @@ static long epics_init_record(stringinRecord* pr)
         long status;
         const ENV_PARAM **ppParam = env_param_list;
   
-	status = envvar_init_record(pr);
-	if (status) return status;
+        status = envvar_init_record(pr);
+        if (status) return status;
 
         /* Find a match with one of the EPICS env vars */
         while (*ppParam) {
@@ -281,27 +281,27 @@ static long epics_init_record(stringinRecord* pr)
 
 static long stringin_read(stringinRecord* pr)
 {
-	pvtArea* pvt=(pvtArea*)pr->dpvt;
+        pvtArea* pvt=(pvtArea*)pr->dpvt;
 
-	if (!pvt) return S_dev_badInpType;
+        if (!pvt) return S_dev_badInpType;
 
-	statsGetStrParms[pvt->index].func(pr->val);
-	pr->udf=0;
-	return(0);	/* success */
+        statsGetStrParms[pvt->index].func(pr->val);
+        pr->udf=0;
+        return(0);      /* success */
 }
 
 static long envvar_read(stringinRecord* pr)
 {
-	char **envvar = &notavail;
+        char **envvar = &notavail;
         char *buf;
 
-	if (!pr->dpvt) return S_dev_badInpType;
+        if (!pr->dpvt) return S_dev_badInpType;
         
         if ( (buf=getenv((char *)pr->dpvt)) ) envvar = &buf;
         strncpy(pr->val, *envvar, MAX_NAME_SIZE);
         pr->val[MAX_NAME_SIZE]=0; 
-	pr->udf=0;
-	return(0);	/* success */
+        pr->udf=0;
+        return(0);      /* success */
 }
 
 static long epics_read(stringinRecord* pr)
@@ -312,7 +312,7 @@ static long epics_read(stringinRecord* pr)
                                  MAX_STRING_SIZE, pr->val))
             strcpy(pr->val, "");
         }
-	return(0);	/* success */
+        return(0);      /* success */
 }
 
 /* -------------------------------------------------------------------- */
