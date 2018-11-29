@@ -7,10 +7,10 @@ import optparse
 from pkgNamesToMacroNames import *
 from version_utils import *
 
-__all__ = ['export_db_file', 'module_versions', 'process_options']
+__all__ = ['export_db_file', 'process_options']
 
 
-def export_db_file( ioc_version, module_versions, path=None):
+def export_db_file( module_versions, path=None):
     """
     Use the contents of a dictionary of module versions to create a database
     of module release stringin PVs. The database
@@ -28,9 +28,8 @@ def export_db_file( ioc_version, module_versions, path=None):
             sys.stderr.write('Could not open "%s": %s\n' % (path, e.strerror))
             return None
 
-    # Start list w/ ioc_version
-    sorted_module_versions = [ ioc_version ]
-    sorted_module_versions += [(key, module_versions[key]) for key in sorted(module_versions.keys())]
+    # Create a sorted list of versions
+    sorted_module_versions = [(key, module_versions[key]) for key in sorted(module_versions.keys())]
 
     print >> out_file, '#=============================================================================='
     print >> out_file, '#'
@@ -68,86 +67,6 @@ def export_db_file( ioc_version, module_versions, path=None):
     if out_file != sys.stdout:
         out_file.close()
 
-
-def module_versions(release_path, site_path):
-    """
-    Return a dictionary containing module names and versions.
-    """
-
-    macro_dict = {}
-    release_file_dict = {}
-
-    # first get the IOC version
-    topDir = os.path.abspath( os.path.dirname(site_path) )
-    ( iocName, iocVersion ) = os.path.split( topDir )
-    iocName = os.path.split( iocName )[1]
-    release_file_dict[iocName] = iocVersion
-
-    # next grab EPICS_BASE_VER from RELEASE_SITE file, if it's there
-    siteBaseVer = "Nada"
-    openSiteFile = 1
-
-    try:
-        site_file = open(site_path, 'r')
-    except IOError, e:
-        #sys.stderr.write('Could not open "%s": %s\n' % (site_path, e.strerror))
-        openSiteFile = 0
-
-    if openSiteFile:
-        for line in site_file:
-            # Remove comments
-            line = line.split('#')[0]
-
-            # Turn 'a = b' into a key/value pair and remove leading and trailing whitespace
-            key_value = line.split('=')
-            if len(key_value) != 2:
-                continue
-            key   = key_value[0].strip()
-            value = key_value[1].strip()
-            macro_dict[key] = expandMacros( value, macro_dict )
-
-            # save EPICS_BASE_VER, if it's in there
-            if key == 'EPICS_BASE_VER' or key == 'BASE_MODULE_VERSION':
-                siteBaseVer = value
-
-        site_file.close()
-
-    # now get all the modules
-    try:
-        release_file = open(release_path, 'r')
-    except IOError, e:
-        sys.stderr.write('Could not open "%s": %s\n' % (release_path, e.strerror))
-        return {}
-
-    for line in release_file:
-        # Remove comments
-        line = line.split('#')[0]
-
-        # Turn 'a = b' into a key/value pair and remove leading and trailing whitespace
-        key_value = line.split('=')
-        if len(key_value) != 2:
-            continue
-        key   = key_value[0].strip()
-        value = key_value[1].strip()
-        macro_dict[key] = expandMacros( value, macro_dict )
-
-        # Add the key/value pair to the dictionary if the key ends with _MODULE_VERSION
-        if key.endswith('_MODULE_VERSION'):
-            # if BASE_MODULE_VERSION is set to EPICS_BASE_VER macro from RELEASE_SITE,
-            # capture it here
-            if key == "BASE_MODULE_VERSION" and value == "$(EPICS_BASE_VER)":
-                if siteBaseVer != "Nada":
-                    release_file_dict[key] = siteBaseVer
-                else:
-                    # don't set BASE at all
-                    pass
-            else:
-                release_file_dict[key] = expandMacros( value, macro_dict )
-
-    release_file.close()
-    return release_file_dict
-
-
 def process_options(argv):
     """
     Return parsed command-line options found in the list of
@@ -180,18 +99,13 @@ def process_options(argv):
 
 def main(argv=None):
     options = process_options(argv)
-#	versions = module_versions(options.release_file_path, options.release_site_file_path)
 
     # get the IOC dependents
     topDir = os.path.abspath( os.path.dirname(options.release_site_file_path) )
     dependents = getEpicsPkgDependents( topDir )
 
-    # Split the iocPath into a two level IOC name and a version
-    ( iocPath, iocVersion ) = os.path.split( topDir )
-    iocName = '/'.join( iocPath.split('/')[-2:] )
-
     # export the iocRelease.db file
-    export_db_file( (iocName, iocVersion), dependents, options.db_file)
+    export_db_file( dependents, options.db_file)
 
     return 0
 
