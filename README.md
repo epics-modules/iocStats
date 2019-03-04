@@ -10,6 +10,12 @@ https://www.slac.stanford.edu/grp/ssrl/spear/epics/site/devIocStats/
 See:
 https://github.com/epics-modules/iocStats/releases
 
+## How to clone the GIT repository
+
+```
+$ git clone --recursive git@github.com:epics-modules/iocStats
+```
+
 ## Files and Directories under iocStats
 
 Name                 | Comment
