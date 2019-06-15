@@ -1,0 +1,48 @@
+#==============================================================================
+#
+# Abs:  Records for EPICS environment variables
+#
+# Name: epicsEnvVars.substitutions
+#
+#==============================================================================
+#
+file iocEnvVar.template
+{
+    pattern
+    { ENVNAME                    , ENVVAR                          , ENVTYPE}
+    { CA_ADDR_LIST               , EPICS_CA_ADDR_LIST              , epics  } 
+    { CA_CONN_TIME               , EPICS_CA_CONN_TMO               , epics  } 
+    { CA_AUTO_ADDR               , EPICS_CA_AUTO_ADDR_LIST         , epics  }
+    { CA_RPTR_PORT               , EPICS_CA_REPEATER_PORT          , epics  }
+    { CA_SRVR_PORT               , EPICS_CA_SERVER_PORT            , epics  }
+    { CA_MAX_ARRAY               , EPICS_CA_MAX_ARRAY_BYTES        , epics  }
+    { CA_SRCH_TIME               , EPICS_CA_MAX_SEARCH_PERIOD      , epics  }
+    { CA_BEAC_TIME               , EPICS_CA_BEACON_PERIOD          , epics  }
+
+    { CAS_SRVR_PORT              , EPICS_CAS_SERVER_PORT           , epics  }
+    { CAS_AUTO_ADDR              , EPICS_CAS_AUTO_BEACON_ADDR_LIST , epics  }
+    { CAS_ADDR_LIST              , EPICS_CAS_BEACON_ADDR_LIST      , epics  } 
+    { CAS_BEACON_PERIOD          , EPICS_CAS_BEACON_PERIOD         , epics  }
+    { CAS_BEACON_PORT            , EPICS_CAS_BEACON_PORT           , epics  }
+    { CAS_ADDR_INTF_LIST         , EPICS_CAS_INTF_ADDR_LIST        , epics  } 
+    { CAS_ADDR_IGNORE_LIST       , EPICS_CAS_IGNORE_ADDR_LIST      , epics  } 
+
+    { TIMEZONE                   , EPICS_TIMEZONE                  , epics  }
+    { TS_NTP_INET                , EPICS_TS_NTP_INET               , epics  }
+    { IOC_LOG_PORT               , EPICS_IOC_LOG_PORT              , epics  }
+    { IOC_LOG_INET               , EPICS_IOC_LOG_INET              , epics  }
+
+    { PVA_ADDR_LIST              , EPICS_PVA_ADDR_LIST       , $(V4_ENVTYPE)  }
+    { PVA_AUTO_ADDR              , EPICS_PVA_AUTO_ADDR_LIST  , $(V4_ENVTYPE)  }
+    { PVA_BEACON_PERIOD          , EPICS_PVA_BEACON_PERIOD   , $(V4_ENVTYPE)  }
+    { PVA_BROADCAST_PORT         , EPICS_PVA_BROADCAST_PORT  , $(V4_ENVTYPE)  }
+    { PVA_CONN_TMO               , EPICS_PVA_CONN_TMO        , $(V4_ENVTYPE)  }
+    { PVA_DEBUG                  , EPICS_PVA_DEBUG           , $(V4_ENVTYPE)  }
+    { PVA_SERVER_PORT            , EPICS_PVA_SERVER_PORT     , $(V4_ENVTYPE)  }
+
+    { PVAS_AUTO_BEACON_ADDR_LIST, EPICS_PVAS_AUTO_BEACON_ADDR_LIST , $(V4_ENVTYPE)  }
+    { PVAS_BEACON_ADDR_LIST     , EPICS_PVAS_BEACON_ADDR_LIST      , $(V4_ENVTYPE)  }
+    { PVAS_BEACON_PERIOD        , EPICS_PVAS_BEACON_PERIOD         , $(V4_ENVTYPE)  }
+    { PVAS_BROADCAST_PORT       , EPICS_PVAS_BROADCAST_PORT        , $(V4_ENVTYPE)  }
+    { PVAS_SERVER_PORT          , EPICS_PVAS_SERVER_PORT           , $(V4_ENVTYPE)  }
+}

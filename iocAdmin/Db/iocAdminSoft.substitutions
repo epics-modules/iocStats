@@ -22,43 +22,7 @@ file iocAdminScanMon.db
 	{	IOCNAME	 }
 	{	"$(IOC)" }
 }
-file iocEnvVar.template
+file epicsEnvVars.db
 {
-pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
-    { "$(IOC)" , CA_ADDR_LIST , EPICS_CA_ADDR_LIST              , epics  } 
-    { "$(IOC)" , CA_CONN_TIME , EPICS_CA_CONN_TMO               , epics  } 
-    { "$(IOC)" , CA_AUTO_ADDR , EPICS_CA_AUTO_ADDR_LIST         , epics  }
-    { "$(IOC)" , CA_RPTR_PORT , EPICS_CA_REPEATER_PORT          , epics  }
-    { "$(IOC)" , CA_SRVR_PORT , EPICS_CA_SERVER_PORT            , epics  }
-    { "$(IOC)" , CA_MAX_ARRAY , EPICS_CA_MAX_ARRAY_BYTES        , epics  }
-    { "$(IOC)" , CA_SRCH_TIME , EPICS_CA_MAX_SEARCH_PERIOD      , epics  }
-    { "$(IOC)" , CA_BEAC_TIME , EPICS_CA_BEACON_PERIOD          , epics  }
-
-    { "$(IOC)" , CAS_SRVR_PORT        , EPICS_CAS_SERVER_PORT          , epics  }
-    { "$(IOC)" , CAS_AUTO_ADDR        , EPICS_CAS_AUTO_BEACON_ADDR_LIST, epics  }
-    { "$(IOC)" , CAS_ADDR_LIST        , EPICS_CAS_BEACON_ADDR_LIST     , epics  } 
-    { "$(IOC)" , CAS_BEACON_PERIOD    , EPICS_CAS_BEACON_PERIOD        , epics  }
-    { "$(IOC)" , CAS_BEACON_PORT      , EPICS_CAS_BEACON_PORT          , epics  }
-    { "$(IOC)" , CAS_ADDR_INTF_LIST   , EPICS_CAS_INTF_ADDR_LIST       , epics  } 
-    { "$(IOC)" , CAS_ADDR_IGNORE_LIST , EPICS_CAS_IGNORE_ADDR_LIST     , epics  } 
-
-    { "$(IOC)" , TIMEZONE     , EPICS_TIMEZONE                  , epics  }
-    { "$(IOC)" , TS_MIN_WEST  , EPICS_TS_MIN_WEST               , epics  }
-    { "$(IOC)" , TS_NTP_INET  , EPICS_TS_NTP_INET               , epics  }
-    { "$(IOC)" , IOC_LOG_PORT , EPICS_IOC_LOG_PORT              , epics  }
-    { "$(IOC)" , IOC_LOG_INET , EPICS_IOC_LOG_INET              , epics  }
-
-    { "$(IOC)" , PVA_ADDR_LIST ,      EPICS_PVA_ADDR_LIST       , epics  }
-    { "$(IOC)" , PVA_AUTO_ADDR ,      EPICS_PVA_AUTO_ADDR       , epics  }
-    { "$(IOC)" , PVA_DEBUG ,          EPICS_PVA_DEBUG           , epics  }
-    { "$(IOC)" , PVA_CONN_TMO ,       EPICS_PVA_CONN_TMO        , epics  }
-    { "$(IOC)" , PVA_BEACON_PERIOD ,  EPICS_PVA_BEACON_PERIOD   , epics  }
-    { "$(IOC)" , PVA_BROADCAST_PORT , EPICS_PVA_BROADCAST_PORT  , epics  }
-    { "$(IOC)" , PVA_SERVER_PORT ,    EPICS_PVA_SERVER_PORT     , epics  }
-
-    { "$(IOC)" , PVAS_BEACON_ADDR_LIST ,      EPICS_PVAS_BEACON_ADDR_LIST      , epics  }
-    { "$(IOC)" , PVAS_AUTO_BEACON_ADDR_LIST , EPICS_PVAS_AUTO_BEACON_ADDR_LIST , epics  }
-    { "$(IOC)" , PVAS_SERVER_PORT ,           EPICS_PVAS_SERVER_PORT           , epics  }
-    { "$(IOC)" , PVAS_BEACON_PERIOD ,         EPICS_PVAS_BEACON_PERIOD         , epics  }
-    { "$(IOC)" , PVAS_BROADCAST_PORT ,        EPICS_PVAS_BROADCAST_PORT        , epics  }
+	{ IOCNAME = "\$(IOC)" }
 }
