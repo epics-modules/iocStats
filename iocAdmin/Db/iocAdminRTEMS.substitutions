@@ -32,7 +32,7 @@ file iocRTEMSOnly.template
 pattern { IOCNAME }
 	{ "$(IOC)"  }
 }
-file iocEnvVar.template
+file epicsEnvVars.db
 {
 pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
 	{ "$(IOC)" , CA_ADDR_LIST , EPICS_CA_ADDR_LIST              , epics  } 
