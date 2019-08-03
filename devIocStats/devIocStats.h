@@ -18,6 +18,17 @@
  *
  */
 
+#ifndef devIocStats_H
+#define devIocStats_H
+
+#include <epicsVersion.h>
+
+#ifndef VERSION_INT
+#  define VERSION_INT(V,R,M,P) ( ((V)<<24) | ((R)<<16) | ((M)<<8) | (P))
+#  define EPICS_VERSION_INT  VERSION_INT(EPICS_VERSION, EPICS_REVISION, EPICS_MODIFICATION, EPICS_PATCH_LEVEL)
+#endif
+
+
 /* Cluster info pool types */
 #define DATA_POOL 0
 #define SYS_POOL  1
@@ -27,8 +38,9 @@
 #define LOAD_TYPE	1
 #define FD_TYPE		2
 #define CA_TYPE		3
-#define STATIC_TYPE	4
-#define TOTAL_TYPES	5
+#define QUEUE_TYPE	4
+#define STATIC_TYPE	5
+#define TOTAL_TYPES	6
 
 /* Names of environment variables (may be redefined in OSD include) */
 #define STARTUP  "STARTUP"
@@ -118,3 +130,5 @@ extern int devIocStatsGetPwd (char **pval);
 extern int devIocStatsGetHostname (char **pval);
 extern int devIocStatsGetPID (double *proc_id);
 extern int devIocStatsGetPPID (double *proc_id);
+
+#endif /* devIocStats_H */

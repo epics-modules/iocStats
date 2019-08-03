@@ -112,6 +112,7 @@
 #include <epicsThread.h>
 #include <epicsTimer.h>
 #include <epicsMutex.h>
+#include <epicsVersion.h>
 
 #include <rsrv.h>
 #include <dbAccess.h>
@@ -124,8 +125,11 @@
 #include <recGbl.h>
 #include <epicsExport.h>
 #include <initHooks.h>
+#include <callback.h>
 
 #include "devIocStats.h"
+
+#define BASE_HAS_QUEUE_STATUS (EPICS_VERSION_INT == VERSION_INT(3, 16, 2, 0)) || (EPICS_VERSION_INT >= VERSION_INT(7, 0, 2, 0))
 
 struct aStats
 {
@@ -213,6 +217,20 @@ static void statsIFOErrs(double *);
 static void statsRecords(double *);
 static void statsPID(double *);
 static void statsPPID(double *);
+static void statsScanOnceQHiWtrMrk(double*);
+static void statsScanOnceQUsed(double*);
+static void statsScanOnceQSize(double*);
+static void statsScanOnceQOverruns(double*);
+static void statsCbQSize(double*);
+static void statsCbLowQHiWtrMrk(double*);
+static void statsCbLowQUsed(double*);
+static void statsCbLowQOverruns(double*);
+static void statsCbMediumQHiWtrMrk(double*);
+static void statsCbMediumQUsed(double*);
+static void statsCbMediumQOverruns(double*);
+static void statsCbHighQHiWtrMrk(double*);
+static void statsCbHighQUsed(double*);
+static void statsCbHighQOverruns(double*);
 
 struct {
 	char *name;
@@ -222,6 +240,7 @@ struct {
 	{ "cpu_scan_rate",	20.0 },
 	{ "fd_scan_rate",	10.0 },
 	{ "ca_scan_rate", 	15.0 },
+    { "queue_scan_rate",	1.0 },
 	{ NULL,			0.0  },
 };
 
@@ -253,6 +272,20 @@ static validGetParms statsGetParms[]={
 	{ "records",			statsRecords,           STATIC_TYPE },
 	{ "proc_id",			statsPID,               STATIC_TYPE },
 	{ "parent_proc_id",		statsPPID,              STATIC_TYPE },
+	{ "scanOnceQueueHiWtrMrk",	statsScanOnceQHiWtrMrk,	QUEUE_TYPE },
+	{ "scanOnceQueueUsed",		statsScanOnceQUsed,	QUEUE_TYPE },
+	{ "scanOnceQueueSize",		statsScanOnceQSize,	STATIC_TYPE },
+	{ "scanOnceQueueOverruns",	statsScanOnceQOverruns,	QUEUE_TYPE },
+	{ "cbQueueSize",		statsCbQSize,		STATIC_TYPE },
+	{ "cbLowQueueHiWtrMrk",		statsCbLowQHiWtrMrk,	QUEUE_TYPE },
+	{ "cbLowQueueUsed",		statsCbLowQUsed,	QUEUE_TYPE },
+	{ "cbLowQueueOverruns",		statsCbLowQOverruns,	QUEUE_TYPE },
+	{ "cbMediumQueueHiWtrMrk",	statsCbMediumQHiWtrMrk,	QUEUE_TYPE },
+	{ "cbMediumQueueUsed",		statsCbMediumQUsed,	QUEUE_TYPE },
+	{ "cbMediumQueueOverruns",	statsCbMediumQOverruns,	QUEUE_TYPE },
+	{ "cbHighQueueHiWtrMrk",	statsCbHighQHiWtrMrk,	QUEUE_TYPE },
+	{ "cbHighQueueUsed",		statsCbHighQUsed,	QUEUE_TYPE },
+	{ "cbHighQueueOverruns",	statsCbHighQOverruns,	QUEUE_TYPE },
 	{ NULL,NULL,0 }
 };
 
@@ -265,6 +298,11 @@ epicsExportAddress(dset,devAiClusts);
 
 static memInfo meminfo = {0.0,0.0,0.0,0.0,0.0,0.0};
 static memInfo workspaceinfo = {0.0,0.0,0.0,0.0,0.0,0.0};
+#if BASE_HAS_QUEUE_STATUS
+static scanOnceQueueStats scanOnceQStatus;
+static callbackQueueStats callbackQStatus;
+#endif
+static int queueDataInitialized;
 static scanInfo scan[TOTAL_TYPES] = {{0}};
 static fdInfo fdusage = {0,0};
 static loadInfo loadinfo = {1,0.,0.};
@@ -308,6 +346,14 @@ static void notifyOnCaServInit(initHookState state)
     if (state == initHookAfterCaServerInit) {
         caServInitialized = 1;
     }
+}
+
+static void getQueueData() {
+    #if BASE_HAS_QUEUE_STATUS
+        scanOnceQueueStatus(0, &scanOnceQStatus);
+        callbackQueueStatus(0, &callbackQStatus);
+    #endif
+    queueDataInitialized = 1;
 }
 
 static void scan_time(int type)
@@ -371,6 +417,13 @@ static void scan_time(int type)
           epicsMutexLock(scan_mutex);
           cainfo_clients = cainfo_clients_local;
           cainfo_connex  = cainfo_connex_local;
+          epicsMutexUnlock(scan_mutex);
+          break;
+      }
+      case QUEUE_TYPE:
+      {
+          epicsMutexLock(scan_mutex);
+          getQueueData();
           epicsMutexUnlock(scan_mutex);
           break;
       }
@@ -755,4 +808,135 @@ static void statsPPID(double *val)
 {
     *val = 0;
     devIocStatsGetPPID(val);
+}
+
+static void statsScanOnceQHiWtrMrk(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = scanOnceQStatus.maxUsed;
+#else
+    *val = 0;
+#endif
+}
+static void statsScanOnceQUsed(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = scanOnceQStatus.numUsed;
+#else
+    *val = 0;
+#endif
+}
+static void statsScanOnceQSize(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = scanOnceQStatus.size;
+#else
+    *val = 0;
+#endif
+}
+static void statsScanOnceQOverruns(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = scanOnceQStatus.numOverflow;
+#else
+    *val = 0;
+#endif
+}
+
+static void statsCbQSize(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.size;
+#else
+    *val = 0;
+#endif
+}
+
+static void statsCbLowQHiWtrMrk(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.maxUsed[priorityLow];
+#else
+    *val = 0;
+#endif
+}
+static void statsCbLowQUsed(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.numUsed[priorityLow];
+#else
+    *val = 0;
+#endif
+}
+static void statsCbLowQOverruns(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.numOverflow[priorityLow];
+#else
+    *val = 0;
+#endif
+}
+
+static void statsCbMediumQHiWtrMrk(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.maxUsed[priorityMedium];
+#else
+    *val = 0;
+#endif
+}
+static void statsCbMediumQUsed(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.numUsed[priorityMedium];
+#else
+    *val = 0;
+#endif
+}
+static void statsCbMediumQOverruns(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.numOverflow[priorityMedium];
+#else
+    *val = 0;
+#endif
+}
+
+static void statsCbHighQHiWtrMrk(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.maxUsed[priorityHigh];
+#else
+    *val = 0;
+#endif
+}
+static void statsCbHighQUsed(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.numUsed[priorityHigh];
+#else
+    *val = 0;
+#endif
+}
+static void statsCbHighQOverruns(double *val)
+{
+#if BASE_HAS_QUEUE_STATUS
+    if(!queueDataInitialized) getQueueData();
+    *val = callbackQStatus.numOverflow[priorityHigh];
+#else
+    *val = 0;
+#endif
 }
