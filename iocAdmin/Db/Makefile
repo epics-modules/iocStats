@@ -28,11 +28,8 @@ DB += iocAdminSoft.db
 DB += iocAdminRTEMS.db
 
 ifdef BASE_7_0
-V4_ENVTYPE=epics
-else
-V4_ENVTYPE=env
+USR_DBFLAGS += -M V4_ENVTYPE=epics
 endif
-USR_DBFLAGS += -M V4_ENVTYPE=$(V4_ENVTYPE)
 
 #
 #----------------------------------------------------
