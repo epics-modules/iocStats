@@ -8,6 +8,11 @@ ifdef IOCADMIN
 
 INSTALL_IOCRELEASE_DBS=$(IOCRELEASE_DB:%=$(INSTALL_DB)/%)
 
+PYTHON=$(shell which python2)
+ifneq ("python2","$(notdir $(PYTHON))")
+	PYTHON=python
+endif
+
 #--------------------------------------------------
 # Rules
 
@@ -15,9 +20,9 @@ build : $(IOCRELEASE_DB)
 buildInstall : $(INSTALL_IOCRELEASE_DBS)
 
 # Create database for module version PVs
-$(IOCRELEASE_DB)   : $(TOP)/configure/RELEASE $(TOP)/RELEASE_SITE
+$(IOCRELEASE_DB)   : $(TOP)/configure/RELEASE
 	$(RM) $@
-	python2 $(IOCADMIN)/iocAdmin/src/iocReleaseCreateDb.py $^ >$@
+	$(PYTHON) $(IOCADMIN)/bin/$(EPICS_HOST_ARCH)/iocReleaseCreateDb.py $^ > $@
 
 $(INSTALL_DB)/%: %
 	@echo "Installing db file $@"

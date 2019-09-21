@@ -76,8 +76,7 @@ def process_options(argv):
     if argv is None:
         argv = sys.argv[1:]
 
-    #    usage = 'Usage: %prog RELEASE_FILE [options]'
-    usage = 'Usage: %prog RELEASE_FILE RELEASE_SITE_FILE [options]'
+    usage = 'Usage: %prog RELEASE_FILE [options]'
     version = '%prog 0.2'
     parser = optparse.OptionParser(usage=usage, version=version)
 
@@ -89,11 +88,10 @@ def process_options(argv):
 
     (options, args) = parser.parse_args(argv)
 
-    if len(args) != 2:
+    if len(args) != 1:
         parser.error("incorrect number of arguments")
 
     options.release_file_path = os.path.normcase(args[0])
-    options.release_site_file_path = os.path.normcase(args[1])
 
     return options
 
@@ -101,7 +99,7 @@ def main(argv=None):
     options = process_options(argv)
 
     # get the IOC dependents
-    topDir = os.path.abspath( os.path.dirname(options.release_site_file_path) )
+    topDir = os.path.abspath( os.path.dirname( os.path.dirname(options.release_file_path) ) )
     dependents = getEpicsPkgDependents( topDir )
 
     # export the iocRelease.db file
