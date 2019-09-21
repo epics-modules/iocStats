@@ -1,6 +1,8 @@
-'''This file facilitates translating EPICS package names, typically modules, to
-a list of macro names used for that package at SLAC. 1:N
-It also translates a macro name to the name of the package it's used for. 1:1
+'''This file facilitates translating EPICS macro names from RELEASE files,
+typically EPICS modules, to the name of the package it's used for.
+Additional macro names can be added to this list as desired.
+Packages can have multiple macro names which all get mapped to that package name.
+Macro names not found are converted to lower-case and returned as the package name.
 '''
 import os
 import string
@@ -235,10 +237,10 @@ pkgNameAddMacroName( 'base',			'BASE_MODULE_VERSION' )
 pkgNameAddMacroName( 'base',			'EPICS_BASE' )
 pkgNameAddMacroName( 'BergozBCM-RF-asyn','BERGOZBCM_RF_ASYN' )
 pkgNameAddMacroName( 'Bk9000_MBT',		'BK9000_MBT' )
-pkgNameAddMacroName( 'bldClient',		'BLD_CLIENT' )	# TODO: We should flag these non-standard macro names
-pkgNameAddMacroName( 'Bx9000_MBT',		'BX9000' )	# TODO: We should flag these non-standard macro names
+pkgNameAddMacroName( 'bldClient',		'BLD_CLIENT' )
+pkgNameAddMacroName( 'Bx9000_MBT',		'BX9000' )
 pkgNameAddMacroName( 'Bx9000_MBT',		'BX9000_MBT' )
-pkgNameAddMacroName( 'Bx9000_MBT',		'BX9000MBT' )	# TODO: We should flag these non-standard macro names
+pkgNameAddMacroName( 'Bx9000_MBT',		'BX9000MBT' )
 pkgNameAddMacroName( 'Camcom',			'CAMCOM' )
 pkgNameAddMacroName( 'caSnooper',		'CASNOOPER' )
 pkgNameAddMacroName( 'cexpsh',			'CEXP' )
@@ -255,28 +257,28 @@ pkgNameAddMacroName( 'ip440-asyn',		'IP440_ASYN' )
 pkgNameAddMacroName( 'ip445',			'XY2445' )
 pkgNameAddMacroName( 'ip445-asyn',		'IP445_ASYN' )
 pkgNameAddMacroName( 'LeCroy_ENET',		'LECROY' )
-pkgNameAddMacroName( 'normativeTypesCPP','NORMATIVE' )	# TODO: We should flag these non-standard macro names
-pkgNameAddMacroName( 'normativeTypesCPP','NORMATIVETYPES' )	# TODO: We should flag these non-standard macro names
+pkgNameAddMacroName( 'normativeTypesCPP','NORMATIVE' )
+pkgNameAddMacroName( 'normativeTypesCPP','NORMATIVETYPES' )
 pkgNameAddMacroName( 'procServ',		'PROCSERV' )
 pkgNameAddMacroName( 'PSCD_Camac',		'PSCDCAMAC' )
-pkgNameAddMacroName( 'pvAccessCPP',		'PVACCESS' )	# TODO: We should flag these non-standard macro names
-pkgNameAddMacroName( 'pvAccessCPP',		'pvAccessCPP' )	# TODO: We should flag these non-standard macro names
-pkgNameAddMacroName( 'pvaClientCPP',	'PVACLIENT' )	# TODO: We should flag these non-standard macro names
+pkgNameAddMacroName( 'pvAccessCPP',		'PVACCESS' )
+pkgNameAddMacroName( 'pvAccessCPP',		'pvAccessCPP' )
+pkgNameAddMacroName( 'pvaClientCPP',	'PVACLIENT' )
 pkgNameAddMacroName( 'pvaSrv',			'PVASRV' )
 pkgNameAddMacroName( 'pvCommonCPP',		'PVCOMMONCPP' )
-pkgNameAddMacroName( 'pvCommonCPP',		'PVCOMMON' )	# TODO: We should flag these non-standard macro names
-pkgNameAddMacroName( 'pvCommonCPP',		'pvCommonCPP' )	# TODO: We should flag these non-standard macro names
+pkgNameAddMacroName( 'pvCommonCPP',		'PVCOMMON' )
+pkgNameAddMacroName( 'pvCommonCPP',		'pvCommonCPP' )
 pkgNameAddMacroName( 'pvDatabaseCPP',	'PVDATABASECPP' )
-pkgNameAddMacroName( 'pvDatabaseCPP',	'PVDATABASE' )	# TODO: We should flag these non-standard macro names
+pkgNameAddMacroName( 'pvDatabaseCPP',	'PVDATABASE' )
 pkgNameAddMacroName( 'pvDataCPP',		'PVDATACPP' )
-pkgNameAddMacroName( 'pvDataCPP',		'PVDATA' )	# TODO: We should flag these non-standard macro names
-pkgNameAddMacroName( 'pvDataCPP',		'pvDataCPP' )	# TODO: We should flag these non-standard macro names
+pkgNameAddMacroName( 'pvDataCPP',		'PVDATA' )
+pkgNameAddMacroName( 'pvDataCPP',		'pvDataCPP' )
 pkgNameAddMacroName( 'pvIOCCPP',		'PVIOC' )
 pkgNameAddMacroName( 'seq',				'SNCSEQ' )
 pkgNameAddMacroName( 'sscan',			'SSCAN' )
 pkgNameAddMacroName( 'sSubRecord',		'SSUBRECORD' )
 pkgNameAddMacroName( 'streamdevice',	'STREAMDEVICE' )
-pkgNameAddMacroName( 'streamdevice',	'STREAM' )	# TODO: We should flag these non-standard macro names
+pkgNameAddMacroName( 'streamdevice',	'STREAM' )
 pkgNameAddMacroName( 'StripTool',		'STRIPTOOL' )
 pkgNameAddMacroName( 'timingApi',		'TIMING_API' )
 pkgNameAddMacroName( 'VHQx0x',			'VHQX0X' )
