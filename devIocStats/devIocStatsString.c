@@ -100,6 +100,12 @@
 
 #include "devIocStats.h"
 
+#include <epicsVersion.h>
+#ifndef EPICS_VERSION_INT
+#define VERSION_INT(V,R,M,P) ( ((V)<<24) | ((R)<<16) | ((M)<<8) | (P))
+#define EPICS_VERSION_INT VERSION_INT(EPICS_VERSION, EPICS_REVISION, EPICS_MODIFICATION, EPICS_PATCH_LEVEL)
+#endif
+
 #define MAX_NAME_SIZE (MAX_STRING_SIZE-1)
 
 struct sStats
@@ -312,7 +318,11 @@ static long epics_read(stringinRecord* pr)
             strcpy(pr->val, "");
         } else { // reading a non-existent environment variable
           strcpy(pr->val, "<undefined>");
+#if EPICS_VERSION_INT >= VERSION_INT(3,15,0,2)
           recGblSetSevr(pr, UDF_ALARM, pr->udfs);
+#else
+          recGblSetSevr(pr, UDF_ALARM, INVALID_ALARM);
+#endif
           return(0);
         }
 	return(0);	/* success */
