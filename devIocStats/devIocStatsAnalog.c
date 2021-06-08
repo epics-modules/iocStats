@@ -692,7 +692,7 @@ static double minMBuf(int pool)
     int i = 0;
     double lowest = 1.0, comp;
 
-    while ((clustinfo[pool][i][0] != 0) && (i < CLUSTSIZES))
+    while ((i < CLUSTSIZES) && (clustinfo[pool][i][0] != 0))
     {
         if (clustinfo[pool][i][1] != 0) {
             comp = ((double)clustinfo[pool][i][2]) / clustinfo[pool][i][1];
