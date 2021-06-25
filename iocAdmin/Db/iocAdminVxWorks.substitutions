@@ -38,6 +38,7 @@ pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
 	{ "$(IOC)" , CA_SRCH_TIME , EPICS_CA_MAX_SEARCH_PERIOD      , epics  }
 	{ "$(IOC)" , CA_BEAC_TIME , EPICS_CA_BEACON_PERIOD          , epics  }
 	{ "$(IOC)" , TIMEZONE     , EPICS_TIMEZONE                  , epics  }
+	{ "$(IOC)" , TZ           , EPICS_TZ                        , epics  }
 	{ "$(IOC)" , TS_NTP_INET  , EPICS_TS_NTP_INET               , epics  }
 	{ "$(IOC)" , IOC_LOG_PORT , EPICS_IOC_LOG_PORT              , epics  }
 	{ "$(IOC)" , IOC_LOG_INET , EPICS_IOC_LOG_INET              , epics  }
