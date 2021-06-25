@@ -23,6 +23,7 @@
 
 #if defined(__MINGW32__) || defined(__MINGW64__)
 #define WINVER 0x0501
+#define _WIN32_WINNT 0x0601
 #endif
 
 #include <windows.h>
