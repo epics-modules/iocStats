@@ -11,6 +11,8 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install)
 # databases, templates, substitutions like this
 #
+DB += epicsEnvVars.db
+DB += iocAdminScanMon.db
 DB += ioc.db
 DB += iocRTOS.db
 DB += iocVxWorksOnly.db
@@ -24,7 +26,10 @@ DB += access.db
 DB += iocAdminVxWorks.db
 DB += iocAdminSoft.db
 DB += iocAdminRTEMS.db
-DB += iocAdminScanMon.db
+
+ifdef BASE_7_0
+USR_DBFLAGS += -M V4_ENVTYPE=epics
+endif
 
 #
 #----------------------------------------------------
@@ -35,4 +40,8 @@ include $(TOP)/configure/RULES
 
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
+
+$(COMMON_DIR)/iocAdminRTEMS.db:	$(INSTALL_DB)/iocAdminScanMon.db $(INSTALL_DB)/epicsEnvVars.db
+
+$(COMMON_DIR)/iocAdminSoft.db:	$(INSTALL_DB)/iocAdminScanMon.db $(INSTALL_DB)/epicsEnvVars.db
 
