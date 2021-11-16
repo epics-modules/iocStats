@@ -14,9 +14,10 @@ INC += devIocStatsOSD.h
 
 #=============================
 
-LIBRARY_IOC = devIocStats
+LIBRARY_IOC = devIocStats devIocStatsSeq
 
 devIocStats_LIBS = $(EPICS_BASE_IOC_LIBS)
+devIocStatsSeq_LIBS = $(EPICS_BASE_IOC_LIBS)
 devIocStats_SYS_LIBS_solaris = kstat
 devIocStats_SYS_LIBS_WIN32 += psapi
 
@@ -26,7 +27,11 @@ SRCS += devIocStatsString.c
 SRCS += devIocStatsWaveform.c
 SRCS += devIocStatsSub.c
 SRCS += devIocStatsTest.c
-
+SRCS += ioccar.c
+devIocStats_SRCS += seqFunction.c
+ifeq ($(NETWORK_STAT),NO)
+USR_CFLAGS_Linux += -DNO_NETWORK_STAT
+endif
 # OSD parts
 # Base 3.14 does not correctly define POSIX=NO for mingw
 ifeq (mingw,$(findstring mingw, $(T_A)))
@@ -35,6 +40,7 @@ endif
 SRCS += osdCpuUsage.c
 SRCS += osdCpuUtilization.c
 SRCS += osdFdUsage.c
+SRCS += osdNetStats.c
 SRCS += osdMemUsage.c
 SRCS += osdWorkspaceUsage.c
 SRCS += osdClustInfo.c

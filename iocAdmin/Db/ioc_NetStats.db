@@ -1,0 +1,64 @@
+# Network Statistics related records
+# example for INP_IF_NAME => eth0
+
+record(stringin, "$(IOCNAME):NET_$(IF_NAME)")
+{
+  field(DESC,"IF $(INP_IF_NAME) IP address")
+  field(DTYP, "IOC net stats")
+  field(INP, "@netAddr:$(INP_IF_NAME)")
+  field(PINI, "YES")
+}
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_TX") {
+  field(DESC,"IF $(INP_IF_NAME) PACKETS_TX")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC net stats")
+  field(INP, "@netPacketsTx:$(INP_IF_NAME)")
+}
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_RX") {
+  field(DESC,"IF $(INP_IF_NAME) PACKETS_RX")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC net stats")
+  field(INP, "@netPacketsRx:$(INP_IF_NAME)")
+}
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_ERRORS_TX") {
+  field(DESC,"IF $(INP_IF_NAME) ERRORS_TX")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC net stats")
+  field(INP, "@netPErrorTx:$(INP_IF_NAME)")
+  info(archive,"VerySlow")
+}
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_ERRORS_RX") {
+  field(DESC,"IF $(INP_IF_NAME) ERRORS_RX")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC net stats")
+  field(INP, "@netPErrorRx:$(INP_IF_NAME)")
+  info(archive,"VerySlow")
+}
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_DROPPED_TX") {
+  field(DESC,"IF $(INP_IF_NAME) DROPPED_TX")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC net stats")
+  field(INP, "@netPDroppedTx:$(INP_IF_NAME)")
+  info(archive,"VerySlow")
+}
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_DROPPED_RX") {
+  field(DESC,"IF $(INP_IF_NAME) DROPPED_RX")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC net stats")
+  field(INP, "@netPDroppedRx:$(INP_IF_NAME)")
+  info(archive,"VerySlow")
+}
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_COLLISIONS") {
+  field(DESC,"IF $(INP_IF_NAME) COLLISIONS")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC net stats")
+  field(INP, "@netPCollisions:$(INP_IF_NAME)")
+  info(archive,"VerySlow")
+}
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_CARRIER_ERR") {
+  field(DESC,"IF $(INP_IF_NAME) CARRIER Error")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "IOC net stats")
+  field(INP, "@netPCarrierErr:$(INP_IF_NAME)")
+  info(archive,"VerySlow")
+}

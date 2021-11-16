@@ -25,6 +25,9 @@ DB += iocAdminVxWorks.db
 DB += iocAdminSoft.db
 DB += iocAdminRTEMS.db
 DB += iocAdminScanMon.db
+DB += ioc_stats.db
+DB += ioc_NetStats.db
+DB += sys_stats.db
 
 #
 #----------------------------------------------------

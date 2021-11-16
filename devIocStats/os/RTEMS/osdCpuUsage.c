@@ -103,7 +103,7 @@ static void cpu_ticks(double *total, double *idle)
                 if (tc) {
                     *total += CPU_ELAPSED_TIME(tc);
                     RTEMS_OBJ_GET_NAME( tc,  name );
-                    if (name[0]) {
+                    if (name && name[0]) {
                         if (name[0] == 'I' && name[1] == 'D' &&
                             name[2] == 'L' && name[3] == 'E') {
                             *idle = CPU_ELAPSED_TIME(tc);

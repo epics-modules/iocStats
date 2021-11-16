@@ -80,6 +80,10 @@
 	stringin (DTYP = "IOC epics var"):
 
                 <EPICS environment variable from envDefs.h>
+
+	stringin (DTYP = "IOC net stats"):
+
+		<process the string in INP filed ex. @netAddr:eth0>
 */
 
 #include <string.h>
@@ -98,6 +102,9 @@
 #include <epicsExport.h>
 
 #include "devIocStats.h"
+#include <string.h>
+
+#define NET_PARAM_SEPARATOR ':'
 
 #define MAX_NAME_SIZE (MAX_STRING_SIZE-1)
 
@@ -136,6 +143,8 @@ static long envvar_init_record(stringinRecord*);
 static long envvar_read(stringinRecord*);
 static long epics_init_record(stringinRecord*);
 static long epics_read(stringinRecord*);
+static long stringin_net_init_record(stringinRecord* pr);
+static long net_read(stringinRecord*);
 
 static void statsSScript1(char *);
 static void statsSScript2(char *);
@@ -150,13 +159,16 @@ static void statsKernelVer(char *);
 static void statsEPICSVer(char *);
 static void statsEngineer(char *);
 static void statsLocation(char *);
+static void statsWiki(char *);
 static void statsUpTime(char *);
 static void statsHostName(char *);
 static void statsPwd1(char *);
 static void statsPwd2(char *);
+static void statsNetAddr(char *);
 
 static int devIocStatsGetEngineer (char **pval);
 static int devIocStatsGetLocation (char **pval);
+static int devIocStatsGetWiki (char **pval);
 
 static validGetStrParms statsGetStrParms[]={
 	{ "startup_script_1",		statsSScript1,		STATIC_TYPE },
@@ -172,19 +184,23 @@ static validGetStrParms statsGetStrParms[]={
 	{ "epics_ver",			statsEPICSVer,		STATIC_TYPE },
 	{ "engineer",			statsEngineer,		STATIC_TYPE },
 	{ "location",			statsLocation,		STATIC_TYPE },
+        { "wiki",			statsWiki,		STATIC_TYPE },
 	{ "up_time",			statsUpTime,		STATIC_TYPE },
         { "hostname",			statsHostName,		STATIC_TYPE },
         { "pwd1",			statsPwd1,		STATIC_TYPE },
         { "pwd2",			statsPwd2,		STATIC_TYPE },
+	{ "netAddr",                    statsNetAddr,           STATIC_TYPE },
 	{ NULL,NULL,0 }
 };
 
 sStats devStringinStats  ={5,NULL,stringin_init,stringin_init_record,NULL,stringin_read};
 sStats devStringinEnvVar ={5,NULL,NULL,envvar_init_record,  NULL,envvar_read  };
 sStats devStringinEpics  ={5,NULL,NULL,epics_init_record,   NULL,epics_read   };
+sStats devStringinNet	 ={5,NULL,NULL,stringin_net_init_record,   NULL,net_read   };
 epicsExportAddress(dset,devStringinStats);
 epicsExportAddress(dset,devStringinEnvVar);
 epicsExportAddress(dset,devStringinEpics);
+epicsExportAddress(dset,devStringinNet);
 
 static char *notavail = "<not available>";
 static char *empty    = "";
@@ -282,7 +298,6 @@ static long epics_init_record(stringinRecord* pr)
 static long stringin_read(stringinRecord* pr)
 {
 	pvtArea* pvt=(pvtArea*)pr->dpvt;
-
 	if (!pvt) return S_dev_badInpType;
 
 	statsGetStrParms[pvt->index].func(pr->val);
@@ -314,7 +329,65 @@ static long epics_read(stringinRecord* pr)
         }
 	return(0);	/* success */
 }
-
+
+static long stringin_net_init_record(stringinRecord* pr)
+{
+	int		i;
+	char	*parm;
+	char    *pcIfName=NULL;
+	unsigned short sParamLen=0;
+	unsigned short sIfNameLen=0;
+	pvtArea	*pvt = NULL;
+	if(pr->inp.type!=INST_IO)
+	{
+		recGblRecordError(S_db_badField,(void*)pr,
+			"devStringinStats (init_record) Illegal INP field");
+		return S_db_badField;
+	}
+	parm = pr->inp.value.instio.string;
+	pcIfName=strchr(parm,NET_PARAM_SEPARATOR);
+	if(pcIfName){
+	  sParamLen=pcIfName-parm;
+	  pcIfName=pcIfName+1;
+	  sIfNameLen=strlen(pcIfName);
+	}
+
+	if(pcIfName==NULL || sIfNameLen<2 || strchr(pcIfName,' ')!=NULL){
+	   recGblRecordError(S_db_badField,(void*)pr,
+                        "devAiStats (init_record) Illegal INP field");
+	  fprintf( stderr, "example: INP = @%s%ceth0\n",parm,NET_PARAM_SEPARATOR);
+	  return S_db_badField;
+	}
+	
+	for(i=0;statsGetStrParms[i].name && pvt==NULL;i++)
+	{
+	  if(strncmp(parm,statsGetStrParms[i].name,sParamLen)==0)
+		{
+			pvt=(pvtArea*)malloc(sizeof(pvtArea));
+			pvt->index=i;
+			pvt->type=statsGetStrParms[i].type;
+		}
+	}
+	if(pvt==NULL)
+	{
+		recGblRecordError(S_db_badField,(void*)pr, 
+		   "devStringinStats (init_record) Illegal INP parm field");
+		return S_db_badField;
+	}
+
+	pr->dpvt=pvt;
+	return 0;	/* success */
+}
+
+static long net_read(stringinRecord* pr)
+{
+        pvtArea* pvt=(pvtArea*)pr->dpvt;
+        if (!pvt) return S_dev_badInpType;
+        statsGetStrParms[pvt->index].func((char *)pr);
+        pr->udf=0;
+        return(0);      /* success */
+}
+
 /* -------------------------------------------------------------------- */
 
 typedef int getStringFunc (char **dest);
@@ -345,6 +418,7 @@ static void statsBootline6(char *d) { getStringPart(d, 5*MAX_NAME_SIZE, devIocSt
 
 static void statsEngineer(char *d)  { getStringPart(d,               0, devIocStatsGetEngineer); }
 static void statsLocation(char *d)  { getStringPart(d,               0, devIocStatsGetLocation); }
+static void statsWiki(char *d)      { getStringPart(d,               0, devIocStatsGetWiki); }
 
 static void statsBSPRev(char *d)    { getStringPart(d,               0, devIocStatsGetBSPVersion); }
 static void statsKernelVer(char *d) { getStringPart(d,               0, devIocStatsGetKernelVersion); }
@@ -410,6 +484,19 @@ static int devIocStatsGetLocation (char **pval)
     if (sp == notavail) return -1;
     return 0;
 }
+static int devIocStatsGetWiki (char **pval)
+{
+    char *spbuf;
+    char **sppbuf;
+    char *sp = notavail;
+
+    /* Get value from environment or global variable */
+    if      ((spbuf  = getenv(WIKI)))            sp = spbuf;
+    else if ((sppbuf = epicsFindSymbol("wiki"))) sp = *sppbuf;
+    *pval = sp;
+    if (sp == notavail) return -1;
+    return 0;
+}
 int devIocStatsGetStartupScriptDefault (char **pval)
 {
     char *spbuf;
@@ -441,4 +528,36 @@ int devIocStatsGetStartupScriptDefault (char **pval)
     *pval = script;
     if (sp == notavail) return -1;
     return 0;
+}
+
+static void statsNetAddr(char *p){
+	stringinRecord* pr=NULL;
+	char *pcIfAddr=NULL;
+        char    *parm;
+	char    *pcIfName=NULL;
+	//unsigned short sParamLen=0;
+	unsigned short sIfNameLen=0;
+
+	
+	pr=(stringinRecord *)p;
+	
+        parm = pr->inp.value.instio.string;
+	pcIfName=strchr(parm,NET_PARAM_SEPARATOR);
+	if(pcIfName){
+	  //sParamLen=pcIfName-parm;
+	  pcIfName=pcIfName+1;
+	  sIfNameLen=strlen(pcIfName);
+	}
+	  
+	if(pcIfName==NULL || sIfNameLen<2 || strchr(pcIfName,' ')!=NULL){
+	  fprintf( stderr,"devAiStats (read_record) Illegal INP field\n");
+	  fprintf( stderr, "example: INP = @%s%ceth0\n",parm,NET_PARAM_SEPARATOR);
+	  return;
+	}
+	/* find the IP address for given interface in INP filed after : files */
+	if( getIpAddr(pcIfName,&pcIfAddr) == NET_OK){
+		if(pcIfAddr)
+			snprintf(pr->val,40,"%s",pcIfAddr); /* string in VAL size = 40 and is hard coded */
+	}
+
 }

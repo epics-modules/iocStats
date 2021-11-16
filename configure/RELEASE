@@ -11,11 +11,11 @@ MAKE_TEST_IOC_APP=YES
 # Define the version of modules needed by
 # IOC apps or other Support apps - used by testIocStatsApp
 # =============================================================
-SUPPORT=/usr/local/epics/R3.14.11/modules/soft/synApps_5_5/support
+#SUPPORT=/usr/local/epics/R3.14.11/modules/soft/synApps_5_5/support
 
-SNCSEQ     = $(SUPPORT)/seq-2-0-12
+#SNCSEQ     = $(SUPPORT)/seq-2-0-12
 
-EPICS_BASE=/afs/slac/g/spear/epics/base
+EPICS_BASE=/home/mirek/epics/R3.15.8/base-3.15.8
 
 # These lines allow developers to override these RELEASE settings
 # without having to modify this file directly.
