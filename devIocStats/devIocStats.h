@@ -131,4 +131,7 @@ extern int devIocStatsGetHostname (char **pval);
 extern int devIocStatsGetPID (double *proc_id);
 extern int devIocStatsGetPPID (double *proc_id);
 
+/* CPU Temperature */
+extern int devIocStatsGetCpuTemp (int *pval);
+
 #endif /* devIocStats_H */
