@@ -104,25 +104,26 @@ record(ai, "$(IOCNAME):CA_LDCONN_CNT") {
   field(HHSV, "MAJOR")
   #field(HSV, "MINOR")
   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
-  field(FLNK,"$(IOCNAME):CA_LDCONN_CNT_ACQ_CHECK")  
+  #field(FLNK,"$(IOCNAME):CA_LDCONN_CNT_ACQ_CHECK")  
 }
 
-record(calcout,"$(IOCNAME):CA_LDCONN_CNT_ACQ_CHECK"){
-  field(INPA,"$(IOCNAME):CA_LDCONN_CNT")
-  field(INPB,"$(IOCNAME):CA_LDCONN_CNT_ACQ")
-  field(CALC,"B > A && B>0? 1:0")
-  field(OOPT,"When Non-zero")
-  field(DOPT,"Use CALC")
-  field(OUT,"$(IOCNAME):CA_LDCONN_CNT_ACQ.PROC")
-}
+# Removed by Tynan 7/13/22
+#record(calcout,"$(IOCNAME):CA_LDCONN_CNT_ACQ_CHECK"){
+#  field(INPA,"$(IOCNAME):CA_LDCONN_CNT")
+#  field(INPB,"$(IOCNAME):CA_LDCONN_CNT_ACQ")
+#  field(CALC,"B > A && B>0? 1:0")
+#  field(OOPT,"When Non-zero")
+#  field(DOPT,"Use CALC")
+#  field(OUT,"$(IOCNAME):CA_LDCONN_CNT_ACQ.PROC")
+#}
 
 
-record(ao,"$(IOCNAME):CA_LDCONN_CNT_ACQ"){
-  field(DESC,"Acknowlege CA_LDCONN_CNT")
-  field(OMSL,"closed_loop")
-  field(DOL,"$(IOCNAME):CA_LDCONN_CNT")
-  field(FLNK,"$(IOCNAME):IOC_HEALTH")
-}
+#record(ao,"$(IOCNAME):CA_LDCONN_CNT_ACQ"){
+#  field(DESC,"Acknowlege CA_LDCONN_CNT")
+#  field(OMSL,"closed_loop")
+#  field(DOL,"$(IOCNAME):CA_LDCONN_CNT")
+#  field(FLNK,"$(IOCNAME):IOC_HEALTH")
+#}
 
 record(ai, "$(IOCNAME):SEQ_PROG_CNT") {
   field(DESC, "Number SEQ Programs")
@@ -186,9 +187,10 @@ record(calc, "$(IOCNAME):IOC_HEALTH"){
   field(INPB,"$(IOCNAME):CA_LNCONN_CNT_ACQ")
   field(INPC,"$(IOCNAME):SEQ_PVS_DCONN")
   field(INPD,"$(IOCNAME):SEQ_PVS_DCONN_ACQ")
-  field(INPE,"$(IOCNAME):CA_LDCONN_CNT")
-  field(INPF,"$(IOCNAME):CA_LDCONN_CNT_ACQ")
-  field(CALC,"A>B || C>D || E>F? 0:1")
+  #field(INPE,"$(IOCNAME):CA_LDCONN_CNT")
+  #field(INPF,"$(IOCNAME):CA_LDCONN_CNT_ACQ")
+  #field(CALC,"A>B || C>D || E>F? 0:1")
+  field(CALC,"A>B || C>D? 0:1")
   field(HOPR, "1")
   field(LOLO, "0")
   #field(HIGH, "1")

@@ -1,12 +1,3 @@
-/* Berkeley National Laboratory */
-/* Author: Miroslaw Dach 11/16/2021 */
-
-/* This file contains the network support 
- * for Linux based systems
- * It was tested on centOS7 and ubuntu 20.04
- */
-
-
 #if defined(NO_NETWORK_STAT)
 
 #include "devIocStats.h"

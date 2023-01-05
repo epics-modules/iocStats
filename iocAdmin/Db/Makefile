@@ -11,20 +11,20 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install)
 # databases, templates, substitutions like this
 #
-DB += ioc.db
-DB += iocRTOS.db
-DB += iocVxWorksOnly.db
-DB += iocRTEMSOnly.db
-DB += iocEnvVar.db
-DB += iocCluster.db
-DB += iocScanMon.db
-DB += iocScanMonSum.db
-DB += iocGeneralTime.db
-DB += access.db
-DB += iocAdminVxWorks.db
-DB += iocAdminSoft.db
-DB += iocAdminRTEMS.db
-DB += iocAdminScanMon.db
+#DB += ioc.db
+#DB += iocRTOS.db
+#DB += iocVxWorksOnly.db
+#DB += iocRTEMSOnly.db
+#DB += iocEnvVar.db
+#DB += iocCluster.db
+#DB += iocScanMon.db
+#DB += iocScanMonSum.db
+#DB += iocGeneralTime.db
+#DB += access.db
+#DB += iocAdminVxWorks.db
+#DB += iocAdminSoft.db
+#DB += iocAdminRTEMS.db
+#DB += iocAdminScanMon.db
 DB += ioc_stats.db
 DB += ioc_NetStats.db
 DB += sys_stats.db

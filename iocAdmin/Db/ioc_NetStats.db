@@ -8,18 +8,62 @@ record(stringin, "$(IOCNAME):NET_$(IF_NAME)")
   field(INP, "@netAddr:$(INP_IF_NAME)")
   field(PINI, "YES")
 }
+
+#---------------------------------------------------------
+#-------------------   PACKETS_TX ------------------------
+
 record(ai, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_TX") {
   field(DESC,"IF $(INP_IF_NAME) PACKETS_TX")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC net stats")
-  field(INP, "@netPacketsTx:$(INP_IF_NAME)")
+  field(INP,  "@netPacketsTx:$(INP_IF_NAME)")
+  field(FLNK, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_TX_LAST")
 }
+
+record(calc,"$(IOCNAME):NET_$(IF_NAME)_PACKETS_TX_LAST"){
+  field(INPA,"$(IOCNAME):NET_$(IF_NAME)_PACKETS_TX")
+  field(INPB,"$(IOCNAME):NET_$(IF_NAME)_PACKETS_TX_PREV NMS")
+  field(CALC,"!B? 0:A-B")
+  field(FLNK,"$(IOCNAME):NET_$(IF_NAME)_PACKETS_TX_PREV")
+  info(archive,"VerySlow")
+}
+
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_TX_PREV") {
+  field(DESC,"Previous NET_$(IF_NAME)_PACKETS_TX")
+  field(INP, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_TX")
+}
+
+#---------------------------------------------------------
+#-------------------   PACKETS_RX ------------------------
+
 record(ai, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_RX") {
   field(DESC,"IF $(INP_IF_NAME) PACKETS_RX")
   field(SCAN, "I/O Intr")
   field(DTYP, "IOC net stats")
   field(INP, "@netPacketsRx:$(INP_IF_NAME)")
+  field(FLNK, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_RX_LAST")
 }
+
+record(calc,"$(IOCNAME):NET_$(IF_NAME)_PACKETS_RX_LAST"){
+  field(INPA,"$(IOCNAME):NET_$(IF_NAME)_PACKETS_RX")
+  field(INPB,"$(IOCNAME):NET_$(IF_NAME)_PACKETS_RX_PREV NMS")
+  field(CALC,"!B? 0:A-B")
+  field(FLNK,"$(IOCNAME):NET_$(IF_NAME)_PACKETS_RX_PREV")
+  info(archive,"VerySlow")
+}
+
+record(ai, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_RX_PREV") {
+  field(DESC,"Previous NET_$(IF_NAME)_PACKETS_RX")
+  field(INP, "$(IOCNAME):NET_$(IF_NAME)_PACKETS_RX")
+}
+
+
+
+
+
+
+#---------------------------------------------------------
+
 record(ai, "$(IOCNAME):NET_$(IF_NAME)_ERRORS_TX") {
   field(DESC,"IF $(INP_IF_NAME) ERRORS_TX")
   field(SCAN, "I/O Intr")

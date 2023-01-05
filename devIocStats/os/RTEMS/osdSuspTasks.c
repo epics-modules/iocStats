@@ -42,6 +42,27 @@
 
 int devIocStatsInitSuspTasks (void) { return 0; }
 
+# if (__RTEMS_MAJOR__ >= 5)
+static bool epics_suspend_task_visitor( Thread_Control *the_thread, void *arg )
+{
+     if ( (RTEMS_ALREADY_SUSPENDED == rtems_task_is_suspended( the_thread->Object.id )) ) {
+            (*(int *)arg)++;
+        }  
+  return false;
+}
+
+
+int devIocStatsGetSuspTasks (int *pval)
+{
+    int               n = 0;
+    rtems_task_iterate( epics_suspend_task_visitor, (void *)&n ); 
+
+    *pval = n;
+    return 0;
+}
+
+#else
+
 int devIocStatsGetSuspTasks (int *pval)
 {
     Objects_Control   *o;
@@ -61,3 +82,4 @@ int devIocStatsGetSuspTasks (int *pval)
     *pval = n;
     return 0;
 }
+#endif

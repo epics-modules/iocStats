@@ -1,5 +1,17 @@
 Release Notes for iocStats
 --------------------------
+R3.1.16-ALS00.02: August 3,2021
+  * Changes by Mirek Dach
+    - Network statistics was added
+    - Multiple network ifs could be monitored
+    - db/ioc_NetStats.db
+R3.1.16-ALS00.01: July 1,2021
+  * Changes by Mirek Dach
+    - Not connected Channel access links monitoring was added
+    - Not connected PVs in Seq programs monitoring was added
+    - There are two libraries built:
+    - libdevIocStatsSeq -> for iocs with seqencer
+    - libdevIocStats    -> for iocs without sequencer 
 iocStats-R3-1-15: Nov 3, 2016
   * Changes by Mark Rivers:
     - Improved the layout of the medm files to avoid overlapping widgets, etc.

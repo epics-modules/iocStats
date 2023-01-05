@@ -46,7 +46,100 @@
  */
 
 #include <devIocStats.h>
+# if   (__RTEMS_MAJOR__ >= 5)
+#include <rtems/rtems/tasks.h>
+//This include below contains the report
+#include <rtems/cpuuse.h>
+#include <rtems/score/timestampimpl.h>
+#include <rtems/score/threadimpl.h>
+#include <rtems/print.h>
+#include <rtems/inttypes.h>
+#include <rtems/score/timestamp.h>
+#include <rtems/printer.h>
 
+// CPU usage document
+// https://docs.rtems.org/branches/master/c-user/cpu_usage_statistics.html
+
+int devIocStatsInitCpuUsage (void)
+{
+//    prev_total=0; //for compatibility 
+//    prev_idle=0;  //for compatibility
+    return 0;
+}
+
+//Taken from 
+//./kernel/cpukit/libmisc/cpuuse/cpuuseimpl.h
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+extern Timestamp_Control CPU_usage_Uptime_at_last_reset;
+
+#ifdef __cplusplus
+}
+#endif
+
+//implemention based on the function rtems_cpu_usage_report_with_plugin and cpu_usage_visitor in
+////./kernel/cpukit/libmisc/cpuuse/cpuusagereport.c
+typedef struct {
+  Timestamp_Control    total;
+  Timestamp_Control    uptime_at_last_reset;
+  double               dTotalPercentage;
+  double               dIdlePercentage;
+} epics_cpu_usage_context;
+
+static bool epics_cpu_usage_visitor( Thread_Control *the_thread, void *arg )
+{
+  epics_cpu_usage_context *ctx;
+  char               name[ 38 ];
+  uint32_t           ival;
+  uint32_t           fval;
+  Timestamp_Control  uptime;
+  Timestamp_Control  used;
+  double             dTotal;  
+
+  ctx = arg;
+  _Thread_Get_name( the_thread, name, sizeof( name ) );
+
+  _Thread_Get_CPU_time_used( the_thread, &used );
+  _TOD_Get_uptime( &uptime );
+  _Timestamp_Subtract( &ctx->uptime_at_last_reset, &uptime, &ctx->total );
+  _Timestamp_Divide( &used, &ctx->total, &ival, &fval );
+
+  dTotal=(double)ival+(double)fval/1000.0;
+  ctx->dTotalPercentage += dTotal;
+  if(name[0]=='I' && name[1]=='D' && name[2]=='L' && name[3]=='E'){
+    ctx->dIdlePercentage=dTotal;
+  }
+  
+
+  return false;
+}
+
+
+int devIocStatsGetCpuUsage (loadInfo *pval)
+{
+
+  epics_cpu_usage_context  ctx;
+
+  /*
+ *    *  When not using nanosecond CPU usage resolution, we have to count
+ *       *  the number of "ticks" we gave credit for to give the user a rough
+ *          *  guideline as to what each number means proportionally.
+ *             */
+
+  _Timestamp_Set_to_zero( &ctx.total );
+  ctx.uptime_at_last_reset = CPU_usage_Uptime_at_last_reset;
+
+  ctx.dTotalPercentage=0;
+  ctx.dIdlePercentage=0;
+  rtems_task_iterate( epics_cpu_usage_visitor, &ctx );
+
+  pval->cpuLoad = 100 - (ctx.dIdlePercentage*100.0/ctx.dTotalPercentage);
+return 0;
+}
+
+#else
 # if   (__RTEMS_MAJOR__ > 4) \
    || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 7)
 typedef char objName[13];
@@ -154,3 +247,4 @@ int devIocStatsGetCpuUsage (loadInfo *pval)
     return 0;
 #endif
 }
+#endif

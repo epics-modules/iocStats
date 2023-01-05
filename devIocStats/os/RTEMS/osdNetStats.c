@@ -1,10 +1,3 @@
-/* Berkeley National Laboratory */
-/* Author: Miroslaw Dach 11/16/2021 */
-
-/* This file contains the network support
- * for RTEMS based systems
- * It was tested on RTEMS 4.10
- */
 #include <devIocStats.h>
 
 /* #include <sys/param.h>
