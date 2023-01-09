@@ -60,13 +60,6 @@
 // CPU usage document
 // https://docs.rtems.org/branches/master/c-user/cpu_usage_statistics.html
 
-int devIocStatsInitCpuUsage (void)
-{
-//    prev_total=0; //for compatibility 
-//    prev_idle=0;  //for compatibility
-    return 0;
-}
-
 //Taken from 
 //./kernel/cpukit/libmisc/cpuuse/cpuuseimpl.h
 #ifdef __cplusplus
@@ -82,61 +75,111 @@ extern Timestamp_Control CPU_usage_Uptime_at_last_reset;
 //implemention based on the function rtems_cpu_usage_report_with_plugin and cpu_usage_visitor in
 ////./kernel/cpukit/libmisc/cpuuse/cpuusagereport.c
 typedef struct {
-  Timestamp_Control    total;
-  Timestamp_Control    uptime_at_last_reset;
-  double               dTotalPercentage;
-  double               dIdlePercentage;
+  double               dTotal; /* seconds */
+  double               dIdle;  /* seconds */
+  uint32_t             uiThreads_cnt; /* number of threads */
 } epics_cpu_usage_context;
+
+static uint32_t iocstats_tick_interval=0;
 
 static bool epics_cpu_usage_visitor( Thread_Control *the_thread, void *arg )
 {
   epics_cpu_usage_context *ctx;
   char               name[ 38 ];
-  uint32_t           ival;
-  uint32_t           fval;
-  Timestamp_Control  uptime;
   Timestamp_Control  used;
-  double             dTotal;  
+
+  if(!iocstats_tick_interval){
+    iocstats_tick_interval = (uint32_t) (SBT_1US * rtems_configuration_get_microseconds_per_tick());
+    //printf("tick_interval=%d SBT_1US=%lld microseconds_per_tick=%d\n",iocstats_tick_interval,SBT_1US,rtems_configuration_get_microseconds_per_tick());
+    //printf("tick_interval=%f\n",iocstats_tick_interval/1000.0);
+    iocstats_tick_interval = iocstats_tick_interval/1000; /* milisecond */
+   }
 
   ctx = arg;
   _Thread_Get_name( the_thread, name, sizeof( name ) );
 
   _Thread_Get_CPU_time_used( the_thread, &used );
-  _TOD_Get_uptime( &uptime );
-  _Timestamp_Subtract( &ctx->uptime_at_last_reset, &uptime, &ctx->total );
-  _Timestamp_Divide( &used, &ctx->total, &ival, &fval );
 
-  dTotal=(double)ival+(double)fval/1000.0;
-  ctx->dTotalPercentage += dTotal;
+  ctx->uiThreads_cnt++; // count number of threads
+  ctx->dTotal += ((double)(used/iocstats_tick_interval))/100000; /* seconds */
+
   if(name[0]=='I' && name[1]=='D' && name[2]=='L' && name[3]=='E'){
-    ctx->dIdlePercentage=dTotal;
+    ctx->dIdle = ((double)(used/iocstats_tick_interval))/100000; /* seconds */
+    //printf("IDLE %f\n",iocstats_idle);
   }
   
-
   return false;
 }
 
+
+static double prev_total = 0;
+static double prev_idle  = 0;
+
+
+int devIocStatsInitCpuUsage (void)
+{
+  epics_cpu_usage_context  ctx;
+
+  ctx.dTotal=0;
+  ctx.dIdle=0;
+  ctx.uiThreads_cnt=0;
+
+  rtems_task_iterate( epics_cpu_usage_visitor, &ctx );
+
+  prev_total=ctx.dTotal;
+  prev_idle=ctx.dIdle;
+
+  //printf("total=%f idle=%f  threads_cnt=%d INIT\n",prev_total,prev_idle,ctx.uiThreads_cnt);
+
+  return 0;
+}
 
 int devIocStatsGetCpuUsage (loadInfo *pval)
 {
 
   epics_cpu_usage_context  ctx;
-
+    double total;
+    double idle;
+    double delta_total;
+    double delta_idle;
   /*
  *    *  When not using nanosecond CPU usage resolution, we have to count
  *       *  the number of "ticks" we gave credit for to give the user a rough
  *          *  guideline as to what each number means proportionally.
  *             */
 
-  _Timestamp_Set_to_zero( &ctx.total );
-  ctx.uptime_at_last_reset = CPU_usage_Uptime_at_last_reset;
+ // _Timestamp_Set_to_zero( &ctx.total );
+ // ctx.uptime_at_last_reset = CPU_usage_Uptime_at_last_reset;
 
-  ctx.dTotalPercentage=0;
-  ctx.dIdlePercentage=0;
+  ctx.dTotal=0;
+  ctx.dIdle=0;
+  ctx.uiThreads_cnt=0;
+
   rtems_task_iterate( epics_cpu_usage_visitor, &ctx );
 
-  pval->cpuLoad = 100 - (ctx.dIdlePercentage*100.0/ctx.dTotalPercentage);
-return 0;
+  total=ctx.dTotal;
+  idle=ctx.dIdle;
+
+    if (total >= prev_total) {
+        delta_total = total - prev_total;
+        delta_idle  = idle - prev_idle;
+    } else {
+        delta_total = total;
+        delta_idle  = idle;
+    }
+    prev_total = total;
+    prev_idle = idle;
+
+
+    if (delta_idle > delta_total)
+        pval->cpuLoad = 0.0;
+    else
+        pval->cpuLoad = 100.0 - (delta_idle * 100.0 / delta_total);
+
+    //printf("total=%f idle=%f  threads_cnt=%d CPU LOAD=%f\n",total,idle,ctx.uiThreads_cnt,pval->cpuLoad);
+
+    return 0;
+
 }
 
 #else
