@@ -108,7 +108,7 @@ Analog Out (ao) Records (DTYP = "IOC stats"), OUT = @one of the following:
             can be read, default = 10 sec
         fdScanRate            - max period (sec) at which file descriptors 
             can be counted, default = 20 sec
-        cpuScanRate           - max period (sec) at which cpu load 
+        cpu_scan_rate         - max period (sec) at which cpu load 
             can be calculated, default = 10 sec 
         caConnScanRate        - max period (sec) at which CA connections 
             can be counted, default = 15 sec
