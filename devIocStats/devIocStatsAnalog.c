@@ -94,7 +94,7 @@
 	ao:
 		memoryScanRate	 - max rate at which new memory stats can be read
 		fdScanRate	 - max rate at which file descriptors can be counted
-		cpuScanRate	 - max rate at which cpu load can be calculated
+		cpu_scan_rate	 - max rate at which cpu load can be calculated
 		caConnScanRate	 - max rate at which CA connections can be calculated
 
 	* scan rates are all in seconds
