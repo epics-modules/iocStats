@@ -47,6 +47,7 @@
 #define ST_CMD   "ST_CMD"
 #define ENGINEER "ENGINEER"
 #define LOCATION "LOCATION"
+#define WIKI     "WIKI"
 
 #include "devIocStatsOSD.h"
 
@@ -112,6 +113,16 @@ extern int devIocStatsGetClusterUsage (int pool, int *pval);
 /* Network Interface Errors */
 extern int devIocStatsInitIFErrors (void);
 extern int devIocStatsGetIFErrors (ifErrInfo *pval);
+typedef struct tNetList
+{
+        char *pcNetIf;
+        void *pData;
+        struct tNetList *next;
+}tNetList;
+#define NET_OK  0
+#define NET_NOK 1
+extern int getPacketStats(void *ifa);
+extern int getIpAddr(char *pcIf,char **pcIfAddr);
 
 /* Boot Info */
 extern int devIocStatsInitBootInfo (void);

@@ -90,6 +90,9 @@
 		   index         - index into cluster array
 		   type		 - 0=size, 1=clusters, 2=free, 3=usage
 
+        si (DTYP = "IOC net stats"):
+
+                <process the string in INP filed after : example INP => @netPacketsTx:eth0>
 
 	ao:
 		memory_scan_rate	 - max rate at which new memory stats can be read
@@ -128,6 +131,60 @@
 #include <callback.h>
 
 #include "devIocStats.h"
+ 
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <ifaddrs.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#if !defined(vxWorks) && !defined(__rtems__) && !defined(NO_NETWORK_STAT)
+#include <linux/if_link.h>
+#else
+#include "devRtemsNetStats.h"
+/* #if HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#include <sys/param.h>
+#include <rtems/bsd/sys/queue.h>
+#include <sys/systm.h>
+#include <sys/kernel.h>
+#include <sys/sysctl.h>
+#include <sys/proc.h>
+#include <sys/mbuf.h>
+#include <sys/socket.h>*/
+/*#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/in_systm.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/udp.h>
+#include <netinet/udp_var.h>
+#include <netinet/tcp.h>
+#include <netinet/tcp_timer.h>
+#include <netinet/tcp_seq.h>
+#include <netinet/tcp_var.h>
+*/
+/* This would otherwise need _KERNEL to be defined... */
+/*extern struct   ipstat  ipstat;
+extern struct   udpstat udpstat;
+extern struct   tcpstat tcpstat;  */ /* tcp statistics */
+
+#endif
+#include <string.h>
+
+#define NET_PARAM_SEPARATOR ':'
+#define NET_PACKETS_TX "netPacketsTx"
+#define NET_PACKETS_RX "netPacketsRx"
+#define NET_PACKETS_DROPPED_TX "netPDroppedTx"
+#define NET_PACKETS_DROPPED_RX "netPDroppedRx"
+#define NET_PACKETS_ERROR_TX "netPErrorTx"
+#define NET_PACKETS_ERROR_RX "netPErrorRx"
+#define NET_PACKETS_COLLISTIONS "netPCollisions"
+#define NET_PACKETS_CARRIER_ERR "netPCarrierErr"
+
 
 #define BASE_HAS_QUEUE_STATUS (EPICS_VERSION_INT == VERSION_INT(3, 16, 2, 0)) || (EPICS_VERSION_INT >= VERSION_INT(7, 0, 2, 0))
 
@@ -150,6 +207,17 @@ struct pvtArea
 	int type;
 };
 typedef struct pvtArea pvtArea;
+
+
+struct pvtAreaNet
+{
+  struct pvtArea *pvt;
+  void *pDataNet;
+  unsigned short usDataTypeSize;
+};
+typedef struct pvtAreaNet pvtAreaNet;
+
+struct tNetList *ptNetHead=NULL;
 
 struct pvtClustArea
 {
@@ -188,6 +256,11 @@ static long ai_clusts_init(int pass);
 static long ai_clusts_init_record(aiRecord *);
 static long ai_clusts_read(aiRecord *);
 
+/* network related functions */
+static long ai_net_init_record(aiRecord* pr);
+static long ai_net_ioint_info(int cmd,aiRecord* pr,IOSCANPVT* iopvt);
+static long ai_net_read(aiRecord* pr);
+
 static long ao_init_record(aoRecord* pr);
 static long ao_write(aoRecord*);
 
@@ -208,6 +281,13 @@ static void statsFdUsage(double*);
 static void statsFdMax(double*);
 static void statsCAConnects(double*);
 static void statsCAClients(double*);
+static void statsCALinks(double* val);		/*Channel Access DB Links - total number*/
+static void statsCALnconn(double*);             /*Channel Access DB Links not connected count*/
+static void statsCALdconn(double*);             /*Channel Access DB Links diconncted before count*/
+static void statsSEQProgs(double* val);         /*Number of running sequencer programs*/ 
+static void statsSEQChan(double* val);		/*Number of PVs used by sequencer programs*/
+static void statsSEQChanDis(double* val);	/*Number of not connected sequencer programs' PVs*/
+static void statsIocHealthy(double* val);       /*0 -> not healthy, 1->healthy*/
 static void statsMinDataMBuf(double*);
 static void statsMinSysMBuf(double*);
 static void statsDataMBuf(double*);
@@ -231,6 +311,14 @@ static void statsCbMediumQOverruns(double*);
 static void statsCbHighQHiWtrMrk(double*);
 static void statsCbHighQUsed(double*);
 static void statsCbHighQOverruns(double*);
+static void statsNetPacketsProc(double*);
+extern long ioccar(char *precordname,int level,int *Pcal, int *Pcalnconn, int *Pcaldconn);
+extern epicsShareFunc void seqGatherStats(
+        unsigned *seq_num_programs,
+        unsigned *seq_num_channels,
+        unsigned *seq_num_connected
+);
+
 
 struct {
 	char *name;
@@ -240,9 +328,13 @@ struct {
 	{ "cpu_scan_rate",	20.0 },
 	{ "fd_scan_rate",	10.0 },
 	{ "ca_scan_rate", 	15.0 },
-    { "queue_scan_rate",	1.0 },
+        { "queue_scan_rate",	1.0 },
 	{ NULL,			0.0  },
 };
+
+#ifdef WITH_NETWORK_SUPPORT
+       /* add here network support */ 
+#endif
 
 static validGetParms statsGetParms[]={
 	{ "free_bytes",			statsFreeBytes,		MEMORY_TYPE },
@@ -263,6 +355,13 @@ static validGetParms statsGetParms[]={
         { "maxfd",			statsFdMax,	        FD_TYPE },
 	{ "ca_clients",			statsCAClients,		CA_TYPE },
 	{ "ca_connections",		statsCAConnects,	CA_TYPE },
+	{ "ca_lconn",                   statsCALinks,           CA_TYPE },
+	{ "ca_lnconn",                  statsCALnconn,		CA_TYPE },
+	{ "ca_ldconn",                  statsCALdconn,          CA_TYPE },
+	{ "seq_prog", 			statsSEQProgs,		CA_TYPE },
+	{ "seq_pvs",			statsSEQChan,		CA_TYPE },
+        { "seq_pvs_dconn",		statsSEQChanDis,	CA_TYPE },	
+	{ "ioc_health",			statsIocHealthy,	CA_TYPE },
 	{ "min_data_mbuf",		statsMinDataMBuf,	MEMORY_TYPE },
 	{ "min_sys_mbuf",		statsMinSysMBuf,	MEMORY_TYPE },
 	{ "data_mbuf",			statsDataMBuf,		MEMORY_TYPE },
@@ -286,8 +385,17 @@ static validGetParms statsGetParms[]={
 	{ "cbHighQueueHiWtrMrk",	statsCbHighQHiWtrMrk,	QUEUE_TYPE },
 	{ "cbHighQueueUsed",		statsCbHighQUsed,	QUEUE_TYPE },
 	{ "cbHighQueueOverruns",	statsCbHighQOverruns,	QUEUE_TYPE },
+        { NET_PACKETS_TX,		statsNetPacketsProc,      FD_TYPE },
+        { NET_PACKETS_RX,		statsNetPacketsProc,      FD_TYPE },
+        { NET_PACKETS_DROPPED_TX,	statsNetPacketsProc,      FD_TYPE }, 	
+        { NET_PACKETS_DROPPED_RX,	statsNetPacketsProc,      FD_TYPE }, 
+        { NET_PACKETS_ERROR_TX,		statsNetPacketsProc,      FD_TYPE },
+        { NET_PACKETS_ERROR_RX,		statsNetPacketsProc,      FD_TYPE },	
+        { NET_PACKETS_COLLISTIONS,	statsNetPacketsProc,      FD_TYPE },
+	{ NET_PACKETS_CARRIER_ERR,      statsNetPacketsProc,      FD_TYPE },
 	{ NULL,NULL,0 }
 };
+
 
 aStats devAiStats={ 6,NULL,ai_init,ai_init_record,ai_ioint_info,ai_read,NULL };
 epicsExportAddress(dset,devAiStats);
@@ -295,6 +403,9 @@ aStats devAoStats={ 6,NULL,NULL,ao_init_record,NULL,ao_write,NULL };
 epicsExportAddress(dset,devAoStats);
 aStats devAiClusts = {6,NULL,ai_clusts_init,ai_clusts_init_record,NULL,ai_clusts_read,NULL };
 epicsExportAddress(dset,devAiClusts);
+aStats devAiNet={ 6,NULL,NULL,ai_net_init_record,ai_net_ioint_info,ai_net_read,NULL };
+epicsExportAddress(dset,devAiNet);
+
 
 static memInfo meminfo = {0.0,0.0,0.0,0.0,0.0,0.0};
 static memInfo workspaceinfo = {0.0,0.0,0.0,0.0,0.0,0.0};
@@ -313,6 +424,13 @@ static int mbufnumber[2] = {0,0};
 static ifErrInfo iferrors = {0,0};
 static unsigned cainfo_clients = 0;
 static unsigned cainfo_connex  = 0;
+static unsigned cainfo_lnconn  = 0;
+static unsigned cainfo_ldconn  = 0;
+static unsigned cainfo_links =0;
+static unsigned seq_num_programs =0;
+static unsigned seq_num_channels =0;
+static unsigned seq_num_DisConnected=0;
+
 static epicsTimerQueueId timerQ = 0;
 static epicsMutexId scan_mutex;
 static int caServInitialized = 0;
@@ -398,6 +516,7 @@ static void scan_time(int type)
       {
 	fdInfo   fdusage_local = {0,0};
         devIocStatsGetFDUsage(&fdusage_local);
+        getPacketStats((void *) ptNetHead); /* get network statistics */
         epicsMutexLock(scan_mutex);
 	fdusage = fdusage_local;
         epicsMutexUnlock(scan_mutex);
@@ -407,6 +526,12 @@ static void scan_time(int type)
       {
           unsigned cainfo_clients_local = 0;
           unsigned cainfo_connex_local  = 0;
+	  int cainfo_lnconn_local  = 0;
+	  int cainfo_ldconn_local  = 0;
+          int cainfo_links_local =0;
+	  unsigned seq_num_programs_local =0;
+	  unsigned seq_num_channels_local =0;
+	  unsigned seq_num_connected_local=0;
 
           /* Guard to ensure that the caServ is initialized */
           if (!caServInitialized) {
@@ -414,9 +539,20 @@ static void scan_time(int type)
           }
 
           casStatsFetch(&cainfo_connex_local, &cainfo_clients_local);
+	  ioccar(0, 0, &cainfo_links_local, &cainfo_lnconn_local, &cainfo_ldconn_local);
+          seqGatherStats(&seq_num_programs_local,&seq_num_channels_local,&seq_num_connected_local);
+
+
           epicsMutexLock(scan_mutex);
           cainfo_clients = cainfo_clients_local;
           cainfo_connex  = cainfo_connex_local;
+	  cainfo_links   = cainfo_links_local;
+	  cainfo_lnconn  = cainfo_lnconn_local;
+          cainfo_ldconn  = cainfo_ldconn_local;
+	  /* sequencer related variables */
+	  seq_num_programs   = seq_num_programs_local;
+	  seq_num_channels   = seq_num_channels_local;
+	  seq_num_DisConnected = seq_num_channels_local - seq_num_connected_local;
           epicsMutexUnlock(scan_mutex);
           break;
       }
@@ -683,6 +819,183 @@ static long ai_read(aiRecord* pr)
     pr->udf = 0;
     return 2; /* don't convert */
 }
+
+
+/* network related functions */
+static short addListNode(tNetList **ptNetList,char *if_name);
+static long ai_net_init_record(aiRecord* pr)
+{
+        int             i;
+        pvtArea *pvt = NULL;
+        struct tNetList *ptNetList=NULL;
+        char    *parm;
+	char    *pcIfName=NULL;
+	unsigned short sParamLen=0;
+	unsigned short sIfNameLen=0;
+	pvtAreaNet *pvtNet = NULL;
+
+
+        if(pr->inp.type!=INST_IO)
+        {
+                recGblRecordError(S_db_badField,(void*)pr,
+                        "devAiStats (init_record) Illegal INP field");
+                return S_db_badField;
+        }
+        parm = pr->inp.value.instio.string;
+	pcIfName=strchr(parm,NET_PARAM_SEPARATOR);
+	if(pcIfName){
+	  sParamLen=pcIfName-parm;
+	  pcIfName=pcIfName+1;
+	  sIfNameLen=strlen(pcIfName);
+	}
+	  
+	if(pcIfName==NULL || sIfNameLen<2 || strchr(pcIfName,' ')!=NULL){
+	   recGblRecordError(S_db_badField,(void*)pr,
+                        "devAiStats (init_record) Illegal INP field");
+	  fprintf( stderr, "example: INP = @%s%ceth0\n",parm,NET_PARAM_SEPARATOR);
+	  return S_db_badField;
+	}
+        for(i=0;statsGetParms[i].name && pvt==NULL && pvtNet==NULL;i++)
+        {
+	  if(strncmp(parm,statsGetParms[i].name,sParamLen)==0)
+                {
+                        pvt=(pvtArea*)malloc(sizeof(pvtArea));
+                        pvt->index=i;
+                        pvt->type=statsGetParms[i].type;
+
+			/* Network specyfic data */
+			pvtNet=(pvtAreaNet*)malloc(sizeof(pvtAreaNet));
+                        pvtNet->pvt=pvt;
+			/* if(addListNode(&ptNetList,pr->sval) != NET_OK) */
+			if(addListNode(&ptNetList,pcIfName)==NET_OK){ /* add an entry to the list with the interface name */
+			if(ptNetList->pcNetIf==NULL){ /* if network interface in pr->sval is not yet defined then create it */
+			  ptNetList->pcNetIf=malloc(sizeof(char) * (sIfNameLen+1));
+                        	if(ptNetList->pcNetIf==NULL){
+					recGblRecordError(S_db_noMemory,(void*)pr,
+							   "devAiStats (init_record) momory alocation for ptNetList->pcNetIf failed");
+                              		return S_db_noMemory;
+                        	}
+                        	sprintf(ptNetList->pcNetIf,"%s",pcIfName);
+                	}
+			if(ptNetList->pData==NULL){
+				ptNetList->pData=malloc(sizeof(struct rtnl_link_stats));
+				if(ptNetList->pData==NULL){
+					recGblRecordError(S_db_noMemory,(void*)pr,
+							  "devAiStats (init_record) momory alocation for ptNetList->pData failed");
+                                        return S_db_noMemory;
+                                }				
+			}
+			if(strncmp(parm,NET_PACKETS_TX,sParamLen)==0){
+			  pvtNet->pDataNet=(void *)&(((struct rtnl_link_stats *)ptNetList->pData)->tx_packets);
+			  pvtNet->usDataTypeSize=sizeof(((struct rtnl_link_stats *)0)->tx_packets);
+			}
+			else if(strncmp(parm,NET_PACKETS_RX,sParamLen)==0){
+			  pvtNet->pDataNet=(void *)&(((struct rtnl_link_stats *)ptNetList->pData)->rx_packets);
+			  pvtNet->usDataTypeSize=sizeof(((struct rtnl_link_stats *)0)->rx_packets);
+			}
+			else if(strncmp(parm,NET_PACKETS_DROPPED_TX,sParamLen)==0){
+			  pvtNet->pDataNet=(void *)&(((struct rtnl_link_stats *)ptNetList->pData)->tx_dropped);
+			  pvtNet->usDataTypeSize=sizeof(((struct rtnl_link_stats *)0)->tx_dropped);
+			}
+			else if(strncmp(parm,NET_PACKETS_DROPPED_RX,sParamLen)==0){
+			  pvtNet->pDataNet=(void *)&(((struct rtnl_link_stats *)ptNetList->pData)->rx_dropped);
+			  pvtNet->usDataTypeSize=sizeof(((struct rtnl_link_stats *)0)->rx_dropped);
+			}
+			else if(strncmp(parm,NET_PACKETS_ERROR_TX,sParamLen)==0){
+			  pvtNet->pDataNet=(void *)&(((struct rtnl_link_stats *)ptNetList->pData)->tx_errors);
+			  pvtNet->usDataTypeSize=sizeof(((struct rtnl_link_stats *)0)->tx_errors);
+			}
+			else if(strncmp(parm,NET_PACKETS_ERROR_RX,sParamLen)==0){
+			  pvtNet->pDataNet=(void *)&(((struct rtnl_link_stats *)ptNetList->pData)->rx_errors);
+			  pvtNet->usDataTypeSize=sizeof(((struct rtnl_link_stats *)0)->rx_errors);
+			}
+			else if(strncmp(parm,NET_PACKETS_COLLISTIONS,sParamLen)==0){
+			  pvtNet->pDataNet=(void *)&(((struct rtnl_link_stats *)ptNetList->pData)->collisions);
+			  pvtNet->usDataTypeSize=sizeof(((struct rtnl_link_stats *)0)->collisions);
+			}
+			else if(strncmp(parm,NET_PACKETS_CARRIER_ERR,sParamLen)==0){
+			  pvtNet->pDataNet=(void *)&(((struct rtnl_link_stats *)ptNetList->pData)->tx_carrier_errors);
+			  pvtNet->usDataTypeSize=sizeof(((struct rtnl_link_stats *)0)->tx_carrier_errors);
+			}
+			
+			
+			/* just for debug purpose */
+			/*	tNetList *ptNetListDebug;
+			 ptNetListDebug=ptNetHead;
+			 while(ptNetListDebug){
+				 printf("DEBUG: if net name %s\n",ptNetListDebug->pcNetIf);
+				 ptNetListDebug=ptNetListDebug->next;
+			 }
+			 printf("----------------------------\n\n");
+			*/
+			 }/* if(addListNode(&ptNetList,pr->sval)==NET_OK */
+                }
+        }/* end of for */
+
+        if(pvt==NULL)
+        {
+                recGblRecordError(S_db_badField,(void*)pr,
+                        "devAiStats (init_record) Illegal INP parm field");
+                return S_db_badField;
+        }
+        /* Make sure record processing routine does not perform any conversion*/
+        pr->linr=menuConvertNO_CONVERSION;
+        pr->dpvt=pvtNet;
+        return 0;
+}
+
+static long ai_net_ioint_info(int cmd,aiRecord* pr,IOSCANPVT* iopvt)
+{
+  pvtAreaNet* pvtNet=(pvtAreaNet*)pr->dpvt;
+  pvtArea* pvt=NULL;
+
+	if (!pvtNet) return S_dev_badInpType;
+        pvt=pvtNet->pvt;
+	if (!pvt) return S_dev_badInpType;
+	if(cmd==0) /* added */
+	{
+		if(scan[pvt->type].total++ == 0)
+		{
+			/* start a watchdog */
+			epicsTimerStartDelay(scan[pvt->type].wd, scan[pvt->type].rate_sec);
+			scan[pvt->type].on=1;
+		}
+	}
+	else /* deleted */
+	{
+		if(--scan[pvt->type].total == 0)
+			scan[pvt->type].on=0; /* stop the watchdog */
+	}
+	*iopvt=scan[pvt->type].ioscan;
+	return 0;
+}
+
+static long ai_net_read(aiRecord* pr)
+{
+  //double val;
+    double dVal=0;
+    pvtAreaNet* pvtNet=(pvtAreaNet*)pr->dpvt;
+    //pvtArea* pvt=(pvtArea*)pr->dpvt;
+
+    if (!pvtNet) return S_dev_badInpType;
+
+    epicsMutexLock(scan_mutex);
+    //statsGetParms[pvt->index].func(&val);
+    if(pvtNet->usDataTypeSize == sizeof(__u32))
+       dVal=*(__u32 *)(pvtNet->pDataNet);
+    else if(pvtNet->usDataTypeSize == sizeof(__u64))
+       dVal=*(__u64 *)(pvtNet->pDataNet);
+    else if(pvtNet->usDataTypeSize == sizeof(__u8))
+       dVal=*(__u8 *)(pvtNet->pDataNet);
+    else if(pvtNet->usDataTypeSize == sizeof(__u16))
+       dVal=*(__u16 *)(pvtNet->pDataNet);
+    epicsMutexUnlock(scan_mutex);
+    pr->val=dVal;
+    //pr->val = val;
+    pr->udf = 0;
+    return 2; /* don't convert */
+}
+
 
 /* -------------------------------------------------------------------- */
 
@@ -692,7 +1005,7 @@ static double minMBuf(int pool)
     int i = 0;
     double lowest = 1.0, comp;
 
-    while ((i < CLUSTSIZES) && (clustinfo[pool][i][0] != 0))
+    while ((clustinfo[pool][i][0] != 0) && (i < CLUSTSIZES))
     {
         if (clustinfo[pool][i][1] != 0) {
             comp = ((double)clustinfo[pool][i][2]) / clustinfo[pool][i][1];
@@ -940,3 +1253,98 @@ static void statsCbHighQOverruns(double *val)
     *val = 0;
 #endif
 }
+
+
+static void statsCALinks(double* val)
+{
+        *val=(double)cainfo_links;
+}
+
+static void statsCALnconn(double* val)
+{
+        *val=(double)cainfo_lnconn;
+}
+
+static void statsCALdconn(double* val)
+{
+        *val=(double)cainfo_ldconn;
+}
+
+static void statsSEQProgs(double* val)
+{
+        *val=(double)seq_num_programs;
+}
+
+static void statsSEQChan(double* val)
+{
+        *val=(double)seq_num_channels;
+}
+
+static void statsSEQChanDis(double* val)
+{
+        *val=(double)seq_num_DisConnected;
+}
+
+static void statsIocHealthy(double* val)
+{
+        if(seq_num_DisConnected || cainfo_ldconn || cainfo_lnconn)
+		*val=0; /* Ioc not healthy */
+	else
+		*val=1; /* Ioc healthy */
+}
+
+static void statsNetPacketsProc(double* val){
+
+}
+
+static short addListNode(tNetList **ptNetList,char *if_name){
+        struct tNetList *ptNetListLast=NULL;
+
+        if(if_name==NULL)
+                return NET_NOK;
+        if(strlen(if_name)==0)
+                return NET_NOK;
+
+        if(ptNetHead==NULL){
+                /* create head of the linked list */
+                ptNetHead=malloc(sizeof(tNetList));
+                if(ptNetHead==NULL){
+                        fprintf( stderr, "addListNode: momory alocation for ptNetHead failed\n");
+                        return NET_NOK;
+                }
+                ptNetHead->pcNetIf=NULL;
+                ptNetHead->pData=NULL;
+                ptNetHead->next=NULL;
+                *ptNetList=ptNetHead;
+        }
+        else{
+                /* list has already a head */
+                *ptNetList=ptNetHead;
+                ptNetListLast=NULL;
+                while(*ptNetList){
+                        if((*ptNetList)->pcNetIf==NULL){
+                                break; /* ptNetList element alredy exists but interface name pcNetIf was not set so use this element */
+                        }
+                        if(!strcmp((*ptNetList)->pcNetIf,if_name)){
+                                return NET_OK; /* the entry already exists */
+                        }
+                        ptNetListLast=*ptNetList;
+                        *ptNetList=(*ptNetList)->next;
+                }
+                if(*ptNetList==NULL){
+                        *ptNetList=ptNetListLast;
+                        (*ptNetList)->next=malloc(sizeof(tNetList));
+                        if((*ptNetList)->next==NULL){
+                                fprintf( stderr, "addListNode: momory alocation for ptNetList failed\n");
+                                return NET_NOK;
+                        }
+                        *ptNetList=(*ptNetList)->next;
+                        (*ptNetList)->pcNetIf=NULL;
+                        (*ptNetList)->pData=NULL;
+                        (*ptNetList)->next=NULL;
+
+                }/* if(ptNetList==NULL){ */
+        }
+  return NET_OK;
+}
+

@@ -66,6 +66,10 @@
 # endif
 
 #include <string.h>
+#if (__RTEMS_MAJOR__ == 5)
+#undef random
+#endif
+
 #include <stdlib.h>
 
 #define sysBootLine rtems_bsdnet_bootp_cmdline
@@ -79,6 +83,7 @@
 #elif   (defined(__PPC__) && ((__RTEMS_MAJOR__ > 4) \
          || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9) \
          || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ == 9 && __RTEMS_REVISION__ > 0)))
+#include <bsp/bootcard.h>
 #define reboot(x) bsp_reset()
 #else
 #define reboot(x) rtemsReboot()

@@ -46,7 +46,118 @@
  */
 
 #include <devIocStats.h>
+# if   (__RTEMS_MAJOR__ >= 5)
+#include <rtems/rtems/tasks.h>
+//This include below contains the report
+#include <rtems/cpuuse.h>
+#include <rtems/score/timestampimpl.h>
+#include <rtems/score/threadimpl.h>
+#include <rtems/print.h>
+#include <rtems/inttypes.h>
+#include <rtems/score/timestamp.h>
+#include <rtems/printer.h>
 
+// CPU usage document
+// https://docs.rtems.org/branches/master/c-user/cpu_usage_statistics.html
+
+//Taken from 
+//./kernel/cpukit/libmisc/cpuuse/cpuuseimpl.h
+
+//implemention based on the function rtems_cpu_usage_report_with_plugin and cpu_usage_visitor in
+////./kernel/cpukit/libmisc/cpuuse/cpuusagereport.c
+typedef struct {
+  double               dTotal; /* seconds */
+  double               dIdle;  /* seconds */
+  uint32_t             uiThreads_cnt; /* number of threads */
+} epics_cpu_usage_context;
+
+static uint32_t iocstats_tick_interval=0;
+
+static bool epics_cpu_usage_visitor( Thread_Control *the_thread, void *arg )
+{
+  epics_cpu_usage_context *ctx;
+  char               name[ 38 ];
+  Timestamp_Control  used;
+
+  if(!iocstats_tick_interval){
+    iocstats_tick_interval = (uint32_t) (SBT_1US * rtems_configuration_get_microseconds_per_tick());
+    iocstats_tick_interval = iocstats_tick_interval/1000; /* milisecond */
+   }
+
+  ctx = arg;
+  _Thread_Get_name( the_thread, name, sizeof( name ) );
+
+  _Thread_Get_CPU_time_used( the_thread, &used );
+
+  ctx->uiThreads_cnt++; // count number of threads
+  ctx->dTotal += ((double)(used/iocstats_tick_interval))/100000; /* seconds */
+
+  if(name[0]=='I' && name[1]=='D' && name[2]=='L' && name[3]=='E'){
+    ctx->dIdle = ((double)(used/iocstats_tick_interval))/100000; /* seconds */
+  }
+  
+  return false;
+}
+
+
+static double prev_total = 0;
+static double prev_idle  = 0;
+
+
+int devIocStatsInitCpuUsage (void)
+{
+  epics_cpu_usage_context  ctx;
+
+  ctx.dTotal=0;
+  ctx.dIdle=0;
+  ctx.uiThreads_cnt=0;
+
+  rtems_task_iterate( epics_cpu_usage_visitor, &ctx );
+
+  prev_total=ctx.dTotal;
+  prev_idle=ctx.dIdle;
+
+  return 0;
+}
+
+int devIocStatsGetCpuUsage (loadInfo *pval)
+{
+
+  epics_cpu_usage_context  ctx;
+  double total;
+  double idle;
+  double delta_total;
+  double delta_idle;
+
+  ctx.dTotal=0;
+  ctx.dIdle=0;
+  ctx.uiThreads_cnt=0;
+
+  rtems_task_iterate( epics_cpu_usage_visitor, &ctx );
+
+  total=ctx.dTotal;
+  idle=ctx.dIdle;
+
+    if (total >= prev_total) {
+        delta_total = total - prev_total;
+        delta_idle  = idle - prev_idle;
+    } else {
+        delta_total = total;
+        delta_idle  = idle;
+    }
+    prev_total = total;
+    prev_idle = idle;
+
+
+    if (delta_idle > delta_total)
+        pval->cpuLoad = 0.0;
+    else
+        pval->cpuLoad = 100.0 - (delta_idle * 100.0 / delta_total);
+
+    return 0;
+}
+
+#else
 # if   (__RTEMS_MAJOR__ > 4) \
    || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 7)
 typedef char objName[13];
@@ -103,7 +214,7 @@ static void cpu_ticks(double *total, double *idle)
                 if (tc) {
                     *total += CPU_ELAPSED_TIME(tc);
                     RTEMS_OBJ_GET_NAME( tc,  name );
-                    if (name[0]) {
+                    if (name && name[0]) {
                         if (name[0] == 'I' && name[1] == 'D' &&
                             name[2] == 'L' && name[3] == 'E') {
                             *idle = CPU_ELAPSED_TIME(tc);
@@ -154,3 +265,4 @@ int devIocStatsGetCpuUsage (loadInfo *pval)
     return 0;
 #endif
 }
+#endif
