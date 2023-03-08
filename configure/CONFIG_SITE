@@ -30,9 +30,10 @@
 # provided by Till Straumann.
 #USR_CFLAGS_RTEMS += -DSSRLAPPSMISCUTILS
 
+# Only needed for 3-14
 #EXTENSIONS_MODULE_VERSION=extensions-R3-14-8-2
 #MSI=$(EPICS_SITE_TOP)/extensions/$(EXTENSIONS_MODULE_VERSION)/bin/$(EPICS_HOST_ARCH)/msi
-MSI=msi
+#MSI=msi
 
 -include $(SUPPORT)/configure/CONFIG_SITE
 
