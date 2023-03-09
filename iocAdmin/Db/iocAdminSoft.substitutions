@@ -9,18 +9,18 @@
 file ioc.template
 {
 pattern { IOCNAME , TODFORMAT           }
-	{ "$(IOC)"  , "%m/%d/%Y %H:%M:%S" }
+        { "$(IOC)"  , "%m/%d/%Y %H:%M:%S" }
 }
 file iocGeneralTime.template
 {
 pattern { IOCNAME }
-	{ "$(IOC)"  }
+        { "$(IOC)"  }
 }
 file iocAdminScanMon.db
 {
-	pattern
-	{	IOCNAME	 }
-	{	"$(IOC)" }
+        pattern
+        { IOCNAME }
+        { "$(IOC)" }
 }
 file epicsEnvVars.db
 {
