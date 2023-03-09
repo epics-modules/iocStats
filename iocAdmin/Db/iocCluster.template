@@ -37,4 +37,3 @@ record(calc, "$(IOCNAME):$(TYPE)_CLUST_AVAIL_$(S)") {
   field(LLSV, "INVALID")
   field(FLNK, "$(FLNK)")
 }
-

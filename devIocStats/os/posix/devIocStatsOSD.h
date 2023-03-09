@@ -49,4 +49,3 @@ static char *sysBootLine = "<not implemented>";
 #endif
 
 #endif /* devIocStatsOSD_H */
-

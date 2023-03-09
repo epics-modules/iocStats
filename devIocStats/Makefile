@@ -52,4 +52,3 @@ OBJS_vxWorks += osdCpuUsageTest.o
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-

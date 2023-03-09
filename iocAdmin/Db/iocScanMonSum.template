@@ -11,4 +11,3 @@ record(calc, "$(IOCNAME):SCANMON_SEVR") {
     field(INPF, "$(IOCNAME):$(SCANNAME5)_UPD_TIME.SEVR MS")
     field(INPG, "$(IOCNAME):$(SCANNAME6)_UPD_TIME.SEVR MS")
 }
-

@@ -87,4 +87,3 @@ double         fac = vxStats_busyloop_period/(double)100.0;
 		epicsThreadSleep((double)(100-busyperc)*fac);
 	}
 }
-

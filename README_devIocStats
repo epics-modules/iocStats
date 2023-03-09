@@ -279,6 +279,3 @@ generic/portable to me.
 BSP Revision is currently not implemented (since this info is IIRC
 not present in RTEMS proper; for BSPs distributed with RTEMS the
 revision matches the kernel revision, however).
-
-
-

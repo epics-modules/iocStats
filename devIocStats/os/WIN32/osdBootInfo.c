@@ -45,4 +45,3 @@ int devIocStatsGetBootLine (char **pval)
     *pval =notimpl ;
     return -1;
 }
-
