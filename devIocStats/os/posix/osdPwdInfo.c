@@ -22,20 +22,19 @@
 
 #include <devIocStats.h>
 
-#define MAX_CWD_SIZE  1024
+#define MAX_CWD_SIZE 1024
 
 static char *notavail = "<not available>";
 static char pwd[MAX_CWD_SIZE] = "";
 
-int devIocStatsInitPwdInfo (void) { return 0; }
+int devIocStatsInitPwdInfo(void) { return 0; }
 
-int devIocStatsGetPwd (char **pval)
-{
-    if (!getcwd(pwd, MAX_CWD_SIZE)) {
-        *pval = notavail;
-        return -1;
-    } else {
-        *pval = pwd;
-        return 0;
-    }
+int devIocStatsGetPwd(char **pval) {
+  if (!getcwd(pwd, MAX_CWD_SIZE)) {
+    *pval = notavail;
+    return -1;
+  } else {
+    *pval = pwd;
+    return 0;
+  }
 }

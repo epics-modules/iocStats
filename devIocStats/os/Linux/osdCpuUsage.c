@@ -27,42 +27,44 @@
 static epicsTimeStamp oldTime;
 static double oldUsage;
 
-static double cpuFromProc (void) {
-    static char statfile[] = "/proc/stat";
-    long user = 0;
-    long nice = 0;
-    long sys = 0;
-    FILE *fp;
+static double cpuFromProc(void) {
+  static char statfile[] = "/proc/stat";
+  long user = 0;
+  long nice = 0;
+  long sys = 0;
+  FILE *fp;
 
-    fp = fopen(statfile, "r");
-    if (fp) {
-        fscanf(fp, "cpu %lu %lu %lu", &user, &nice, &sys);
-        fclose(fp);
-    }
-    return (user + nice + sys) / (double)TICKS_PER_SEC;
+  fp = fopen(statfile, "r");
+  if (fp) {
+    fscanf(fp, "cpu %lu %lu %lu", &user, &nice, &sys);
+    fclose(fp);
+  }
+  return (user + nice + sys) / (double)TICKS_PER_SEC;
 }
 
-int devIocStatsInitCpuUsage (void) {
-    epicsTimeGetCurrent(&oldTime);
-    oldUsage = cpuFromProc();
-    return 0;
+int devIocStatsInitCpuUsage(void) {
+  epicsTimeGetCurrent(&oldTime);
+  oldUsage = cpuFromProc();
+  return 0;
 }
 
-int devIocStatsGetCpuUsage (loadInfo *pval) {
-    epicsTimeStamp curTime;
-    double curUsage;
-    double elapsed;
-    double cpuFract;
+int devIocStatsGetCpuUsage(loadInfo *pval) {
+  epicsTimeStamp curTime;
+  double curUsage;
+  double elapsed;
+  double cpuFract;
 
-    epicsTimeGetCurrent(&curTime);
-    curUsage = cpuFromProc();
-    elapsed = epicsTimeDiffInSeconds(&curTime, &oldTime);
+  epicsTimeGetCurrent(&curTime);
+  curUsage = cpuFromProc();
+  elapsed = epicsTimeDiffInSeconds(&curTime, &oldTime);
 
-    cpuFract = (elapsed > 0) ? 100 * (curUsage - oldUsage) / (elapsed * NO_OF_CPUS): 0.0;
+  cpuFract = (elapsed > 0)
+                 ? 100 * (curUsage - oldUsage) / (elapsed * NO_OF_CPUS)
+                 : 0.0;
 
-    oldTime = curTime;
-    oldUsage = curUsage;
+  oldTime = curTime;
+  oldUsage = curUsage;
 
-    pval->cpuLoad = cpuFract;
-    return 0;
+  pval->cpuLoad = cpuFract;
+  return 0;
 }

@@ -23,15 +23,13 @@
 #define SYSBOOTLINE_NEEDED
 #include <devIocStats.h>
 
-int devIocStatsInitBootInfo (void) { return 0; }
+int devIocStatsInitBootInfo(void) { return 0; }
 
-int devIocStatsGetStartupScript (char **pval)
-{
-    return devIocStatsGetStartupScriptDefault(pval);
+int devIocStatsGetStartupScript(char **pval) {
+  return devIocStatsGetStartupScriptDefault(pval);
 }
 
-int devIocStatsGetBootLine (char **pval)
-{
-    *pval = sysBootLine;
-    return 0;
+int devIocStatsGetBootLine(char **pval) {
+  *pval = sysBootLine;
+  return 0;
 }

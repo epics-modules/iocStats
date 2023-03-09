@@ -41,20 +41,19 @@
 #include <devIocStats.h>
 
 /* This would otherwise need _KERNEL to be defined... */
-extern struct ifnet  *ifnet;
+extern struct ifnet *ifnet;
 
-int devIocStatsInitIFErrors (void) { return 0; }
+int devIocStatsInitIFErrors(void) { return 0; }
 
-int devIocStatsGetIFErrors (ifErrInfo *pval)
-{
-    struct ifnet *ifp;
+int devIocStatsGetIFErrors(ifErrInfo *pval) {
+  struct ifnet *ifp;
 
-    /* add all interfaces' errors */
-    pval->ierrors = 0;
-    pval->oerrors = 0;
-    for (ifp = ifnet; ifp != NULL; ifp = ifp->if_next) {
-        pval->ierrors += ifp->if_ierrors;
-        pval->oerrors += ifp->if_oerrors;
-    }
-    return 0;
+  /* add all interfaces' errors */
+  pval->ierrors = 0;
+  pval->oerrors = 0;
+  for (ifp = ifnet; ifp != NULL; ifp = ifp->if_next) {
+    pval->ierrors += ifp->if_ierrors;
+    pval->oerrors += ifp->if_oerrors;
+  }
+  return 0;
 }

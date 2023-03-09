@@ -31,17 +31,15 @@
 
 static char *notimpl = "<not implemented>";
 
-int devIocStatsInitBootInfo (void) { return 0; }
+int devIocStatsInitBootInfo(void) { return 0; }
 
-int devIocStatsGetStartupScript (char **pval)
-{
-    *pval = GetCommandLine() ;
+int devIocStatsGetStartupScript(char **pval) {
+  *pval = GetCommandLine();
 
-    return 0;
+  return 0;
 }
 
-int devIocStatsGetBootLine (char **pval)
-{
-    *pval =notimpl ;
-    return -1;
+int devIocStatsGetBootLine(char **pval) {
+  *pval = notimpl;
+  return -1;
 }

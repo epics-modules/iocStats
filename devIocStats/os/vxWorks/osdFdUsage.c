@@ -40,17 +40,18 @@
 
 int devIocStatsInitFDUsage(void) { return 0; }
 
-int devIocStatsGetFDUsage(fdInfo *pval)
-{
-    int i, tot;
+int devIocStatsGetFDUsage(fdInfo *pval) {
+  int i, tot;
 
-/*
- *  The first 3 files are always standard in, standard out, and standard error.
- */
-    for (tot=3,i=3; i<MAX_FILES; i++) {
-        if (FDTABLE_INUSE(i)) tot++;
-    }
-    pval->used = tot;
-    pval->max = MAX_FILES;
-    return 0;
+  /*
+   *  The first 3 files are always standard in, standard out, and standard
+   * error.
+   */
+  for (tot = 3, i = 3; i < MAX_FILES; i++) {
+    if (FDTABLE_INUSE(i))
+      tot++;
+  }
+  pval->used = tot;
+  pval->max = MAX_FILES;
+  return 0;
 }

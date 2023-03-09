@@ -22,5 +22,5 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitFDUsage (void) { return 0; }
-int devIocStatsGetFDUsage (fdInfo *pval) { return -1; }
+int devIocStatsInitFDUsage(void) { return 0; }
+int devIocStatsGetFDUsage(fdInfo *pval) { return -1; }

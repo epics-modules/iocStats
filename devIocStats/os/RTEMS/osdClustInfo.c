@@ -12,7 +12,8 @@
 /* osdClustInfo.c - RTEMS implementation */
 
 /* extracted from */
-/* devIocStatsAnalog.c - Analog Device Support Routines for IOC statistics - based on */
+/* devIocStatsAnalog.c - Analog Device Support Routines for IOC statistics -
+ * based on */
 /* devVXStats.c - Device Support Routines for vxWorks statistics */
 /*
  *	Author: Jim Kowalkowski
@@ -58,30 +59,30 @@
 /* This would otherwise need _KERNEL to be defined... */
 extern struct mbstat mbstat;
 
-int devIocStatsInitClusterInfo (void) { return 0; }
+int devIocStatsInitClusterInfo(void) { return 0; }
 
-int devIocStatsGetClusterInfo (int pool, clustInfo *pval)
-{
-    if (pool == DATA_POOL) return -1;
+int devIocStatsGetClusterInfo(int pool, clustInfo *pval) {
+  if (pool == DATA_POOL)
+    return -1;
 
-    (*pval)[0][0] = MSIZE;
-    (*pval)[0][1] = mbstat.m_mbufs;
-    (*pval)[0][2] = mbstat.m_mtypes[MT_FREE];
-    (*pval)[0][3] = (*pval)[0][1] - (*pval)[0][2];
+  (*pval)[0][0] = MSIZE;
+  (*pval)[0][1] = mbstat.m_mbufs;
+  (*pval)[0][2] = mbstat.m_mtypes[MT_FREE];
+  (*pval)[0][3] = (*pval)[0][1] - (*pval)[0][2];
 
-    (*pval)[1][0] = MCLBYTES;
-    (*pval)[1][1] = mbstat.m_clusters;
-    (*pval)[1][2] = mbstat.m_clfree;
-    (*pval)[1][3] = (*pval)[1][1] - (*pval)[1][2];
+  (*pval)[1][0] = MCLBYTES;
+  (*pval)[1][1] = mbstat.m_clusters;
+  (*pval)[1][2] = mbstat.m_clfree;
+  (*pval)[1][3] = (*pval)[1][1] - (*pval)[1][2];
 
-    return 0;
+  return 0;
 }
 
-int devIocStatsGetClusterUsage (int pool, int *pval)
-{
-    if ( pool == DATA_POOL ) return -1;
+int devIocStatsGetClusterUsage(int pool, int *pval) {
+  if (pool == DATA_POOL)
+    return -1;
 
-    *pval = mbstat.m_mbufs;
+  *pval = mbstat.m_mbufs;
 
-    return 0;
+  return 0;
 }

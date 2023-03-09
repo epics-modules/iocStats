@@ -24,10 +24,9 @@
 
 static char *notimpl = "<not implemented>";
 
-int devIocStatsInitPwdInfo (void) { return 0; }
+int devIocStatsInitPwdInfo(void) { return 0; }
 
-int devIocStatsGetPwd (char **pval)
-{
-    *pval = notimpl;
-    return -1;
+int devIocStatsGetPwd(char **pval) {
+  *pval = notimpl;
+  return -1;
 }

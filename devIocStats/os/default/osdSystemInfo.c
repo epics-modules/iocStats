@@ -15,18 +15,14 @@
 
 static char *notavail = "<not available>";
 
-int devIocStatsInitSystemInfo (void) {
-    return 0;
+int devIocStatsInitSystemInfo(void) { return 0; }
+
+int devIocStatsGetBSPVersion(char **pval) {
+  *pval = notavail;
+  return -1;
 }
 
-int devIocStatsGetBSPVersion (char **pval)
-{
-    *pval = notavail;
-    return -1;
-}
-
-int devIocStatsGetKernelVersion (char **pval)
-{
-    *pval = notavail;
-    return 0;
+int devIocStatsGetKernelVersion(char **pval) {
+  *pval = notavail;
+  return 0;
 }

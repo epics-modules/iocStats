@@ -40,20 +40,19 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitSuspTasks (void) { return 0; }
+int devIocStatsInitSuspTasks(void) { return 0; }
 
-int devIocStatsGetSuspTasks (int *pval)
-{
-    /* Grab the current list of task IDs (up to 200) */
-    int taskIdList[200];
-    int nTasks = taskIdListGet(taskIdList, 200);
-    int numSuspendedTasks = 0;
+int devIocStatsGetSuspTasks(int *pval) {
+  /* Grab the current list of task IDs (up to 200) */
+  int taskIdList[200];
+  int nTasks = taskIdListGet(taskIdList, 200);
+  int numSuspendedTasks = 0;
 
-    /* Count all suspended tasks */
-    int i;
-    for (i=0; i < nTasks; i++)
-        if (taskIsSuspended(taskIdList[i]))
-           numSuspendedTasks++;
-    *pval = numSuspendedTasks;
-    return 0;
+  /* Count all suspended tasks */
+  int i;
+  for (i = 0; i < nTasks; i++)
+    if (taskIsSuspended(taskIdList[i]))
+      numSuspendedTasks++;
+  *pval = numSuspendedTasks;
+  return 0;
 }

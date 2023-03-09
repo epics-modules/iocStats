@@ -40,24 +40,23 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitSuspTasks (void) { return 0; }
+int devIocStatsInitSuspTasks(void) { return 0; }
 
-int devIocStatsGetSuspTasks (int *pval)
-{
-    Objects_Control   *o;
-    Objects_Id        id = OBJECTS_ID_INITIAL_INDEX;
-    Objects_Id        nid;
-    int               n = 0;
-    Objects_Locations l;
+int devIocStatsGetSuspTasks(int *pval) {
+  Objects_Control *o;
+  Objects_Id id = OBJECTS_ID_INITIAL_INDEX;
+  Objects_Id nid;
+  int n = 0;
+  Objects_Locations l;
 
-    /* count all suspended (LOCAL -- cannot deal with remote ones ATM) tasks */
-    while ( (o = _Objects_Get_next( &_RTEMS_tasks_Information, id, &l, &nid )) ) {
-        if ( (RTEMS_ALREADY_SUSPENDED == rtems_task_is_suspended( nid )) ) {
-            n++;
-        }
-        _Thread_Enable_dispatch();
-        id = nid;
+  /* count all suspended (LOCAL -- cannot deal with remote ones ATM) tasks */
+  while ((o = _Objects_Get_next(&_RTEMS_tasks_Information, id, &l, &nid))) {
+    if ((RTEMS_ALREADY_SUSPENDED == rtems_task_is_suspended(nid))) {
+      n++;
     }
-    *pval = n;
-    return 0;
+    _Thread_Enable_dispatch();
+    id = nid;
+  }
+  *pval = n;
+  return 0;
 }

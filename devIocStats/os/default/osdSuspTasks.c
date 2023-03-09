@@ -9,7 +9,8 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdSuspTasks.c - Number of suspended tasks: default implementation = use EPICS task watchdog */
+/* osdSuspTasks.c - Number of suspended tasks: default implementation = use
+ * EPICS task watchdog */
 
 /*
  *  Author: Ralph Lange (HZB/BESSY)
@@ -26,19 +27,14 @@
 
 static int suspendedTasks = 0;
 
-static void taskFault(void *user, epicsThreadId tid)
-{
-    suspendedTasks++;
+static void taskFault(void *user, epicsThreadId tid) { suspendedTasks++; }
+
+int devIocStatsInitSuspTasks(void) {
+  taskwdAnyInsert(NULL, taskFault, NULL);
+  return 0;
 }
 
-int devIocStatsInitSuspTasks (void)
-{
-    taskwdAnyInsert(NULL, taskFault, NULL);
-    return 0;
-}
-
-int devIocStatsGetSuspTasks (int *pval)
-{
-    *pval = suspendedTasks;
-    return 0;
+int devIocStatsGetSuspTasks(int *pval) {
+  *pval = suspendedTasks;
+  return 0;
 }

@@ -14,14 +14,12 @@
 #include <devIocStats.h>
 #include <unistd.h>
 
-int devIocStatsGetPID (double *proc_id)
-{
-    *proc_id = (double)getpid();
-    return 0;
+int devIocStatsGetPID(double *proc_id) {
+  *proc_id = (double)getpid();
+  return 0;
 }
 
-int devIocStatsGetPPID (double *proc_id)
-{
-    *proc_id = (double)getppid();
-    return 0;
+int devIocStatsGetPPID(double *proc_id) {
+  *proc_id = (double)getppid();
+  return 0;
 }

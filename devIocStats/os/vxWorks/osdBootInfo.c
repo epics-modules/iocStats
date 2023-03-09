@@ -23,17 +23,17 @@
 #include <devIocStats.h>
 
 #if 0
-#define BOOT_DEV_LEN            20  /* max chars in device name */
-#define BOOT_HOST_LEN           20  /* max chars in host name */
-#define BOOT_ADDR_LEN           30  /* max chars in net addr */
-#define BOOT_TARGET_ADDR_LEN    50  /* IP address + mask + lease times */
-#define BOOT_ADDR_LEN           30  /* max chars in net addr */
-#define BOOT_FILE_LEN           80  /* max chars in file name */
-#define BOOT_USR_LEN            20  /* max chars in user name */
-#define BOOT_PASSWORD_LEN       20  /* max chars in password */
-#define BOOT_OTHER_LEN          80  /* max chars in "other" field */
+#define BOOT_DEV_LEN 20         /* max chars in device name */
+#define BOOT_HOST_LEN 20        /* max chars in host name */
+#define BOOT_ADDR_LEN 30        /* max chars in net addr */
+#define BOOT_TARGET_ADDR_LEN 50 /* IP address + mask + lease times */
+#define BOOT_ADDR_LEN 30        /* max chars in net addr */
+#define BOOT_FILE_LEN 80        /* max chars in file name */
+#define BOOT_USR_LEN 20         /* max chars in user name */
+#define BOOT_PASSWORD_LEN 20    /* max chars in password */
+#define BOOT_OTHER_LEN 80       /* max chars in "other" field */
 
-#define BOOT_FIELD_LEN          80  /* max chars in boot field */
+#define BOOT_FIELD_LEN 80 /* max chars in boot field */
 
 typedef struct                          /* BOOT_PARAMS */
 {
@@ -60,22 +60,20 @@ extern char * bootStringToStruct (
     char *bootString, BOOT_PARAMS *pBootParams);
 #endif
 
-static const int stcmd_offset = offsetof(BOOT_PARAMS,startupScript);
+static const int stcmd_offset = offsetof(BOOT_PARAMS, startupScript);
 static BOOT_PARAMS bps;
 
-int devIocStatsInitBootInfo (void) {
-    bootStringToStruct(sysBootLine, &bps);
-    return 0;
+int devIocStatsInitBootInfo(void) {
+  bootStringToStruct(sysBootLine, &bps);
+  return 0;
 }
 
-int devIocStatsGetStartupScript (char **pval)
-{
-    *pval = ((char*)(&bps))+stcmd_offset;
-    return 0;
+int devIocStatsGetStartupScript(char **pval) {
+  *pval = ((char *)(&bps)) + stcmd_offset;
+  return 0;
 }
 
-int devIocStatsGetBootLine (char **pval)
-{
-    *pval = sysBootLine;
-    return 0;
+int devIocStatsGetBootLine(char **pval) {
+  *pval = sysBootLine;
+  return 0;
 }

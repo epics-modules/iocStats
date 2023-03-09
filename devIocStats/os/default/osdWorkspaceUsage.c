@@ -9,7 +9,8 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdWorkspaceUsage.c - Workspace usage info: default implementation = do nothing */
+/* osdWorkspaceUsage.c - Workspace usage info: default implementation = do
+ * nothing */
 
 /*
  *  Author: Chengcheng Xu (SLAC)
@@ -18,5 +19,5 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitWorkspaceUsage (void) { return 0; }
-int devIocStatsGetWorkspaceUsage (memInfo *pval) { return -1; }
+int devIocStatsInitWorkspaceUsage(void) { return 0; }
+int devIocStatsGetWorkspaceUsage(memInfo *pval) { return -1; }

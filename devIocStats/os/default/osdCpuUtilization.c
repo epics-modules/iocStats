@@ -21,9 +21,9 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitCpuUtilization (loadInfo *pval) {
-    pval->noOfCpus = NO_OF_CPUS;
-    return 0;
+int devIocStatsInitCpuUtilization(loadInfo *pval) {
+  pval->noOfCpus = NO_OF_CPUS;
+  return 0;
 }
 
-int devIocStatsGetCpuUtilization (loadInfo *pval) { return -1; }
+int devIocStatsGetCpuUtilization(loadInfo *pval) { return -1; }

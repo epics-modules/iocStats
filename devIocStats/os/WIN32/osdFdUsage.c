@@ -31,13 +31,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int devIocStatsInitFDUsage (void) { return 0; }
-int devIocStatsGetFDUsage (fdInfo *pval) {
-    DWORD handlecount;
+int devIocStatsInitFDUsage(void) { return 0; }
+int devIocStatsGetFDUsage(fdInfo *pval) {
+  DWORD handlecount;
 
-    GetProcessHandleCount(GetCurrentProcess(),&handlecount);
-    pval->max=16384;
-    pval->used=(int)handlecount;
+  GetProcessHandleCount(GetCurrentProcess(), &handlecount);
+  pval->max = 16384;
+  pval->used = (int)handlecount;
 
-    return 0;
+  return 0;
 }
