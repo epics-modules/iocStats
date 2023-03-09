@@ -35,7 +35,7 @@ pattern { IOCNAME }
 file epicsEnvVars.db
 {
 pattern { IOCNAME, }
-	{ "$(IOC)" } 
+	{ "$(IOC)" }
 }
 file iocCluster.template
 {

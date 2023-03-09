@@ -8,7 +8,7 @@
  * To test validity of cpu load measurements, run cpuBurnLoad50 on the vxWorks
  * shell for some time (e.g. 60 seconds) and monitor the cpu load. It should
  * increase by 50%.
- * 
+ *
  * The routine cpuBurnLoad50 creates an additional load of exactly 50%
  * (average) by periodically sleeping and then burning cpu for one clock tick
  * each.

@@ -19,7 +19,7 @@
  *     Restructured OSD parts
  *
  */
-#include <windows.h> 
+#include <windows.h>
 #include <stdio.h>
 
 #include <devIocStats.h>
@@ -29,10 +29,10 @@ char *pwd;
 char *hostname;
 
 
-int devIocStatsInitHostInfo (void) { 
+int devIocStatsInitHostInfo (void) {
     pwd =(char*)malloc(sizeof(char)*MAX_PATH);
     hostname =(char*)malloc(sizeof(char)*MAX_PATH);
-    return 0; 
+    return 0;
 }
 
 int devIocStatsGetPwd (char **pval)
@@ -51,7 +51,7 @@ int devIocStatsGetPwd (char **pval)
 int devIocStatsGetHostname (char **pval)
 {
 
-    
+
     *pval = getenv("COMPUTERNAME");
     return -1;
 }

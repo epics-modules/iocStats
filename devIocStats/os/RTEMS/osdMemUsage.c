@@ -38,7 +38,7 @@
  *              area which is independent of the malloc heap.
  *              Some system-internal data structures are
  *              allocated from the workspace area.
- *              Support for monitoring the workspace area 
+ *              Support for monitoring the workspace area
  *              is provided in osdWorkspaceUsage.c.
  *
  *  2009-05-15  Ralph Lange (HZB/BESSY)

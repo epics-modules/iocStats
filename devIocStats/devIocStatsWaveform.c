@@ -50,7 +50,7 @@
 
 	wavefrom (DTYP = "IOC stats"):
 
-		The supported waveform devices are all static; the record only needs 
+		The supported waveform devices are all static; the record only needs
 		to be processed once, for which PINI is convenient.
 
 		startup_script	         -path of startup script
@@ -121,7 +121,7 @@ static validGetWfmParms statsGetWfmParms[]={
 
 wStats devWaveformStats  ={5,NULL,waveform_init,waveform_init_record,NULL,waveform_read};
 epicsExportAddress(dset,devWaveformStats);
-
+
 /* ---------------------------------------------------------------------- */
 
 static long waveform_init(int pass)
@@ -162,7 +162,7 @@ static long waveform_init_record(waveformRecord* pr)
 	}
 	if(pvt==NULL)
 	{
-		recGblRecordError(S_db_badField,(void*)pr, 
+		recGblRecordError(S_db_badField,(void*)pr,
 		   "devWaveformStats (init_record) Illegal INP parm field");
 		return S_db_badField;
 	}
@@ -171,20 +171,20 @@ static long waveform_init_record(waveformRecord* pr)
 	return 0;	/* success */
 }
 
-
+
 static long waveform_read(waveformRecord* pr)
 {
 	pvtArea* pvt=(pvtArea*)pr->dpvt;
 
 	if (!pvt) return S_dev_badInpType;
-	if (pr->nelm > 0) { 
+	if (pr->nelm > 0) {
 	  statsGetWfmParms[pvt->index].func((char *)pr->bptr, pr->nelm-1);
 	  pr->nord = strlen((char *)pr->bptr) + 1;
 	  pr->udf=0;
 	}
 	return(0);	/* success */
 }
-
+
 /* -------------------------------------------------------------------- */
 
 typedef int getWaveformFunc (char **dest);
@@ -205,7 +205,7 @@ static void statsBootline(char *d, size_t nelm) { getWaveform(d, nelm, devIocSta
 
 static void statsPwd(char *d, size_t nelm)      { getWaveform(d, nelm, devIocStatsGetPwd); }
 
-static void statsEPICSVer(char *d, size_t nelm) {  
+static void statsEPICSVer(char *d, size_t nelm) {
   memset(d, 0, nelm);
   strncpy(d, epicsReleaseVersion, nelm);
   d[nelm] = 0;

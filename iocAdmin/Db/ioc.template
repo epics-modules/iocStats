@@ -34,7 +34,7 @@ record(calcout, "$(IOCNAME):HEARTBEAT")
     field(SCAN, "1 second")
     field(INPA, "$(IOCNAME):HEARTBEAT")
 }
-# if autosave is working, START_CNT creates a running count of 
+# if autosave is working, START_CNT creates a running count of
 # number of times the IOC was started.
 record(calcout, "$(IOCNAME):START_CNT")
 {

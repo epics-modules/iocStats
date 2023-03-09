@@ -12,17 +12,17 @@
 /* osdWorkspaceUsage.c - RTEMS implementation */
 
 /*=============================================================================
- 
+
  Name: osdWorkspaceUsage.c
  devIocStatsInitWorkspaceUsage      - Initialization when ai_init is called
  devIocStatsGetWorkspaceUsage     - Getting the information for RTEMS RAM Workspace
-   
- Abs:  This function acquires the status of the RTEM RAM Workspace, the amount 
+
+ Abs:  This function acquires the status of the RTEM RAM Workspace, the amount
  used, free, and the total size of the workspace
- 
+
  Auth: 11-Aug-2010, Chengcheng Xu (SLAC)
        Changed to be similar to osdMemUsage.c by Stephanie Allison.
-       
+
  -----------------------------------------------------------------------------*/
 #include <devIocStats.h>
 

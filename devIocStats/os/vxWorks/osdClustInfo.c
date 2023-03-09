@@ -68,7 +68,7 @@ int devIocStatsGetClusterInfo (int pool, clustInfo *pval)
       return -1;
     }
 
-    test = pNetPool->clTbl[0]->clSize; 
+    test = pNetPool->clTbl[0]->clSize;
     for (i = 0; i < CL_TBL_SIZE; i++)
     {
         if (!(pCluster = pNetPool->clTbl[i])) break; /* Quit if no more cluster tables */
@@ -76,16 +76,16 @@ int devIocStatsGetClusterInfo (int pool, clustInfo *pval)
 #if _WRS_VXWORKS_MAJOR >= 6
         if ((i > 0) && (pCluster->clSize == test)) continue; /* ignore duplicate entries */
         if (pCluster->clSize <= 0) break;
-        test = pCluster->clSize; 
+        test = pCluster->clSize;
         (*pval)[j][0] = test;
         (*pval)[j][1] = pCluster->clNum;
         (*pval)[j][2] = pCluster->clNumFree;
         (*pval)[j][3] = pCluster->clUsage;
         j++;
 #else
-        if (i > 0) 
+        if (i > 0)
             if (pCluster->clSize != (2 * test)) break;
-        test = pCluster->clSize; 
+        test = pCluster->clSize;
         (*pval)[i][0] = test;
         (*pval)[i][1] = pCluster->clNum;
         (*pval)[i][2] = pCluster->clNumFree;

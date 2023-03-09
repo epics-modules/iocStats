@@ -316,10 +316,10 @@ static unsigned cainfo_connex  = 0;
 static epicsTimerQueueId timerQ = 0;
 static epicsMutexId scan_mutex;
 static int caServInitialized = 0;
-
+
 /* ---------------------------------------------------------------------- */
 
-/* 
+/*
  * Run timer task just below the low priority callback task and higher
  * than the default for the channel access tasks.  Also, set okToShare to 0
  * so that the task is dedicated to devIocStats.
@@ -434,7 +434,7 @@ static void scan_time(int type)
     if(scan[type].on)
 		epicsTimerStartDelay(scan[type].wd, scan[type].rate_sec);
 }
-
+
 /* -------------------------------------------------------------------- */
 
 static long ai_clusts_init(int pass)
@@ -555,7 +555,7 @@ static long ai_init_record(aiRecord* pr)
 			pvt->type=statsGetParms[i].type;
 		}
 	}
-	
+
 	if(pvt==NULL)
 	{
 		recGblRecordError(S_db_badField,(void*)pr,
@@ -641,7 +641,7 @@ static long ao_write(aoRecord* pr)
 	if (!pvt) return S_dev_badInpType;
 
 	type=pvt->type;
-        
+
         if (pr->val > 0.0)
           scan[type].rate_sec = pr->val;
         else
@@ -683,7 +683,7 @@ static long ai_read(aiRecord* pr)
     pr->udf = 0;
     return 2; /* don't convert */
 }
-
+
 /* -------------------------------------------------------------------- */
 
 

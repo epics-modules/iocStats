@@ -63,27 +63,27 @@
 
 /*
  * Implementation Notes
- * 
+ *
  * Incrementing a counter is the most straight-forward way to burn cpu, just take
  * care that the counter variable is declared volatile. This should tell even
  * modern highly optimizing compilers not to optimize away the memory access.
- * 
+ *
  * We use a vxWorks watchdog timer to start the counter and to stop it after a
  * given amount of clock ticks so we can run the counter for a precisely defined
  * period of time.
- * 
+ *
  * Initial calibration runs exactly the same procedure as the measurement, but
  * saves the final value of the counter in a global variable (nBurnNoContention),
  * assuming that at the time we calibrate there is no contention for the CPU yet.
- * 
- * 
+ *
+ *
  * The actual measurement is done in a background task that periodically sleeps,
  * burns cpu, and then calculates the load from the value of the counter by
  * comparing it to the value of nBurnNoContention.
  * Sleep and burn periods of the measurement task can be re-configured by
  * setting global variables (cpuBurnTicks, cpuSleepTicks), both are initialized so
  * that they correspond to 5 seconds each.
- * 
+ *
  * The devIocStatsGetCpuUsage routine just returns the last value computed by the
  * background task.
  */

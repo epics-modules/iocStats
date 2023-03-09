@@ -17,7 +17,7 @@
  *  Author: Ralph Lange (HZB/BESSY)
  *
  *  Modification History
- *  2012-03-16 Helge Brands (PSI) 
+ *  2012-03-16 Helge Brands (PSI)
  *
  */
 
@@ -71,10 +71,10 @@ int test_Cpu(loadInfo *pval) {
     ULONGLONG nTotalProc;
     ULONGLONG nTotalMachine;
 
-    
+
     GetSystemTimes(&Sys_IdleTime, &Sys_KernelTime, &Sys_UserTime);
     GetProcessTimes(GetCurrentProcess(),&Proc_Creationtime,&Proc_IdleTime, &Proc_KernelTime, &Proc_UserTime);
- 
+
     Sys_KernelTime_Diff = SubtractTimes(Sys_KernelTime, Prev_Sys_KernelTime);
 
     Sys_UserTime_Diff = SubtractTimes(Sys_UserTime, Prev_Sys_UserTime);
@@ -90,7 +90,7 @@ int test_Cpu(loadInfo *pval) {
     nTotalProc = Proc_UserTime_Diff + Proc_KernelTime_Diff;
 
     nTotalMachine = (Sys_KernelTime_Diff + Sys_UserTime_Diff)-Sys_IdleTime_Diff;
-    
+
     if (nTotalSys > 0) {
         pval->iocLoad=((100.0 * nTotalProc) / nTotalSys);
         pval->cpuLoad = ((100.0 * nTotalMachine) /nTotalSys );
@@ -111,27 +111,27 @@ int test_Cpu(loadInfo *pval) {
 
 int devIocStatsInitCpuUtilization(loadInfo *pval) {
 
- 
+
      GetSystemTimes(&Prev_Sys_IdleTime, &Prev_Sys_KernelTime, &Prev_Sys_UserTime);
     GetProcessTimes(GetCurrentProcess(),&Proc_Creationtime,&Prev_Proc_IdleTime, &Prev_Proc_KernelTime, &Prev_Proc_UserTime);
 
-    
+
     myprocessid = GetCurrentProcessId();
-    
+
 #ifdef _WIN64
     pval->noOfCpus = GetMaximumProcessorCount(ALL_PROCESSOR_GROUPS);
 #else
-    
+
     pval->noOfCpus = strtol(getenv("NUMBER_OF_PROCESSORS"),NULL,10);
-#endif    
-    
+#endif
+
     return 0;
 }
 
 int devIocStatsGetCpuUtilization(loadInfo *pval) {
 
     test_Cpu(pval);
-    
+
     return 0;
 
 }

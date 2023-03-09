@@ -30,7 +30,7 @@
 static unsigned long pagesize;
 
 int devIocStatsInitMemUsage (void) {
-    pagesize = sysconf(_SC_PAGESIZE); 
+    pagesize = sysconf(_SC_PAGESIZE);
     return 0;
 }
 

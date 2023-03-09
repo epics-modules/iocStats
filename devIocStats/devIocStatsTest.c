@@ -33,7 +33,7 @@
 /* ----------test routines----------------- */
 
 /* Some sample loads on MVME167:
-*	
+*
 *	-> sp jbk_artificial_load, 100000000, 10000, 1
 *		Load average: 69%
 *	-> sp jbk_artificial_load, 100000000, 100000, 1
@@ -83,7 +83,7 @@ double         fac = vxStats_busyloop_period/(double)100.0;
 		do {
 			epicsTimeGetCurrent(&now);
 		} while ( epicsTimeDiffInSeconds(&now,&then) < (double)busyperc*fac );
-		
+
 		epicsThreadSleep((double)(100-busyperc)*fac);
 	}
 }

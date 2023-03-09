@@ -41,7 +41,7 @@
 	a few seconds to it, which has to be set
 	within a small window before requesting the
 	reboot.
-	
+
         Input G is the bitmask for the reboot
         input argument.  The possible bits are
         defined in sysLib.h.  If input G is
@@ -79,7 +79,7 @@ static long rebootProc(struct subRecord *psub)
   Rem:  scanMon initialization.  Allocate space for
         timestamp in DPVT.  Set E to -1 to force
         initialization by scanMon.
-        
+
   Side: None.
 
   Ret: long
@@ -103,7 +103,7 @@ static long scanMonInit(struct subRecord *psub)
         period to monitor if a SCAN task is getting too far
         behind in its updates (ie, due to a higher priority
         task).
-        
+
         Inputs:
         INPA = mode (0 = relative, 1 = absolute)
         INPB = minor tolerance (%)
@@ -118,7 +118,7 @@ static long scanMonInit(struct subRecord *psub)
         Outputs:
         VAL = update time (sec) for mode = 1
               update time - expected update time (sec) for mode = 0
-        
+
   Side: None.
 
   Ret: long
@@ -151,9 +151,9 @@ static long scanMon(struct subRecord *psub)
                                        (epicsTimeStamp *)psub->dpvt);
     if (psub->a < 0.5) psub->val -= scan_period;
   }
-  /* Save time stamp for next time around */ 
+  /* Save time stamp for next time around */
   *((epicsTimeStamp *)psub->dpvt) = curr_time;
-  
+
   /* Recalculate alarm limits. These really only need to be
      recalculated whenever scan_period, A, B changes or whenever
      HIHI, LOLO, HIGH, LOW get externally updated

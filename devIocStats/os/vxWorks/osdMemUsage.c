@@ -45,7 +45,7 @@ int devIocStatsGetMemUsage (memInfo *pmi) {
 
     int status = memPartInfoGet (memSysPartId, &vxPmi);
     if (0 == status) {
-        pmi->numBytesTotal    = (double)vxPmi.numBytesFree + 
+        pmi->numBytesTotal    = (double)vxPmi.numBytesFree +
 	                        (double)vxPmi.numBytesAlloc;
         pmi->numBytesFree     = (double)vxPmi.numBytesFree;
         pmi->numBytesAlloc    = (double)vxPmi.numBytesAlloc;
@@ -83,7 +83,7 @@ int devIocStatsGetMemUsage (memInfo *pmi) {
             pmi->numBlocksFree ++ ;
 	    nbf = 2.0 * (double)pHdr->nWords;
             pmi->numBytesFree += nbf;
-            if(nbf > pmi->maxBlockSizeFree) 
+            if(nbf > pmi->maxBlockSizeFree)
 	        pmi->maxBlockSizeFree = nbf;
         }
     }

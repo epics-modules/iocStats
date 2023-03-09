@@ -198,7 +198,7 @@ static char *empty    = "";
 static char *script = 0;
 static int scriptlen = 0;
 static epicsTimeStamp starttime;
-
+
 /* ---------------------------------------------------------------------- */
 
 static long stringin_init(int pass)
@@ -268,7 +268,7 @@ static long epics_init_record(stringinRecord* pr)
 {
         long status;
         const ENV_PARAM **ppParam = env_param_list;
-  
+
         status = envvar_init_record(pr);
         if (status) return status;
 
@@ -285,7 +285,7 @@ static long epics_init_record(stringinRecord* pr)
                 "devStringinEpics (init_record) INP field is not an EPICS env var");
         return S_db_badField;
 }
-
+
 static long stringin_read(stringinRecord* pr)
 {
         pvtArea* pvt=(pvtArea*)pr->dpvt;
@@ -303,7 +303,7 @@ static long envvar_read(stringinRecord* pr)
         char *buf;
 
         if (!pr->dpvt) return S_dev_badInpType;
-        
+
         if ( (buf=getenv((char *)pr->dpvt)) ) envvar = &buf;
         strncpy(pr->val, *envvar, MAX_NAME_SIZE);
         pr->val[MAX_NAME_SIZE]=0; 
@@ -329,7 +329,7 @@ static long epics_read(stringinRecord* pr)
         }
         return(0);      /* success */
 }
-
+
 /* -------------------------------------------------------------------- */
 
 typedef int getStringFunc (char **dest);

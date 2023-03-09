@@ -2695,7 +2695,7 @@ topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
 controlPv "$(ioc):GTIM_RESET.PROC"
 pressValue "0"
-releaseValue 
+releaseValue
 onLabel "Reset"
 offLabel "Reset"
 3d
