@@ -68,7 +68,7 @@
               ( cpu		 - same as ioc_cpuload [for compatibility] )
                 suspended_tasks	 - number of suspended tasks
 		fd		 - number of file descriptors currently in use
-		max_fd		 - max number of file descriptors
+		maxfd		 - max number of file descriptors
 		ca_clients	 - number of current CA clients
 		ca_connections	 - number of current CA connections
                 min_data_mbuf    - minimum percent free data   MBUFs
@@ -92,10 +92,10 @@
 
 
 	ao:
-		memoryScanRate	 - max rate at which new memory stats can be read
-		fdScanRate	 - max rate at which file descriptors can be counted
-		cpuScanRate	 - max rate at which cpu load can be calculated
-		caConnScanRate	 - max rate at which CA connections can be calculated
+		memory_scan_rate	 - max rate at which new memory stats can be read
+		fd_scan_rate	 - max rate at which file descriptors can be counted
+		cpu_scan_rate	 - max rate at which cpu load can be calculated
+		ca_scan_rate	 - max rate at which CA connections can be calculated
 
 	* scan rates are all in seconds
 

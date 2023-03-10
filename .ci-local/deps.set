@@ -1,0 +1,5 @@
+MODULES=sncseq
+
+BASE_RECURSIVE=no
+
+SNCSEQ=R2-2-9

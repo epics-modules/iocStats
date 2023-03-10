@@ -1,4 +1,4 @@
-README_devIocStats		Last Updated 04/16/2015
+README_devIocStats        Last Updated 04/16/2015
 ------------------
 
 I - General Notes on devIocStats - All Operating Systems
@@ -11,130 +11,113 @@ not both.  devIocStats.dbd (preferred) provides DTYPs that start with
 
 String (stringin) Records (DTYP = "IOC stats"), INP = @one of the following:
 ============================================================================
-		startup_script_[12]	-path of startup script (2 records)
-					Default - uses STARTUP and ST_CMD
-					environment variables or startup and
-				        st_cmd symbols.  If STARTUP
-					is not available, uses 
-					IOCSH_STARTUP_SCRIPT.
-		bootline_[1-6]		-CPU bootline (6 records)
-					 (set to "<not implemented> for all
-					  except RTEMS and vxWorks)
- 		bsp_rev			-CPU board support package revision
-					 (set to "<not available> for all
-					  except RTEMS and vxWorks)
-		kernel_ver		-OS kernel build version
-		epics_ver		-EPICS base version
-                engineer                -IOC Engineer
-					Default - uses ENGINEER env var or
-					engineer symbol.  If ENGINEER is
-					not available, uses LOGNAME or USER
-					env var.
-                location                -IOC Location
-					Default - uses LOCATION env var or
-					location symbol.
-                hostname                -IOC Host Name from gethostname
-                pwd[1-2]                -IOC Current Working Directory 
-					  (2 records) from getcwd
-                up_time                 -IOC Up Time
+        startup_script_[12]     - path of startup script (2 records)
+            Default - uses STARTUP and ST_CMD environment variables or startup
+            and st_cmd symbols.  If STARTUP is not available, uses 
+            IOCSH_STARTUP_SCRIPT.
+        bootline_[1-6]          - CPU bootline (6 records)
+            (set to "<not implemented> for all except RTEMS and vxWorks)
+        bsp_rev                 - CPU board support package revision
+            (set to "<not available> for all except RTEMS and vxWorks)
+        kernel_ver              - OS kernel build version
+        epics_ver               - EPICS base version
+        engineer                - IOC Engineer
+            Default - uses ENGINEER env var or engineer symbol.  If ENGINEER is
+            not available, uses LOGNAME or USER env var.
+        location                - IOC Location
+            Default - uses LOCATION env var or location symbol.
+        hostname                - IOC Host Name from gethostname
+        pwd[1-2]                - IOC Current Working Directory 
+            (2 records) from getcwd
+        up_time                 - IOC Up Time
 
-	Except for up_time, the support is static.  The record only needs to 
-	be processed once, for which SCAN=Passive and PINI=YES is recommended.
+    Except for up_time, the support is static.  The record only needs to 
+    be processed once, for which SCAN=Passive and PINI=YES is recommended.
 
-	When a string cannot be determined, the PV will show "<not available>" 
-	or "<not implemented>" or some other variation.
+    When a string cannot be determined, the PV will show "<not available>" 
+    or "<not implemented>" or some other variation.
 
 String (stringin) Records (DTYP = "IOC epics var"), INP = @<EPICS variable>
 ============================================================================
-	The record will report an error if INP is not a valid EPICS variable
-	listed in envDefs.h.
+    The record will report an error if INP is not a valid EPICS variable
+    listed in envDefs.h.
 
-	Gets the value of the EPICS environment variable in the INP field
-	using envGetConfigParam.  The record only needs to be processed once, 
-	for which SCAN=Passive and PINI=YES is recommended.
+    Gets the value of the EPICS environment variable in the INP field
+    using envGetConfigParam.  The record only needs to be processed once, 
+    for which SCAN=Passive and PINI=YES is recommended.
 
 String (stringin) Records (DTYP = "IOC env var"), INP = @<environment variable>
 ============================================================================
-	Gets the value of the environment variable in the INP field.
-	Unless the environment variable changes on-the-fly, the record only 
-	needs to be processed once, for which SCAN=Passive and PINI=YES is 
-	recommended.
+    Gets the value of the environment variable in the INP field.
+    Unless the environment variable changes on-the-fly, the record only 
+    needs to be processed once, for which SCAN=Passive and PINI=YES is 
+    recommended.
 
-	If the environment variable does not exist, the PV will show 
-	"<not available>".
+    If the environment variable does not exist, the PV will show 
+    "<not available>".
 
 Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
 =========================================================================
-                records		 - number of records
-		ca_clients	 - number of current CA clients
-		ca_connections	 - number of current CA connections
-		suspended_tasks	 - number of suspended tasks
-	The following two are implemented for posix systems only: 
-		proc_id	 	 - process ID
-		parent_proc_id   - parent process ID
-	The following are implemented for RTEMS, vxWorks, and some soft IOCs 
-	(see notes below for exceptions and more detail):
-		free_bytes	 - number of bytes not allocated
-				   on this machine
-		allocated_bytes  - number of bytes allocated
-				   (for soft IOCs, physical memory used 
-				    at the moment (RSS))
-		total_bytes      - number of bytes physically installed
-				   on this machine
-                sys_cpuload	 - estimated percent CPU load on the system 
-                no_of_cpus       - number of CPU cores on the system
-                ioc_cpuload      - estimated percent CPU utilization by this 
-				   IOC
-		cpu_temperature	 - Measured CPU temperature (implemented for Linux IOC only)
-		fd		 - number of file descriptors currently in use
-		max_fd		 - max number of file descriptors
-	  Note - free_bytes, total_bytes, sys_cpuload, no_of_cpus
-	         can be instantiated once per system instead of per IOC
-		 if desired (ie, when multiple IOCs run on the same system).
-	The following are implemented for RTEMS and vxWorks IOCs only and
-        set to 0 for other types of IOCs:
-		max_free	 - size of largest free block
-                min_sys_mbuf	 - minimum percent free system MBUFs
-                sys_mbuf	 - number of system MBUFs
-                inp_errs	 - number of IF input  errors 
-                out_errs	 - number of IF output errors
-	The following are implemented for vxWorks IOCs only and
-        set to 0 for other types of IOCs:
-		free_blocks	 - number of blocks in IOC not allocated
-		allocated_blocks - number of blocks allocated 
-                min_data_mbuf    - minimum percent free data MBUFs
-                data_mbuf	 - number of data MBUFs
-	The following are implemented for RTEMS IOCs only and
-        set to 0 for other types of IOCs:
-                workspace_alloc_bytes - number of RAM workspace allocated bytes
-                workspace_free_bytes  - number of RAM workspace free bytes
-                workspace_total_bytes - number of RAM workspace total bytes
+        records               - number of records
+        ca_clients            - number of current CA clients
+        ca_connections        - number of current CA connections
+        suspended_tasks       - number of suspended tasks
+    The following two are implemented for posix systems only: 
+        proc_id               - process ID
+        parent_proc_id        - parent process ID
+    The following are implemented for RTEMS, vxWorks, and some soft IOCs 
+    (see notes below for exceptions and more detail):
+        free_bytes            - number of bytes not allocated on this machine
+        allocated_bytes       - number of bytes allocated
+            (for soft IOCs, physical memory used at the moment (RSS))
+        total_bytes           - number of bytes physically installed on this machine
+        sys_cpuload           - estimated percent CPU load on the system 
+        no_of_cpus            - number of CPU cores on the system
+        ioc_cpuload           - estimated percent CPU utilization by this IOC
+        cpu_temperature       - measured temperature of the CPU (only implemented for Linux IOC)
+        fd                    - number of file descriptors currently in use
+        maxfd                 - max number of file descriptors
+    Note - free_bytes, total_bytes, sys_cpuload, no_of_cpus can be instantiated once per system instead
+    of per IOC if desired (ie, when multiple IOCs run on the same system).
+    The following are implemented for RTEMS and vxWorks IOCs only and set to 0 for other types of IOCs:
+        max_free              - size of largest free block
+        min_sys_mbuf          - minimum percent free system MBUFs
+        sys_mbuf              - number of system MBUFs
+        inp_errs              - number of IF input  errors 
+        out_errs              - number of IF output errors
+    The following are implemented for vxWorks IOCs only and set to 0 for other types of IOCs:
+        free_blocks           - number of blocks in IOC not allocated
+        allocated_blocks      - number of blocks allocated 
+        min_data_mbuf         - minimum percent free data MBUFs
+        data_mbuf             - number of data MBUFs
+    The following are implemented for RTEMS IOCs only and set to 0 for other types of IOCs:
+        workspace_alloc_bytes - number of RAM workspace allocated bytes
+        workspace_free_bytes  - number of RAM workspace free bytes
+        workspace_total_bytes - number of RAM workspace total bytes
 
 Analog In (ai) Records for Cluster Statistics (RTEMS and vxWorks IOCs only)
 (DTYP = "IOC stats clusts"), INP = @clust_info <pool> <index> <type> where:
 ==========================================================================
-		pool		 - 0 (data) or 1 (system)
-				   (the data pool is not implemented for RTEMS
-                                    and all data pool values are set to 0)
-		index		 - index into cluster array
-		type		 - 0=size, 1=clusters, 2=free, 3=usage
+        pool                  - 0 (data) or 1 (system)
+            (the data pool is not implemented for RTEMS and all data pool values are set to 0)
+        index                 - index into cluster array
+        type                  - 0=size, 1=clusters, 2=free, 3=usage
 
 Analog Out (ao) Records (DTYP = "IOC stats"), OUT = @one of the following:
 ==========================================================================
-		memoryScanRate	 - max period (sec) at which new memory stats 
-				   can be read, default = 10 sec
-		fdScanRate	 - max period (sec) at which file descriptors 
-				   can be counted, default = 20 sec
-		cpuScanRate	 - max period (sec) at which cpu load 
-				   can be calculated, default = 10 sec 
-		caConnScanRate	 - max period (sec) at which CA connections 
-				   can be counted, default = 15 sec
+        memory_scan_rate      - max period (sec) at which new memory stats 
+            can be read, default = 10 sec
+        fd_scan_rate          - max period (sec) at which file descriptors 
+            can be counted, default = 20 sec
+        cpu_scan_rate         - max period (sec) at which cpu load 
+            can be calculated, default = 10 sec 
+        ca_scan_rate          - max period (sec) at which CA connections 
+            can be counted, default = 15 sec
 
 Subroutine (sub) Records, SNAM = one of the following:
 ======================================================
-		rebootProc	 - System reset or epics exit.
-		scanMon		 - Calculate time between record updates.
-				   Set INAM to scanMonInit.
+        rebootProc            - System reset or epics exit.
+        scanMon               - Calculate time between record updates. Set INAM to scanMonInit.
 
 II - Notes on Soft IOC Implementation of devIocStats
 ----------------------------------------------------
@@ -166,7 +149,7 @@ II - Notes on Soft IOC Implementation of devIocStats
 
 (7) The following records can be instantied per system instead of per IOC 
     if desired (value is the same for all IOCs on the same system):
-	free_bytes, total_bytes, sys_cpuload, no_of_cpus
+    free_bytes, total_bytes, sys_cpuload, no_of_cpus
 
 
 IV - Notes on RTEMS Implementation of devIocStats by Till Straumann
@@ -197,62 +180,62 @@ CPU Load Estimate from the IDLE Task (from Phil Sorensen at CHESS)
    from the RTEMS source.
 
 -  Comment from Till:
-	The way they determine CPU usage is more appropriate
-	but only so if the 'billing' algorithm has access to a high
-	resolution clock. This is the case for powerpc under 4.9.
-	The code would have to be modified to make use of the
-	high resolution clock however.
+    The way they determine CPU usage is more appropriate
+    but only so if the 'billing' algorithm has access to a high
+    resolution clock. This is the case for powerpc under 4.9.
+    The code would have to be modified to make use of the
+    high resolution clock however.
 
-	If no high resolution clock is available the 'billing' is always
-	in ticks even if no full tick period is used. This tends to show
-	too high usage numbers.
+    If no high resolution clock is available the 'billing' is always
+    in ticks even if no full tick period is used. This tends to show
+    too high usage numbers.
 
 CPU Load Estimate from miscu_cpu_load_percentage in ssrlApps
 ============================================================
 
-	#include <ssrlAppsMiscUtils.h>
+    #include <ssrlAppsMiscUtils.h>
 
-	which defines
+    which defines
 
-	  double
-	  miscu_cpu_load_percentage(
-	          struct timespec *lst_uptime,
-	          struct timespec *lst_idletime
-	  );
+      double
+      miscu_cpu_load_percentage(
+              struct timespec *lst_uptime,
+              struct timespec *lst_idletime
+      );
 
-	and
+    and
 
-	  void
-	  miscu_cpu_load_percentage_init(
-	          struct timespec *lst_uptime,
-	          struct timespec *lst_idletime
-	  );
+      void
+      miscu_cpu_load_percentage_init(
+              struct timespec *lst_uptime,
+              struct timespec *lst_idletime
+      );
 
-	The header also documents the semantics.
+    The header also documents the semantics.
 
-	In particular, be prepared for NAN which is
-	also returned under pre-4.9 RTEMS versions
-	so your iocAdmin code could try the new
-	routine during initialization and fall back
-	to the vxStats method if NAN is returned.
+    In particular, be prepared for NAN which is
+    also returned under pre-4.9 RTEMS versions
+    so your iocAdmin code could try the new
+    routine during initialization and fall back
+    to the vxStats method if NAN is returned.
 
-	One last thing: if you want to try this
-	routine from the CEXP shell then keep in
-	mind that CEXP has no way to know the
-	type of the return value of any function;
-	it just assumes 'long'. You can, however
-	force CEXP to recast a symbol (in this case
-	to a function-returning-double pointer) so
-	you do (note the exclamation mark which deviates
-	from the C syntax. It tells Cexp that
-	you really want to redefine an already
-	known symbol.) :
+    One last thing: if you want to try this
+    routine from the CEXP shell then keep in
+    mind that CEXP has no way to know the
+    type of the return value of any function;
+    it just assumes 'long'. You can, however
+    force CEXP to recast a symbol (in this case
+    to a function-returning-double pointer) so
+    you do (note the exclamation mark which deviates
+    from the C syntax. It tells Cexp that
+    you really want to redefine an already
+    known symbol.) :
 
-	Cexp@ioclab1> double (*miscu_cpu_load_percentage)() !
+    Cexp@ioclab1> double (*miscu_cpu_load_percentage)() !
 
-	Cexp@ioclab1> miscu_cpu_load_percentage()
-	3.603457
-	Cexp@ioclab1>
+    Cexp@ioclab1> miscu_cpu_load_percentage()
+    3.603457
+    Cexp@ioclab1>
 
 Networking (Mbufs)
 ==================
