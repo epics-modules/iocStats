@@ -286,7 +286,7 @@ static validGetParms statsGetParms[]={
 	{ "cbHighQueueHiWtrMrk",	statsCbHighQHiWtrMrk,	QUEUE_TYPE },
 	{ "cbHighQueueUsed",		statsCbHighQUsed,	QUEUE_TYPE },
 	{ "cbHighQueueOverruns",	statsCbHighQOverruns,	QUEUE_TYPE },
-  { "cpu_temperature", statsCpuTemperature, LOAD_TYPE },
+	{ "cpu_temperature", statsCpuTemperature, LOAD_TYPE },
 	{ NULL,NULL,0 }
 };
 

@@ -26,14 +26,14 @@
 int devIocStatsGetCpuTemp (int *pval) {
   FILE *pFile = fopen ( "/sys/class/thermal/thermal_zone0/temp", "r" );
   if( !pFile ) {
-    //fprintf( stderr, "\033[31;1m: Could not open file '/sys/class/thermal/thermal_zone0/temp': %s\033[0m\n",
-    //          strerror( errno ) );
+    fprintf( stderr, "\033[31;1m: Could not open file '/sys/class/thermal/thermal_zone0/temp': %s\033[0m\n",
+             strerror( errno ) );
     return -1;
   }
 
   unsigned num = fscanf( pFile, "%d", pval );
   if ( 1 != num ) {
-    //fprintf( stderr, "\033[31;1mCould not parse value\033[0m\n" );
+    fprintf( stderr, "\033[31;1mCould not parse value\033[0m\n" );
   }
   fclose( pFile );
   return 0;

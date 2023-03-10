@@ -85,6 +85,7 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
                 no_of_cpus       - number of CPU cores on the system
                 ioc_cpuload      - estimated percent CPU utilization by this 
 				   IOC
+		cpu_temperature	 - Measured CPU temperature (implemented for Linux IOC only)
 		fd		 - number of file descriptors currently in use
 		max_fd		 - max number of file descriptors
 	  Note - free_bytes, total_bytes, sys_cpuload, no_of_cpus
