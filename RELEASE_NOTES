@@ -2,14 +2,31 @@ Release Notes for iocStats
 --------------------------
 # Unreleased
 
+# Releases
+
+## iocStats-R3-2-0:
+
+**NOTE** Please note that as of 3-2-0, there is a pre-commit (https://pre-commit.com/) workflow that
+includes
+* clang-format for c/cpp files
+* end-of-file fixer
+* trailing whitespace
+
+Please ensure that any further changes take these into account!
+
+
 * Changes by Simon Rose:
+  - Add pre-commit workflow and standardise C/cpp formatting
   - Added GitHub workflow using EPICS CI scripts
   - Add parsing of CONFIG_SITE_ENV from EPICS base to fetch additional EPICS
     environment variables
 * Changes by Martin Konrad:
   - Fix EPICS_TZ warning for VxWorks and RTEMS
+* Changes by Edward Jones:
+  - Fix Mingw builds
+* Changes by Ralph Lange:
+  - Bugfixes
 
-# Releases
 ## iocStats-R3-1-16: Apr 30, 2019
 
 ## iocStats-R3-1-15: Nov 3, 2016
