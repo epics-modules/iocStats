@@ -4,6 +4,8 @@ Release Notes for iocStats
 
 * Changes by Simon Rose:
   - Added GitHub workflow using EPICS CI scripts
+  - Add parsing of CONFIG_SITE_ENV from EPICS base to fetch additional EPICS
+    environment variables
 * Changes by Martin Konrad:
   - Fix EPICS_TZ warning for VxWorks and RTEMS
 

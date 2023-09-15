@@ -28,3 +28,8 @@ pattern { IOCNAME, }
 	{ "$(IOC)" } 
 }
 
+file siteEnvVars.db
+{
+pattern { IOCNAME, }
+	{ "$(IOC)" } 
+}
