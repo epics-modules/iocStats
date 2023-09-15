@@ -9,7 +9,8 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdIFErrors.c - Network interface errors: default implementation = do nothing */
+/* osdIFErrors.c - Network interface errors: default implementation = do nothing
+ */
 
 /*
  *  Author: Ralph Lange (HZB/BESSY)
@@ -22,5 +23,5 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitIFErrors (void) { return 0; }
-int devIocStatsGetIFErrors (ifErrInfo *pval) { return -1; }
+int devIocStatsInitIFErrors(void) { return 0; }
+int devIocStatsGetIFErrors(ifErrInfo *pval) { return -1; }

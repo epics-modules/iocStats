@@ -18,4 +18,3 @@ RESTORES += iocAdminSoft.cwConfig
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-

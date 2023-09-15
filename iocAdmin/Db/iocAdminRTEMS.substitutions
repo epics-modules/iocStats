@@ -9,12 +9,12 @@
 file ioc.template
 {
 pattern { IOCNAME , TODFORMAT           }
-	{ "$(IOC)"  , "%m/%d/%Y %H:%M:%S" }
+        { "$(IOC)"  , "%m/%d/%Y %H:%M:%S" }
 }
 file iocGeneralTime.template
 {
 pattern { IOCNAME }
-	{ "$(IOC)"  }
+        { "$(IOC)"  }
 }
 file iocAdminScanMon.db
 {
@@ -25,23 +25,23 @@ file iocAdminScanMon.db
 file iocRTOS.template
 {
 pattern { IOCNAME , SYS_MBUF_FLNK     }
-	{ "$(IOC)"  , "$(IOC):CLUST_1_0_0"}
+        { "$(IOC)"  , "$(IOC):CLUST_1_0_0"}
 }
 file iocRTEMSOnly.template
 {
 pattern { IOCNAME }
-	{ "$(IOC)"  }
+        { "$(IOC)"  }
 }
 file epicsEnvVars.db
 {
 pattern { IOCNAME, }
-	{ "$(IOC)" } 
+        { "$(IOC)" }
 }
 file iocCluster.template
 {
 #                   Pool   Size
 pattern { IOCNAME ,  P   ,  S   , TYPE , FLNK               }
 # System Pool
-	{ "$(IOC)"  ,  1   ,  0   , SYS  , "$(IOC):CLUST_1_1_0" }
-	{ "$(IOC)"  ,  1   ,  1   , SYS  , ""                 }
+        { "$(IOC)"  ,  1   ,  0   , SYS  , "$(IOC):CLUST_1_1_0" }
+        { "$(IOC)"  ,  1   ,  1   , SYS  , ""                 }
 }

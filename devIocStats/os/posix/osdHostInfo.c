@@ -27,32 +27,30 @@
 #define HOST_NAME_MAX 64
 #endif
 
-#define MAX_CWD_SIZE  1024
+#define MAX_CWD_SIZE 1024
 
 static char *notavail = "<not available>";
 static char pwd[MAX_CWD_SIZE] = "";
 static char host[HOST_NAME_MAX] = "";
 
-int devIocStatsInitHostInfo (void) { return 0; }
+int devIocStatsInitHostInfo(void) { return 0; }
 
-int devIocStatsGetPwd (char **pval)
-{
-    if (!getcwd(pwd, MAX_CWD_SIZE)) {
-        *pval = notavail;
-        return -1;
-    } else {
-        *pval = pwd;
-        return 0;
-    }
+int devIocStatsGetPwd(char **pval) {
+  if (!getcwd(pwd, MAX_CWD_SIZE)) {
+    *pval = notavail;
+    return -1;
+  } else {
+    *pval = pwd;
+    return 0;
+  }
 }
 
-int devIocStatsGetHostname (char **pval)
-{
-    if (gethostname(host, HOST_NAME_MAX) == -1) {
-        *pval = notavail;
-        return -1;
-    } else {
-        *pval = host;
-        return 0;
-    }
+int devIocStatsGetHostname(char **pval) {
+  if (gethostname(host, HOST_NAME_MAX) == -1) {
+    *pval = notavail;
+    return -1;
+  } else {
+    *pval = host;
+    return 0;
+  }
 }

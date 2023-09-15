@@ -25,5 +25,5 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitCpuUsage (void) { return 0; }
-int devIocStatsGetCpuUsage (loadInfo *pval) { return -1; }
+int devIocStatsInitCpuUsage(void) { return 0; }
+int devIocStatsGetCpuUsage(loadInfo *pval) { return -1; }

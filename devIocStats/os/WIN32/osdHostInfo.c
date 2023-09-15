@@ -19,7 +19,7 @@
  *     Restructured OSD parts
  *
  */
-#include <windows.h> 
+#include <windows.h>
 #include <stdio.h>
 
 #include <devIocStats.h>
@@ -28,30 +28,26 @@ static char *notimpl = "<not implemented>";
 char *pwd;
 char *hostname;
 
-
-int devIocStatsInitHostInfo (void) { 
-    pwd =(char*)malloc(sizeof(char)*MAX_PATH);
-    hostname =(char*)malloc(sizeof(char)*MAX_PATH);
-    return 0; 
+int devIocStatsInitHostInfo(void) {
+  pwd = (char *)malloc(sizeof(char) * MAX_PATH);
+  hostname = (char *)malloc(sizeof(char) * MAX_PATH);
+  return 0;
 }
 
-int devIocStatsGetPwd (char **pval)
-{
-    DWORD dwRet;
-    dwRet = GetCurrentDirectory(MAX_PATH, pwd);
-    if (dwRet == 0){
-      *pval = notimpl;
-      return -1;
-    }else{
-      *pval = pwd;
-      return 0;
-    }
-}
-
-int devIocStatsGetHostname (char **pval)
-{
-
-    
-    *pval = getenv("COMPUTERNAME");
+int devIocStatsGetPwd(char **pval) {
+  DWORD dwRet;
+  dwRet = GetCurrentDirectory(MAX_PATH, pwd);
+  if (dwRet == 0) {
+    *pval = notimpl;
     return -1;
+  } else {
+    *pval = pwd;
+    return 0;
+  }
+}
+
+int devIocStatsGetHostname(char **pval) {
+
+  *pval = getenv("COMPUTERNAME");
+  return -1;
 }

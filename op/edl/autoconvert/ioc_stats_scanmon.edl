@@ -991,4 +991,3 @@ controlPv "$(ioc):01HZ_MODE"
 font "helvetica-medium-r-10.0"
 orientation "horizontal"
 endObjectProperties
-

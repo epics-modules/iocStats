@@ -46,49 +46,52 @@ IMPORT struct ifnethead ifnet_head;
 #endif
 #endif
 
-int devIocStatsInitIFErrors (void) { return 0; }
+int devIocStatsInitIFErrors(void) { return 0; }
 
-int devIocStatsGetIFErrors (ifErrInfo *pval)
-{
+int devIocStatsGetIFErrors(ifErrInfo *pval) {
 
-    /* add all interfaces' errors */
+  /* add all interfaces' errors */
 #if _WRS_VXWORKS_MAJOR >= 6
 #if 0
     /* FIXME: There is no implementation for vxWorks 6!! */
     TAILQ_FOREACH(ifp, (&ifnet_head), if_link)
 #else
-    return -1;
+  return -1;
 #endif
 #else
-    struct ifnet *ifp;
-    for (ifp = ifnet; ifp != NULL; ifp = ifp->if_next) {
-#ifdef END_MIB_2233 /* This is defined in end.h if 2233 drivers are supported on the OS */
-        /* This block localizes the 2233 variables so we wont get unused variable warnings */
-        IP_DRV_CTRL *   pDrvCtrl = NULL;
-        END_OBJ *       pEnd=NULL;
+  struct ifnet *ifp;
+  for (ifp = ifnet; ifp != NULL; ifp = ifp->if_next) {
+#ifdef END_MIB_2233 /* This is defined in end.h if 2233 drivers are supported  \
+                       on the OS */
+    /* This block localizes the 2233 variables so we wont get unused variable
+     * warnings */
+    IP_DRV_CTRL *pDrvCtrl = NULL;
+    END_OBJ *pEnd = NULL;
 
-        /* Dig into the structure */
-        pDrvCtrl = (IP_DRV_CTRL *)ifp->pCookie;
+    /* Dig into the structure */
+    pDrvCtrl = (IP_DRV_CTRL *)ifp->pCookie;
 
-        /* Get a pointer to the driver's data if there is one */
-        if (pDrvCtrl) pEnd = PCOOKIE_TO_ENDOBJ(pDrvCtrl->pIpCookie);
+    /* Get a pointer to the driver's data if there is one */
+    if (pDrvCtrl)
+      pEnd = PCOOKIE_TO_ENDOBJ(pDrvCtrl->pIpCookie);
 
-        /* If we have an end driver and it is END_MIB_2233 then we look in the m2Data structure for the errors. */
-        if (pEnd && (pEnd->flags & END_MIB_2233)) {
-            M2_DATA	 *pIfMib = &pEnd->pMib2Tbl->m2Data;
+    /* If we have an end driver and it is END_MIB_2233 then we look in the
+     * m2Data structure for the errors. */
+    if (pEnd && (pEnd->flags & END_MIB_2233)) {
+      M2_DATA *pIfMib = &pEnd->pMib2Tbl->m2Data;
 
-            pval->ierrors += pIfMib->mibIfTbl.ifInErrors;
-            pval->oerrors += pIfMib->mibIfTbl.ifOutErrors;
-        } else {
-            /* We get the errors the old way */
-            pval->ierrors += ifp->if_ierrors;
-            pval->oerrors += ifp->if_oerrors;
-        }
-#else /* ifdef END_MIB_2233 */
-        pval->ierrors += ifp->if_ierrors;
-        pval->oerrors += ifp->if_oerrors;
-#endif /* ifdef END_MIB_2233 */
+      pval->ierrors += pIfMib->mibIfTbl.ifInErrors;
+      pval->oerrors += pIfMib->mibIfTbl.ifOutErrors;
+    } else {
+      /* We get the errors the old way */
+      pval->ierrors += ifp->if_ierrors;
+      pval->oerrors += ifp->if_oerrors;
     }
+#else               /* ifdef END_MIB_2233 */
+    pval->ierrors += ifp->if_ierrors;
+    pval->oerrors += ifp->if_oerrors;
+#endif              /* ifdef END_MIB_2233 */
+  }
 #endif
-    return 0;
+  return 0;
 }

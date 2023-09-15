@@ -15,10 +15,10 @@ Release Notes for iocStats
 ## iocStats-R3-1-15: Nov 3, 2016
   * Changes by Mark Rivers:
     - Improved the layout of the medm files to avoid overlapping widgets, etc.
-    - Added ioc_stats_reloadacf_confirm.edl to iocAdmin/srcDisplay/Makefile, 
-      and put files in that Makefile in alphabetical order to help spot 
-      missing files.  
-    - Fixes for mingw compiler.  
+    - Added ioc_stats_reloadacf_confirm.edl to iocAdmin/srcDisplay/Makefile,
+      and put files in that Makefile in alphabetical order to help spot
+      missing files.
+    - Fixes for mingw compiler.
       Define WINVER to be XP on MINGW to avoid compiler warnings.
       Define WINVER to be XP (0x501) rather than WIN2K (0x500) for consistency.
   * Changes by Keenan Lang:
@@ -28,18 +28,18 @@ Release Notes for iocStats
   * Changes by Ronald Mercado:
     - Fix devIocStatsGetPwd return value to make WIN32 consistent with posix.
   * Changes by Jeong Han Lee:
-    - Replaced _SC_NPROCESSORS_CONF (The number of processors configured) 
+    - Replaced _SC_NPROCESSORS_CONF (The number of processors configured)
       with _SC_NPROCESSORS_ONLN (The number of processors currently online).
   * Changes by S. Allison:
     - Use standard RELEASE file instead of LCLS-style RELEASE/RELEASE_SITE.
     - Update .gitignore.
 ## iocStats-R3-1-14: Apr 29, 2015
   * Change to vxWorks osdFdUsage.c to not check the first 3 FDs by Scott Baily:
-    Unfortunately, the first 3 file descriptors on vxWorks are special 
-    (standard in, standard out, and standard error).  The pointers in 
-    iosFdTable have the value FFFFFFFF. For 6.6 and above the reference 
-    count isn't checked so there's no problem. But some of our systems use 
-    6.3 and this code causes reads from page 0 of RAM.  
+    Unfortunately, the first 3 file descriptors on vxWorks are special
+    (standard in, standard out, and standard error).  The pointers in
+    iosFdTable have the value FFFFFFFF. For 6.6 and above the reference
+    count isn't checked so there's no problem. But some of our systems use
+    6.3 and this code causes reads from page 0 of RAM.
   * Change to add process ID and parent process ID records.
   * Change to use github.
   * Change to perform most statistics in a thread separate from record
@@ -48,50 +48,50 @@ Release Notes for iocStats
   * Bug fix in update period AO record initialization.
 # iocStats-R3-1-12: June 19, 2014
   * Change by Eric Bjorklund:
-    Change devIocStatsGetClusterInfo().  The fundamental problem is that 
-    vxWorks -- at least ours (6.8) -- does not fill in all of the entries 
-    in the cluster table.  In our example, only 8 of the 13 allocated table 
-    entries are filled in, and when devIocStatsGetClusterInfo() tries to 
+    Change devIocStatsGetClusterInfo().  The fundamental problem is that
+    vxWorks -- at least ours (6.8) -- does not fill in all of the entries
+    in the cluster table.  In our example, only 8 of the 13 allocated table
+    entries are filled in, and when devIocStatsGetClusterInfo() tries to
     process the 9th it gets a page fault exception from the null pointer.
   * Change by Tim Mooney:
-    Add caQtDM displays, translated from the .adl files using caQtDM 3.7.8. 
+    Add caQtDM displays, translated from the .adl files using caQtDM 3.7.8.
   * Change by Stephanie Allison:
-    Added waveform support for epics version, startup script, 
+    Added waveform support for epics version, startup script,
     application directory, and bootline.
   * Changes by Ben Franksen and Ralph Lange:
     - Scan rates now floating point instead of integer.
     - we have recently discovered some bugs in devIocStats in the vxWorks
-      implementation that measures the cpu load, which result in wrong 
-      results to be displayed. I hacked away at the problem for some days 
-      and ended up with a complete re-write. The solution considerably 
-      reduces code size and complexity, is therefore much easier to 
+      implementation that measures the cpu load, which result in wrong
+      results to be displayed. I hacked away at the problem for some days
+      and ended up with a complete re-write. The solution considerably
+      reduces code size and complexity, is therefore much easier to
       understand and maintain, and --most importantly--
       works correctly. It also contains some additional features:
 
-      * A test procedure that measures how well the initial calibration 
-        works by doing it for a number of times and gathering statistics 
-	(min, max, avg). This was useful to determine how long initial 
-	calibration should run (the default is 30 clock ticks which on a 
+      * A test procedure that measures how well the initial calibration
+        works by doing it for a number of times and gathering statistics
+	(min, max, avg). This was useful to determine how long initial
+	calibration should run (the default is 30 clock ticks which on a
 	mv2100 gives me a variation of less than 0.4%).
 
-      * Another test procedure (to be called from the shell) adds exactly 
-        50% load to the IOC (it burns cpu for one clock tick, then sleeps 
-	for one, and repeats that in a loop for the given duration), so one 
-	can see whether the measured cpu load increases appropriately 
+      * Another test procedure (to be called from the shell) adds exactly
+        50% load to the IOC (it burns cpu for one clock tick, then sleeps
+	for one, and repeats that in a loop for the given duration), so one
+	can see whether the measured cpu load increases appropriately
 	(it does on my test machines).
 
-      * Experienced users can customize behaviour to a certain extent by 
+      * Experienced users can customize behaviour to a certain extent by
         changing the values of some global variables.
 
-      * I moved the cpuBurnLoad50 test routine to a separate file, since 
-        it is independent of the new implementation of osdCpuUsage; it gets 
-	compiled to a stand-alone object file which you must link to your 
+      * I moved the cpuBurnLoad50 test routine to a separate file, since
+        it is independent of the new implementation of osdCpuUsage; it gets
+	compiled to a stand-alone object file which you must link to your
 	IOC binary if you want to use it, e.g.
 	TESTIOC_OBJS_vxWorks += $(IOCSTATS_BIN)/osdCpuUsageTest.o
 
 # iocStats-R3-1-11: Dec 5, 2012
   * Changes by Stephanie Allison:
-    Add LSV and LLSV for MEM_FREE and RAM_WS_FREE.  
+    Add LSV and LLSV for MEM_FREE and RAM_WS_FREE.
     Add MEM_FREE to limits display.
     Update RELEASE files for LCLS.
   * Changes by Judy Rock:
@@ -122,11 +122,11 @@ Release Notes for iocStats
   * Changes by Tim Mooney:
     - copy all devIocStats/os/Linux to devIocStats/os/cygwin32.
     - add devIocStats/op/opi CSS/BOY display files.
-  * all src Makefiles - build only for 
+  * all src Makefiles - build only for
     RTEMS, vxWorks, Linux, solaris, Darwin, cygwin32.
     Mark Rivers reports that iocStats will not build for WIN32.
   * add devIocStats/os/default/devIocStatsOSD.h dummy file.
- 
+
 # iocStats-R3-1-6: Aug 11, 2011
   * Change by Robert Henning and Stephanie Allison:
     - Add medm displays to op/adl.  Original displays by Robert
@@ -136,7 +136,7 @@ Release Notes for iocStats
     - Add check for IOCSH_STARTUP_SCRIPT when setting startup script (after
       all the other existing env vars).
     - Support for RTEMS 4.10.
-    - Move ENGINEER and LOCATION records from general env vars back to 
+    - Move ENGINEER and LOCATION records from general env vars back to
       IOC stats support.
   * Change by Judy Rock:
     - iocAdmin/src/iocReleaseCreateDb.py - look for epics base version in 2nd
@@ -162,24 +162,24 @@ Release Notes for iocStats
   * Change by Stephanie Allison:
     - devIocStatsAnalog.c - correction for 64 bit.
 
-Note: iocStats releases above R3-1-3 require EPICS base 3.14.11 or above.  
+Note: iocStats releases above R3-1-3 require EPICS base 3.14.11 or above.
 Edit the following files for EPICS base 3.14.8.2:
     - iocAdmin/Db/iocAdmin*.substitutions - remove iocGeneralTime.template.
-    - iocAdmin/Db/ioc.template - remove alias line for IOC_CPU_LOAD and 
+    - iocAdmin/Db/ioc.template - remove alias line for IOC_CPU_LOAD and
       give the record the desired name. Remove alias for SYSRESET.
-    - iocAdmin/srcDisplay and srcRestore - change IOC_CPU_LOAD in files to 
+    - iocAdmin/srcDisplay and srcRestore - change IOC_CPU_LOAD in files to
       the desired name.
- 
+
 # iocStats-R3-1-4: Dec 14, 2010
   * Changes by Ralph Lange:
     - Add fixes by M. Davidsaver to avoid segfaults when devsup init failed.
   * Changes by Stephanie Allison:
     - Add workspace stats by Charlie Xu - implement for RTEMS only.
     - Add cluster available calc records by Charlie Xu.
-    - Set low alarm limits very low when scan mon absolute mode is chosen. 
-    - Change ioc cpu load record name from "LOAD" to "IOC_CPU_LOAD" 
+    - Set low alarm limits very low when scan mon absolute mode is chosen.
+    - Change ioc cpu load record name from "LOAD" to "IOC_CPU_LOAD"
       and add an alias for "LOAD".
-    - Add General Time records to iocAdmin<RTEMS and VxWorks>.db and 
+    - Add General Time records to iocAdmin<RTEMS and VxWorks>.db and
       associated iocAdmin displays.
 
 # iocStats-R3-1-3: Aug 10, 2010
@@ -195,9 +195,9 @@ Edit the following files for EPICS base 3.14.8.2:
       - using /proc reads and kernel statistics on Solaris
       - using the sys_cpuload value for ioc_cpuload on RTEMS and vxWorks
   * Changes by Stephanie Allison:
-    - Per Ernest, move iocAdmin.db to iocAdminVxWorks.db 
+    - Per Ernest, move iocAdmin.db to iocAdminVxWorks.db
       (deprecate iocAdmin.db).
-    - Add scanMon support from Kukhee Kim for monitoring SCAN record 
+    - Add scanMon support from Kukhee Kim for monitoring SCAN record
       update time intervals.
     - Change iocAdminLib to iocAdmin.  Add testIocAdminApp and iocBoot.
       Remove iocAdmin-dependency from testIocStatsApp.  Remove undocumented
@@ -215,36 +215,36 @@ Edit the following files for EPICS base 3.14.8.2:
     creating a display with RELEASE module versions..
   * configure/RULES_BUILD - Remove rule for building a display
     with RELEASE module versions.
-  
+
 # iocAdmin-R3-1-0: July 7, 2009
   * devIocStats - Ralph Lange made changes.  Here are his notes:
-	Functionality is basically as before, the main work (quite a bit more 
-	than I expected) being the split-up of all the devIocStatsOSD.c files 
-	into functionally separate source files. (So that any single 
-	functionality may be not implemented for an architecture and fall-back 
-	to os/posix or os/default.) That split-up includes new names and APIs 
-	between the generic part of the device support and the OSD parts, 
-	which I tried to streamline, which allowed for some serious code 
-	simplifications in the generic parts. I also made sure the new APIs 
+	Functionality is basically as before, the main work (quite a bit more
+	than I expected) being the split-up of all the devIocStatsOSD.c files
+	into functionally separate source files. (So that any single
+	functionality may be not implemented for an architecture and fall-back
+	to os/posix or os/default.) That split-up includes new names and APIs
+	between the generic part of the device support and the OSD parts,
+	which I tried to streamline, which allowed for some serious code
+	simplifications in the generic parts. I also made sure the new APIs
 	will make it a lot easier to support waveform records.
 
-	I fixed a few bugs in the code (IFerrors and uptime under vxWorks) and 
-	added (in the attached version) kernel version and CPU usage info for 
+	I fixed a few bugs in the code (IFerrors and uptime under vxWorks) and
+	added (in the attached version) kernel version and CPU usage info for
 	posix systems.
 
-	Added mem->total to the meminfo structure to create reasonable 
-	information on soft IOC implementations with virtual memory 
+	Added mem->total to the meminfo structure to create reasonable
+	information on soft IOC implementations with virtual memory
 	organization:
 	   total:  on this host - physically installed memory.
 	   used:   for this IOC - physical memory used at the moment (RSS)
-	   free:   on this host - physical memory that is available to 
+	   free:   on this host - physical memory that is available to
 		   processes  (free plus cache plus buffers)
-	Added memory implementation for Linux, FD usage implementations for 
+	Added memory implementation for Linux, FD usage implementations for
 	Linux and Solaris.
   * iocAdmin/srcDisplay - LCLS display update.
   * iocAdmin/src - Added python scripts by Dayle Kotturi for automatically
     creating a database and display with RELEASE module versions..
-  * iocAdmin/Db - Add iocAdminSoft and iocAdminRTEMS databases for soft 
+  * iocAdmin/Db - Add iocAdminSoft and iocAdminRTEMS databases for soft
     and RTEMS IOCs.  Add MEM_MAX.  Process CLUST records only after MBUF_FREE
     records are processed.
   * iocAdmin/srcRestore - Add iocAdminSoft.cwConfig for soft IOCs.
@@ -271,10 +271,10 @@ Edit the following files for EPICS base 3.14.8.2:
   * configure/CONFIG_SITE - add USR_CFLAGS_RTEMS option for Till's CPU load calc.
 
 # iocAdmin-R2-1-3: Feb 10, 2009
-  * devIocStats/src/devIocStatsString.c - set epics env var string to blank 
+  * devIocStats/src/devIocStatsString.c - set epics env var string to blank
     and UDF=0 when valid env var but just no value.
-  * devIocStats/src/Makefile and 
-    devIocStats/src/os/RTEMS/devIocStatsOSD.h - use bsp_reset for uC5282 and 
+  * devIocStats/src/Makefile and
+    devIocStats/src/os/RTEMS/devIocStatsOSD.h - use bsp_reset for uC5282 and
     all BSPs on RTEMS 4.9.1.
   * devIocStats/src/os/RTEMS/devIocStatsOSD.c - prevent negative cpu load.
 
@@ -284,12 +284,12 @@ iocAdmin/Db/access.db - add FBCK record.
 README_iocAdmin - description of FBCK record.
 
 # iocAdmin-R2-1-1: Jan 20, 2009
-devIocStats/src/devIocStatsString.c, devIocStats.dbd: 
-	Add device support for general environment variables and 
+devIocStats/src/devIocStatsString.c, devIocStats.dbd:
+	Add device support for general environment variables and
 	EPICS environment variables.
 iocAdmin/Db/iocEnvVar.db, ioc.db, Makefile, iocAdmin.substitutions:
-	Create database for environment variables.  
-	Add EPICS environment variables.  
+	Create database for environment variables.
+	Add EPICS environment variables.
 README_devIocStats - description of environment variables support.
 
 # iocAdmin-R2-1-0:
@@ -298,7 +298,7 @@ iocAdmin/srcRestore/iocAdmin.cwConfig - add STARTTOD (logging only).
 iocAdmin/Db/access.db, ioc.db, iocAdmin.substitutions, access.doc -
 	Add ACCESS record to ioc.db (no longer uses access.db).
 	Change access.db for requirements by HLA.  Remove colon from name so
-	that ACCESS can be defined per channel or attribute, 
+	that ACCESS can be defined per channel or attribute,
 	not just per device.  Add access.doc documentation.
 README_iocAdmin - description of access usage.
 
@@ -315,5 +315,5 @@ Built against EPICS R3.14.9 and RTEMS 4.7.1 (base-R3-14-9-lcls1)
 # iocAdmin-R1-0-1:
 Built against EPICS R3.14.8.2 and RTEMS 4.7.1 (base-R3-14-8-2-lcls2)
 
-# iocAdmin-R1-0-0: June 29, 2007 Initial version	
+# iocAdmin-R1-0-0: June 29, 2007 Initial version
 Built against EPICS R3.14.8.2 and RTEMS 4.7 (base-R3-14-8-2-lcls1)

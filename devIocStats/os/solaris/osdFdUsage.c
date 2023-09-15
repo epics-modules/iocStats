@@ -9,7 +9,8 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdFdUsage.c - File descriptor usage: Solaris implementation = use /proc/<PID>/fd and getrlimit() */
+/* osdFdUsage.c - File descriptor usage: Solaris implementation = use
+ * /proc/<PID>/fd and getrlimit() */
 
 /*
  *  Author: Ralph Lange (HZB/BESSY)
@@ -29,24 +30,28 @@
 
 static char fddir[40] = "";
 
-int devIocStatsInitFDUsage (void) {
-    sprintf(fddir, "/proc/%d/fd", (int)getpid());
-    return 0;}
+int devIocStatsInitFDUsage(void) {
+  sprintf(fddir, "/proc/%d/fd", (int)getpid());
+  return 0;
+}
 
-int devIocStatsGetFDUsage (fdInfo *pval)
-{
-    DIR *pdir;
-    struct dirent *pdit;
-    struct rlimit lim;
-    int i = 0;
+int devIocStatsGetFDUsage(fdInfo *pval) {
+  DIR *pdir;
+  struct dirent *pdit;
+  struct rlimit lim;
+  int i = 0;
 
-    if ((pdir = opendir(fddir)) == NULL) return -1;
-    while ((pdit = readdir(pdir)) != NULL) i++;
-    if (closedir(pdir) == -1) return -1;
-    pval->used = i - 3; /* Don't count this operation, '.' and '..' */
+  if ((pdir = opendir(fddir)) == NULL)
+    return -1;
+  while ((pdit = readdir(pdir)) != NULL)
+    i++;
+  if (closedir(pdir) == -1)
+    return -1;
+  pval->used = i - 3; /* Don't count this operation, '.' and '..' */
 
-    if (getrlimit(RLIMIT_NOFILE, &lim)) return -1;
-    pval->max = lim.rlim_cur;
+  if (getrlimit(RLIMIT_NOFILE, &lim))
+    return -1;
+  pval->max = lim.rlim_cur;
 
-    return 0;
+  return 0;
 }

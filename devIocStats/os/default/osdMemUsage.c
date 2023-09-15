@@ -22,5 +22,5 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitMemUsage (void) { return 0; }
-int devIocStatsGetMemUsage (memInfo *pval) { return -1; }
+int devIocStatsInitMemUsage(void) { return 0; }
+int devIocStatsGetMemUsage(memInfo *pval) { return -1; }

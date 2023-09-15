@@ -10,7 +10,8 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdCpuUtilization.c - CPU Utilization: vxWorks implementation = use values from CPU Usage */
+/* osdCpuUtilization.c - CPU Utilization: vxWorks implementation = use values
+ * from CPU Usage */
 
 /*
  *  Author: Ralph Lange (HZB/BESSY)
@@ -21,13 +22,13 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitCpuUtilization (loadInfo *pval) {
+int devIocStatsInitCpuUtilization(loadInfo *pval) {
   pval->noOfCpus = 1;
   return 0;
 }
 
 /* FIXME: This relies on the device support calling it after CpuUsage */
-int devIocStatsGetCpuUtilization (loadInfo *pval) {
-    pval->iocLoad = pval->cpuLoad;
-    return 0;
+int devIocStatsGetCpuUtilization(loadInfo *pval) {
+  pval->iocLoad = pval->cpuLoad;
+  return 0;
 }

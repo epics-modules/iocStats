@@ -9,7 +9,8 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdMemUsage.c - Memory usage info: Linux implementation = use /proc/self/statm */
+/* osdMemUsage.c - Memory usage info: Linux implementation = use
+ * /proc/self/statm */
 
 /*
  *  Author: Ralph Lange (HZB/BESSY)
@@ -29,48 +30,47 @@
 
 static unsigned long pagesize;
 
-int devIocStatsInitMemUsage (void) {
-    pagesize = sysconf(_SC_PAGESIZE); 
-    return 0;
+int devIocStatsInitMemUsage(void) {
+  pagesize = sysconf(_SC_PAGESIZE);
+  return 0;
 }
 
-int devIocStatsGetMemUsage (memInfo *pval)
-{
-    static char statmfile[] = "/proc/self/statm";
-    static char memfile[]   = "/proc/meminfo";
-    unsigned long size, resident, value, total = 0, memfree = 0;
-    char title[32] = "";
-    char units[32] = "";
-    int ret = 0;
-    int found = 0;
-    FILE *fp;
+int devIocStatsGetMemUsage(memInfo *pval) {
+  static char statmfile[] = "/proc/self/statm";
+  static char memfile[] = "/proc/meminfo";
+  unsigned long size, resident, value, total = 0, memfree = 0;
+  char title[32] = "";
+  char units[32] = "";
+  int ret = 0;
+  int found = 0;
+  FILE *fp;
 
-    fp = fopen(statmfile, "r");
-    if (fp) {
-        fscanf(fp, "%lu %lu", &size, &resident);
-        fclose(fp);
+  fp = fopen(statmfile, "r");
+  if (fp) {
+    fscanf(fp, "%lu %lu", &size, &resident);
+    fclose(fp);
+  }
+
+  fp = fopen(memfile, "r");
+  if (fp) {
+    while (ret != EOF && found < 4) {
+      ret = fscanf(fp, "%31s %lu %s\n", title, &value, units);
+      if (strcmp(title, "MemTotal:") == 0) {
+        total = value * 1024;
+        found++;
+      } else if (strcmp(title, "MemFree:") == 0 ||
+                 strcmp(title, "Buffers:") == 0 ||
+                 strcmp(title, "Cached:") == 0) {
+        memfree += value * 1024;
+        found++;
+      }
     }
+    fclose(fp);
+  }
 
-    fp = fopen(memfile, "r");
-    if (fp) {
-        while (ret != EOF && found < 4) {
-            ret = fscanf(fp, "%31s %lu %s\n", title, &value, units);
-            if (strcmp(title, "MemTotal:") == 0) {
-                total = value * 1024;
-                found++;
-            } else if (strcmp(title, "MemFree:") == 0 ||
-                       strcmp(title, "Buffers:") == 0 ||
-                       strcmp(title, "Cached:") == 0) {
-                memfree += value * 1024;
-                found++;
-            }
-        }
-        fclose(fp);
-    }
+  pval->numBytesAlloc = (double)resident * (double)pagesize;
+  pval->numBytesFree = (double)memfree;
+  pval->numBytesTotal = (double)total;
 
-    pval->numBytesAlloc = (double)resident * (double)pagesize;
-    pval->numBytesFree  = (double)memfree;
-    pval->numBytesTotal = (double)total;
-
-    return 0;
+  return 0;
 }

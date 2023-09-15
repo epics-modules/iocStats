@@ -38,7 +38,7 @@
  *              area which is independent of the malloc heap.
  *              Some system-internal data structures are
  *              allocated from the workspace area.
- *              Support for monitoring the workspace area 
+ *              Support for monitoring the workspace area
  *              is provided in osdWorkspaceUsage.c.
  *
  *  2009-05-15  Ralph Lange (HZB/BESSY)
@@ -48,33 +48,31 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitMemUsage (void) { return 0; }
+int devIocStatsInitMemUsage(void) { return 0; }
 
-int devIocStatsGetMemUsage (memInfo *pval)
-{
+int devIocStatsGetMemUsage(memInfo *pval) {
 #ifdef RTEMS_PROTECTED_HEAP
-# if   (__RTEMS_MAJOR__ > 4) \
-   || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
-    extern Heap_Control *RTEMS_Malloc_Heap;
-    Heap_Control *h = RTEMS_Malloc_Heap;
-# else
-    extern Heap_Control RTEMS_Malloc_Heap;
-    Heap_Control *h = &RTEMS_Malloc_Heap;
-# endif
-    Heap_Information_block info;
+#if (__RTEMS_MAJOR__ > 4) || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
+  extern Heap_Control *RTEMS_Malloc_Heap;
+  Heap_Control *h = RTEMS_Malloc_Heap;
+#else
+  extern Heap_Control RTEMS_Malloc_Heap;
+  Heap_Control *h = &RTEMS_Malloc_Heap;
+#endif
+  Heap_Information_block info;
 
-    _Protected_heap_Get_information(h, &info);
-#else /* RTEMS_PROTECTED_HEAP */
-    extern rtems_id      RTEMS_Malloc_Heap;
-    rtems_id h = RTEMS_Malloc_Heap;
-    region_information_block info;
+  _Protected_heap_Get_information(h, &info);
+#else  /* RTEMS_PROTECTED_HEAP */
+  extern rtems_id RTEMS_Malloc_Heap;
+  rtems_id h = RTEMS_Malloc_Heap;
+  region_information_block info;
 
-    rtems_region_get_information(h, &info);
-    /* rtems' malloc_free_space() looks at 'largest' -- why not 'total'? */
+  rtems_region_get_information(h, &info);
+  /* rtems' malloc_free_space() looks at 'largest' -- why not 'total'? */
 #endif /* RTEMS_PROTECTED_HEAP */
-    pval->numBytesTotal    = (double)info.Free.total + (double)info.Used.total;
-    pval->numBytesFree     = (double)info.Free.total;
-    pval->numBytesAlloc    = (double)info.Used.total;
-    pval->maxBlockSizeFree = (double)info.Free.largest;
-    return 0;
+  pval->numBytesTotal = (double)info.Free.total + (double)info.Used.total;
+  pval->numBytesFree = (double)info.Free.total;
+  pval->numBytesAlloc = (double)info.Used.total;
+  pval->maxBlockSizeFree = (double)info.Free.largest;
+  return 0;
 }

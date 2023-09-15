@@ -34,14 +34,14 @@
 
         If any input A through F is greater
         than zero, the reboot is not allowed;
-	these are "inhibits."  Unless input L
-	is equal to one, the reboot is not allowed;
-	this is an "enable."  The intention is to
-	feed a BO record with a one-shot timing of
-	a few seconds to it, which has to be set
-	within a small window before requesting the
-	reboot.
-	
+        these are "inhibits."  Unless input L
+        is equal to one, the reboot is not allowed;
+        this is an "enable."  The intention is to
+        feed a BO record with a one-shot timing of
+        a few seconds to it, which has to be set
+        within a small window before requesting the
+        reboot.
+
         Input G is the bitmask for the reboot
         input argument.  The possible bits are
         defined in sysLib.h.  If input G is
@@ -60,17 +60,15 @@
            OK - Successful operation (Always)
 
 =======================================================*/
-static long rebootProc(struct subRecord *psub)
-{
-  if ((psub->a < 0.5) && (psub->b < 0.5) &&
-      (psub->c < 0.5) && (psub->d < 0.5) &&
-      (psub->e < 0.5) && (psub->f < 0.5) &&
+static long rebootProc(struct subRecord *psub) {
+  if ((psub->a < 0.5) && (psub->b < 0.5) && (psub->c < 0.5) &&
+      (psub->d < 0.5) && (psub->e < 0.5) && (psub->f < 0.5) &&
       (psub->l > 0.5)) {
-     epicsPrintf("IOC reboot started\n");
-     epicsThreadSleep(1.0);
-     reboot((int)(psub->g + 0.1));
+    epicsPrintf("IOC reboot started\n");
+    epicsThreadSleep(1.0);
+    reboot((int)(psub->g + 0.1));
   }
-  return(0);
+  return (0);
 }
 /*====================================================
 
@@ -79,18 +77,18 @@ static long rebootProc(struct subRecord *psub)
   Rem:  scanMon initialization.  Allocate space for
         timestamp in DPVT.  Set E to -1 to force
         initialization by scanMon.
-        
+
   Side: None.
 
   Ret: long
            OK - Successful operation (Always)
 
 =======================================================*/
-static long scanMonInit(struct subRecord *psub)
-{
+static long scanMonInit(struct subRecord *psub) {
   psub->dpvt = malloc(sizeof(epicsTimeStamp));
   psub->e = -1.0;
-  if (!psub->dpvt) return -1;
+  if (!psub->dpvt)
+    return -1;
   return (0);
 }
 
@@ -103,7 +101,7 @@ static long scanMonInit(struct subRecord *psub)
         period to monitor if a SCAN task is getting too far
         behind in its updates (ie, due to a higher priority
         task).
-        
+
         Inputs:
         INPA = mode (0 = relative, 1 = absolute)
         INPB = minor tolerance (%)
@@ -118,57 +116,60 @@ static long scanMonInit(struct subRecord *psub)
         Outputs:
         VAL = update time (sec) for mode = 1
               update time - expected update time (sec) for mode = 0
-        
+
   Side: None.
 
   Ret: long
            OK - Successful operation (Always)
 
 =======================================================*/
-static long scanMon(struct subRecord *psub)
-{
-  double         scan_period = scanPeriod(psub->scan);
+static long scanMon(struct subRecord *psub) {
+  double scan_period = scanPeriod(psub->scan);
   epicsTimeStamp curr_time;
-  long           status = 0;
+  long status = 0;
 
-  if (!psub->dpvt) return -1;
+  if (!psub->dpvt)
+    return -1;
 
   epicsTimeGetCurrent(&curr_time);
 
   /* Check SCAN period.  If the record is not periodic,
      use D input as the expected period. */
   if (scan_period <= 0.0) {
-    if (psub->d < 0.0) scan_period = 0.0;
-    else               scan_period = psub->d;
+    if (psub->d < 0.0)
+      scan_period = 0.0;
+    else
+      scan_period = psub->d;
   }
   /* Initialize when SCAN period changes. */
   if (scan_period != psub->e) {
-    psub->e   = scan_period;
-    status    = -1;
-  /* Otherwise, calculate update time. */
+    psub->e = scan_period;
+    status = -1;
+    /* Otherwise, calculate update time. */
   } else {
-    psub->val = epicsTimeDiffInSeconds(&curr_time,
-                                       (epicsTimeStamp *)psub->dpvt);
-    if (psub->a < 0.5) psub->val -= scan_period;
+    psub->val =
+        epicsTimeDiffInSeconds(&curr_time, (epicsTimeStamp *)psub->dpvt);
+    if (psub->a < 0.5)
+      psub->val -= scan_period;
   }
-  /* Save time stamp for next time around */ 
+  /* Save time stamp for next time around */
   *((epicsTimeStamp *)psub->dpvt) = curr_time;
-  
+
   /* Recalculate alarm limits. These really only need to be
      recalculated whenever scan_period, A, B changes or whenever
      HIHI, LOLO, HIGH, LOW get externally updated
      (which is not allowed)
      so it's just easier recalculating them every time. */
-  psub->hihi = scan_period * (psub->a + psub->c/100.);
-  psub->high = scan_period * (psub->a + psub->b/100.);
+  psub->hihi = scan_period * (psub->a + psub->c / 100.);
+  psub->high = scan_period * (psub->a + psub->b / 100.);
   if (psub->a < 0.5) {
-    psub->lolo = scan_period * (psub->a - psub->c/100.);
-    psub->low  = scan_period * (psub->a - psub->b/100.);
+    psub->lolo = scan_period * (psub->a - psub->c / 100.);
+    psub->low = scan_period * (psub->a - psub->b / 100.);
   } else {
     psub->lolo = -scan_period;
-    psub->low  = -scan_period;
+    psub->low = -scan_period;
   }
-  return(status);
+  return (status);
 }
 
 epicsRegisterFunction(rebootProc);

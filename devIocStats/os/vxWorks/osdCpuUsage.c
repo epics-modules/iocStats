@@ -13,7 +13,8 @@
 /* osdCpuUsage.c - vxWorks implementation: use cpu burner */
 
 /* extracted from */
-/* devIocStatsAnalog.c - Analog Device Support Routines for IOC statistics - based on */
+/* devIocStatsAnalog.c - Analog Device Support Routines for IOC statistics -
+ * based on */
 /* devVXStats.c - Device Support Routines for vxWorks statistics */
 /*
  *	Author: Jim Kowalkowski
@@ -63,80 +64,80 @@
 
 /*
  * Implementation Notes
- * 
- * Incrementing a counter is the most straight-forward way to burn cpu, just take
- * care that the counter variable is declared volatile. This should tell even
- * modern highly optimizing compilers not to optimize away the memory access.
- * 
+ *
+ * Incrementing a counter is the most straight-forward way to burn cpu, just
+ * take care that the counter variable is declared volatile. This should tell
+ * even modern highly optimizing compilers not to optimize away the memory
+ * access.
+ *
  * We use a vxWorks watchdog timer to start the counter and to stop it after a
  * given amount of clock ticks so we can run the counter for a precisely defined
  * period of time.
- * 
+ *
  * Initial calibration runs exactly the same procedure as the measurement, but
- * saves the final value of the counter in a global variable (nBurnNoContention),
- * assuming that at the time we calibrate there is no contention for the CPU yet.
- * 
- * 
+ * saves the final value of the counter in a global variable
+ * (nBurnNoContention), assuming that at the time we calibrate there is no
+ * contention for the CPU yet.
+ *
+ *
  * The actual measurement is done in a background task that periodically sleeps,
  * burns cpu, and then calculates the load from the value of the counter by
  * comparing it to the value of nBurnNoContention.
  * Sleep and burn periods of the measurement task can be re-configured by
- * setting global variables (cpuBurnTicks, cpuSleepTicks), both are initialized so
- * that they correspond to 5 seconds each.
- * 
- * The devIocStatsGetCpuUsage routine just returns the last value computed by the
- * background task.
+ * setting global variables (cpuBurnTicks, cpuSleepTicks), both are initialized
+ * so that they correspond to 5 seconds each.
+ *
+ * The devIocStatsGetCpuUsage routine just returns the last value computed by
+ * the background task.
  */
 
 /*
  * global variables
  */
-static unsigned nBurnNoContention;  /* counts per clock tick w/o cpu contention */
-static epicsMutexId mutex;          /* protect usage against concurrent access */
-static double usage;                /* current cpu load measurement result */
+static unsigned
+    nBurnNoContention;     /* counts per clock tick w/o cpu contention */
+static epicsMutexId mutex; /* protect usage against concurrent access */
+static double usage;       /* current cpu load measurement result */
 
 /* these are public so can be re-configured at runtime */
-int cpuBurnTicks;                   /* number of clock ticks to burn */
-int cpuSleepTicks;                  /* number of clock ticks to sleep */
-int cpuBurnCalibrateTicks = 30;     /* number of ticks to burn when calibrating */
-int cpuBurnCalibrateTests = 0;      /* number of calibration tests to run */
+int cpuBurnTicks;               /* number of clock ticks to burn */
+int cpuSleepTicks;              /* number of clock ticks to sleep */
+int cpuBurnCalibrateTicks = 30; /* number of ticks to burn when calibrating */
+int cpuBurnCalibrateTests = 0;  /* number of calibration tests to run */
 
 /*
  *  These variables are strictly reserved for communication between
  *  cpuBurn, startCounter, and stopCounter. Do not use elsewhere.
  */
 static WDOG_ID wd;
-static volatile unsigned burn;      /* run burn loop while this is true */
-static volatile unsigned counter;   /* gets incremented in a loop to burn cpu */
-static unsigned start;              /* value of counter on start tick */
-static int nTicks;                  /* number of clock ticks to burn */
+static volatile unsigned burn;    /* run burn loop while this is true */
+static volatile unsigned counter; /* gets incremented in a loop to burn cpu */
+static unsigned start;            /* value of counter on start tick */
+static int nTicks;                /* number of clock ticks to burn */
 
 /* called from clock ISR */
-static int stopCounter()
-{
-    burn = 0;
-    return 0;
+static int stopCounter() {
+  burn = 0;
+  return 0;
 }
 
 /* called from clock ISR */
-static int startCounter()
-{
-    wdStart(wd, nTicks, stopCounter, 0);
-    start = counter;
-    return 0;
+static int startCounter() {
+  wdStart(wd, nTicks, stopCounter, 0);
+  start = counter;
+  return 0;
 }
 
 /* Warning: not re-entrant */
-static unsigned cpuBurn(int numTicks)
-{
-    burn = TRUE;
-    nTicks = numTicks;
-    /* wait for the next tick to have a precise start time */
-    wdStart(wd, 1, startCounter, 0);
-    while (burn) {
-        counter++;
-    }
-    return counter - start;
+static unsigned cpuBurn(int numTicks) {
+  burn = TRUE;
+  nTicks = numTicks;
+  /* wait for the next tick to have a precise start time */
+  wdStart(wd, 1, startCounter, 0);
+  while (burn) {
+    counter++;
+  }
+  return counter - start;
 }
 
 /*
@@ -145,25 +146,24 @@ static unsigned cpuBurn(int numTicks)
  * set cpuBurnCalibrateTests to a positive number (e.g. 100)
  * somewhere in the startup file before the iocInit call.
  */
-void cpuBurnCalibrateTest(int numTicks, int numTests)
-{
-    int i;
-    unsigned minv = UINT_MAX, maxv = 0, sumv = 0;
+void cpuBurnCalibrateTest(int numTicks, int numTests) {
+  int i;
+  unsigned minv = UINT_MAX, maxv = 0, sumv = 0;
 
-    for (i = 0; i < numTests; i++) {
-        unsigned v = cpuBurn(numTicks);
+  for (i = 0; i < numTests; i++) {
+    unsigned v = cpuBurn(numTicks);
 
-        sumv += v;
-        if (v < minv)
-            minv = v;
-        if (v > maxv)
-            maxv = v;
-    }
-    if (numTests > 0) {
-        printf("cpuBurnMeasureTest: min=%u max=%u avg=%u rel_diff=%f\n",
-            minv, maxv, sumv / numTests, (maxv - minv) / (double)minv);
-        printf("  counts per %d ticks\n", numTicks);
-    }
+    sumv += v;
+    if (v < minv)
+      minv = v;
+    if (v > maxv)
+      maxv = v;
+  }
+  if (numTests > 0) {
+    printf("cpuBurnMeasureTest: min=%u max=%u avg=%u rel_diff=%f\n", minv, maxv,
+           sumv / numTests, (maxv - minv) / (double)minv);
+    printf("  counts per %d ticks\n", numTicks);
+  }
 }
 
 /*
@@ -173,55 +173,52 @@ void cpuBurnCalibrateTest(int numTicks, int numTests)
  * Set cpuSleepTicks and cpuBurnTicks to re-configure how much cpu gets
  * burned and how often.
  */
-static void cpuUsageTask(void *parm)
-{
-    while (TRUE) {
-        unsigned nBurnRef = nBurnNoContention * cpuBurnTicks;
-        unsigned nBurnNow = cpuBurn(cpuBurnTicks);
+static void cpuUsageTask(void *parm) {
+  while (TRUE) {
+    unsigned nBurnRef = nBurnNoContention * cpuBurnTicks;
+    unsigned nBurnNow = cpuBurn(cpuBurnTicks);
 
-        /* if we are near zero load, this could happen due to small
-           variations in timing */
-        if (nBurnNow > nBurnRef) {
-            nBurnNow = nBurnRef;
-        }
-        epicsMutexLock(mutex);
-        usage = 100.0 * (double)(nBurnRef - nBurnNow) / (double)nBurnRef;
-        epicsMutexUnlock(mutex);
-        taskDelay(cpuSleepTicks);
+    /* if we are near zero load, this could happen due to small
+       variations in timing */
+    if (nBurnNow > nBurnRef) {
+      nBurnNow = nBurnRef;
     }
-}
-
-int devIocStatsGetCpuUsage(loadInfo *pinfo)
-{
     epicsMutexLock(mutex);
-    pinfo->cpuLoad = usage;
+    usage = 100.0 * (double)(nBurnRef - nBurnNow) / (double)nBurnRef;
     epicsMutexUnlock(mutex);
-    return 0;
+    taskDelay(cpuSleepTicks);
+  }
 }
 
-int devIocStatsInitCpuUsage(void)
-{
-    wd = wdCreate();
-    assert(wd);
+int devIocStatsGetCpuUsage(loadInfo *pinfo) {
+  epicsMutexLock(mutex);
+  pinfo->cpuLoad = usage;
+  epicsMutexUnlock(mutex);
+  return 0;
+}
 
-    mutex = epicsMutexMustCreate();
+int devIocStatsInitCpuUsage(void) {
+  wd = wdCreate();
+  assert(wd);
 
-    cpuBurnCalibrateTest(cpuBurnCalibrateTicks, cpuBurnCalibrateTests);
+  mutex = epicsMutexMustCreate();
 
-    /* default values: measure 5 seconds, then sleep 5 seconds */
-    cpuSleepTicks = cpuBurnTicks = 5 * sysClkRateGet();
+  cpuBurnCalibrateTest(cpuBurnCalibrateTicks, cpuBurnCalibrateTests);
 
-    /*
-     * Calibration: determine number of counts to burn 1 clock tick,
-     * then calculate the result up to cpuBurnTicks ticks.
-     */
-    nBurnNoContention =
-        cpuBurn(cpuBurnCalibrateTicks) / cpuBurnCalibrateTicks;
+  /* default values: measure 5 seconds, then sleep 5 seconds */
+  cpuSleepTicks = cpuBurnTicks = 5 * sysClkRateGet();
 
-    /* assume initial load is zero */
-    usage = 0.0;
+  /*
+   * Calibration: determine number of counts to burn 1 clock tick,
+   * then calculate the result up to cpuBurnTicks ticks.
+   */
+  nBurnNoContention = cpuBurn(cpuBurnCalibrateTicks) / cpuBurnCalibrateTicks;
 
-    epicsThreadMustCreate("cpuUsageTask", epicsThreadPriorityMin,
-        epicsThreadGetStackSize(epicsThreadStackMedium), cpuUsageTask, 0);
-    return 0;
+  /* assume initial load is zero */
+  usage = 0.0;
+
+  epicsThreadMustCreate("cpuUsageTask", epicsThreadPriorityMin,
+                        epicsThreadGetStackSize(epicsThreadStackMedium),
+                        cpuUsageTask, 0);
+  return 0;
 }

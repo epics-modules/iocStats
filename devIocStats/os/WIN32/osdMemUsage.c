@@ -33,23 +33,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <psapi.h>
-#pragma comment (lib, "Psapi.lib")
-
+#pragma comment(lib, "Psapi.lib")
 
 #include <devIocStats.h>
 #define DIV 1024.0
-int devIocStatsInitMemUsage (void) { return 0; }
-int devIocStatsGetMemUsage (memInfo *pval) {
-    MEMORYSTATUSEX statex;
-    PROCESS_MEMORY_COUNTERS_EX procmem;
+int devIocStatsInitMemUsage(void) { return 0; }
+int devIocStatsGetMemUsage(memInfo *pval) {
+  MEMORYSTATUSEX statex;
+  PROCESS_MEMORY_COUNTERS_EX procmem;
 
-    statex.dwLength = sizeof (statex);
-    GlobalMemoryStatusEx(&statex);
+  statex.dwLength = sizeof(statex);
+  GlobalMemoryStatusEx(&statex);
 
-    GetProcessMemoryInfo(GetCurrentProcess(),(PPROCESS_MEMORY_COUNTERS)&procmem,sizeof(procmem));
+  GetProcessMemoryInfo(GetCurrentProcess(), (PPROCESS_MEMORY_COUNTERS)&procmem,
+                       sizeof(procmem));
 
-    pval->numBytesFree =(double)statex.ullAvailPhys ;
-    pval->numBytesTotal =(double)statex.ullTotalPhys ;
-    pval->numBytesAlloc =(double) procmem.PrivateUsage ;
-    return 0;
- }
+  pval->numBytesFree = (double)statex.ullAvailPhys;
+  pval->numBytesTotal = (double)statex.ullTotalPhys;
+  pval->numBytesAlloc = (double)procmem.PrivateUsage;
+  return 0;
+}

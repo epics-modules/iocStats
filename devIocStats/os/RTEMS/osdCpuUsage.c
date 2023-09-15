@@ -12,7 +12,8 @@
 /* osdCpuUsage.c - RTEMS implementation */
 
 /* extracted from */
-/* devIocStatsAnalog.c - Analog Device Support Routines for IOC statistics - based on */
+/* devIocStatsAnalog.c - Analog Device Support Routines for IOC statistics -
+ * based on */
 /* devVXStats.c - Device Support Routines for vxWorks statistics */
 /*
  *	Author: Jim Kowalkowski
@@ -47,25 +48,26 @@
 
 #include <devIocStats.h>
 
-# if   (__RTEMS_MAJOR__ > 4) \
-   || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 7)
+#if (__RTEMS_MAJOR__ > 4) || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 7)
 typedef char objName[13];
-#define RTEMS_OBJ_GET_NAME(tc,name) rtems_object_get_name((tc)->Object.id, sizeof(name),(name))
+#define RTEMS_OBJ_GET_NAME(tc, name)                                           \
+  rtems_object_get_name((tc)->Object.id, sizeof(name), (name))
 #ifdef SSRLAPPSMISCUTILS
-static struct timespec prev_uptime   = {0};
+static struct timespec prev_uptime = {0};
 static struct timespec prev_idletime = {0};
 extern int isnan();
 #include <ssrlAppsMiscUtils.h>
 #endif
-# else
-typedef char * objName;
-#define RTEMS_OBJ_GET_NAME(tc,name) name = (tc)->Object.name
-# endif
+#else
+typedef char *objName;
+#define RTEMS_OBJ_GET_NAME(tc, name) name = (tc)->Object.name
+#endif
 
-#if defined(RTEMS_ENABLE_NANOSECOND_CPU_USAGE_STATISTICS) || \
-    (__RTEMS_MAJOR__ > 4) || \
-    (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
-#define CPU_ELAPSED_TIME(tc) ((double)(tc)->cpu_time_used.tv_sec + ((double)tc->cpu_time_used.tv_nsec/1E9))
+#if defined(RTEMS_ENABLE_NANOSECOND_CPU_USAGE_STATISTICS) ||                   \
+    (__RTEMS_MAJOR__ > 4) || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
+#define CPU_ELAPSED_TIME(tc)                                                   \
+  ((double)(tc)->cpu_time_used.tv_sec +                                        \
+   ((double)tc->cpu_time_used.tv_nsec / 1E9))
 #else
 #define CPU_ELAPSED_TIME(tc) ((double)(tc)->ticks_executed)
 #endif
@@ -78,79 +80,79 @@ typedef char * objName;
  */
 
 static double prev_total = 0;
-static double prev_idle  = 0;
+static double prev_idle = 0;
 
-static void cpu_ticks(double *total, double *idle)
-{
-    Objects_Information *obj;
-    Thread_Control     *tc;
+static void cpu_ticks(double *total, double *idle) {
+  Objects_Information *obj;
+  Thread_Control *tc;
 
-    int   x, y;
-    objName name;
+  int x, y;
+  objName name;
 
-    *total = 0;
-    *idle = 0;
+  *total = 0;
+  *idle = 0;
 
-    for (x = 1; x <= OBJECTS_APIS_LAST; x++) {
-        if (!_Objects_Information_table[x]) {
-            continue;
-        }
+  for (x = 1; x <= OBJECTS_APIS_LAST; x++) {
+    if (!_Objects_Information_table[x]) {
+      continue;
+    }
 
-        obj = _Objects_Information_table[x][1];
-        if (obj) {
-            for (y = 1; y <= obj->maximum; y++) {
-                tc = (Thread_Control *)obj->local_table[y];
-                if (tc) {
-                    *total += CPU_ELAPSED_TIME(tc);
-                    RTEMS_OBJ_GET_NAME( tc,  name );
-                    if (name[0]) {
-                        if (name[0] == 'I' && name[1] == 'D' &&
-                            name[2] == 'L' && name[3] == 'E') {
-                            *idle = CPU_ELAPSED_TIME(tc);
-                        }
-                    }
-                }
+    obj = _Objects_Information_table[x][1];
+    if (obj) {
+      for (y = 1; y <= obj->maximum; y++) {
+        tc = (Thread_Control *)obj->local_table[y];
+        if (tc) {
+          *total += CPU_ELAPSED_TIME(tc);
+          RTEMS_OBJ_GET_NAME(tc, name);
+          if (name[0]) {
+            if (name[0] == 'I' && name[1] == 'D' && name[2] == 'L' &&
+                name[3] == 'E') {
+              *idle = CPU_ELAPSED_TIME(tc);
             }
+          }
         }
+      }
     }
+  }
 }
 
-int devIocStatsInitCpuUsage (void)
-{
-    cpu_ticks(&prev_total, &prev_idle);
+int devIocStatsInitCpuUsage(void) {
+  cpu_ticks(&prev_total, &prev_idle);
 #ifdef SSRLAPPSMISCUTILS
-    miscu_cpu_load_percentage_init(&prev_uptime, &prev_idletime);
+  miscu_cpu_load_percentage_init(&prev_uptime, &prev_idletime);
 #endif
-    return 0;
+  return 0;
 }
 
-int devIocStatsGetCpuUsage (loadInfo *pval)
-{
+int devIocStatsGetCpuUsage(loadInfo *pval) {
 #ifdef SSRLAPPSMISCUTILS
-    pval->cpuLoad = miscu_cpu_load_percentage(&prev_uptime, &prev_idletime);
-    if (isnan(pval->cpuLoad)) return -1; else return 0;
-#else
-    double total;
-    double idle;
-    double delta_total;
-    double delta_idle;
-
-    cpu_ticks(&total, &idle);
-
-    if (total >= prev_total) {
-        delta_total = total - prev_total;
-        delta_idle  = idle - prev_idle;
-    } else {
-        delta_total = total;
-        delta_idle  = idle;
-    }
-    prev_total = total;
-    prev_idle = idle;
-
-    if (delta_idle > delta_total)
-        pval->cpuLoad = 0.0;
-    else
-        pval->cpuLoad = 100.0 - (delta_idle * 100.0 / delta_total);
+  pval->cpuLoad = miscu_cpu_load_percentage(&prev_uptime, &prev_idletime);
+  if (isnan(pval->cpuLoad))
+    return -1;
+  else
     return 0;
+#else
+  double total;
+  double idle;
+  double delta_total;
+  double delta_idle;
+
+  cpu_ticks(&total, &idle);
+
+  if (total >= prev_total) {
+    delta_total = total - prev_total;
+    delta_idle = idle - prev_idle;
+  } else {
+    delta_total = total;
+    delta_idle = idle;
+  }
+  prev_total = total;
+  prev_idle = idle;
+
+  if (delta_idle > delta_total)
+    pval->cpuLoad = 0.0;
+  else
+    pval->cpuLoad = 100.0 - (delta_idle * 100.0 / delta_total);
+  return 0;
 #endif
 }

@@ -57,33 +57,37 @@
 #undef malloc
 #undef free
 
-# if   (__RTEMS_MAJOR__ > 4) \
-   || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 7)
+#if (__RTEMS_MAJOR__ > 4) || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 7)
 #define RTEMS_PROTECTED_HEAP
 #include <rtems/score/protectedheap.h>
-# else
+#else
 #include <rtems/score/apimutex.h>
-# endif
+#endif
 
 #include <string.h>
 #include <stdlib.h>
 
 #include "epicsVersion.h"
 
-#define RTEMS_VERSION_INT VERSION_INT(__RTEMS_MAJOR__, __RTEMS_MINOR__, __RTEMS_REVISION__, 0)
+#define RTEMS_VERSION_INT                                                      \
+  VERSION_INT(__RTEMS_MAJOR__, __RTEMS_MINOR__, __RTEMS_REVISION__, 0)
 
 #define sysBootLine rtems_bsdnet_bootp_cmdline
 /* Override default STARTUP environment variable to use INIT */
-#undef  STARTUP
+#undef STARTUP
 #define STARTUP "INIT"
 #define CLUSTSIZES 2 /* only regular mbufs and clusters */
 
 #ifdef RTEMS_BSP_PGM_EXEC_AFTER /* only defined on uC5282 */
 #define reboot(x) bsp_reset(0)
-#elif   (defined(__PPC__) && RTEMS_VERSION_INT > VERSION_INT(4,9,0,0))
+#elif (defined(__PPC__) && RTEMS_VERSION_INT > VERSION_INT(4, 9, 0, 0))
 #define reboot(x) bsp_reset()
-#elif   (defined(__i386__) && RTEMS_VERSION_INT >= VERSION_INT(4,10,0,0))
-#define reboot(x) { void bsp_reset(); bsp_reset();}
+#elif (defined(__i386__) && RTEMS_VERSION_INT >= VERSION_INT(4, 10, 0, 0))
+#define reboot(x)                                                              \
+  {                                                                            \
+    void bsp_reset();                                                          \
+    bsp_reset();                                                               \
+  }
 #else
 #define reboot(x) rtemsReboot()
 #endif

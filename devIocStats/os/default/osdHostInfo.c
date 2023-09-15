@@ -24,16 +24,14 @@
 
 static char *notimpl = "<not implemented>";
 
-int devIocStatsInitHostInfo (void) { return 0; }
+int devIocStatsInitHostInfo(void) { return 0; }
 
-int devIocStatsGetPwd (char **pval)
-{
-    *pval = notimpl;
-    return -1;
+int devIocStatsGetPwd(char **pval) {
+  *pval = notimpl;
+  return -1;
 }
 
-int devIocStatsGetHostname (char **pval)
-{
-    *pval = notimpl;
-    return -1;
+int devIocStatsGetHostname(char **pval) {
+  *pval = notimpl;
+  return -1;
 }

@@ -23,18 +23,16 @@
 #include <devIocStats.h>
 
 static char *notimpl = "<not implemented>";
-static char *kernel = "RTEMS-"RTEMS_VERSION;
+static char *kernel = "RTEMS-" RTEMS_VERSION;
 
-int devIocStatsInitSystemInfo (void) { return 0; }
+int devIocStatsInitSystemInfo(void) { return 0; }
 
-int devIocStatsGetBSPVersion (char **pval)
-{
-    *pval = notimpl;
-    return -1;
+int devIocStatsGetBSPVersion(char **pval) {
+  *pval = notimpl;
+  return -1;
 }
 
-int devIocStatsGetKernelVersion (char **pval)
-{
-    *pval = kernel;
-    return 0;
+int devIocStatsGetKernelVersion(char **pval) {
+  *pval = kernel;
+  return 0;
 }

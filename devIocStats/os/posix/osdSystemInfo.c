@@ -25,27 +25,26 @@
 
 static char *notavail = "<not available>";
 static struct utsname uts;
-static char* versionstring;
+static char *versionstring;
 
-int devIocStatsInitSystemInfo (void) {
-    uname(&uts);
-    versionstring = calloc(strlen(uts.sysname)+strlen(uts.release)+strlen(uts.machine)+3, 1);
-    strcat(versionstring, uts.sysname);
-    strcat(versionstring, " ");
-    strcat(versionstring, uts.release);
-    strcat(versionstring, " ");
-    strcat(versionstring, uts.machine);
-    return 0;
+int devIocStatsInitSystemInfo(void) {
+  uname(&uts);
+  versionstring = calloc(
+      strlen(uts.sysname) + strlen(uts.release) + strlen(uts.machine) + 3, 1);
+  strcat(versionstring, uts.sysname);
+  strcat(versionstring, " ");
+  strcat(versionstring, uts.release);
+  strcat(versionstring, " ");
+  strcat(versionstring, uts.machine);
+  return 0;
 }
 
-int devIocStatsGetBSPVersion (char **pval)
-{
-    *pval = notavail;
-    return -1;
+int devIocStatsGetBSPVersion(char **pval) {
+  *pval = notavail;
+  return -1;
 }
 
-int devIocStatsGetKernelVersion (char **pval)
-{
-    *pval = versionstring;
-    return 0;
+int devIocStatsGetKernelVersion(char **pval) {
+  *pval = versionstring;
+  return 0;
 }

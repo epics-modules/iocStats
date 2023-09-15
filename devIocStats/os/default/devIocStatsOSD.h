@@ -26,10 +26,10 @@ static char *sysBootLine = "<not implemented>";
 #define NO_OF_CPUS 1
 #define TICKS_PER_SEC 1
 
-#if EPICS_VERSION_INT>=VERSION_INT(3,15,1,0)
-#  define reboot(x) epicsExitLater(0)
+#if EPICS_VERSION_INT >= VERSION_INT(3, 15, 1, 0)
+#define reboot(x) epicsExitLater(0)
 #else
-#  define reboot(x) epicsExit(0)
+#define reboot(x) epicsExit(0)
 #endif
 
 #endif /* devIocStatsOSD_H */

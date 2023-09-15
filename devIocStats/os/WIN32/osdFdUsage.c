@@ -16,7 +16,7 @@
  *  Author: Ralph Lange (HZB/BESSY)
  *
  *  Modification History
- *   2012-03-16 Helge Brands (PSI) 
+ *   2012-03-16 Helge Brands (PSI)
  *  2009-05-20 Ralph Lange (HZB/BESSY)
  *     Restructured OSD parts
  *
@@ -31,13 +31,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int devIocStatsInitFDUsage (void) { return 0; }
-int devIocStatsGetFDUsage (fdInfo *pval) {
-    DWORD handlecount;
-    
-    GetProcessHandleCount(GetCurrentProcess(),&handlecount);
-    pval->max=16384;
-    pval->used=(int)handlecount;
-    
-    return 0;
+int devIocStatsInitFDUsage(void) { return 0; }
+int devIocStatsGetFDUsage(fdInfo *pval) {
+  DWORD handlecount;
+
+  GetProcessHandleCount(GetCurrentProcess(), &handlecount);
+  pval->max = 16384;
+  pval->used = (int)handlecount;
+
+  return 0;
 }

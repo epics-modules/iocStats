@@ -4,16 +4,16 @@ README_devIocStats        Last Updated 04/16/2015
 I - General Notes on devIocStats - All Operating Systems
 --------------------------------------------------------
 
-Include either devIocStats.dbd OR devVxStats.dbd in the IOC application, 
-not both.  devIocStats.dbd (preferred) provides DTYPs that start with 
-"IOC" and devVxStats.dbd provides DTYPs that start with "VX" 
+Include either devIocStats.dbd OR devVxStats.dbd in the IOC application,
+not both.  devIocStats.dbd (preferred) provides DTYPs that start with
+"IOC" and devVxStats.dbd provides DTYPs that start with "VX"
 (included for backwards compatibility).
 
 String (stringin) Records (DTYP = "IOC stats"), INP = @one of the following:
 ============================================================================
         startup_script_[12]     - path of startup script (2 records)
             Default - uses STARTUP and ST_CMD environment variables or startup
-            and st_cmd symbols.  If STARTUP is not available, uses 
+            and st_cmd symbols.  If STARTUP is not available, uses
             IOCSH_STARTUP_SCRIPT.
         bootline_[1-6]          - CPU bootline (6 records)
             (set to "<not implemented> for all except RTEMS and vxWorks)
@@ -27,14 +27,14 @@ String (stringin) Records (DTYP = "IOC stats"), INP = @one of the following:
         location                - IOC Location
             Default - uses LOCATION env var or location symbol.
         hostname                - IOC Host Name from gethostname
-        pwd[1-2]                - IOC Current Working Directory 
+        pwd[1-2]                - IOC Current Working Directory
             (2 records) from getcwd
         up_time                 - IOC Up Time
 
-    Except for up_time, the support is static.  The record only needs to 
+    Except for up_time, the support is static.  The record only needs to
     be processed once, for which SCAN=Passive and PINI=YES is recommended.
 
-    When a string cannot be determined, the PV will show "<not available>" 
+    When a string cannot be determined, the PV will show "<not available>"
     or "<not implemented>" or some other variation.
 
 String (stringin) Records (DTYP = "IOC epics var"), INP = @<EPICS variable>
@@ -43,17 +43,17 @@ String (stringin) Records (DTYP = "IOC epics var"), INP = @<EPICS variable>
     listed in envDefs.h.
 
     Gets the value of the EPICS environment variable in the INP field
-    using envGetConfigParam.  The record only needs to be processed once, 
+    using envGetConfigParam.  The record only needs to be processed once,
     for which SCAN=Passive and PINI=YES is recommended.
 
 String (stringin) Records (DTYP = "IOC env var"), INP = @<environment variable>
 ============================================================================
     Gets the value of the environment variable in the INP field.
-    Unless the environment variable changes on-the-fly, the record only 
-    needs to be processed once, for which SCAN=Passive and PINI=YES is 
+    Unless the environment variable changes on-the-fly, the record only
+    needs to be processed once, for which SCAN=Passive and PINI=YES is
     recommended.
 
-    If the environment variable does not exist, the PV will show 
+    If the environment variable does not exist, the PV will show
     "<not available>".
 
 Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
@@ -62,16 +62,16 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
         ca_clients            - number of current CA clients
         ca_connections        - number of current CA connections
         suspended_tasks       - number of suspended tasks
-    The following two are implemented for posix systems only: 
+    The following two are implemented for posix systems only:
         proc_id               - process ID
         parent_proc_id        - parent process ID
-    The following are implemented for RTEMS, vxWorks, and some soft IOCs 
+    The following are implemented for RTEMS, vxWorks, and some soft IOCs
     (see notes below for exceptions and more detail):
         free_bytes            - number of bytes not allocated on this machine
         allocated_bytes       - number of bytes allocated
             (for soft IOCs, physical memory used at the moment (RSS))
         total_bytes           - number of bytes physically installed on this machine
-        sys_cpuload           - estimated percent CPU load on the system 
+        sys_cpuload           - estimated percent CPU load on the system
         no_of_cpus            - number of CPU cores on the system
         ioc_cpuload           - estimated percent CPU utilization by this IOC
         fd                    - number of file descriptors currently in use
@@ -82,11 +82,11 @@ Analog In (ai) Records (DTYP = "IOC stats"), INP = @one of the following:
         max_free              - size of largest free block
         min_sys_mbuf          - minimum percent free system MBUFs
         sys_mbuf              - number of system MBUFs
-        inp_errs              - number of IF input  errors 
+        inp_errs              - number of IF input  errors
         out_errs              - number of IF output errors
     The following are implemented for vxWorks IOCs only and set to 0 for other types of IOCs:
         free_blocks           - number of blocks in IOC not allocated
-        allocated_blocks      - number of blocks allocated 
+        allocated_blocks      - number of blocks allocated
         min_data_mbuf         - minimum percent free data MBUFs
         data_mbuf             - number of data MBUFs
     The following are implemented for RTEMS IOCs only and set to 0 for other types of IOCs:
@@ -104,13 +104,13 @@ Analog In (ai) Records for Cluster Statistics (RTEMS and vxWorks IOCs only)
 
 Analog Out (ao) Records (DTYP = "IOC stats"), OUT = @one of the following:
 ==========================================================================
-        memory_scan_rate      - max period (sec) at which new memory stats 
+        memory_scan_rate      - max period (sec) at which new memory stats
             can be read, default = 10 sec
-        fd_scan_rate          - max period (sec) at which file descriptors 
+        fd_scan_rate          - max period (sec) at which file descriptors
             can be counted, default = 20 sec
-        cpu_scan_rate         - max period (sec) at which cpu load 
-            can be calculated, default = 10 sec 
-        ca_scan_rate          - max period (sec) at which CA connections 
+        cpu_scan_rate         - max period (sec) at which cpu load
+            can be calculated, default = 10 sec
+        ca_scan_rate          - max period (sec) at which CA connections
             can be counted, default = 15 sec
 
 Subroutine (sub) Records, SNAM = one of the following:
@@ -121,32 +121,32 @@ Subroutine (sub) Records, SNAM = one of the following:
 II - Notes on Soft IOC Implementation of devIocStats
 ----------------------------------------------------
 
-(1) The suspended task count will only include tasks that call 
-    taskwdInsert on startup, including all of iocCore tasks and all sequence 
-    tasks.  Some (many?) support modules that create tasks neglect to call 
+(1) The suspended task count will only include tasks that call
+    taskwdInsert on startup, including all of iocCore tasks and all sequence
+    tasks.  Some (many?) support modules that create tasks neglect to call
     taskwdInsert.
 
 (2) The reboot subroutine record will exit the IOC process.  It is assumed
-    some soft IOC managing process will automatically restart the soft IOC. 
+    some soft IOC managing process will automatically restart the soft IOC.
 
-(3) None of the available methods returns a true value for CPU utilization 
-    for multi-threaded applications on multi-core systems.  
+(3) None of the available methods returns a true value for CPU utilization
+    for multi-threaded applications on multi-core systems.
 
-(4) Implementation of system CPU utilization on Linux and Solaris show the 
+(4) Implementation of system CPU utilization on Linux and Solaris show the
     same values as "top".  A posix implementation that uses getrusage() is
     provided for MacOS where everything else seems to be unavailable.
 
-(5) Implementation of IOC CPU utilization return 0%-100% of CPU load with 
+(5) Implementation of IOC CPU utilization return 0%-100% of CPU load with
     respect to the system (divided by the number of CPUs where applicable).
-    On Solaris, this matches the "top" results. On Linux, "top" 
-    normalizes the process values per core 
-    (so that top_value = ioc_cpuload*no_of_cpus).  To allow showing or changing 
-    the normalization, support for the number of CPUs is provided so that a 
+    On Solaris, this matches the "top" results. On Linux, "top"
+    normalizes the process values per core
+    (so that top_value = ioc_cpuload*no_of_cpus).  To allow showing or changing
+    the normalization, support for the number of CPUs is provided so that a
     calc record can be used to get the desired value.
 
 (6) Memory usage is available for Linux only.
 
-(7) The following records can be instantied per system instead of per IOC 
+(7) The following records can be instantied per system instead of per IOC
     if desired (value is the same for all IOCs on the same system):
     free_bytes, total_bytes, sys_cpuload, no_of_cpus
 
@@ -261,7 +261,7 @@ is that the RTEMS application is terminated using 'exit()' which
 should allow a firmware monitor to resume. However, on some boards
 this is not possible (and 'exit' would not by itself reset the hardware).
 
-For rtems 4.9.1, the bsp_reset function is available on most BSP's which 
+For rtems 4.9.1, the bsp_reset function is available on most BSP's which
 performs a hard reset of the CPU (but not necessarily a VME reset).
 
 
@@ -279,6 +279,3 @@ generic/portable to me.
 BSP Revision is currently not implemented (since this info is IIRC
 not present in RTEMS proper; for BSPs distributed with RTEMS the
 revision matches the kernel revision, however).
-
-
-

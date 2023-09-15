@@ -16,7 +16,7 @@
  *  Author: Ralph Lange (HZB/BESSY)
  *
  *  Modification History
- *  2012-03-16 Helge Brands (PSI) 
+ *  2012-03-16 Helge Brands (PSI)
  *  2009-05-20 Ralph Lange (HZB/BESSY)
  *     Restructured OSD parts
  *
@@ -31,18 +31,15 @@
 
 static char *notimpl = "<not implemented>";
 
-int devIocStatsInitBootInfo (void) { return 0; }
+int devIocStatsInitBootInfo(void) { return 0; }
 
-int devIocStatsGetStartupScript (char **pval)
-{
-    *pval = GetCommandLine() ;
-    
-    return 0;
+int devIocStatsGetStartupScript(char **pval) {
+  *pval = GetCommandLine();
+
+  return 0;
 }
 
-int devIocStatsGetBootLine (char **pval)
-{
-    *pval =notimpl ;
-    return -1;
+int devIocStatsGetBootLine(char **pval) {
+  *pval = notimpl;
+  return -1;
 }
-

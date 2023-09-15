@@ -133,11 +133,10 @@ topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
 controlPv "$(ioc):READACF"
 pressValue "1"
-releaseValue 
+releaseValue
 onLabel "Reload ACF"
 offLabel "Reload ACF"
 3d
 useEnumNumeric
 font "helvetica-medium-r-18.0"
 endObjectProperties
-

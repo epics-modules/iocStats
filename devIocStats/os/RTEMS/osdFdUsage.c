@@ -40,14 +40,14 @@
 
 int devIocStatsInitFDUsage(void) { return 0; }
 
-int devIocStatsGetFDUsage(fdInfo *pval)
-{
-    int i, tot;
+int devIocStatsGetFDUsage(fdInfo *pval) {
+  int i, tot;
 
-    for (tot=0,i=0; i<rtems_libio_number_iops; i++) {
-        if (rtems_libio_iops[i].flags & LIBIO_FLAGS_OPEN) tot++;
-    }
-    pval->used = tot;
-    pval->max = rtems_libio_number_iops;
-    return 0;
+  for (tot = 0, i = 0; i < rtems_libio_number_iops; i++) {
+    if (rtems_libio_iops[i].flags & LIBIO_FLAGS_OPEN)
+      tot++;
+  }
+  pval->used = tot;
+  pval->max = rtems_libio_number_iops;
+  return 0;
 }

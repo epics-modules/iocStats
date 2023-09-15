@@ -13,14 +13,12 @@
 
 #include <devIocStats.h>
 
-int devIocStatsGetPID (double *proc_id)
-{
-    *proc_id = -1.0;
-    return -1;
+int devIocStatsGetPID(double *proc_id) {
+  *proc_id = -1.0;
+  return -1;
 }
 
-int devIocStatsGetPPID (double *proc_id)
-{
-    *proc_id = -1.0;
-    return -1;
+int devIocStatsGetPPID(double *proc_id) {
+  *proc_id = -1.0;
+  return -1;
 }

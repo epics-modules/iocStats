@@ -9,7 +9,8 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdClustInfo.c - Memory buffer cluster usage: default implementation = do nothing */
+/* osdClustInfo.c - Memory buffer cluster usage: default implementation = do
+ * nothing */
 
 /*
  *  Author: Ralph Lange (HZB/BESSY)
@@ -22,6 +23,6 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitClusterInfo (void) { return 0; }
-int devIocStatsGetClusterInfo (int pool, clustInfo *pval) { return -1; }
-int devIocStatsGetClusterUsage (int pool, int *pval) { return -1; }
+int devIocStatsInitClusterInfo(void) { return 0; }
+int devIocStatsGetClusterInfo(int pool, clustInfo *pval) { return -1; }
+int devIocStatsGetClusterUsage(int pool, int *pval) { return -1; }

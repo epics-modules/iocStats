@@ -16,7 +16,7 @@
  *  Author: Ralph Lange (HZB/BESSY)
  *
  *  Modification History
- *  2012-03-16 Helge Brands (PSI) 
+ *  2012-03-16 Helge Brands (PSI)
  *  2009-05-20 Ralph Lange (HZB/BESSY)
  *     Restructured OSD parts
  *
@@ -26,76 +26,74 @@
 #include <epicsStdio.h>
 #include <devIocStats.h>
 
-static char* versionstring;
+static char *versionstring;
 
 int devIocStatsInitSystemInfo(void) {
 
-    DWORD dwVersion = 0;
-    DWORD dwMajorVersion = 0;
-    DWORD dwMinorVersion = 0;
-    DWORD dwBuild = 0;
+  DWORD dwVersion = 0;
+  DWORD dwMajorVersion = 0;
+  DWORD dwMinorVersion = 0;
+  DWORD dwBuild = 0;
 
-    dwVersion = GetVersion();
+  dwVersion = GetVersion();
 
-    // Get the Windows version.
+  // Get the Windows version.
 
-    dwMajorVersion = (DWORD) (LOBYTE(LOWORD(dwVersion)));
-    dwMinorVersion = (DWORD) (HIBYTE(LOWORD(dwVersion)));
+  dwMajorVersion = (DWORD)(LOBYTE(LOWORD(dwVersion)));
+  dwMinorVersion = (DWORD)(HIBYTE(LOWORD(dwVersion)));
 
-    // Get the build number.
+  // Get the build number.
 
-    if (dwVersion < 0x80000000)
-        dwBuild = (DWORD) (HIWORD(dwVersion));
-    versionstring = calloc(40, 1);
-    switch (dwMajorVersion) {
-        case(6):
-        {
-            switch (dwMinorVersion) {
-                case(0):
-                {
-                    sprintf(versionstring, "Windows Vista/server 2003 %d.%d(%d)", dwMajorVersion, dwMinorVersion, dwBuild);
-                    break;
-                }
-                case(1):
-                {
-                    sprintf(versionstring, "Windows 7/Server 2008 %d.%d(%d)", dwMajorVersion, dwMinorVersion, dwBuild);
-                    break;
-                }
-            }
-            break;
-        }
-        case(5):
-        {
-            switch (dwMinorVersion) {
-                case(0):
-                {
-                    sprintf(versionstring, "Windows 2000 %d.%d(%d)", dwMajorVersion, dwMinorVersion, dwBuild);
-                    break;
-                }
-                case(1):
-                {
-                    sprintf(versionstring, "Windows XP %d.%d(%d)", dwMajorVersion, dwMinorVersion, dwBuild);
-                    break;
-                }
-                case(2):
-                {
-                    sprintf(versionstring, "Windows Server 2003 %d.%d(%d)", dwMajorVersion, dwMinorVersion, dwBuild);
-                    break;
-                }
-            }
-            break;
-        }
+  if (dwVersion < 0x80000000)
+    dwBuild = (DWORD)(HIWORD(dwVersion));
+  versionstring = calloc(40, 1);
+  switch (dwMajorVersion) {
+  case (6): {
+    switch (dwMinorVersion) {
+    case (0): {
+      sprintf(versionstring, "Windows Vista/server 2003 %d.%d(%d)",
+              dwMajorVersion, dwMinorVersion, dwBuild);
+      break;
     }
-    return 0;
+    case (1): {
+      sprintf(versionstring, "Windows 7/Server 2008 %d.%d(%d)", dwMajorVersion,
+              dwMinorVersion, dwBuild);
+      break;
+    }
+    }
+    break;
+  }
+  case (5): {
+    switch (dwMinorVersion) {
+    case (0): {
+      sprintf(versionstring, "Windows 2000 %d.%d(%d)", dwMajorVersion,
+              dwMinorVersion, dwBuild);
+      break;
+    }
+    case (1): {
+      sprintf(versionstring, "Windows XP %d.%d(%d)", dwMajorVersion,
+              dwMinorVersion, dwBuild);
+      break;
+    }
+    case (2): {
+      sprintf(versionstring, "Windows Server 2003 %d.%d(%d)", dwMajorVersion,
+              dwMinorVersion, dwBuild);
+      break;
+    }
+    }
+    break;
+  }
+  }
+  return 0;
 }
 
 int devIocStatsGetBSPVersion(char **pval) {
-    *pval = 0; //sysBspRev();
-    return 0;
+  *pval = 0; // sysBspRev();
+  return 0;
 }
 
 int devIocStatsGetKernelVersion(char **pval) {
-    *pval = versionstring;
+  *pval = versionstring;
 
-    return 0;
+  return 0;
 }

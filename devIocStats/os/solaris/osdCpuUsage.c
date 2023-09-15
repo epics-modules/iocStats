@@ -29,53 +29,55 @@ static epicsTimeStamp oldTime;
 static double oldUsage;
 static kstat_ctl_t *kc = NULL;
 
-static double cpuFromKstat (void) {
-    uint64_t user = 0;
-    uint64_t sys = 0;
-    kstat_t *ks;
-    kstat_named_t *kn;
-    unsigned int cpu;
+static double cpuFromKstat(void) {
+  uint64_t user = 0;
+  uint64_t sys = 0;
+  kstat_t *ks;
+  kstat_named_t *kn;
+  unsigned int cpu;
 
-    for (cpu = 0; cpu < NO_OF_CPUS; cpu++) {
-        ks = kstat_lookup(kc, "cpu", cpu, "sys");
-        if (kstat_read(kc, ks, 0) == -1) {
-            perror("kstat_read");
-            return 0.0;
-        }
-        if ((kn = kstat_data_lookup(ks, "cpu_ticks_kernel"))) {
-            sys += kn->value.ui64;
-        }
-        if ((kn = kstat_data_lookup(ks, "cpu_ticks_user"))) {
-            user += kn->value.ui64;
-        }
+  for (cpu = 0; cpu < NO_OF_CPUS; cpu++) {
+    ks = kstat_lookup(kc, "cpu", cpu, "sys");
+    if (kstat_read(kc, ks, 0) == -1) {
+      perror("kstat_read");
+      return 0.0;
     }
-    return (user + sys) / (double)TICKS_PER_SEC;
+    if ((kn = kstat_data_lookup(ks, "cpu_ticks_kernel"))) {
+      sys += kn->value.ui64;
+    }
+    if ((kn = kstat_data_lookup(ks, "cpu_ticks_user"))) {
+      user += kn->value.ui64;
+    }
+  }
+  return (user + sys) / (double)TICKS_PER_SEC;
 }
 
-int devIocStatsInitCpuUsage (void) {
-    if ((kc = kstat_open()) == NULL) {
-        perror("kstat_read");
-    }
-    epicsTimeGetCurrent(&oldTime);
-    oldUsage = cpuFromKstat();
-    return 0;
+int devIocStatsInitCpuUsage(void) {
+  if ((kc = kstat_open()) == NULL) {
+    perror("kstat_read");
+  }
+  epicsTimeGetCurrent(&oldTime);
+  oldUsage = cpuFromKstat();
+  return 0;
 }
 
-int devIocStatsGetCpuUsage (loadInfo *pval) {
-    epicsTimeStamp curTime;
-    double curUsage;
-    double elapsed;
-    double cpuFract;
+int devIocStatsGetCpuUsage(loadInfo *pval) {
+  epicsTimeStamp curTime;
+  double curUsage;
+  double elapsed;
+  double cpuFract;
 
-    epicsTimeGetCurrent(&curTime);
-    curUsage = cpuFromKstat();
-    elapsed = epicsTimeDiffInSeconds(&curTime, &oldTime);
+  epicsTimeGetCurrent(&curTime);
+  curUsage = cpuFromKstat();
+  elapsed = epicsTimeDiffInSeconds(&curTime, &oldTime);
 
-    cpuFract = (elapsed > 0) ? 100 * (curUsage - oldUsage) / (elapsed * NO_OF_CPUS): 0.0;
+  cpuFract = (elapsed > 0)
+                 ? 100 * (curUsage - oldUsage) / (elapsed * NO_OF_CPUS)
+                 : 0.0;
 
-    oldTime = curTime;
-    oldUsage = curUsage;
+  oldTime = curTime;
+  oldUsage = curUsage;
 
-    pval->cpuLoad = cpuFract;
-    return 0;
+  pval->cpuLoad = cpuFract;
+  return 0;
 }

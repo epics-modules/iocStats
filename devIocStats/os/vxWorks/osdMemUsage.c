@@ -29,69 +29,69 @@
 
 #include <devIocStats.h>
 
-static memInfo nope = { 0, 0, 0, 0, 0, 0 };
+static memInfo nope = {0, 0, 0, 0, 0, 0};
 
-int devIocStatsInitMemUsage (void) { return OK; }
+int devIocStatsInitMemUsage(void) { return OK; }
 
-int devIocStatsGetMemUsage (memInfo *pmi) {
+int devIocStatsGetMemUsage(memInfo *pmi) {
 
 /*==============================================================================
  * For VxWorks 6 and above, use memPartGetInfo to retrieve the data
  */
 #if _WRS_VXWORKS_MAJOR >= 6
 
-    *pmi = nope; /* Clear out the memory info structure */
-    MEM_PART_STATS vxPmi;       /* vxWorks memory partition info structure   */
+  *pmi = nope;          /* Clear out the memory info structure */
+  MEM_PART_STATS vxPmi; /* vxWorks memory partition info structure   */
 
-    int status = memPartInfoGet (memSysPartId, &vxPmi);
-    if (0 == status) {
-        pmi->numBytesTotal    = (double)vxPmi.numBytesFree + 
-	                        (double)vxPmi.numBytesAlloc;
-        pmi->numBytesFree     = (double)vxPmi.numBytesFree;
-        pmi->numBytesAlloc    = (double)vxPmi.numBytesAlloc;
-        pmi->numBlocksFree    = (double)vxPmi.numBlocksFree;
-        pmi->numBlocksAlloc   = (double)vxPmi.numBlocksAlloc;
-        pmi->maxBlockSizeFree = (double)vxPmi.maxBlockSizeFree;
-    }/* end if memPartInfoGet succeeded*/
+  int status = memPartInfoGet(memSysPartId, &vxPmi);
+  if (0 == status) {
+    pmi->numBytesTotal =
+        (double)vxPmi.numBytesFree + (double)vxPmi.numBytesAlloc;
+    pmi->numBytesFree = (double)vxPmi.numBytesFree;
+    pmi->numBytesAlloc = (double)vxPmi.numBytesAlloc;
+    pmi->numBlocksFree = (double)vxPmi.numBlocksFree;
+    pmi->numBlocksAlloc = (double)vxPmi.numBlocksAlloc;
+    pmi->maxBlockSizeFree = (double)vxPmi.maxBlockSizeFree;
+  } /* end if memPartInfoGet succeeded*/
 
-    return status;
+  return status;
 
 /*==============================================================================
  * For VxWorks 5, walk the list manually
  */
 #else
-    /* Added by LTH because memPartInfoGet() has a bug when "walking" the list */
-    FAST PART_ID partId = memSysPartId;
-    BLOCK_HDR *  pHdr;
-    DL_NODE *    pNode;
-    double nbf;
-    *pmi = nope;
-    if (ID_IS_SHARED (partId))  /* partition is shared? */
+  /* Added by LTH because memPartInfoGet() has a bug when "walking" the list */
+  FAST PART_ID partId = memSysPartId;
+  BLOCK_HDR *pHdr;
+  DL_NODE *pNode;
+  double nbf;
+  *pmi = nope;
+  if (ID_IS_SHARED(partId)) /* partition is shared? */
+  {
+    /* shared partitions not supported yet */
+    return (ERROR);
+  }
+  /* partition is local */
+  if (OBJ_VERIFY(partId, memPartClassId) != OK)
+    return (ERROR);
+  /* take and keep semaphore until done */
+  semTake(&partId->sem, WAIT_FOREVER);
+  for (pNode = DLL_FIRST(&partId->freeList); pNode != NULL;
+       pNode = DLL_NEXT(pNode)) {
+    pHdr = NODE_TO_HDR(pNode);
     {
-        /* shared partitions not supported yet */
-        return (ERROR);
+      pmi->numBlocksFree++;
+      nbf = 2.0 * (double)pHdr->nWords;
+      pmi->numBytesFree += nbf;
+      if (nbf > pmi->maxBlockSizeFree)
+        pmi->maxBlockSizeFree = nbf;
     }
-    /* partition is local */
-    if (OBJ_VERIFY (partId, memPartClassId) != OK)
-        return (ERROR);
-    /* take and keep semaphore until done */
-    semTake (&partId->sem, WAIT_FOREVER);
-    for (pNode = DLL_FIRST (&partId->freeList); pNode != NULL; pNode = DLL_NEXT (pNode))
-    {
-        pHdr = NODE_TO_HDR (pNode);
-        {
-            pmi->numBlocksFree ++ ;
-	    nbf = 2.0 * (double)pHdr->nWords;
-            pmi->numBytesFree += nbf;
-            if(nbf > pmi->maxBlockSizeFree) 
-	        pmi->maxBlockSizeFree = nbf;
-        }
-    }
-    pmi->numBytesAlloc = 2.0 * (double)partId->curWordsAllocated;
-    pmi->numBlocksAlloc = (double)partId->curBlocksAllocated;
-    semGive (&partId->sem);
+  }
+  pmi->numBytesAlloc = 2.0 * (double)partId->curWordsAllocated;
+  pmi->numBlocksAlloc = (double)partId->curBlocksAllocated;
+  semGive(&partId->sem);
 
-    pmi->numBytesTotal = (double)((unsigned long)sysPhysMemTop());
-    return (OK);
+  pmi->numBytesTotal = (double)((unsigned long)sysPhysMemTop());
+  return (OK);
 #endif
 }

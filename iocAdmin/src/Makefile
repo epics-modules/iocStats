@@ -5,7 +5,7 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
 
-#USR_CFLAGS += 
+#USR_CFLAGS +=
 
 #=============================
 
@@ -24,4 +24,3 @@ SCRIPTS_HOST += iocReleaseCreateDb.py
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-

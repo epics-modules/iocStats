@@ -22,16 +22,14 @@
 
 #include <devIocStats.h>
 
-int devIocStatsInitSystemInfo (void) { return 0; }
+int devIocStatsInitSystemInfo(void) { return 0; }
 
-int devIocStatsGetBSPVersion (char **pval)
-{
-    *pval = sysBspRev();
-    return 0;
+int devIocStatsGetBSPVersion(char **pval) {
+  *pval = sysBspRev();
+  return 0;
 }
 
-int devIocStatsGetKernelVersion (char **pval)
-{
-    *pval = kernelVersion();
-    return 0;
+int devIocStatsGetKernelVersion(char **pval) {
+  *pval = kernelVersion();
+  return 0;
 }

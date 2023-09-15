@@ -9,7 +9,8 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* devIocStatsWaveform.c - Waveform Device Support Routines for IOC statistics - based on */
+/* devIocStatsWaveform.c - Waveform Device Support Routines for IOC statistics -
+ * based on */
 /* devVXStats.c - Device Support Routines for vxWorks statistics */
 /*
  *	Author: Jim Kowalkowski
@@ -44,20 +45,20 @@
  */
 
 /*
-	--------------------------------------------------------------------
-	Note that the valid values for the parm field of the link
-	information are:
+        --------------------------------------------------------------------
+        Note that the valid values for the parm field of the link
+        information are:
 
-	wavefrom (DTYP = "IOC stats"):
+        wavefrom (DTYP = "IOC stats"):
 
-		The supported waveform devices are all static; the record only needs 
-		to be processed once, for which PINI is convenient.
+                The supported waveform devices are all static; the record only
+   needs to be processed once, for which PINI is convenient.
 
-		startup_script	         -path of startup script
-					Default - uses STARTUP and ST_CMD
-					environment variables.
-		bootline		-CPU bootline
-		epics_ver		-EPICS base version
+                startup_script	         -path of startup script
+                                        Default - uses STARTUP and ST_CMD
+                                        environment variables.
+                bootline		-CPU bootline
+                epics_ver		-EPICS base version
                 pwd                     -IOC Current Working Directory
                                         from getcwd
 */
@@ -74,138 +75,133 @@
 
 #include "devIocStats.h"
 
-struct wStats
-{
-	long      number;
-	DEVSUPFUN report;
-	DEVSUPFUN init;
-	DEVSUPFUN init_record;
-	DEVSUPFUN get_ioint_info;
-	DEVSUPFUN read_waveform;
+struct wStats {
+  long number;
+  DEVSUPFUN report;
+  DEVSUPFUN init;
+  DEVSUPFUN init_record;
+  DEVSUPFUN get_ioint_info;
+  DEVSUPFUN read_waveform;
 };
 typedef struct wStats wStats;
 
-struct pvtArea
-{
-	int index;
-	int type;
+struct pvtArea {
+  int index;
+  int type;
 };
 typedef struct pvtArea pvtArea;
 
-typedef void (*statGetWfmFunc)(char*, size_t);
+typedef void (*statGetWfmFunc)(char *, size_t);
 
-struct validGetWfmParms
-{
-	char* name;
-	statGetWfmFunc func;
-	int type;
+struct validGetWfmParms {
+  char *name;
+  statGetWfmFunc func;
+  int type;
 };
 typedef struct validGetWfmParms validGetWfmParms;
 
 static long waveform_init(int pass);
-static long waveform_init_record(waveformRecord*);
-static long waveform_read(waveformRecord*);
+static long waveform_init_record(waveformRecord *);
+static long waveform_read(waveformRecord *);
 
 static void statsSScript(char *, size_t);
 static void statsBootline(char *, size_t);
 static void statsPwd(char *, size_t);
 static void statsEPICSVer(char *, size_t);
 
-static validGetWfmParms statsGetWfmParms[]={
-	{ "startup_script",		statsSScript,		STATIC_TYPE },
-	{ "bootline",			statsBootline,		STATIC_TYPE },
-	{ "epics_ver",			statsEPICSVer,		STATIC_TYPE },
-        { "pwd",			statsPwd,		STATIC_TYPE },
-	{ NULL,NULL,0 }
-};
+static validGetWfmParms statsGetWfmParms[] = {
+    {"startup_script", statsSScript, STATIC_TYPE},
+    {"bootline", statsBootline, STATIC_TYPE},
+    {"epics_ver", statsEPICSVer, STATIC_TYPE},
+    {"pwd", statsPwd, STATIC_TYPE},
+    {NULL, NULL, 0}};
 
-wStats devWaveformStats  ={5,NULL,waveform_init,waveform_init_record,NULL,waveform_read};
-epicsExportAddress(dset,devWaveformStats);
-
+wStats devWaveformStats = {
+    5, NULL, waveform_init, waveform_init_record, NULL, waveform_read};
+epicsExportAddress(dset, devWaveformStats);
+
 /* ---------------------------------------------------------------------- */
 
-static long waveform_init(int pass)
-{
-    if (pass) return 0;
-
-    devIocStatsInitBootInfo();
-
+static long waveform_init(int pass) {
+  if (pass)
     return 0;
+
+  devIocStatsInitBootInfo();
+
+  return 0;
 }
 
-static long waveform_init_record(waveformRecord* pr)
-{
-	int		i;
-	char	*parm;
-	pvtArea	*pvt = NULL;
-	if(pr->ftvl!=menuFtypeCHAR)
-	{
-		recGblRecordError(S_db_badField,(void*)pr,
-			"devWaveformStats (init_record) Illegal FTVL field");
-		return S_db_badField;
-	}
-	if(pr->inp.type!=INST_IO)
-	{
-		recGblRecordError(S_db_badField,(void*)pr,
-			"devWaveformStats (init_record) Illegal INP field");
-		return S_db_badField;
-	}
-	parm = pr->inp.value.instio.string;
-	for(i=0;statsGetWfmParms[i].name && pvt==NULL;i++)
-	{
-		if(strcmp(parm,statsGetWfmParms[i].name)==0)
-		{
-			pvt=(pvtArea*)malloc(sizeof(pvtArea));
-			pvt->index=i;
-			pvt->type=statsGetWfmParms[i].type;
-		}
-	}
-	if(pvt==NULL)
-	{
-		recGblRecordError(S_db_badField,(void*)pr, 
-		   "devWaveformStats (init_record) Illegal INP parm field");
-		return S_db_badField;
-	}
+static long waveform_init_record(waveformRecord *pr) {
+  int i;
+  char *parm;
+  pvtArea *pvt = NULL;
+  if (pr->ftvl != menuFtypeCHAR) {
+    recGblRecordError(S_db_badField, (void *)pr,
+                      "devWaveformStats (init_record) Illegal FTVL field");
+    return S_db_badField;
+  }
+  if (pr->inp.type != INST_IO) {
+    recGblRecordError(S_db_badField, (void *)pr,
+                      "devWaveformStats (init_record) Illegal INP field");
+    return S_db_badField;
+  }
+  parm = pr->inp.value.instio.string;
+  for (i = 0; statsGetWfmParms[i].name && pvt == NULL; i++) {
+    if (strcmp(parm, statsGetWfmParms[i].name) == 0) {
+      pvt = (pvtArea *)malloc(sizeof(pvtArea));
+      pvt->index = i;
+      pvt->type = statsGetWfmParms[i].type;
+    }
+  }
+  if (pvt == NULL) {
+    recGblRecordError(S_db_badField, (void *)pr,
+                      "devWaveformStats (init_record) Illegal INP parm field");
+    return S_db_badField;
+  }
 
-	pr->dpvt=pvt;
-	return 0;	/* success */
+  pr->dpvt = pvt;
+  return 0; /* success */
 }
 
-
-static long waveform_read(waveformRecord* pr)
-{
-	pvtArea* pvt=(pvtArea*)pr->dpvt;
+static long waveform_read(waveformRecord *pr) {
+  pvtArea *pvt = (pvtArea *)pr->dpvt;
 
-	if (!pvt) return S_dev_badInpType;
-	if (pr->nelm > 0) { 
-	  statsGetWfmParms[pvt->index].func((char *)pr->bptr, pr->nelm-1);
-	  pr->nord = strlen((char *)pr->bptr) + 1;
-	  pr->udf=0;
-	}
-	return(0);	/* success */
+  if (!pvt)
+    return S_dev_badInpType;
+  if (pr->nelm > 0) {
+    statsGetWfmParms[pvt->index].func((char *)pr->bptr, pr->nelm - 1);
+    pr->nord = strlen((char *)pr->bptr) + 1;
+    pr->udf = 0;
+  }
+  return (0); /* success */
 }
-
+
 /* -------------------------------------------------------------------- */
 
-typedef int getWaveformFunc (char **dest);
+typedef int getWaveformFunc(char **dest);
 
-static void getWaveform(char *d, size_t nelm, getWaveformFunc func)
-{
-    char *str = "";
+static void getWaveform(char *d, size_t nelm, getWaveformFunc func) {
+  char *str = "";
 
-    func(&str);
-    memset(d, 0, nelm);
-    strncpy(d, str, nelm);
-    d[nelm] = 0;
+  func(&str);
+  memset(d, 0, nelm);
+  strncpy(d, str, nelm);
+  d[nelm] = 0;
 }
 
-static void statsSScript(char *d, size_t nelm)  { getWaveform(d, nelm, devIocStatsGetStartupScript); }
+static void statsSScript(char *d, size_t nelm) {
+  getWaveform(d, nelm, devIocStatsGetStartupScript);
+}
 
-static void statsBootline(char *d, size_t nelm) { getWaveform(d, nelm, devIocStatsGetBootLine); }
+static void statsBootline(char *d, size_t nelm) {
+  getWaveform(d, nelm, devIocStatsGetBootLine);
+}
 
-static void statsPwd(char *d, size_t nelm)      { getWaveform(d, nelm, devIocStatsGetPwd); }
+static void statsPwd(char *d, size_t nelm) {
+  getWaveform(d, nelm, devIocStatsGetPwd);
+}
 
-static void statsEPICSVer(char *d, size_t nelm) {  
+static void statsEPICSVer(char *d, size_t nelm) {
   memset(d, 0, nelm);
   strncpy(d, epicsReleaseVersion, nelm);
   d[nelm] = 0;

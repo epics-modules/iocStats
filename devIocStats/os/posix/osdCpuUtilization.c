@@ -10,7 +10,8 @@
 * in file LICENSE that is included with this distribution.
 \*************************************************************************/
 
-/* osdCpuUtilization.c - CPU utilization info: posix implementation = use getrusage() */
+/* osdCpuUtilization.c - CPU utilization info: posix implementation = use
+ * getrusage() */
 
 /*
  *  Author: Ralph Lange (HZB/BESSY)
@@ -29,37 +30,36 @@ static epicsTimeStamp oldTime;
 static double oldUsage;
 static double scale;
 
-int devIocStatsInitCpuUtilization (loadInfo *pval) {
-    struct rusage stats;
+int devIocStatsInitCpuUtilization(loadInfo *pval) {
+  struct rusage stats;
 
-    epicsTimeGetCurrent(&oldTime);
-    getrusage(RUSAGE_SELF, &stats);
-    oldUsage = stats.ru_utime.tv_sec + stats.ru_utime.tv_usec / 1e6 +
-               stats.ru_stime.tv_sec + stats.ru_stime.tv_usec / 1e6;
-    scale = 100.0f / ((double)TICKS_PER_SEC * NO_OF_CPUS);
-    pval->noOfCpus = NO_OF_CPUS;
-    return 0;
+  epicsTimeGetCurrent(&oldTime);
+  getrusage(RUSAGE_SELF, &stats);
+  oldUsage = stats.ru_utime.tv_sec + stats.ru_utime.tv_usec / 1e6 +
+             stats.ru_stime.tv_sec + stats.ru_stime.tv_usec / 1e6;
+  scale = 100.0f / ((double)TICKS_PER_SEC * NO_OF_CPUS);
+  pval->noOfCpus = NO_OF_CPUS;
+  return 0;
 }
 
-int devIocStatsGetCpuUtilization (loadInfo *pval)
-{
-    epicsTimeStamp curTime;
-    double curUsage;
-    struct rusage stats;
-    double elapsed;
-    double cpuFract;
+int devIocStatsGetCpuUtilization(loadInfo *pval) {
+  epicsTimeStamp curTime;
+  double curUsage;
+  struct rusage stats;
+  double elapsed;
+  double cpuFract;
 
-    epicsTimeGetCurrent(&curTime);
-    getrusage(RUSAGE_SELF, &stats);
-    curUsage = stats.ru_utime.tv_sec + stats.ru_utime.tv_usec / 1e6 +
-               stats.ru_stime.tv_sec + stats.ru_stime.tv_usec / 1e6;
-    elapsed = epicsTimeDiffInSeconds(&curTime, &oldTime);
+  epicsTimeGetCurrent(&curTime);
+  getrusage(RUSAGE_SELF, &stats);
+  curUsage = stats.ru_utime.tv_sec + stats.ru_utime.tv_usec / 1e6 +
+             stats.ru_stime.tv_sec + stats.ru_stime.tv_usec / 1e6;
+  elapsed = epicsTimeDiffInSeconds(&curTime, &oldTime);
 
-    cpuFract = (elapsed > 0) ? (curUsage - oldUsage) * scale / elapsed : 0.0;
+  cpuFract = (elapsed > 0) ? (curUsage - oldUsage) * scale / elapsed : 0.0;
 
-    oldTime = curTime;
-    oldUsage = curUsage;
+  oldTime = curTime;
+  oldUsage = curUsage;
 
-    pval->iocLoad = cpuFract;
-    return 0;
+  pval->iocLoad = cpuFract;
+  return 0;
 }
