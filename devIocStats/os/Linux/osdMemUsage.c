@@ -38,7 +38,7 @@ int devIocStatsInitMemUsage(void) {
 int devIocStatsGetMemUsage(memInfo *pval) {
   static char statmfile[] = "/proc/self/statm";
   static char memfile[] = "/proc/meminfo";
-  unsigned long size, resident, value, total = 0, memfree = 0;
+  unsigned long size, resident = 0, value, total = 0, memfree = 0;
   char title[32] = "";
   char units[32] = "";
   int ret = 0;
