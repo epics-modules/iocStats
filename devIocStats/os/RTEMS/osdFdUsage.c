@@ -38,9 +38,16 @@
 
 #include <devIocStats.h>
 
+#if __RTEMS_MAJOR__ >= 6
+#include <rtems/libio_.h>
+#endif /* _RTEMS_MAJOR__ >= 6 */
+
 int devIocStatsInitFDUsage(void) { return 0; }
 
 int devIocStatsGetFDUsage(fdInfo *pval) {
+#if __RTEMS_MAJOR__ >= 6
+  pval->used = rtems_libio_count_open_iops();
+#else
   int i, tot;
 
   for (tot = 0, i = 0; i < rtems_libio_number_iops; i++) {
@@ -48,6 +55,7 @@ int devIocStatsGetFDUsage(fdInfo *pval) {
       tot++;
   }
   pval->used = tot;
+#endif /* _RTEMS_MAJOR__ >= 6 */
   pval->max = rtems_libio_number_iops;
   return 0;
 }

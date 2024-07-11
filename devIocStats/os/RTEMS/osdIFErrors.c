@@ -40,12 +40,47 @@
 
 #include <devIocStats.h>
 
+int devIocStatsInitIFErrors(void) { return 0; }
+
+#if RTEMS_LIBBSD_STACK
+
+#include <ifaddrs.h>
+#include <net/if.h>
+
+int devIocStatsGetIFErrors(ifErrInfo *pval) {
+  struct ifaddrs *ifap, *ifa;
+
+  /* add all interfaces' errors */
+  pval->ierrors = 0;
+  pval->oerrors = 0;
+
+  if (getifaddrs(&ifap) != 0) {
+    return -1;
+  }
+
+  for (ifa = ifap; ifa; ifa = ifa->ifa_next) {
+    if (ifa->ifa_addr->sa_family != AF_LINK) {
+      continue;
+    }
+#define IFA_STAT(s) (((struct if_data *)ifa->ifa_data)->ifi_##s)
+    pval->ierrors += IFA_STAT(ierrors);
+    pval->oerrors += IFA_STAT(oerrors);
+  }
+
+  freeifaddrs(ifap);
+
+  return 0;
+}
+
+#else /* RTEMS_LIBBSD_STACK */
+
+#include <net/if_var.h>
+
 /* This would otherwise need _KERNEL to be defined... */
 extern struct ifnet *ifnet;
 
-int devIocStatsInitIFErrors(void) { return 0; }
-
 int devIocStatsGetIFErrors(ifErrInfo *pval) {
+
   struct ifnet *ifp;
 
   /* add all interfaces' errors */
@@ -57,3 +92,5 @@ int devIocStatsGetIFErrors(ifErrInfo *pval) {
   }
   return 0;
 }
+
+#endif /* RTEMS_LIBBSD_STACK */
