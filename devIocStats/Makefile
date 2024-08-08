@@ -16,6 +16,8 @@ INC += devIocStatsOSD.h
 
 LIBRARY_IOC = devIocStats
 
+USR_CFLAGS += -DUSE_TYPED_RSET
+
 devIocStats_LIBS = $(EPICS_BASE_IOC_LIBS)
 devIocStats_SYS_LIBS_solaris = kstat
 devIocStats_SYS_LIBS_WIN32 += psapi
