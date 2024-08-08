@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/epics-modules/iocStats.svg?branch=master)](https://travis-ci.org/epics-modules/iocStats)
+## Build Status: [![build](https://github.com/epics-modules/iocStats/actions/workflows/ci-build.yml/badge.svg)](https://github.com/epics-modules/iocStats/actions/workflows/ci-build.yml) [![pre-commit](https://github.com/epics-modules/iocStats/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/epics-modules/iocStats/actions/workflows/pre-commit.yml)
+
 
 # iocStats - EPICS IOC Status and Control
 
