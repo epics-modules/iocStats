@@ -12,6 +12,9 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #
 DB += siteEnvVars.db
+ifeq ($(strip $(WITH_PVA)),YES)
+  DB += epicsPVAEnvVars.db
+endif
 DB += iocAdminScanMon.db
 DB += ioc.db
 DB += iocRTOS.db

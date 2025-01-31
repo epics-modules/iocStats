@@ -35,6 +35,8 @@
 #MSI=$(EPICS_SITE_TOP)/extensions/$(EXTENSIONS_MODULE_VERSION)/bin/$(EPICS_HOST_ARCH)/msi
 #MSI=msi
 
+WITH_PVA=$(if $(strip $(EPICS_PVA_MAJOR_VERSION) $(PVXS_MAJOR_VERSION)),YES,NO)
+
 -include $(SUPPORT)/configure/CONFIG_SITE
 
 # These allow developers to override the CONFIG_SITE variable
