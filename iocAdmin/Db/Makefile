@@ -48,4 +48,5 @@ $(COMMON_DIR)/iocAdminVxWorks.db: $(COMMON_DIR)/iocAdminScanMon.db $(COMMON_DIR)
 
 $(COMMON_DIR)/siteEnvVars.substitutions: $(EPICS_BASE)/configure/CONFIG_SITE_ENV $(EPICS_BASE)/configure/CONFIG_ENV
 	@echo Expanding siteEnvVars.substitutions from $^....
-	@perl ../genSiteEnvVars.pl < $^ > $@
+	@$(RM) $@
+	@$(PERL) ../genSiteEnvVars.pl $^ > $@
