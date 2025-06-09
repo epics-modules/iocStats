@@ -1,4 +1,11 @@
 #!/usr/bin/env perl
+#
+# Usage:  genSiteEnvVars.pl CONFIG_SITE_ENV
+#
+# Reads an EPICS CONFIG_SITE_ENV file and outputs
+# a substitutions file to generate appropriate EPICS
+# records for those variables via iocEnvVar.template
+#
 print <<__END__;
 file "iocEnvVar.template" {
   pattern { ENVNAME, ENVVAR, ENVTYPE }
