@@ -49,5 +49,5 @@ $(COMMON_DIR)/siteEnvVars.substitutions: $(EPICS_BASE)/configure/CONFIG_SITE_ENV
 	@echo "{" >> $@
 	@echo "pattern" >> $@
 	@echo "{ ENVNAME, ENVVAR, ENVTYPE }" >> $@
-	@sed -n 's/^EPICS_\([A-Z_]*\).*/{\1, EPICS_\1, epics}/p' $^ >> $@
+	@sed -n 's/^EPICS_\([A-Z_]*\).*/{\1, EPICS_\1, epics}/p' $^ | sort -u >> $@
 	@echo "}" >> $@
