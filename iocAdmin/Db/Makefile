@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #
 DB += siteEnvVars.db
+DB += legacyEnvVars.db
 DB += iocAdminScanMon.db
 DB += ioc.db
 DB += iocRTOS.db
