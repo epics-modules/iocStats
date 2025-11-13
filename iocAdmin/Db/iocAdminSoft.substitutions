@@ -22,11 +22,6 @@ file iocAdminScanMon.db
         { IOCNAME }
         { "$(IOC)" }
 }
-file epicsEnvVars.db
-{
-pattern { IOCNAME, }
-	{ "$(IOC)" }
-}
 
 file siteEnvVars.db
 {

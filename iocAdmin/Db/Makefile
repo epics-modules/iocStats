@@ -38,11 +38,11 @@ include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 
-$(COMMON_DIR)/iocAdminRTEMS.db:   $(COMMON_DIR)/iocAdminScanMon.db $(COMMON_DIR)/epicsEnvVars.db $(COMMON_DIR)/siteEnvVars.db
+$(COMMON_DIR)/iocAdminRTEMS.db:   $(COMMON_DIR)/iocAdminScanMon.db $(COMMON_DIR)/siteEnvVars.db
 
-$(COMMON_DIR)/iocAdminSoft.db:    $(COMMON_DIR)/iocAdminScanMon.db $(COMMON_DIR)/epicsEnvVars.db $(COMMON_DIR)/siteEnvVars.db
+$(COMMON_DIR)/iocAdminSoft.db:    $(COMMON_DIR)/iocAdminScanMon.db $(COMMON_DIR)/siteEnvVars.db
 
-$(COMMON_DIR)/iocAdminVxWorks.db: $(COMMON_DIR)/iocAdminScanMon.db $(COMMON_DIR)/epicsEnvVars.db $(COMMON_DIR)/siteEnvVars.db
+$(COMMON_DIR)/iocAdminVxWorks.db: $(COMMON_DIR)/iocAdminScanMon.db $(COMMON_DIR)/siteEnvVars.db
 
 $(COMMON_DIR)/siteEnvVars.substitutions: $(EPICS_BASE)/configure/CONFIG_SITE_ENV $(EPICS_BASE)/configure/CONFIG_ENV
 	@echo Expanding siteEnvVars.substitutions from $^....

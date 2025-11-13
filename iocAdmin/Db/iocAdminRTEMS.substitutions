@@ -32,7 +32,7 @@ file iocRTEMSOnly.template
 pattern { IOCNAME }
         { "$(IOC)"  }
 }
-file epicsEnvVars.db
+file siteEnvVars.db
 {
 pattern { IOCNAME, }
         { "$(IOC)" }

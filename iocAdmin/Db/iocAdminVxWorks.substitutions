@@ -32,7 +32,7 @@ file iocVxWorksOnly.template
 pattern { IOCNAME , DAT_MBUF_FLNK     }
         { "$(IOC)"  , "$(IOC):CLUST_0_0_0"}
 }
-file epicsEnvVars.db
+file siteEnvVars.db
 {
 pattern { IOCNAME, }
         { "$(IOC)" }
