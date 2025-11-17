@@ -135,17 +135,6 @@
   (EPICS_VERSION_INT == VERSION_INT(3, 16, 2, 0)) ||                           \
       (EPICS_VERSION_INT >= VERSION_INT(7, 0, 2, 0))
 
-struct aStats {
-  long number;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN get_ioint_info;
-  DEVSUPFUN read_write;
-  DEVSUPFUN special_linconv;
-};
-typedef struct aStats aStats;
-
 struct pvtArea {
   int index;
   int type;
@@ -178,16 +167,16 @@ struct scanInfo {
 typedef struct scanInfo scanInfo;
 
 static long ai_init(int pass);
-static long ai_init_record(aiRecord *);
-static long ai_read(aiRecord *);
-static long ai_ioint_info(int cmd, aiRecord *pr, IOSCANPVT *iopvt);
+static long ai_init_record(dbCommon *);
+static long ai_read(struct aiRecord *);
+static long ai_ioint_info(int cmd, dbCommon *pcommon, IOSCANPVT *iopvt);
 
 static long ai_clusts_init(int pass);
-static long ai_clusts_init_record(aiRecord *);
-static long ai_clusts_read(aiRecord *);
+static long ai_clusts_init_record(dbCommon *);
+static long ai_clusts_read(struct aiRecord *);
 
-static long ao_init_record(aoRecord *pr);
-static long ao_write(aoRecord *);
+static long ao_init_record(dbCommon *pcommon);
+static long ao_write(struct aoRecord *);
 
 static void statsFreeBytes(double *);
 static void statsFreeBlocks(double *);
@@ -283,13 +272,14 @@ static validGetParms statsGetParms[] = {
     {"cbHighQueueOverruns", statsCbHighQOverruns, QUEUE_TYPE},
     {NULL, NULL, 0}};
 
-aStats devAiStats = {6,       NULL, ai_init, ai_init_record, ai_ioint_info,
-                     ai_read, NULL};
+aidset devAiStats = {
+    {6, NULL, ai_init, ai_init_record, ai_ioint_info}, ai_read, NULL};
 epicsExportAddress(dset, devAiStats);
-aStats devAoStats = {6, NULL, NULL, ao_init_record, NULL, ao_write, NULL};
+aodset devAoStats = {{6, NULL, NULL, ao_init_record, NULL}, ao_write, NULL};
 epicsExportAddress(dset, devAoStats);
-aStats devAiClusts = {
-    6, NULL, ai_clusts_init, ai_clusts_init_record, NULL, ai_clusts_read, NULL};
+aidset devAiClusts = {{6, NULL, ai_clusts_init, ai_clusts_init_record, NULL},
+                      ai_clusts_read,
+                      NULL};
 epicsExportAddress(dset, devAiClusts);
 
 static memInfo meminfo = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
@@ -480,17 +470,18 @@ static long ai_init(int pass) {
   return 0;
 }
 
-static long ai_clusts_init_record(aiRecord *pr) {
+static long ai_clusts_init_record(dbCommon *pcommon) {
   int elem = 0, size = 0, pool = 0, parms = 0;
   char *parm;
   pvtClustArea *pvt = NULL;
+  struct aiRecord *prec = (struct aiRecord *)pcommon;
 
-  if (pr->inp.type != INST_IO) {
-    recGblRecordError(S_db_badField, (void *)pr,
+  if (prec->inp.type != INST_IO) {
+    recGblRecordError(S_db_badField, (void *)prec,
                       "devAiClusts (init_record) Illegal INP field");
     return S_db_badField;
   }
-  parm = pr->inp.value.instio.string;
+  parm = prec->inp.value.instio.string;
   parms = sscanf(parm, "clust_info %d %d %d", &pool, &size, &elem);
   if ((parms == 3) && (pool >= 0) && (pool < 2) && (size >= 0) && (elem >= 0) &&
       (elem < 4)) {
@@ -502,27 +493,28 @@ static long ai_clusts_init_record(aiRecord *pr) {
     }
   }
   if (pvt == NULL) {
-    recGblRecordError(S_db_badField, (void *)pr,
+    recGblRecordError(S_db_badField, (void *)prec,
                       "devAiClusts (init_record) Illegal INP parm field");
     return S_db_badField;
   }
   /* Make sure record processing routine does not perform any conversion*/
-  pr->linr = menuConvertNO_CONVERSION;
-  pr->dpvt = pvt;
+  prec->linr = menuConvertNO_CONVERSION;
+  prec->dpvt = pvt;
   return 0;
 }
 
-static long ai_init_record(aiRecord *pr) {
+static long ai_init_record(dbCommon *pcommon) {
   int i;
   char *parm;
   pvtArea *pvt = NULL;
+  struct aiRecord *prec = (struct aiRecord *)pcommon;
 
-  if (pr->inp.type != INST_IO) {
-    recGblRecordError(S_db_badField, (void *)pr,
+  if (prec->inp.type != INST_IO) {
+    recGblRecordError(S_db_badField, (void *)prec,
                       "devAiStats (init_record) Illegal INP field");
     return S_db_badField;
   }
-  parm = pr->inp.value.instio.string;
+  parm = prec->inp.value.instio.string;
   for (i = 0; statsGetParms[i].name && pvt == NULL; i++) {
     if (strcmp(parm, statsGetParms[i].name) == 0) {
       pvt = (pvtArea *)malloc(sizeof(pvtArea));
@@ -532,28 +524,29 @@ static long ai_init_record(aiRecord *pr) {
   }
 
   if (pvt == NULL) {
-    recGblRecordError(S_db_badField, (void *)pr,
+    recGblRecordError(S_db_badField, (void *)prec,
                       "devAiStats (init_record) Illegal INP parm field");
     return S_db_badField;
   }
 
   /* Make sure record processing routine does not perform any conversion*/
-  pr->linr = menuConvertNO_CONVERSION;
-  pr->dpvt = pvt;
+  prec->linr = menuConvertNO_CONVERSION;
+  prec->dpvt = pvt;
   return 0;
 }
 
-static long ao_init_record(aoRecord *pr) {
+static long ao_init_record(dbCommon *pcommon) {
   int type;
   char *parm;
   pvtArea *pvt = NULL;
+  struct aoRecord *prec = (struct aoRecord *)pcommon;
 
-  if (pr->out.type != INST_IO) {
-    recGblRecordError(S_db_badField, (void *)pr,
+  if (prec->out.type != INST_IO) {
+    recGblRecordError(S_db_badField, (void *)prec,
                       "devAiStats (init_record) Illegal OUT field");
     return S_db_badField;
   }
-  parm = pr->out.value.instio.string;
+  parm = prec->out.value.instio.string;
   for (type = 0; type < TOTAL_TYPES; type++) {
     if (parmTypes[type].name && strcmp(parm, parmTypes[type].name) == 0) {
       pvt = (pvtArea *)malloc(sizeof(pvtArea));
@@ -562,23 +555,24 @@ static long ao_init_record(aoRecord *pr) {
     }
   }
   if (pvt == NULL) {
-    recGblRecordError(S_db_badField, (void *)pr,
+    recGblRecordError(S_db_badField, (void *)prec,
                       "devAiStats (init_record) Illegal INP parm field");
     return S_db_badField;
   }
 
   /* Initialize value with default if not set in db */
-  if (!pr->val)
-    pr->val = parmTypes[pvt->type].scan_rate;
+  if (!prec->val)
+    prec->val = parmTypes[pvt->type].scan_rate;
 
   /* Make sure record processing routine does not perform any conversion*/
-  pr->linr = menuConvertNO_CONVERSION;
-  pr->dpvt = pvt;
+  prec->linr = menuConvertNO_CONVERSION;
+  prec->dpvt = pvt;
   return 2;
 }
 
-static long ai_ioint_info(int cmd, aiRecord *pr, IOSCANPVT *iopvt) {
-  pvtArea *pvt = (pvtArea *)pr->dpvt;
+static long ai_ioint_info(int cmd, dbCommon *pcommon, IOSCANPVT *iopvt) {
+  struct aiRecord *prec = (struct aiRecord *)pcommon;
+  pvtArea *pvt = (pvtArea *)prec->dpvt;
 
   if (!pvt)
     return S_dev_badInpType;
@@ -600,8 +594,8 @@ static long ai_ioint_info(int cmd, aiRecord *pr, IOSCANPVT *iopvt) {
   return 0;
 }
 
-static long ao_write(aoRecord *pr) {
-  pvtArea *pvt = (pvtArea *)pr->dpvt;
+static long ao_write(struct aoRecord *prec) {
+  pvtArea *pvt = (pvtArea *)prec->dpvt;
   int type;
 
   if (!pvt)
@@ -609,16 +603,16 @@ static long ao_write(aoRecord *pr) {
 
   type = pvt->type;
 
-  if (pr->val > 0.0)
-    scan[type].rate_sec = pr->val;
+  if (prec->val > 0.0)
+    scan[type].rate_sec = prec->val;
   else
-    pr->val = scan[type].rate_sec;
-  pr->udf = 0;
+    prec->val = scan[type].rate_sec;
+  prec->udf = 0;
   return 0;
 }
 
 /* Cluster info read - returning value from global array */
-static long ai_clusts_read(aiRecord *prec) {
+static long ai_clusts_read(struct aiRecord *prec) {
   pvtClustArea *pvt = (pvtClustArea *)prec->dpvt;
 
   if (!pvt)
@@ -636,9 +630,9 @@ static long ai_clusts_read(aiRecord *prec) {
 }
 
 /* Generic read - calling function from table */
-static long ai_read(aiRecord *pr) {
+static long ai_read(struct aiRecord *prec) {
   double val;
-  pvtArea *pvt = (pvtArea *)pr->dpvt;
+  pvtArea *pvt = (pvtArea *)prec->dpvt;
 
   if (!pvt)
     return S_dev_badInpType;
@@ -646,8 +640,8 @@ static long ai_read(aiRecord *pr) {
   epicsMutexLock(scan_mutex);
   statsGetParms[pvt->index].func(&val);
   epicsMutexUnlock(scan_mutex);
-  pr->val = val;
-  pr->udf = 0;
+  prec->val = val;
+  prec->udf = 0;
   return 2; /* don't convert */
 }
 

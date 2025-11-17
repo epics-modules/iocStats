@@ -4,6 +4,10 @@ Release Notes for iocStats
 
 # Releases
 
+## Unreleased
+
+* Use typed device support table
+
 ## iocStats-R3-2-0:
 
 **NOTE** Please note that as of 3-2-0, there is a pre-commit (https://pre-commit.com/) workflow that
