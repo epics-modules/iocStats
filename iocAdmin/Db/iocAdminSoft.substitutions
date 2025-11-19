@@ -26,5 +26,11 @@ file iocAdminScanMon.db
 file siteEnvVars.db
 {
 pattern { IOCNAME, }
-	{ "$(IOC)" }
+        { "$(IOC)" }
+}
+
+file siteEnvVarAliases.template
+{
+pattern { IOCNAME  }
+        { "$(IOC)" }
 }

@@ -37,6 +37,11 @@ file siteEnvVars.db
 pattern { IOCNAME, }
         { "$(IOC)" }
 }
+file siteEnvVarAliases.template
+{
+pattern { IOCNAME  }
+        { "$(IOC)" }
+}
 file iocCluster.template
 {
 #                   Pool   Size
