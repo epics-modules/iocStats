@@ -4,6 +4,20 @@ Release Notes for iocStats
 
 # Releases
 
+## Unreleased
+
+**DEPRECATION NOTE** Due to fetching variables directly from CONFIG_ENV from EPICS base, some
+PV names have changes. For example, we are changing `$(IOCNAME):CA_CONN_TIME` to
+`$(IOCNAME):CA_CONN_TMO` in order to match the name of the environment variable that
+is the origin of the PV; see `siteEnvVarAliases.template` for the full list.
+
+These PVs are to be considered deprecated and will be removed entirely in a future
+release.
+
+* Changes by Simon Rose:
+  - Fetch CONFIG_ENV variables from EPICS base for record population in
+    `iocAdminSoft*` .db files
+
 ## iocStats-R3-2-0:
 
 **NOTE** Please note that as of 3-2-0, there is a pre-commit (https://pre-commit.com/) workflow that
