@@ -22,14 +22,15 @@ file iocAdminScanMon.db
         { IOCNAME }
         { "$(IOC)" }
 }
-file epicsEnvVars.db
-{
-pattern { IOCNAME, }
-	{ "$(IOC)" }
-}
 
 file siteEnvVars.db
 {
 pattern { IOCNAME, }
-	{ "$(IOC)" }
+        { "$(IOC)" }
+}
+
+file siteEnvVarAliases.template
+{
+pattern { IOCNAME  }
+        { "$(IOC)" }
 }
