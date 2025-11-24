@@ -57,14 +57,14 @@ jobs:
             base: "3.14"
             deps: "deps"
 
-          - os: windows-2019
-            cmp: vs2019
+          - os: windows-2022
+            cmp: vs2022
             configuration: default
             base: "7.0"
             deps: "deps"
 
-          - os: windows-2019
-            cmp: vs2019
+          - os: windows-2022
+            cmp: vs2022
             configuration: static
             base: "7.0"
             deps: "deps"
