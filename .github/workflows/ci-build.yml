@@ -51,12 +51,6 @@ jobs:
             base: "3.15"
             deps: "deps"
 
-          - os: ubuntu-latest
-            cmp: gcc
-            configuration: static
-            base: "3.14"
-            deps: "deps"
-
           - os: windows-2022
             cmp: vs2022
             configuration: default
