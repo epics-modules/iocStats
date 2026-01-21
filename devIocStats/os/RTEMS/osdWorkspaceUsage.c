@@ -31,6 +31,10 @@ int devIocStatsInitWorkspaceUsage(void) { return 0; }
 
 int devIocStatsGetWorkspaceUsage(memInfo *pval) {
   Heap_Information_block info;
+#if __RTEMS_MAJOR__ >= 6
+  malloc_info(&info);
+  pval->numBytesTotal = info.Stats.size;
+#else /* __RTEMS_MAJOR__ >= 6 */
 #ifdef RTEMS_PROTECTED_HEAP
   _Protected_heap_Get_information(&_Workspace_Area, &info);
 #else  /* RTEMS_PROTECTED_HEAP */
@@ -45,6 +49,7 @@ int devIocStatsGetWorkspaceUsage(memInfo *pval) {
 #else
   pval->numBytesTotal = _Configuration_Table->work_space_size;
 #endif
+#endif /* _RTEMS_MAJOR__ >= 6 */
   pval->numBytesFree = info.Free.total;
   pval->numBytesAlloc = info.Used.total;
   return 0;

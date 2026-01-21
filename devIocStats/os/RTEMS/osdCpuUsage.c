@@ -48,6 +48,38 @@
 
 #include <devIocStats.h>
 
+static double prev_total = 0;
+static double prev_idle = 0;
+
+#if __RTEMS_MAJOR__ >= 6
+
+#include <sys/resource.h>
+
+static double oldActiveUsage;
+static double oldIdleUsage;
+
+/*
+ * See IEEE Std 1003.1-1988 (“POSIX.1”) for getrusage()
+ */
+static void cpu_ticks(double *total, double *idle) {
+  struct rusage stats;
+  double curActive;
+  double curIdle;
+  getrusage(RUSAGE_SELF, &stats);
+  curActive = (double)stats.ru_utime.tv_sec + stats.ru_utime.tv_usec / 1e6;
+  curIdle = (double)stats.ru_stime.tv_sec + stats.ru_stime.tv_usec / 1e6;
+  *idle = curIdle - oldIdleUsage;
+  *total = *idle + (curActive - oldActiveUsage);
+  oldActiveUsage = curActive;
+  oldIdleUsage = curIdle;
+}
+
+#else /* RTEMS 6 or later */
+
+/*
+ * Direct access to the Object information table
+ */
+
 #if (__RTEMS_MAJOR__ > 4) || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 7)
 typedef char objName[13];
 #define RTEMS_OBJ_GET_NAME(tc, name)                                           \
@@ -78,9 +110,6 @@ typedef char *objName;
  * The cpu usage is done the same way as in cpukit/libmisc/cpuuse
  * from the RTEMS source.
  */
-
-static double prev_total = 0;
-static double prev_idle = 0;
 
 static void cpu_ticks(double *total, double *idle) {
   Objects_Information *obj;
@@ -115,6 +144,8 @@ static void cpu_ticks(double *total, double *idle) {
     }
   }
 }
+
+#endif /* RTEMS 6 or later */
 
 int devIocStatsInitCpuUsage(void) {
   cpu_ticks(&prev_total, &prev_idle);

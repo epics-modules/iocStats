@@ -27,7 +27,6 @@ int devIocStatsInitCpuUtilization(loadInfo *pval) {
   return 0;
 }
 
-/* FIXME: This relies on the device support calling it after CpuUsage */
 int devIocStatsGetCpuUtilization(loadInfo *pval) {
   pval->iocLoad = pval->cpuLoad;
   return 0;
