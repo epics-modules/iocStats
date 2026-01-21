@@ -6,6 +6,8 @@ Release Notes for iocStats
 
 ## Unreleased
 
+## iocStats-R4-0-0:
+
 **DEPRECATION NOTE** Due to fetching variables directly from CONFIG_ENV from EPICS base, some
 PV names have changes. For example, we are changing `$(IOCNAME):CA_CONN_TIME` to
 `$(IOCNAME):CA_CONN_TMO` in order to match the name of the environment variable that
@@ -15,8 +17,12 @@ These PVs are to be considered deprecated and will be removed entirely in a futu
 release.
 
 * Changes by Simon Rose:
-  - Fetch CONFIG_ENV variables from EPICS base for record population in
+  - Fetch CONFIG_ENV/CONFIG_SITE_ENV variables from EPICS base for record population in
     `iocAdminSoft*` .db files
+  - Add ENV vars from PVA-related variables
+
+* Various fixes and improvements by Ralph Lange, Freddie Akeroyd,
+  Ronald Pandolfi, Andrew Johnson
 
 ## iocStats-R3-2-0:
 
