@@ -11,7 +11,7 @@ use warnings;
 
 print <<__END__;
 file "iocEnvVar.template" {
-pattern { ENVNAME, ENVVAR, DESC, ENVTYPE }
+pattern { ENVNAME, ENVVAR, ENVDESC, ENVTYPE }
 __END__
 
 my @epics_vars;
