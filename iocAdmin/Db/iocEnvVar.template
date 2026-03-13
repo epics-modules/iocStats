@@ -1,5 +1,5 @@
 record(stringin, "$(IOCNAME):$(ENVNAME)") {
-    field(DESC, "$(DESC)")
+    field(DESC, "$(ENVDESC)")
     field(DTYP, "IOC $(ENVTYPE) var")
     field(INP,  "@$(ENVVAR)")
     field(PINI, "YES")
