@@ -11,7 +11,7 @@ use warnings;
 
 print <<__END__;
 file "iocEnvVar.template" {
-  pattern { ENVNAME, ENVVAR, ENVTYPE }
+pattern { ENVNAME, ENVVAR, DESC, ENVTYPE }
 __END__
 
 my @epics_vars;
@@ -24,6 +24,11 @@ my %varcount;
 my @unique_vars = grep { not $varcount{$_}++ } @epics_vars;
 
 foreach (@unique_vars) {
-    print "{ $_, EPICS_$_, epics }\n"
+    my $desc = "EPICS_$_";
+    if (length($desc) > 40) {
+        $desc = substr($desc, 0, 40);
+    }
+    print "# Truncated description for $_ to fit 40 characters: $desc\n" if $desc ne "EPICS_$_";
+    print "{ $_, EPICS_$_, $desc, epics }\n";
 }
 print("}\n");
