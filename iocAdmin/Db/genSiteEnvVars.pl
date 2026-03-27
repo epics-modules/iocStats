@@ -28,7 +28,7 @@ foreach (@unique_vars) {
     if (length($desc) > 40) {
         $desc = substr($desc, 0, 40);
     }
-    print "# Truncated description for $_ to fit 40 characters: $desc\n" if $desc ne "EPICS_$_";
+    print STDERR "Warning: Truncated description for $_ to fit 40 characters: $desc\n" if $desc ne "EPICS_$_";
     print "{ $_, EPICS_$_, $desc, epics }\n";
 }
 print("}\n");
