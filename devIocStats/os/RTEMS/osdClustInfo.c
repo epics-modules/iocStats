@@ -56,10 +56,70 @@
 
 #include <devIocStats.h>
 
-/* This would otherwise need _KERNEL to be defined... */
-extern struct mbstat mbstat;
+#include <sys/param.h>
+#include <sys/mbuf.h>
 
 int devIocStatsInitClusterInfo(void) { return 0; }
+
+#if RTEMS_LIBBSD_STACK
+
+#include <memstat.h>
+
+int devIocStatsGetClusterInfo(int pool, clustInfo *pval) {
+  struct memory_type_list *mtlp;
+  struct memory_type *mtp;
+
+  if (pool == DATA_POOL) {
+    return -1;
+  }
+
+  mtlp = memstat_mtl_alloc();
+  if (mtlp == NULL) {
+    return -1;
+  }
+
+  if (memstat_sysctl_all(mtlp, 0) < 0) {
+    memstat_mtl_free(mtlp);
+    return -1;
+  }
+
+  mtp = memstat_mtl_find(mtlp, ALLOCATOR_UMA, MBUF_MEM_NAME);
+  if (mtp == NULL) {
+    memstat_mtl_free(mtlp);
+    return -1;
+  }
+
+  (*pval)[0][0] = memstat_get_size(mtp);
+  (*pval)[0][1] = memstat_get_count(mtp);
+  (*pval)[0][2] = memstat_get_free(mtp);
+  (*pval)[0][3] = (*pval)[0][1] - (*pval)[0][2];
+
+  mtp = memstat_mtl_find(mtlp, ALLOCATOR_UMA, MBUF_CLUSTER_MEM_NAME);
+  if (mtp == NULL) {
+    memstat_mtl_free(mtlp);
+    return -1;
+  }
+
+  (*pval)[0][0] = memstat_get_size(mtp);
+  (*pval)[0][1] = memstat_get_count(mtp);
+  (*pval)[0][2] = memstat_get_free(mtp);
+  (*pval)[0][3] = (*pval)[0][1] - (*pval)[0][2];
+
+  memstat_mtl_free(mtlp);
+
+  return 0;
+}
+
+int devIocStatsGetClusterUsage(int pool, int* pval) {
+  (void) pool;
+  (void) pval;
+  return -1;
+}
+
+#else /* RTEMS_LIBBSD_STACK */
+
+/* This would otherwise need _KERNEL to be defined... */
+extern struct mbstat mbstat;
 
 int devIocStatsGetClusterInfo(int pool, clustInfo *pval) {
   if (pool == DATA_POOL)
@@ -86,3 +146,5 @@ int devIocStatsGetClusterUsage(int pool, int *pval) {
 
   return 0;
 }
+
+#endif /* RTEMS_LIBBSD_STACK */
