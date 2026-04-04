@@ -283,13 +283,13 @@ static validGetParms statsGetParms[] = {
     {"cbHighQueueOverruns", statsCbHighQOverruns, QUEUE_TYPE},
     {NULL, NULL, 0}};
 
-aStats devAiStats = {6,       NULL, ai_init, ai_init_record, ai_ioint_info,
-                     ai_read, NULL};
+aStats devAiStats = {6,       NULL, (DEVSUPFUN)ai_init, (DEVSUPFUN)ai_init_record, (DEVSUPFUN)ai_ioint_info,
+                     (DEVSUPFUN)ai_read, NULL};
 epicsExportAddress(dset, devAiStats);
-aStats devAoStats = {6, NULL, NULL, ao_init_record, NULL, ao_write, NULL};
+aStats devAoStats = {6, NULL, NULL, (DEVSUPFUN)ao_init_record, NULL, (DEVSUPFUN)ao_write, NULL};
 epicsExportAddress(dset, devAoStats);
 aStats devAiClusts = {
-    6, NULL, ai_clusts_init, ai_clusts_init_record, NULL, ai_clusts_read, NULL};
+    6, NULL, (DEVSUPFUN)ai_clusts_init, (DEVSUPFUN)ai_clusts_init_record, NULL, (DEVSUPFUN)ai_clusts_read, NULL};
 epicsExportAddress(dset, devAiClusts);
 
 static memInfo meminfo = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};

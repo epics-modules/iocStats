@@ -117,7 +117,7 @@ static validGetWfmParms statsGetWfmParms[] = {
     {NULL, NULL, 0}};
 
 wStats devWaveformStats = {
-    5, NULL, waveform_init, waveform_init_record, NULL, waveform_read};
+    5, NULL, (DEVSUPFUN)waveform_init, (DEVSUPFUN)waveform_init_record, NULL, (DEVSUPFUN)waveform_read};
 epicsExportAddress(dset, devWaveformStats);
 
 /* ---------------------------------------------------------------------- */
