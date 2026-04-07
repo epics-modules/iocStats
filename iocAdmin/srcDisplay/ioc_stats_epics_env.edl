@@ -391,7 +391,7 @@ fgColor index 14
 bgColor index 3
 useDisplayBg
 value {
-  "EPICS_TIMEZONE"
+  "EPICS_TZ"
 }
 autoSize
 endObjectProperties
@@ -406,7 +406,7 @@ x 190
 y 255
 w 310
 h 20
-controlPv "$(ioc):TIMEZONE"
+controlPv "$(ioc):TZ"
 displayMode "decimal"
 fgColor index 16
 fgAlarm

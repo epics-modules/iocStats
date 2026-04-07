@@ -144,7 +144,7 @@
   </widget>
   <widget type="label" version="2.0.0">
     <name>text #36</name>
-    <text>EPICS_TIMEZONE</text>
+    <text>EPICS_TZ</text>
     <x>5</x>
     <y>210</y>
     <width>126</width>
@@ -356,7 +356,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #80</name>
-    <pv_name>$(ioc):TIMEZONE</pv_name>
+    <pv_name>$(ioc):TZ</pv_name>
     <x>270</x>
     <y>210</y>
     <width>250</width>

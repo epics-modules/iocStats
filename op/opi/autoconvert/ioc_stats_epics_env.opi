@@ -476,7 +476,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <scripts />
     <show_scrollbar>false</show_scrollbar>
-    <text>EPICS_TIMEZONE</text>
+    <text>EPICS_TZ</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
@@ -1043,7 +1043,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(ioc):TIMEZONE</pv_name>
+    <pv_name>$(ioc):TZ</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />

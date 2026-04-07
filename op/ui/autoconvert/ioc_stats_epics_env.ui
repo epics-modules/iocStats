@@ -482,7 +482,7 @@ border-radius: 2px;
                 </color>
             </property>
             <property name="text">
-                <string>EPICS_TIMEZONE</string>
+                <string>EPICS_TZ</string>
             </property>
             <property name="fontScaleMode">
                 <enum>ESimpleLabel::WidthAndHeight</enum>
@@ -1052,7 +1052,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):TIMEZONE</string>
+                <string>$(ioc):TZ</string>
             </property>
             <property name="foreground">
                 <color alpha="255">

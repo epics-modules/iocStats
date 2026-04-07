@@ -216,7 +216,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="EPICS_TIMEZONE"
+	textix="EPICS_TZ"
 }
 text {
 	object {
@@ -390,7 +390,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):TIMEZONE"
+		chan="$(ioc):TZ"
 		clr=14
 		bclr=4
 	}
