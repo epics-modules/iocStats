@@ -262,7 +262,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):CA_SRVR_PORT"
+		chan="$(ioc):CA_SERVER_PORT"
 		clr=14
 		bclr=4
 	}
@@ -278,7 +278,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):CA_RPTR_PORT"
+		chan="$(ioc):CA_REPEATER_PORT"
 		clr=14
 		bclr=4
 	}
@@ -310,7 +310,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):CA_AUTO_ADDR"
+		chan="$(ioc):CA_AUTO_ADDR_LIST"
 		clr=14
 		bclr=4
 	}
@@ -326,7 +326,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):CA_MAX_ARRAY"
+		chan="$(ioc):CA_MAX_ARRAY_BYTES"
 		clr=14
 		bclr=4
 	}
@@ -342,7 +342,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):CA_CONN_TIME"
+		chan="$(ioc):CA_CONN_TMO"
 		clr=14
 		bclr=4
 	}
@@ -358,7 +358,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):CA_SRCH_TIME"
+		chan="$(ioc):CA_MAX_SEARCH_PERIOD"
 		clr=14
 		bclr=4
 	}
@@ -374,7 +374,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):CA_BEAC_TIME"
+		chan="$(ioc):CA_BEACON_PERIOD"
 		clr=14
 		bclr=4
 	}

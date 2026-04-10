@@ -620,7 +620,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):CA_SRVR_PORT</string>
+                <string>$(ioc):CA_SERVER_PORT</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -674,7 +674,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):CA_RPTR_PORT</string>
+                <string>$(ioc):CA_REPEATER_PORT</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -782,7 +782,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):CA_AUTO_ADDR</string>
+                <string>$(ioc):CA_AUTO_ADDR_LIST</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -836,7 +836,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):CA_MAX_ARRAY</string>
+                <string>$(ioc):CA_MAX_ARRAY_BYTES</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -890,7 +890,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):CA_CONN_TIME</string>
+                <string>$(ioc):CA_CONN_TMO</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -944,7 +944,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):CA_SRCH_TIME</string>
+                <string>$(ioc):CA_MAX_SEARCH_PERIOD</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -998,7 +998,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):CA_BEAC_TIME</string>
+                <string>$(ioc):CA_BEACON_PERIOD</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
