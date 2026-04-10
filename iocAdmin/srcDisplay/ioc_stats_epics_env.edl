@@ -70,7 +70,7 @@ x 280
 y 80
 w 150
 h 20
-controlPv "$(ioc):CA_RPTR_PORT"
+controlPv "$(ioc):CA_REPEATER_PORT"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -112,7 +112,7 @@ x 280
 y 55
 w 150
 h 20
-controlPv "$(ioc):CA_SRVR_PORT"
+controlPv "$(ioc):CA_SERVER_PORT"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -154,7 +154,7 @@ x 280
 y 180
 w 150
 h 20
-controlPv "$(ioc):CA_CONN_TIME"
+controlPv "$(ioc):CA_CONN_TMO"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -238,7 +238,7 @@ x 280
 y 130
 w 150
 h 20
-controlPv "$(ioc):CA_AUTO_ADDR"
+controlPv "$(ioc):CA_AUTO_ADDR_LIST"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -280,7 +280,7 @@ x 280
 y 205
 w 150
 h 20
-controlPv "$(ioc):CA_SRCH_TIME"
+controlPv "$(ioc):CA_MAX_SEARCH_PERIOD"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -322,7 +322,7 @@ x 280
 y 230
 w 150
 h 20
-controlPv "$(ioc):CA_BEAC_TIME"
+controlPv "$(ioc):CA_BEACON_PERIOD"
 displayMode "decimal"
 fgColor index 16
 fgAlarm
@@ -364,7 +364,7 @@ x 280
 y 155
 w 150
 h 20
-controlPv "$(ioc):CA_MAX_ARRAY"
+controlPv "$(ioc):CA_MAX_ARRAY_BYTES"
 displayMode "decimal"
 fgColor index 16
 fgAlarm

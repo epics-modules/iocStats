@@ -297,7 +297,7 @@ x 304
 y 50
 w 196
 h 15
-controlPv "$(ioc):CA_SRVR_PORT"
+controlPv "$(ioc):CA_SERVER_PORT"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
@@ -321,7 +321,7 @@ x 304
 y 70
 w 196
 h 15
-controlPv "$(ioc):CA_RPTR_PORT"
+controlPv "$(ioc):CA_REPEATER_PORT"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
@@ -369,7 +369,7 @@ x 304
 y 110
 w 196
 h 15
-controlPv "$(ioc):CA_AUTO_ADDR"
+controlPv "$(ioc):CA_AUTO_ADDR_LIST"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
@@ -393,7 +393,7 @@ x 304
 y 130
 w 196
 h 15
-controlPv "$(ioc):CA_MAX_ARRAY"
+controlPv "$(ioc):CA_MAX_ARRAY_BYTES"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
@@ -417,7 +417,7 @@ x 304
 y 150
 w 196
 h 15
-controlPv "$(ioc):CA_CONN_TIME"
+controlPv "$(ioc):CA_CONN_TMO"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
@@ -441,7 +441,7 @@ x 304
 y 170
 w 196
 h 15
-controlPv "$(ioc):CA_SRCH_TIME"
+controlPv "$(ioc):CA_MAX_SEARCH_PERIOD"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
@@ -465,7 +465,7 @@ x 304
 y 190
 w 196
 h 15
-controlPv "$(ioc):CA_BEAC_TIME"
+controlPv "$(ioc):CA_BEACON_PERIOD"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"

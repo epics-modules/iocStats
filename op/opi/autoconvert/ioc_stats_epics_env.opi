@@ -635,7 +635,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(ioc):CA_SRVR_PORT</pv_name>
+    <pv_name>$(ioc):CA_SERVER_PORT</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -686,7 +686,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(ioc):CA_RPTR_PORT</pv_name>
+    <pv_name>$(ioc):CA_REPEATER_PORT</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -788,7 +788,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(ioc):CA_AUTO_ADDR</pv_name>
+    <pv_name>$(ioc):CA_AUTO_ADDR_LIST</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -839,7 +839,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(ioc):CA_MAX_ARRAY</pv_name>
+    <pv_name>$(ioc):CA_MAX_ARRAY_BYTES</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -890,7 +890,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(ioc):CA_CONN_TIME</pv_name>
+    <pv_name>$(ioc):CA_CONN_TMO</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -941,7 +941,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(ioc):CA_SRCH_TIME</pv_name>
+    <pv_name>$(ioc):CA_MAX_SEARCH_PERIOD</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -992,7 +992,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(ioc):CA_BEAC_TIME</pv_name>
+    <pv_name>$(ioc):CA_BEACON_PERIOD</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
