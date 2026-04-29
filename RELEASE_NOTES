@@ -6,6 +6,21 @@ Release Notes for iocStats
 
 ## Unreleased
 
+## iocStats-R4-0-1:
+
+### Bugfixes
+
+* Changes by Jakub Wlodek:
+  - Environment variables from EPICS base that were too long would cause the
+    generated database files to fail to load. These are now truncated
+* Changes by Pedro Nariyoshi
+  - Fix included screens/opis/whatnot to match updated record names
+
+### Other changes
+
+* Chagnes by Simon Rose:
+  - Standardise expansion of .db(.d) files
+
 ## iocStats-R4-0-0:
 
 **DEPRECATION NOTE** Due to fetching variables directly from CONFIG_ENV from EPICS base, some
