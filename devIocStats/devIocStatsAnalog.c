@@ -200,6 +200,7 @@ static void statsWSAllocBytes(double *);
 static void statsWSTotalBytes(double *);
 static void statsCpuUsage(double *);
 static void statsCpuUtilization(double *);
+static void statsCpuTemperature(double *);
 static void statsNoOfCpus(double *);
 static void statsSuspendedTasks(double *);
 static void statsFdUsage(double *);
@@ -281,6 +282,7 @@ static validGetParms statsGetParms[] = {
     {"cbHighQueueHiWtrMrk", statsCbHighQHiWtrMrk, QUEUE_TYPE},
     {"cbHighQueueUsed", statsCbHighQUsed, QUEUE_TYPE},
     {"cbHighQueueOverruns", statsCbHighQOverruns, QUEUE_TYPE},
+    {"cpu_temperature", statsCpuTemperature, LOAD_TYPE},
     {NULL, NULL, 0}};
 
 aStats devAiStats = {6,       NULL, ai_init, ai_init_record, ai_ioint_info,
@@ -303,6 +305,7 @@ static scanInfo scan[TOTAL_TYPES] = {{0}};
 static fdInfo fdusage = {0, 0};
 static loadInfo loadinfo = {1, 0., 0.};
 static int susptasknumber = 0;
+static int cputemperature = 0;
 static int recordnumber = 0;
 static clustInfo clustinfo[2] = {{{0}}, {{0}}};
 static int mbufnumber[2] = {0, 0};
@@ -374,12 +377,15 @@ static void scan_time(int type) {
   case LOAD_TYPE: {
     loadInfo loadinfo_local = {1, 0., 0.};
     int susptasknumber_local = 0;
+    int cputemperature_local = 0;
     devIocStatsGetCpuUsage(&loadinfo_local);
     devIocStatsGetCpuUtilization(&loadinfo_local);
     devIocStatsGetSuspTasks(&susptasknumber_local);
+    devIocStatsGetCpuTemp(&cputemperature_local);
     epicsMutexLock(scan_mutex);
     loadinfo = loadinfo_local;
     susptasknumber = susptasknumber_local;
+    cputemperature = cputemperature_local;
     epicsMutexUnlock(scan_mutex);
     break;
   }
@@ -683,6 +689,7 @@ static void statsWSTotalBytes(double *val) {
 }
 static void statsCpuUsage(double *val) { *val = loadinfo.cpuLoad; }
 static void statsCpuUtilization(double *val) { *val = loadinfo.iocLoad; }
+static void statsCpuTemperature(double *val) { *val = (double)cputemperature/1000.; }
 static void statsNoOfCpus(double *val) { *val = (double)loadinfo.noOfCpus; }
 static void statsSuspendedTasks(double *val) { *val = (double)susptasknumber; }
 static void statsFdUsage(double *val) { *val = (double)fdusage.used; }
