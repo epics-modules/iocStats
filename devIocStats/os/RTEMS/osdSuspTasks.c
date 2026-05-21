@@ -43,6 +43,7 @@
 int devIocStatsInitSuspTasks(void) { return 0; }
 
 int devIocStatsGetSuspTasks(int *pval) {
+#if __RTEMS_MAJOR__ < 6
   Objects_Control *o;
   Objects_Id id = OBJECTS_ID_INITIAL_INDEX;
   Objects_Id nid;
@@ -59,4 +60,7 @@ int devIocStatsGetSuspTasks(int *pval) {
   }
   *pval = n;
   return 0;
+#else  /* __RTEMS_MAJOR__ < 6 */
+  return -1;
+#endif /* __RTEMS_MAJOR__ < 6 */
 }

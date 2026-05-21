@@ -43,8 +43,21 @@
  *              info of 100% free (but 100% of 0 is still 0).
  *
  */
+/*
+ * Updated to RTEMS 6
+ *   Contemporary Software
+ *    Chris Johns <chris@contemporary.software>
+ */
+#include "epicsVersion.h"
+
+#define RTEMS_VERSION_INT                                                      \
+  VERSION_INT(__RTEMS_MAJOR__, __RTEMS_MINOR__, __RTEMS_REVISION__, 0)
+
+#if RTEMS_VERSION_INT <= VERSION_INT(5, 0, 0, 0)
+/*
+ * This define effects rtems.h includes on 4.10 and earlier
+ */
 #define __RTEMS_VIOLATE_KERNEL_VISIBILITY__
-#include <rtems.h>
 #include <bsp.h>
 #include <rtems/libcsupport.h>
 #include <rtems/libio_.h>
@@ -53,6 +66,9 @@
 #include <sys/socket.h>
 #include <net/if.h>
 #include <net/if_var.h>
+#endif /* RTEMS 5 and earlier */
+
+#include <rtems.h>
 
 #undef malloc
 #undef free
@@ -67,17 +83,36 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "epicsVersion.h"
+#if RTEMS_VERSION_INT < VERSION_INT(6, 0, 0, 0)
+#define rtems_bsd_reset() bsp_reset()
+#else /* RTEMS_VERSION_INT < VERSION_INT(6, 0, 0, 0) */
+#define rtems_bsd_reset() bsp_reset()
+#endif /* RTEMS_VERSION_INT < VERSION_INT(6, 0, 0, 0) */
 
-#define RTEMS_VERSION_INT                                                      \
-  VERSION_INT(__RTEMS_MAJOR__, __RTEMS_MINOR__, __RTEMS_REVISION__, 0)
+#if RTEMS_LEGACY_STACK
+
+#include <rtems/rtems_bsdnet.h>
 
 #define sysBootLine rtems_bsdnet_bootp_cmdline
+#else
+#define sysBootLine "BOOTP cmdline not supported"
+#endif
 /* Override default STARTUP environment variable to use INIT */
 #undef STARTUP
 #define STARTUP "INIT"
+
 #define CLUSTSIZES 2 /* only regular mbufs and clusters */
 
+#if RTEMS_VERSION_INT >= VERSION_INT(6, 0, 0, 0)
+
+#define NO_OF_CPUS rtems_configuration_get_maximum_processors()
+
+#include <bsp/bootcard.h>
+static inline void reboot(int val) {
+  (void)val;
+  bsp_reset(RTEMS_FATAL_SOURCE_APPLICATION, 112233);
+}
+#else                           /* RTEMS 6 or later */
 #ifdef RTEMS_BSP_PGM_EXEC_AFTER /* only defined on uC5282 */
 #define reboot(x) bsp_reset(0)
 #elif (defined(__PPC__) && RTEMS_VERSION_INT > VERSION_INT(4, 9, 0, 0))
@@ -91,3 +126,4 @@
 #else
 #define reboot(x) rtemsReboot()
 #endif
+#endif /* RTEMS 6 or later */
