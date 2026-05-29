@@ -75,15 +75,12 @@
 
 #include "devIocStats.h"
 
-struct wStats {
-  long number;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN get_ioint_info;
-  DEVSUPFUN read_waveform;
-};
-typedef struct wStats wStats;
+#ifndef HAS_wfdset
+typedef struct wfdset {
+  dset common;
+  long (*read_wf)(struct waveformRecord *prec);
+} wfdset;
+#endif
 
 struct pvtArea {
   int index;
@@ -101,7 +98,7 @@ struct validGetWfmParms {
 typedef struct validGetWfmParms validGetWfmParms;
 
 static long waveform_init(int pass);
-static long waveform_init_record(waveformRecord *);
+static long waveform_init_record(struct dbCommon *pcommon);
 static long waveform_read(waveformRecord *);
 
 static void statsSScript(char *, size_t);
@@ -116,8 +113,16 @@ static validGetWfmParms statsGetWfmParms[] = {
     {"pwd", statsPwd, STATIC_TYPE},
     {NULL, NULL, 0}};
 
-wStats devWaveformStats = {
-    5, NULL, waveform_init, waveform_init_record, NULL, waveform_read};
+wfdset devWaveformStats = {
+    {
+        5,
+        NULL,
+        waveform_init,
+        waveform_init_record,
+        NULL
+    },
+    waveform_read
+};
 epicsExportAddress(dset, devWaveformStats);
 
 /* ---------------------------------------------------------------------- */
@@ -131,7 +136,8 @@ static long waveform_init(int pass) {
   return 0;
 }
 
-static long waveform_init_record(waveformRecord *pr) {
+static long waveform_init_record(struct dbCommon *pcommon) {
+  waveformRecord *pr = (waveformRecord *) pcommon;
   int i;
   char *parm;
   pvtArea *pvt = NULL;
