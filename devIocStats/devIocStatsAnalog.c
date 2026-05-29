@@ -135,16 +135,21 @@
   (EPICS_VERSION_INT == VERSION_INT(3, 16, 2, 0)) ||                           \
       (EPICS_VERSION_INT >= VERSION_INT(7, 0, 2, 0))
 
-struct aStats {
-  long number;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN get_ioint_info;
-  DEVSUPFUN read_write;
-  DEVSUPFUN special_linconv;
-};
-typedef struct aStats aStats;
+#ifndef HAS_aidset
+typedef struct aidset {
+  dset common;
+  long (*read_ai)(struct aiRecord *prec);
+  long (*special_linconv)(struct aiRecord *prec, int after);
+} aidset;
+#endif
+
+#ifndef HAS_aodset
+typedef struct aodset {
+  dset common;
+  long (*write_ao)(struct aoRecord *prec);
+  long (*special_linconv)(struct aoRecord *prec, int after);
+} aodset;
+#endif
 
 struct pvtArea {
   int index;
@@ -178,15 +183,15 @@ struct scanInfo {
 typedef struct scanInfo scanInfo;
 
 static long ai_init(int pass);
-static long ai_init_record(aiRecord *);
+static long ai_init_record(struct dbCommon *pcommon);
 static long ai_read(aiRecord *);
-static long ai_ioint_info(int cmd, aiRecord *pr, IOSCANPVT *iopvt);
+static long ai_ioint_info(int cmd, struct dbCommon *pcommon, IOSCANPVT *iopvt);
 
 static long ai_clusts_init(int pass);
-static long ai_clusts_init_record(aiRecord *);
+static long ai_clusts_init_record(struct dbCommon *pcommon);
 static long ai_clusts_read(aiRecord *);
 
-static long ao_init_record(aoRecord *pr);
+static long ao_init_record(struct dbCommon *pcommon);
 static long ao_write(aoRecord *);
 
 static void statsFreeBytes(double *);
@@ -283,13 +288,41 @@ static validGetParms statsGetParms[] = {
     {"cbHighQueueOverruns", statsCbHighQOverruns, QUEUE_TYPE},
     {NULL, NULL, 0}};
 
-aStats devAiStats = {6,       NULL, ai_init, ai_init_record, ai_ioint_info,
-                     ai_read, NULL};
+aidset devAiStats = {
+    {
+        6,
+        NULL,
+        ai_init,
+        ai_init_record,
+        ai_ioint_info
+    },
+    ai_read,
+    NULL
+};
 epicsExportAddress(dset, devAiStats);
-aStats devAoStats = {6, NULL, NULL, ao_init_record, NULL, ao_write, NULL};
+aodset devAoStats = {
+    {
+        6,
+        NULL,
+        NULL,
+        ao_init_record,
+        NULL
+    },
+    ao_write,
+    NULL
+};
 epicsExportAddress(dset, devAoStats);
-aStats devAiClusts = {
-    6, NULL, ai_clusts_init, ai_clusts_init_record, NULL, ai_clusts_read, NULL};
+aidset devAiClusts = {
+    {
+        6,
+        NULL,
+        ai_clusts_init,
+        ai_clusts_init_record,
+        NULL
+    },
+    ai_clusts_read,
+    NULL
+};
 epicsExportAddress(dset, devAiClusts);
 
 static memInfo meminfo = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
@@ -480,7 +513,8 @@ static long ai_init(int pass) {
   return 0;
 }
 
-static long ai_clusts_init_record(aiRecord *pr) {
+static long ai_clusts_init_record(struct dbCommon *pcommon) {
+  aiRecord *pr = (aiRecord *) pcommon;
   int elem = 0, size = 0, pool = 0, parms = 0;
   char *parm;
   pvtClustArea *pvt = NULL;
@@ -512,7 +546,8 @@ static long ai_clusts_init_record(aiRecord *pr) {
   return 0;
 }
 
-static long ai_init_record(aiRecord *pr) {
+static long ai_init_record(struct dbCommon *pcommon) {
+  aiRecord *pr = (aiRecord *) pcommon;
   int i;
   char *parm;
   pvtArea *pvt = NULL;
@@ -543,7 +578,8 @@ static long ai_init_record(aiRecord *pr) {
   return 0;
 }
 
-static long ao_init_record(aoRecord *pr) {
+static long ao_init_record(struct dbCommon *pcommon) {
+  aoRecord *pr = (aoRecord *) pcommon;
   int type;
   char *parm;
   pvtArea *pvt = NULL;
@@ -577,7 +613,8 @@ static long ao_init_record(aoRecord *pr) {
   return 2;
 }
 
-static long ai_ioint_info(int cmd, aiRecord *pr, IOSCANPVT *iopvt) {
+static long ai_ioint_info(int cmd, struct dbCommon *pcommon, IOSCANPVT *iopvt) {
+  aiRecord *pr = (aiRecord *) pcommon;
   pvtArea *pvt = (pvtArea *)pr->dpvt;
 
   if (!pvt)
