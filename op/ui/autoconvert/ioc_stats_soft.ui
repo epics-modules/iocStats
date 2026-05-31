@@ -85,6 +85,16 @@ caChoice &gt; QPushButton {
       padding: 1px;
 }
 
+/* when font specified, no font sizing is done any more,  font: 10pt; is not bad. You could Enable this when you converted from .adl files
+caRelatedDisplay  &gt; QPushButton {
+font: 10pt;
+}
+
+caShellCommand  &gt; QPushButton {
+font: 10pt;
+}
+*/
+
 caSlider::groove:horizontal {
 border: 1px solid #bbb;
 background: lightgrey;
@@ -529,7 +539,7 @@ border-radius: 2px;
                 <enum>Solid</enum>
             </property>
             <property name="xyPairs">
-                <string>0,170;</string>
+                <string>0,0;0,170;</string>
             </property>
         </widget>
         <widget class="caLabel" name="caLabel_10">
@@ -1300,7 +1310,7 @@ border-radius: 2px;
                 <string>Alarm Limits</string>
             </property>
             <property name="files">
-                <string>ioc_stats_limits.adl</string>
+                <string>ioc_stats_limits.ui </string>
             </property>
             <property name="args">
                 <string>ioc=$(ioc)</string>
@@ -1342,7 +1352,7 @@ border-radius: 2px;
                 <string>EPICS Env Vars</string>
             </property>
             <property name="files">
-                <string>ioc_stats_epics_env.adl</string>
+                <string>ioc_stats_epics_env.ui </string>
             </property>
             <property name="args">
                 <string>ioc=$(ioc)</string>
@@ -2165,7 +2175,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):IOC_CPU_LOAD</string>
+                <string>$(ioc):IOC_SINGLE_CPU_LOAD</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -2927,7 +2937,7 @@ border-radius: 2px;
                 <string>Reload ACF</string>
             </property>
             <property name="files">
-                <string>ioc_stats_reloadacf_confirm.adl</string>
+                <string>ioc_stats_reloadacf_confirm.ui </string>
             </property>
             <property name="args">
                 <string>ioc=$(ioc)</string>
@@ -2969,7 +2979,7 @@ border-radius: 2px;
                 <string>Reboot</string>
             </property>
             <property name="files">
-                <string>ioc_stats_reboot_confirm.adl</string>
+                <string>ioc_stats_reboot_confirm.ui </string>
             </property>
             <property name="args">
                 <string>ioc=$(ioc)</string>
