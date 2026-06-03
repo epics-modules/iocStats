@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/devel/devIocStats-3-1-15/op/adl/ioc_stats_limits.adl"
-	version=030109
+	name="/home/epics/support/devIocStats-3-1-16/op/adl/ioc_stats_limits.adl"
+	version=030117
 }
 display {
 	object {
@@ -204,8 +204,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_CLNT_CNT"
-		clr=14
-		bclr=9
+		clr=60
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -221,8 +221,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_CONN_CNT"
-		clr=14
-		bclr=9
+		clr=60
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -238,8 +238,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):SUSP_TASK_CNT"
-		clr=14
-		bclr=9
+		clr=61
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -255,8 +255,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):FD_FREE"
-		clr=14
-		bclr=9
+		clr=60
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -272,8 +272,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):IOC_CPU_LOAD"
-		clr=14
-		bclr=9
+		clr=60
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -289,8 +289,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):MEM_FREE"
-		clr=14
-		bclr=9
+		clr=60
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -333,7 +333,7 @@ text {
 	control {
 		chan="$(ioc):CA_CLNT_CNT.HIGH"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -348,7 +348,7 @@ text {
 	control {
 		chan="$(ioc):CA_CONN_CNT.HIGH"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -363,7 +363,7 @@ text {
 	control {
 		chan="$(ioc):IOC_CPU_LOAD.HIGH"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -378,7 +378,7 @@ text {
 	control {
 		chan="$(ioc):FD_FREE.LOLO"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -393,7 +393,7 @@ text {
 	control {
 		chan="$(ioc):MEM_FREE.LOLO"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -434,7 +434,7 @@ text {
 	control {
 		chan="$(ioc):CA_CLNT_CNT.HIHI"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -449,7 +449,7 @@ text {
 	control {
 		chan="$(ioc):CA_CONN_CNT.HIHI"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -464,7 +464,7 @@ text {
 	control {
 		chan="$(ioc):SUSP_TASK_CNT.HIHI"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -479,7 +479,7 @@ text {
 	control {
 		chan="$(ioc):IOC_CPU_LOAD.HIHI"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -494,7 +494,7 @@ text {
 	control {
 		chan="$(ioc):FD_FREE.LOW"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}
@@ -509,7 +509,7 @@ text {
 	control {
 		chan="$(ioc):MEM_FREE.LOW"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	limits {
 	}

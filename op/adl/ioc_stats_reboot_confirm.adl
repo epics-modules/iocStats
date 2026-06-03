@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/devel/devIocStats-3-1-14/op/adl/ioc_stats_reboot_confirm.adl"
-	version=030107
+	name="/home/epics/support/devIocStats-3-1-16/op/adl/ioc_stats_reboot_confirm.adl"
+	version=030117
 }
 display {
 	object {
@@ -107,7 +107,7 @@ text {
 		height=25
 	}
 	"basic attribute" {
-		clr=14
+		clr=54
 	}
 	textix="$(ioc):"
 }
@@ -156,7 +156,7 @@ text {
 	control {
 		chan="$(ioc):SysReset"
 		clr=14
-		bclr=5
+		bclr=51
 	}
 	label="Reboot Now!"
 	press_msg="1"
