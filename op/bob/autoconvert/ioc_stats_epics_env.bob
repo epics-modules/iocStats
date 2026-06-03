@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2026-06-03 08:09:36 by epics-->
 <display version="2.0.0">
   <name>ioc_stats_epics_env</name>
   <x>1126</x>
@@ -205,6 +206,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -225,6 +230,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -245,6 +254,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -265,6 +278,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -285,6 +302,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -305,6 +326,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -325,6 +350,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -345,6 +374,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -365,6 +398,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -385,6 +422,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -405,6 +446,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -425,6 +470,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>

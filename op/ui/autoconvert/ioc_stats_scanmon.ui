@@ -4,8 +4,8 @@
 <widget class="QMainWindow" name="MainWindow">
     <property name="geometry">
         <rect>
-            <x>477</x>
-            <y>485</y>
+            <x>780</x>
+            <y>457</y>
             <width>580</width>
             <height>276</height>
         </rect>
@@ -84,6 +84,16 @@ caChoice &gt; QPushButton {
       text-align: left;
       padding: 1px;
 }
+
+/* when font specified, no font sizing is done any more,  font: 10pt; is not bad. You could Enable this when you converted from .adl files
+caRelatedDisplay  &gt; QPushButton {
+font: 10pt;
+}
+
+caShellCommand  &gt; QPushButton {
+font: 10pt;
+}
+*/
 
 caSlider::groove:horizontal {
 border: 1px solid #bbb;
@@ -480,16 +490,16 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
+                    <red>115</red>
+                    <green>255</green>
+                    <blue>107</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -538,9 +548,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>200</red>
-                    <green>200</green>
-                    <blue>200</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="stackingMode">
@@ -574,9 +584,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -625,9 +635,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -669,16 +679,16 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
+                    <red>115</red>
+                    <green>255</green>
+                    <blue>107</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -727,9 +737,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>200</red>
-                    <green>200</green>
-                    <blue>200</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="stackingMode">
@@ -763,9 +773,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -814,9 +824,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -858,16 +868,16 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
+                    <red>115</red>
+                    <green>255</green>
+                    <blue>107</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -916,9 +926,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>200</red>
-                    <green>200</green>
-                    <blue>200</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="stackingMode">
@@ -952,9 +962,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -1003,9 +1013,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -1047,16 +1057,16 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
+                    <red>115</red>
+                    <green>255</green>
+                    <blue>107</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -1105,9 +1115,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>200</red>
-                    <green>200</green>
-                    <blue>200</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="stackingMode">
@@ -1141,9 +1151,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -1192,9 +1202,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -1236,16 +1246,16 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
+                    <red>115</red>
+                    <green>255</green>
+                    <blue>107</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -1294,9 +1304,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>200</red>
-                    <green>200</green>
-                    <blue>200</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="stackingMode">
@@ -1330,9 +1340,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -1381,9 +1391,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -1425,16 +1435,16 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
+                    <red>115</red>
+                    <green>255</green>
+                    <blue>107</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -1483,9 +1493,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>200</red>
-                    <green>200</green>
-                    <blue>200</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="stackingMode">
@@ -1519,9 +1529,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -1570,9 +1580,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -1614,16 +1624,16 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
+                    <red>115</red>
+                    <green>255</green>
+                    <blue>107</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -1672,9 +1682,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>200</red>
-                    <green>200</green>
-                    <blue>200</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="stackingMode">
@@ -1708,9 +1718,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">
@@ -1759,9 +1769,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="limitsMode">

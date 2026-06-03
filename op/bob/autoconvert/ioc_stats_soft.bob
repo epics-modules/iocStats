@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2026-05-31 15:22:19 by epics-->
+<!--Saved on 2026-06-03 08:09:37 by epics-->
 <display version="2.0.0">
   <name>ioc_stats_soft</name>
   <x>807</x>
@@ -225,6 +225,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -244,6 +248,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -263,6 +271,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -282,6 +294,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -301,6 +317,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -320,6 +340,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -339,6 +363,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -358,6 +386,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -377,8 +409,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -396,8 +432,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -415,8 +455,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -452,7 +496,7 @@
     <width>120</width>
     <height>20</height>
     <background_color>
-      <color red="158" green="158" blue="158">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
   </widget>
@@ -471,7 +515,7 @@
     <width>120</width>
     <height>21</height>
     <background_color>
-      <color red="158" green="158" blue="158">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
   </widget>
@@ -540,6 +584,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -550,66 +598,38 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #121</name>
-    <pv_name>$(ioc):APP_DIR1</pv_name>
+    <pv_name>$(ioc):APP_DIR</pv_name>
     <x>6</x>
     <y>395</y>
-    <width>265</width>
+    <width>530</width>
     <height>13</height>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
     <format>6</format>
     <show_units>false</show_units>
-    <horizontal_alignment>2</horizontal_alignment>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #125</name>
-    <pv_name>$(ioc):ST_SCRIPT1</pv_name>
+    <pv_name>$(ioc):ST_SCRIPT</pv_name>
     <x>6</x>
     <y>428</y>
-    <width>265</width>
+    <width>530</width>
     <height>12</height>
     <font>
       <font family="Liberation Sans" style="REGULAR" size="12.0">
       </font>
     </font>
-    <background_color>
-      <color red="187" green="187" blue="187">
+    <foreground_color>
+      <color red="10" green="0" blue="184">
       </color>
-    </background_color>
-    <format>6</format>
-    <show_units>false</show_units>
-    <horizontal_alignment>2</horizontal_alignment>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-  </widget>
-  <widget type="textupdate" version="2.0.0">
-    <name>text update #129</name>
-    <pv_name>$(ioc):APP_DIR2</pv_name>
-    <x>271</x>
-    <y>395</y>
-    <width>265</width>
-    <height>13</height>
-    <background_color>
-      <color red="187" green="187" blue="187">
-      </color>
-    </background_color>
-    <format>6</format>
-    <show_units>false</show_units>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-  </widget>
-  <widget type="textupdate" version="2.0.0">
-    <name>text update #133</name>
-    <pv_name>$(ioc):ST_SCRIPT2</pv_name>
-    <x>271</x>
-    <y>428</y>
-    <width>265</width>
-    <height>12</height>
-    <font>
-      <font family="Liberation Sans" style="REGULAR" size="12.0">
-      </font>
-    </font>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -619,7 +639,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="rectangle" version="2.0.0">
-    <name>rectangle #137</name>
+    <name>rectangle #129</name>
     <x>344</x>
     <y>450</y>
     <width>1</width>
@@ -634,7 +654,7 @@
     </background_color>
   </widget>
   <widget type="rectangle" version="2.0.0">
-    <name>rectangle #140</name>
+    <name>rectangle #132</name>
     <x>186</x>
     <y>449</y>
     <width>1</width>
@@ -649,11 +669,11 @@
     </background_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #143</name>
-    <text>Memory (# bytes)</text>
-    <x>16</x>
+    <name>text #135</name>
+    <text>Memory (GiB)</text>
+    <x>53</x>
     <y>454</y>
-    <width>144</width>
+    <width>108</width>
     <height>15</height>
     <font>
       <font family="Liberation Sans" style="REGULAR" size="16.0">
@@ -662,7 +682,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #146</name>
+    <name>text #138</name>
     <text>Free</text>
     <x>11</x>
     <y>479</y>
@@ -675,7 +695,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #149</name>
+    <name>text #141</name>
     <text>Used</text>
     <x>11</x>
     <y>496</y>
@@ -688,7 +708,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #152</name>
+    <name>text #144</name>
     <text>Machine</text>
     <x>11</x>
     <y>514</y>
@@ -701,7 +721,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #155</name>
+    <name>text #147</name>
     <text>Maximum</text>
     <x>11</x>
     <y>527</y>
@@ -714,7 +734,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #158</name>
+    <name>text #150</name>
     <text>CPU Load</text>
     <x>401</x>
     <y>454</y>
@@ -727,7 +747,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #161</name>
+    <name>text #153</name>
     <text># File Desciptors</text>
     <x>189</x>
     <y>454</y>
@@ -740,7 +760,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #164</name>
+    <name>text #156</name>
     <text>Free</text>
     <x>205</x>
     <y>479</y>
@@ -753,7 +773,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #167</name>
+    <name>text #159</name>
     <text>Max</text>
     <x>205</x>
     <y>499</y>
@@ -766,7 +786,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #170</name>
+    <name>text update #162</name>
     <pv_name>$(ioc):IOC_SINGLE_CPU_LOAD</pv_name>
     <x>475</x>
     <y>479</y>
@@ -776,8 +796,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -785,7 +809,7 @@
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #174</name>
+    <name>text update #166</name>
     <pv_name>$(ioc):FD_FREE</pv_name>
     <x>245</x>
     <y>479</y>
@@ -795,8 +819,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -804,7 +832,7 @@
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #178</name>
+    <name>text update #170</name>
     <pv_name>$(ioc):FD_MAX</pv_name>
     <x>245</x>
     <y>499</y>
@@ -814,8 +842,56 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
+      </color>
+    </background_color>
+    <format>1</format>
+    <show_units>false</show_units>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>text update #174</name>
+    <pv_name>$(ioc):MEM_FREE_GiB</pv_name>
+    <x>79</x>
+    <y>479</y>
+    <height>15</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="16.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="0" green="0" blue="0">
+      </color>
+    </background_color>
+    <format>1</format>
+    <show_units>false</show_units>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>text update #178</name>
+    <pv_name>$(ioc):MEM_USED_GiB</pv_name>
+    <x>79</x>
+    <y>499</y>
+    <height>15</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="16.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -824,43 +900,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #182</name>
-    <pv_name>$(ioc):MEM_FREE</pv_name>
-    <x>79</x>
-    <y>479</y>
-    <height>15</height>
-    <font>
-      <font family="Liberation Sans" style="REGULAR" size="16.0">
-      </font>
-    </font>
-    <background_color>
-      <color red="120" green="120" blue="120">
-      </color>
-    </background_color>
-    <format>1</format>
-    <show_units>false</show_units>
-    <horizontal_alignment>1</horizontal_alignment>
-  </widget>
-  <widget type="textupdate" version="2.0.0">
-    <name>text update #186</name>
-    <pv_name>$(ioc):MEM_USED</pv_name>
-    <x>79</x>
-    <y>499</y>
-    <height>15</height>
-    <font>
-      <font family="Liberation Sans" style="REGULAR" size="16.0">
-      </font>
-    </font>
-    <background_color>
-      <color red="120" green="120" blue="120">
-      </color>
-    </background_color>
-    <format>1</format>
-    <show_units>false</show_units>
-    <horizontal_alignment>1</horizontal_alignment>
-  </widget>
-  <widget type="textupdate" version="2.0.0">
-    <name>text update #190</name>
-    <pv_name>$(ioc):MEM_MAX</pv_name>
+    <pv_name>$(ioc):MEM_MAX_GiB</pv_name>
     <x>79</x>
     <y>520</y>
     <height>15</height>
@@ -868,8 +908,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -877,7 +921,7 @@
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #194</name>
+    <name>text #186</name>
     <text>OS Version</text>
     <x>6</x>
     <y>359</y>
@@ -890,7 +934,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #197</name>
+    <name>text update #189</name>
     <pv_name>$(ioc):KERNEL_VERS</pv_name>
     <x>130</x>
     <y>359</y>
@@ -900,6 +944,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -909,7 +957,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #201</name>
+    <name>text #193</name>
     <text>IOC (one CPU)</text>
     <x>351</x>
     <y>479</y>
@@ -922,7 +970,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #204</name>
+    <name>text update #196</name>
     <pv_name>$(ioc):SYS_CPU_LOAD</pv_name>
     <x>475</x>
     <y>507</y>
@@ -932,8 +980,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -941,7 +993,7 @@
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #208</name>
+    <name>text #200</name>
     <text># System CPUs</text>
     <x>350</x>
     <y>534</y>
@@ -954,7 +1006,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #211</name>
+    <name>text update #203</name>
     <pv_name>$(ioc):CPU_CNT</pv_name>
     <x>475</x>
     <y>534</y>
@@ -964,8 +1016,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="0" green="216" blue="0">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -973,7 +1029,7 @@
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="group" version="2.0.0">
-    <name>composite #215</name>
+    <name>composite #207</name>
     <x>350</x>
     <y>499</y>
     <width>100</width>
@@ -981,7 +1037,7 @@
     <style>3</style>
     <transparent>true</transparent>
     <widget type="label" version="2.0.0">
-      <name>text #218</name>
+      <name>text #210</name>
       <text>System</text>
       <height>15</height>
       <font>
@@ -991,7 +1047,7 @@
       <auto_size>true</auto_size>
     </widget>
     <widget type="label" version="2.0.0">
-      <name>text #221</name>
+      <name>text #213</name>
       <text>(all CPUs)</text>
       <y>15</y>
       <height>15</height>
@@ -1003,20 +1059,20 @@
     </widget>
   </widget>
   <widget type="combo" version="2.0.0">
-    <name>menu #224</name>
+    <name>menu #216</name>
     <pv_name>$(ioc):ACCESS</pv_name>
     <x>49</x>
     <y>302</y>
     <width>96</width>
     <height>21</height>
     <background_color>
-      <color red="158" green="158" blue="158">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #227</name>
+    <name>text #219</name>
     <text>Mode</text>
     <x>8</x>
     <y>305</y>
@@ -1029,7 +1085,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>related display #230</name>
+    <name>related display #222</name>
     <actions>
       <action type="open_display">
         <file>ioc_stats_reloadacf_confirm.opi</file>
@@ -1043,12 +1099,12 @@
     <width>250</width>
     <height>21</height>
     <background_color>
-      <color red="158" green="158" blue="158">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>related display #233</name>
+    <name>related display #225</name>
     <actions>
       <action type="open_display">
         <file>ioc_stats_reboot_confirm.opi</file>
@@ -1062,12 +1118,12 @@
     <width>110</width>
     <height>21</height>
     <background_color>
-      <color red="158" green="158" blue="158">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #236</name>
+    <name>text #228</name>
     <text>General Time Providers</text>
     <x>139</x>
     <y>218</y>
@@ -1080,7 +1136,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #239</name>
+    <name>text #231</name>
     <text>Current</text>
     <x>9</x>
     <y>236</y>
@@ -1093,7 +1149,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #242</name>
+    <name>text #234</name>
     <text>Event</text>
     <x>9</x>
     <y>256</y>
@@ -1106,7 +1162,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #245</name>
+    <name>text #237</name>
     <text>Highest Prio</text>
     <x>9</x>
     <y>276</y>
@@ -1119,7 +1175,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #248</name>
+    <name>text update #240</name>
     <pv_name>$(ioc):GTIM_CUR_SRC</pv_name>
     <x>122</x>
     <y>236</y>
@@ -1129,6 +1185,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -1138,7 +1198,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #252</name>
+    <name>text update #244</name>
     <pv_name>$(ioc):GTIM_EVT_SRC</pv_name>
     <x>122</x>
     <y>256</y>
@@ -1148,6 +1208,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="52" green="51" blue="134">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -1157,7 +1221,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #256</name>
+    <name>text update #248</name>
     <pv_name>$(ioc):GTIM_HI_SRC</pv_name>
     <x>122</x>
     <y>276</y>
@@ -1167,6 +1231,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -1176,7 +1244,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #260</name>
+    <name>text #252</name>
     <text># Secs</text>
     <x>322</x>
     <y>232</y>
@@ -1189,7 +1257,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #263</name>
+    <name>text #255</name>
     <text>since 1990</text>
     <x>322</x>
     <y>244</y>
@@ -1202,7 +1270,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #266</name>
+    <name>text update #258</name>
     <pv_name>$(ioc):GTIM_TIME</pv_name>
     <x>416</x>
     <y>236</y>
@@ -1212,6 +1280,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -1221,7 +1293,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #270</name>
+    <name>text #262</name>
     <text># Errors</text>
     <x>322</x>
     <y>270</y>
@@ -1234,7 +1306,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #273</name>
+    <name>text update #265</name>
     <pv_name>$(ioc):GTIM_ERR_CNT</pv_name>
     <x>409</x>
     <y>270</y>
@@ -1244,6 +1316,10 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="10" green="0" blue="184">
+      </color>
+    </foreground_color>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
@@ -1253,7 +1329,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #277</name>
+    <name>message button #269</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(ioc):GTIM_RESET.PROC</pv_name>
@@ -1268,12 +1344,12 @@
     <width>53</width>
     <height>17</height>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
   </widget>
   <widget type="rectangle" version="2.0.0">
-    <name>rectangle #280</name>
+    <name>rectangle #272</name>
     <x>2</x>
     <y>325</y>
     <width>540</width>
@@ -1288,7 +1364,7 @@
     </background_color>
   </widget>
   <widget type="rectangle" version="2.0.0">
-    <name>rectangle #283</name>
+    <name>rectangle #275</name>
     <x>2</x>
     <y>294</y>
     <width>540</width>

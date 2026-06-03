@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 477
-y 485
+x 780
+y 457
 w 580
 h 276
 font "helvetica-medium-r-18.0"
@@ -227,7 +227,7 @@ font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor rgb 0 65535 0
 fgAlarm
-bgColor rgb 30720 30720 30720
+bgColor rgb 0 0 0
 limitsFromDb
 nullColor rgb 60928 46592 11008
 smartRefresh
@@ -251,7 +251,7 @@ format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -277,7 +277,7 @@ format "decimal"
 font "helvetica-medium-r-10.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -304,7 +304,7 @@ font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor rgb 0 65535 0
 fgAlarm
-bgColor rgb 30720 30720 30720
+bgColor rgb 0 0 0
 limitsFromDb
 nullColor rgb 60928 46592 11008
 smartRefresh
@@ -328,7 +328,7 @@ format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -354,7 +354,7 @@ format "decimal"
 font "helvetica-medium-r-10.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -381,7 +381,7 @@ font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor rgb 0 65535 0
 fgAlarm
-bgColor rgb 30720 30720 30720
+bgColor rgb 0 0 0
 limitsFromDb
 nullColor rgb 60928 46592 11008
 smartRefresh
@@ -405,7 +405,7 @@ format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -431,7 +431,7 @@ format "decimal"
 font "helvetica-medium-r-10.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -458,7 +458,7 @@ font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor rgb 0 65535 0
 fgAlarm
-bgColor rgb 30720 30720 30720
+bgColor rgb 0 0 0
 limitsFromDb
 nullColor rgb 60928 46592 11008
 smartRefresh
@@ -482,7 +482,7 @@ format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -508,7 +508,7 @@ format "decimal"
 font "helvetica-medium-r-10.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -535,7 +535,7 @@ font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor rgb 0 65535 0
 fgAlarm
-bgColor rgb 30720 30720 30720
+bgColor rgb 0 0 0
 limitsFromDb
 nullColor rgb 60928 46592 11008
 smartRefresh
@@ -559,7 +559,7 @@ format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -585,7 +585,7 @@ format "decimal"
 font "helvetica-medium-r-10.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -612,7 +612,7 @@ font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor rgb 0 65535 0
 fgAlarm
-bgColor rgb 30720 30720 30720
+bgColor rgb 0 0 0
 limitsFromDb
 nullColor rgb 60928 46592 11008
 smartRefresh
@@ -636,7 +636,7 @@ format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -662,7 +662,7 @@ format "decimal"
 font "helvetica-medium-r-10.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -689,7 +689,7 @@ font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor rgb 0 65535 0
 fgAlarm
-bgColor rgb 30720 30720 30720
+bgColor rgb 0 0 0
 limitsFromDb
 nullColor rgb 60928 46592 11008
 smartRefresh
@@ -713,7 +713,7 @@ format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -739,7 +739,7 @@ format "decimal"
 font "helvetica-medium-r-10.0"
 fontAlign "left"
 fgColor rgb 0 0 0
-bgColor rgb 37120 37120 37120
+bgColor rgb 29440 57088 65280
 editable
 motifWidget
 limitsFromDb
@@ -856,8 +856,8 @@ y 106
 w 128
 h 18
 fgColor rgb 0 0 0
-bgColor rgb 51200 51200 51200
-selectColor rgb 51200 51200 51200
+bgColor rgb 29440 57088 65280
+selectColor rgb 29440 57088 65280
 inconsistentColor rgb 0 0 0
 topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
@@ -877,8 +877,8 @@ y 127
 w 128
 h 18
 fgColor rgb 0 0 0
-bgColor rgb 51200 51200 51200
-selectColor rgb 51200 51200 51200
+bgColor rgb 29440 57088 65280
+selectColor rgb 29440 57088 65280
 inconsistentColor rgb 0 0 0
 topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
@@ -898,8 +898,8 @@ y 149
 w 128
 h 18
 fgColor rgb 0 0 0
-bgColor rgb 51200 51200 51200
-selectColor rgb 51200 51200 51200
+bgColor rgb 29440 57088 65280
+selectColor rgb 29440 57088 65280
 inconsistentColor rgb 0 0 0
 topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
@@ -919,8 +919,8 @@ y 172
 w 128
 h 18
 fgColor rgb 0 0 0
-bgColor rgb 51200 51200 51200
-selectColor rgb 51200 51200 51200
+bgColor rgb 29440 57088 65280
+selectColor rgb 29440 57088 65280
 inconsistentColor rgb 0 0 0
 topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
@@ -940,8 +940,8 @@ y 193
 w 128
 h 18
 fgColor rgb 0 0 0
-bgColor rgb 51200 51200 51200
-selectColor rgb 51200 51200 51200
+bgColor rgb 29440 57088 65280
+selectColor rgb 29440 57088 65280
 inconsistentColor rgb 0 0 0
 topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
@@ -961,8 +961,8 @@ y 215
 w 128
 h 18
 fgColor rgb 0 0 0
-bgColor rgb 51200 51200 51200
-selectColor rgb 51200 51200 51200
+bgColor rgb 29440 57088 65280
+selectColor rgb 29440 57088 65280
 inconsistentColor rgb 0 0 0
 topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
@@ -982,8 +982,8 @@ y 237
 w 128
 h 18
 fgColor rgb 0 0 0
-bgColor rgb 51200 51200 51200
-selectColor rgb 51200 51200 51200
+bgColor rgb 29440 57088 65280
+selectColor rgb 29440 57088 65280
 inconsistentColor rgb 0 0 0
 topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
@@ -991,3 +991,4 @@ controlPv "$(ioc):01HZ_MODE"
 font "helvetica-medium-r-10.0"
 orientation "horizontal"
 endObjectProperties
+

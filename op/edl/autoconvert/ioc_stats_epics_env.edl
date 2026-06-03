@@ -301,7 +301,7 @@ controlPv "$(ioc):CA_SERVER_PORT"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -325,7 +325,7 @@ controlPv "$(ioc):CA_REPEATER_PORT"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -349,7 +349,7 @@ controlPv "$(ioc):CA_ADDR_LIST"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -373,7 +373,7 @@ controlPv "$(ioc):CA_AUTO_ADDR_LIST"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -397,7 +397,7 @@ controlPv "$(ioc):CA_MAX_ARRAY_BYTES"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -421,7 +421,7 @@ controlPv "$(ioc):CA_CONN_TMO"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -445,7 +445,7 @@ controlPv "$(ioc):CA_MAX_SEARCH_PERIOD"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -469,7 +469,7 @@ controlPv "$(ioc):CA_BEACON_PERIOD"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -493,7 +493,7 @@ controlPv "$(ioc):TZ"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -517,7 +517,7 @@ controlPv "$(ioc):TS_NTP_INET"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -541,7 +541,7 @@ controlPv "$(ioc):IOC_LOG_PORT"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -565,7 +565,7 @@ controlPv "$(ioc):IOC_LOG_INET"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor rgb 47872 47872 47872
 limitsFromDb
 nullColor rgb 60928 46592 11008
@@ -574,3 +574,4 @@ fastUpdate
 newPos
 objType "controls"
 endObjectProperties
+
