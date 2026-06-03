@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/devel/devIocStats-3-1-15/op/adl/ioc_stats_epics_env.adl"
-	version=030109
+	name="/home/epics/support/devIocStats-3-1-16/op/adl/ioc_stats_epics_env.adl"
+	version=030117
 }
 display {
 	object {
@@ -263,7 +263,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_SERVER_PORT"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -279,7 +279,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_REPEATER_PORT"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -295,7 +295,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_ADDR_LIST"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -311,7 +311,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_AUTO_ADDR_LIST"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -327,7 +327,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_MAX_ARRAY_BYTES"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -343,7 +343,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_CONN_TMO"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -359,7 +359,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_MAX_SEARCH_PERIOD"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -375,7 +375,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_BEACON_PERIOD"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -391,7 +391,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):TZ"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -407,7 +407,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):TS_NTP_INET"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -423,7 +423,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):IOC_LOG_PORT"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
@@ -439,7 +439,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):IOC_LOG_INET"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	align="horiz. centered"
