@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2026-06-03 08:09:36 by epics-->
 <display version="2.0.0">
   <name>ioc_stats_limits</name>
   <x>845</x>
@@ -138,8 +139,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="115" green="255" blue="107">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -155,8 +160,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="115" green="255" blue="107">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -172,8 +181,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="82" green="218" blue="59">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -189,8 +202,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="115" green="255" blue="107">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -206,8 +223,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="115" green="255" blue="107">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -223,8 +244,12 @@
       <font family="Liberation Sans" style="REGULAR" size="16.0">
       </font>
     </font>
+    <foreground_color>
+      <color red="115" green="255" blue="107">
+      </color>
+    </foreground_color>
     <background_color>
-      <color red="120" green="120" blue="120">
+      <color red="0" green="0" blue="0">
       </color>
     </background_color>
     <format>1</format>
@@ -268,7 +293,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -286,7 +311,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -304,7 +329,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -322,7 +347,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -340,7 +365,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -384,7 +409,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -402,7 +427,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -420,7 +445,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -438,7 +463,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -456,7 +481,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
@@ -474,7 +499,7 @@
       </font>
     </font>
     <background_color>
-      <color red="145" green="145" blue="145">
+      <color red="115" green="223" blue="255">
       </color>
     </background_color>
     <format>1</format>
