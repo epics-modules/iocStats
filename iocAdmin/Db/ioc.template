@@ -170,6 +170,13 @@ record(calc, "$(IOCNAME):IOC_SINGLE_CPU_LOAD") {
     field(INPB, "$(IOCNAME):CPU_CNT")
     field(CALC, "A*B")
     field(PREC, "1")
+    field(EGU,  "%")
+}
+
+record(calcout, "$(IOCNAME):IOC_SINGLE_CPU_LOAD_HOPR") {
+    field(INPA, "$(IOCNAME):CPU_CNT CP")
+    field(CALC, "A*100")
+    field(OUT,  "$(IOCNAME):IOC_SINGLE_CPU_LOAD.HOPR")
 }
 
 record(ai, "$(IOCNAME):CPU_CNT") {
