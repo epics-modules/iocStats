@@ -49,4 +49,4 @@ iocAdminVxWorks.db$(DEP): $(SUBST_DEPS)
 $(COMMON_DIR)/siteEnvVars.substitutions: $(EPICS_BASE)/configure/CONFIG_SITE_ENV $(EPICS_BASE)/configure/CONFIG_ENV
 	@echo Expanding siteEnvVars.substitutions from $^....
 	@$(RM) $@
-	@$(PERL) ../genSiteEnvVars.pl $^ > $@
+	@$(PERL) ../genSiteEnvVars.pl -l $(IOCSTATS_MAX_ENV_VAR_LENGTH) $^ > $@
