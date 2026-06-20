@@ -160,8 +160,23 @@ record(ai, "$(IOCNAME):IOC_CPU_LOAD") {
     field(HIGH, "70")
     field(HHSV, "MAJOR")
     field(HSV,  "MINOR")
+    field(FLNK, "$(IOCNAME):IOC_SINGLE_CPU_LOAD")
 
     info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+}
+
+record(calc, "$(IOCNAME):IOC_SINGLE_CPU_LOAD") {
+    field(INPA, "$(IOCNAME):IOC_CPU_LOAD")
+    field(INPB, "$(IOCNAME):CPU_CNT")
+    field(CALC, "A*B")
+    field(PREC, "1")
+    field(EGU,  "%")
+}
+
+record(calcout, "$(IOCNAME):IOC_SINGLE_CPU_LOAD_HOPR") {
+    field(INPA, "$(IOCNAME):CPU_CNT CP")
+    field(CALC, "A*100")
+    field(OUT,  "$(IOCNAME):IOC_SINGLE_CPU_LOAD.HOPR")
 }
 
 record(ai, "$(IOCNAME):CPU_CNT") {
@@ -182,12 +197,22 @@ record(ai, "$(IOCNAME):SUSP_TASK_CNT") {
     info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
 }
 
+
 record(ai, "$(IOCNAME):MEM_USED") {
     field(DESC, "Allocated Memory")
     field(SCAN, "I/O Intr")
     field(DTYP, "IOC stats")
     field(INP,  "@allocated_bytes")
     field(EGU,  "byte")
+    field(FLNK, "$(IOCNAME):MEM_USED_GiB")
+}
+
+record(calc, "$(IOCNAME):MEM_USED_GiB") {
+    field(INPA, "$(IOCNAME):MEM_USED")
+    field(CALC, "A/1073741824")
+    field(PREC, "3")
+    field(EGU,  "GiB")
+    field(DESC, "Used memory in GiB (2^30 bytes)")
 }
 
 record(ai, "$(IOCNAME):MEM_FREE") {
@@ -198,8 +223,17 @@ record(ai, "$(IOCNAME):MEM_FREE") {
     field(EGU,  "byte")
     field(LLSV, "MAJOR")
     field(LSV,  "MINOR")
+    field(FLNK, "$(IOCNAME):MEM_FREE_GiB")
 
     info(autosaveFields_pass0, "HOPR LOPR LOW LOLO LSV LLSV")
+}
+
+record(calc, "$(IOCNAME):MEM_FREE_GiB") {
+    field(INPA, "$(IOCNAME):MEM_FREE")
+    field(CALC, "A/1073741824")
+    field(PREC, "3")
+    field(EGU,  "GiB")
+    field(DESC, "Free memory in GiB (2^30 bytes)")
 }
 
 record(ai, "$(IOCNAME):MEM_MAX") {
@@ -208,6 +242,15 @@ record(ai, "$(IOCNAME):MEM_MAX") {
     field(DTYP, "IOC stats")
     field(INP,  "@total_bytes")
     field(EGU,  "byte")
+    field(FLNK, "$(IOCNAME):MEM_MAX_GiB")
+}
+
+record(calc, "$(IOCNAME):MEM_MAX_GiB") {
+    field(INPA, "$(IOCNAME):MEM_MAX")
+    field(CALC, "A/1073741824")
+    field(PREC, "3")
+    field(EGU,  "GiB")
+    field(DESC, "Max. memory in GiB (2^30 bytes)")
 }
 
 record(ao, "$(IOCNAME):CA_UPD_TIME") {

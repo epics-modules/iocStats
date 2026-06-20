@@ -85,6 +85,16 @@ caChoice &gt; QPushButton {
       padding: 1px;
 }
 
+/* when font specified, no font sizing is done any more,  font: 10pt; is not bad. You could Enable this when you converted from .adl files
+caRelatedDisplay  &gt; QPushButton {
+font: 10pt;
+}
+
+caShellCommand  &gt; QPushButton {
+font: 10pt;
+}
+*/
+
 caSlider::groove:horizontal {
 border: 1px solid #bbb;
 background: lightgrey;
@@ -529,7 +539,7 @@ border-radius: 2px;
                 <enum>Solid</enum>
             </property>
             <property name="xyPairs">
-                <string>0,170;</string>
+                <string>0,0;0,170;</string>
             </property>
         </widget>
         <widget class="caLabel" name="caLabel_10">
@@ -657,9 +667,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -711,9 +721,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -765,9 +775,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -819,9 +829,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -873,9 +883,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -927,9 +937,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -981,9 +991,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -1035,9 +1045,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -1090,15 +1100,15 @@ border-radius: 2px;
             <property name="foreground">
                 <color alpha="255">
                     <red>0</red>
-                    <green>0</green>
+                    <green>216</green>
                     <blue>0</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -1144,15 +1154,15 @@ border-radius: 2px;
             <property name="foreground">
                 <color alpha="255">
                     <red>0</red>
-                    <green>0</green>
+                    <green>216</green>
                     <blue>0</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -1198,15 +1208,15 @@ border-radius: 2px;
             <property name="foreground">
                 <color alpha="255">
                     <red>0</red>
-                    <green>0</green>
+                    <green>216</green>
                     <blue>0</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -1285,9 +1295,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>158</red>
-                    <green>158</green>
-                    <blue>158</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="label">
@@ -1300,7 +1310,7 @@ border-radius: 2px;
                 <string>Alarm Limits</string>
             </property>
             <property name="files">
-                <string>ioc_stats_limits.adl</string>
+                <string>ioc_stats_limits.ui </string>
             </property>
             <property name="args">
                 <string>ioc=$(ioc)</string>
@@ -1327,9 +1337,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>158</red>
-                    <green>158</green>
-                    <blue>158</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="label">
@@ -1342,7 +1352,7 @@ border-radius: 2px;
                 <string>EPICS Env Vars</string>
             </property>
             <property name="files">
-                <string>ioc_stats_epics_env.adl</string>
+                <string>ioc_stats_epics_env.ui </string>
             </property>
             <property name="args">
                 <string>ioc=$(ioc)</string>
@@ -1509,9 +1519,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -1551,7 +1561,7 @@ border-radius: 2px;
                 <rect>
                     <x>6</x>
                     <y>395</y>
-                    <width>265</width>
+                    <width>530</width>
                     <height>13</height>
                 </rect>
             </property>
@@ -1559,121 +1569,13 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):APP_DIR1</string>
+                <string>$(ioc):APP_DIR</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
-                </color>
-            </property>
-            <property name="background">
-                <color alpha="255">
-                    <red>187</red>
-                    <green>187</green>
-                    <blue>187</blue>
-                </color>
-            </property>
-            <property name="alignment">
-                <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignVCenter</set>
-            </property>
-            <property name="limitsMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="limitsMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="precisionMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="minValue">
-                <double>0.0</double>
-            </property>
-            <property name="maxValue">
-                <double>1.0</double>
-            </property>
-            <property name="formatType">
-                <enum>string</enum>
-            </property>
-            <property name="colorMode">
-                <enum>caLineEdit::Static</enum>
-            </property>
-        </widget>
-        <widget class="caLineEdit" name="caLineEdit_13">
-            <property name="geometry">
-                <rect>
-                    <x>6</x>
-                    <y>428</y>
-                    <width>265</width>
-                    <height>12</height>
-                </rect>
-            </property>
-            <property name="fontScaleMode">
-                <enum>caLineEdit::WidthAndHeight</enum>
-            </property>
-            <property name="channel">
-                <string>$(ioc):ST_SCRIPT1</string>
-            </property>
-            <property name="foreground">
-                <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
-                </color>
-            </property>
-            <property name="background">
-                <color alpha="255">
-                    <red>187</red>
-                    <green>187</green>
-                    <blue>187</blue>
-                </color>
-            </property>
-            <property name="alignment">
-                <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignVCenter</set>
-            </property>
-            <property name="limitsMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="limitsMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="precisionMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="minValue">
-                <double>0.0</double>
-            </property>
-            <property name="maxValue">
-                <double>1.0</double>
-            </property>
-            <property name="formatType">
-                <enum>string</enum>
-            </property>
-            <property name="colorMode">
-                <enum>caLineEdit::Static</enum>
-            </property>
-        </widget>
-        <widget class="caLineEdit" name="caLineEdit_14">
-            <property name="geometry">
-                <rect>
-                    <x>271</x>
-                    <y>395</y>
-                    <width>265</width>
-                    <height>13</height>
-                </rect>
-            </property>
-            <property name="fontScaleMode">
-                <enum>caLineEdit::WidthAndHeight</enum>
-            </property>
-            <property name="channel">
-                <string>$(ioc):APP_DIR2</string>
-            </property>
-            <property name="foreground">
-                <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -1708,12 +1610,12 @@ border-radius: 2px;
                 <enum>caLineEdit::Static</enum>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_15">
+        <widget class="caLineEdit" name="caLineEdit_13">
             <property name="geometry">
                 <rect>
-                    <x>271</x>
+                    <x>6</x>
                     <y>428</y>
-                    <width>265</width>
+                    <width>530</width>
                     <height>12</height>
                 </rect>
             </property>
@@ -1721,13 +1623,13 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):ST_SCRIPT2</string>
+                <string>$(ioc):ST_SCRIPT</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -1847,16 +1749,16 @@ border-radius: 2px;
                 </color>
             </property>
             <property name="text">
-                <string>Memory (# bytes)</string>
+                <string>Memory (GiB)</string>
             </property>
             <property name="fontScaleMode">
                 <enum>ESimpleLabel::WidthAndHeight</enum>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>16</x>
+                    <x>53</x>
                     <y>454</y>
-                    <width>144</width>
+                    <width>108</width>
                     <height>15</height>
                 </rect>
             </property>
@@ -2152,7 +2054,7 @@ border-radius: 2px;
                 <set>Qt::AlignAbsolute|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_16">
+        <widget class="caLineEdit" name="caLineEdit_14">
             <property name="geometry">
                 <rect>
                     <x>475</x>
@@ -2165,20 +2067,128 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):IOC_CPU_LOAD</string>
+                <string>$(ioc):IOC_SINGLE_CPU_LOAD</string>
             </property>
             <property name="foreground">
+                <color alpha="255">
+                    <red>0</red>
+                    <green>216</green>
+                    <blue>0</blue>
+                </color>
+            </property>
+            <property name="background">
                 <color alpha="255">
                     <red>0</red>
                     <green>0</green>
                     <blue>0</blue>
                 </color>
             </property>
+            <property name="alignment">
+                <set>Qt::AlignAbsolute|Qt::AlignHCenter|Qt::AlignVCenter</set>
+            </property>
+            <property name="limitsMode">
+                <enum>caLineEdit::Channel</enum>
+            </property>
+            <property name="limitsMode">
+                <enum>caLineEdit::Channel</enum>
+            </property>
+            <property name="precisionMode">
+                <enum>caLineEdit::Channel</enum>
+            </property>
+            <property name="minValue">
+                <double>0.0</double>
+            </property>
+            <property name="maxValue">
+                <double>1.0</double>
+            </property>
+            <property name="formatType">
+                <enum>decimal</enum>
+            </property>
+            <property name="colorMode">
+                <enum>caLineEdit::Alarm_Static</enum>
+            </property>
+        </widget>
+        <widget class="caLineEdit" name="caLineEdit_15">
+            <property name="geometry">
+                <rect>
+                    <x>245</x>
+                    <y>479</y>
+                    <width>60</width>
+                    <height>15</height>
+                </rect>
+            </property>
+            <property name="fontScaleMode">
+                <enum>caLineEdit::WidthAndHeight</enum>
+            </property>
+            <property name="channel">
+                <string>$(ioc):FD_FREE</string>
+            </property>
+            <property name="foreground">
+                <color alpha="255">
+                    <red>0</red>
+                    <green>216</green>
+                    <blue>0</blue>
+                </color>
+            </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
+                </color>
+            </property>
+            <property name="alignment">
+                <set>Qt::AlignAbsolute|Qt::AlignHCenter|Qt::AlignVCenter</set>
+            </property>
+            <property name="limitsMode">
+                <enum>caLineEdit::Channel</enum>
+            </property>
+            <property name="limitsMode">
+                <enum>caLineEdit::Channel</enum>
+            </property>
+            <property name="precisionMode">
+                <enum>caLineEdit::Channel</enum>
+            </property>
+            <property name="minValue">
+                <double>0.0</double>
+            </property>
+            <property name="maxValue">
+                <double>1.0</double>
+            </property>
+            <property name="formatType">
+                <enum>decimal</enum>
+            </property>
+            <property name="colorMode">
+                <enum>caLineEdit::Alarm_Static</enum>
+            </property>
+        </widget>
+        <widget class="caLineEdit" name="caLineEdit_16">
+            <property name="geometry">
+                <rect>
+                    <x>245</x>
+                    <y>499</y>
+                    <width>60</width>
+                    <height>15</height>
+                </rect>
+            </property>
+            <property name="fontScaleMode">
+                <enum>caLineEdit::WidthAndHeight</enum>
+            </property>
+            <property name="channel">
+                <string>$(ioc):FD_MAX</string>
+            </property>
+            <property name="foreground">
+                <color alpha="255">
+                    <red>0</red>
+                    <green>216</green>
+                    <blue>0</blue>
+                </color>
+            </property>
+            <property name="background">
+                <color alpha="255">
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -2209,9 +2219,9 @@ border-radius: 2px;
         <widget class="caLineEdit" name="caLineEdit_17">
             <property name="geometry">
                 <rect>
-                    <x>245</x>
+                    <x>79</x>
                     <y>479</y>
-                    <width>60</width>
+                    <width>100</width>
                     <height>15</height>
                 </rect>
             </property>
@@ -2219,20 +2229,20 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):FD_FREE</string>
+                <string>$(ioc):MEM_FREE_GiB</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
                     <red>0</red>
-                    <green>0</green>
+                    <green>216</green>
                     <blue>0</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -2263,9 +2273,9 @@ border-radius: 2px;
         <widget class="caLineEdit" name="caLineEdit_18">
             <property name="geometry">
                 <rect>
-                    <x>245</x>
+                    <x>79</x>
                     <y>499</y>
-                    <width>60</width>
+                    <width>100</width>
                     <height>15</height>
                 </rect>
             </property>
@@ -2273,20 +2283,20 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):FD_MAX</string>
+                <string>$(ioc):MEM_USED_GiB</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
                     <red>0</red>
-                    <green>0</green>
+                    <green>216</green>
                     <blue>0</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -2318,114 +2328,6 @@ border-radius: 2px;
             <property name="geometry">
                 <rect>
                     <x>79</x>
-                    <y>479</y>
-                    <width>100</width>
-                    <height>15</height>
-                </rect>
-            </property>
-            <property name="fontScaleMode">
-                <enum>caLineEdit::WidthAndHeight</enum>
-            </property>
-            <property name="channel">
-                <string>$(ioc):MEM_FREE</string>
-            </property>
-            <property name="foreground">
-                <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
-                </color>
-            </property>
-            <property name="background">
-                <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
-                </color>
-            </property>
-            <property name="alignment">
-                <set>Qt::AlignAbsolute|Qt::AlignHCenter|Qt::AlignVCenter</set>
-            </property>
-            <property name="limitsMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="limitsMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="precisionMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="minValue">
-                <double>0.0</double>
-            </property>
-            <property name="maxValue">
-                <double>1.0</double>
-            </property>
-            <property name="formatType">
-                <enum>decimal</enum>
-            </property>
-            <property name="colorMode">
-                <enum>caLineEdit::Alarm_Static</enum>
-            </property>
-        </widget>
-        <widget class="caLineEdit" name="caLineEdit_20">
-            <property name="geometry">
-                <rect>
-                    <x>79</x>
-                    <y>499</y>
-                    <width>100</width>
-                    <height>15</height>
-                </rect>
-            </property>
-            <property name="fontScaleMode">
-                <enum>caLineEdit::WidthAndHeight</enum>
-            </property>
-            <property name="channel">
-                <string>$(ioc):MEM_USED</string>
-            </property>
-            <property name="foreground">
-                <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
-                </color>
-            </property>
-            <property name="background">
-                <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
-                </color>
-            </property>
-            <property name="alignment">
-                <set>Qt::AlignAbsolute|Qt::AlignHCenter|Qt::AlignVCenter</set>
-            </property>
-            <property name="limitsMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="limitsMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="precisionMode">
-                <enum>caLineEdit::Channel</enum>
-            </property>
-            <property name="minValue">
-                <double>0.0</double>
-            </property>
-            <property name="maxValue">
-                <double>1.0</double>
-            </property>
-            <property name="formatType">
-                <enum>decimal</enum>
-            </property>
-            <property name="colorMode">
-                <enum>caLineEdit::Alarm_Static</enum>
-            </property>
-        </widget>
-        <widget class="caLineEdit" name="caLineEdit_21">
-            <property name="geometry">
-                <rect>
-                    <x>79</x>
                     <y>520</y>
                     <width>100</width>
                     <height>15</height>
@@ -2435,20 +2337,20 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(ioc):MEM_MAX</string>
+                <string>$(ioc):MEM_MAX_GiB</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
                     <red>0</red>
-                    <green>0</green>
+                    <green>216</green>
                     <blue>0</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -2512,7 +2414,7 @@ border-radius: 2px;
                 <set>Qt::AlignAbsolute|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_22">
+        <widget class="caLineEdit" name="caLineEdit_20">
             <property name="geometry">
                 <rect>
                     <x>130</x>
@@ -2529,9 +2431,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -2602,7 +2504,7 @@ border-radius: 2px;
                 <set>Qt::AlignAbsolute|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_23">
+        <widget class="caLineEdit" name="caLineEdit_21">
             <property name="geometry">
                 <rect>
                     <x>475</x>
@@ -2620,15 +2522,15 @@ border-radius: 2px;
             <property name="foreground">
                 <color alpha="255">
                     <red>0</red>
-                    <green>0</green>
+                    <green>216</green>
                     <blue>0</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -2692,7 +2594,7 @@ border-radius: 2px;
                 <set>Qt::AlignAbsolute|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_24">
+        <widget class="caLineEdit" name="caLineEdit_22">
             <property name="geometry">
                 <rect>
                     <x>475</x>
@@ -2710,15 +2612,15 @@ border-radius: 2px;
             <property name="foreground">
                 <color alpha="255">
                     <red>0</red>
-                    <green>0</green>
+                    <green>216</green>
                     <blue>0</blue>
                 </color>
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>120</red>
-                    <green>120</green>
-                    <blue>120</blue>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
                 </color>
             </property>
             <property name="alignment">
@@ -2849,9 +2751,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>158</red>
-                    <green>158</green>
-                    <blue>158</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="colorMode">
@@ -2912,9 +2814,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>158</red>
-                    <green>158</green>
-                    <blue>158</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="label">
@@ -2927,7 +2829,7 @@ border-radius: 2px;
                 <string>Reload ACF</string>
             </property>
             <property name="files">
-                <string>ioc_stats_reloadacf_confirm.adl</string>
+                <string>ioc_stats_reloadacf_confirm.ui </string>
             </property>
             <property name="args">
                 <string>ioc=$(ioc)</string>
@@ -2954,9 +2856,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>158</red>
-                    <green>158</green>
-                    <blue>158</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="label">
@@ -2969,7 +2871,7 @@ border-radius: 2px;
                 <string>Reboot</string>
             </property>
             <property name="files">
-                <string>ioc_stats_reboot_confirm.adl</string>
+                <string>ioc_stats_reboot_confirm.ui </string>
             </property>
             <property name="args">
                 <string>ioc=$(ioc)</string>
@@ -3122,7 +3024,7 @@ border-radius: 2px;
                 <set>Qt::AlignAbsolute|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_25">
+        <widget class="caLineEdit" name="caLineEdit_23">
             <property name="geometry">
                 <rect>
                     <x>122</x>
@@ -3139,9 +3041,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -3176,7 +3078,7 @@ border-radius: 2px;
                 <enum>caLineEdit::Static</enum>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_26">
+        <widget class="caLineEdit" name="caLineEdit_24">
             <property name="geometry">
                 <rect>
                     <x>122</x>
@@ -3193,9 +3095,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
+                    <red>52</red>
+                    <green>51</green>
+                    <blue>134</blue>
                 </color>
             </property>
             <property name="background">
@@ -3230,7 +3132,7 @@ border-radius: 2px;
                 <enum>caLineEdit::Static</enum>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_27">
+        <widget class="caLineEdit" name="caLineEdit_25">
             <property name="geometry">
                 <rect>
                     <x>122</x>
@@ -3247,9 +3149,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -3356,7 +3258,7 @@ border-radius: 2px;
                 <set>Qt::AlignAbsolute|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_28">
+        <widget class="caLineEdit" name="caLineEdit_26">
             <property name="geometry">
                 <rect>
                     <x>416</x>
@@ -3373,9 +3275,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -3446,7 +3348,7 @@ border-radius: 2px;
                 <set>Qt::AlignAbsolute|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
         </widget>
-        <widget class="caLineEdit" name="caLineEdit_29">
+        <widget class="caLineEdit" name="caLineEdit_27">
             <property name="geometry">
                 <rect>
                     <x>409</x>
@@ -3463,9 +3365,9 @@ border-radius: 2px;
             </property>
             <property name="foreground">
                 <color alpha="255">
-                    <red>0</red>
+                    <red>10</red>
                     <green>0</green>
-                    <blue>0</blue>
+                    <blue>184</blue>
                 </color>
             </property>
             <property name="background">
@@ -3524,9 +3426,9 @@ border-radius: 2px;
             </property>
             <property name="background">
                 <color alpha="255">
-                    <red>145</red>
-                    <green>145</green>
-                    <blue>145</blue>
+                    <red>115</red>
+                    <green>223</green>
+                    <blue>255</blue>
                 </color>
             </property>
             <property name="label">
@@ -3677,16 +3579,14 @@ border-radius: 2px;
         <zorder>caLineEdit_20</zorder>
         <zorder>caLineEdit_21</zorder>
         <zorder>caLineEdit_22</zorder>
-        <zorder>caLineEdit_23</zorder>
-        <zorder>caLineEdit_24</zorder>
         <zorder>caMenu_0</zorder>
         <zorder>caRelatedDisplay_2</zorder>
         <zorder>caRelatedDisplay_3</zorder>
+        <zorder>caLineEdit_23</zorder>
+        <zorder>caLineEdit_24</zorder>
         <zorder>caLineEdit_25</zorder>
         <zorder>caLineEdit_26</zorder>
         <zorder>caLineEdit_27</zorder>
-        <zorder>caLineEdit_28</zorder>
-        <zorder>caLineEdit_29</zorder>
         <zorder>caMessageButton_0</zorder>
     </widget>
 </widget>

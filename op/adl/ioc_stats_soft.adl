@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/devel/devIocStats-3-1-15/op/adl/ioc_stats_soft.adl"
-	version=030109
+	name="/home/epics/support/devIocStats-3-1-16/op/adl/ioc_stats_soft.adl"
+	version=030117
 }
 display {
 	object {
@@ -278,7 +278,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):STARTTOD"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -294,7 +294,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):TOD"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -310,7 +310,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):UPTIME"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -326,7 +326,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):HEARTBEAT"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	limits {
@@ -341,7 +341,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):RECORD_CNT"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	limits {
@@ -356,7 +356,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):HOSTNAME"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -372,7 +372,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):ENGINEER"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -388,7 +388,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):LOCATION"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -404,8 +404,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_CLNT_CNT"
-		clr=14
-		bclr=9
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -421,8 +421,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CA_CONN_CNT"
-		clr=14
-		bclr=9
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -438,8 +438,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):SUSP_TASK_CNT"
-		clr=14
-		bclr=9
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -470,7 +470,7 @@ rectangle {
 		args="ioc=$(ioc)"
 	}
 	clr=14
-	bclr=6
+	bclr=51
 	label="Alarm Limits"
 }
 "related display" {
@@ -486,7 +486,7 @@ rectangle {
 		args="ioc=$(ioc)"
 	}
 	clr=14
-	bclr=6
+	bclr=51
 	label="EPICS Env Vars"
 }
 rectangle {
@@ -545,7 +545,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):EPICS_VERS"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -556,15 +556,14 @@ text {
 	object {
 		x=6
 		y=395
-		width=265
+		width=530
 		height=13
 	}
 	monitor {
-		chan="$(ioc):APP_DIR1"
-		clr=14
+		chan="$(ioc):APP_DIR"
+		clr=54
 		bclr=4
 	}
-	align="horiz. right"
 	format="string"
 	limits {
 	}
@@ -573,45 +572,12 @@ text {
 	object {
 		x=6
 		y=428
-		width=265
+		width=530
 		height=12
 	}
 	monitor {
-		chan="$(ioc):ST_SCRIPT1"
-		clr=14
-		bclr=4
-	}
-	align="horiz. right"
-	format="string"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=271
-		y=395
-		width=265
-		height=13
-	}
-	monitor {
-		chan="$(ioc):APP_DIR2"
-		clr=14
-		bclr=4
-	}
-	format="string"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=271
-		y=428
-		width=265
-		height=12
-	}
-	monitor {
-		chan="$(ioc):ST_SCRIPT2"
-		clr=14
+		chan="$(ioc):ST_SCRIPT"
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -642,15 +608,15 @@ rectangle {
 }
 text {
 	object {
-		x=16
+		x=53
 		y=454
-		width=144
+		width=108
 		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Memory (# bytes)"
+	textix="Memory (GiB)"
 }
 text {
 	object {
@@ -756,9 +722,9 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):IOC_CPU_LOAD"
-		clr=14
-		bclr=9
+		chan="$(ioc):IOC_SINGLE_CPU_LOAD"
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -774,8 +740,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):FD_FREE"
-		clr=14
-		bclr=9
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -791,8 +757,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):FD_MAX"
-		clr=14
-		bclr=9
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -807,9 +773,9 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):MEM_FREE"
-		clr=14
-		bclr=9
+		chan="$(ioc):MEM_FREE_GiB"
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -824,9 +790,9 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):MEM_USED"
-		clr=14
-		bclr=9
+		chan="$(ioc):MEM_USED_GiB"
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -841,9 +807,9 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(ioc):MEM_MAX"
-		clr=14
-		bclr=9
+		chan="$(ioc):MEM_MAX_GiB"
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -871,7 +837,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):KERNEL_VERS"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -899,8 +865,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):SYS_CPU_LOAD"
-		clr=14
-		bclr=9
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -928,8 +894,8 @@ text {
 	}
 	monitor {
 		chan="$(ioc):CPU_CNT"
-		clr=14
-		bclr=9
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. centered"
@@ -981,7 +947,7 @@ menu {
 	control {
 		chan="$(ioc):ACCESS"
 		clr=14
-		bclr=6
+		bclr=51
 	}
 }
 text {
@@ -1009,7 +975,7 @@ text {
 		args="ioc=$(ioc)"
 	}
 	clr=14
-	bclr=6
+	bclr=51
 	label="Reload Access Security Conf File"
 }
 "related display" {
@@ -1025,7 +991,7 @@ text {
 		args="ioc=$(ioc)"
 	}
 	clr=14
-	bclr=6
+	bclr=51
 	label="Reboot"
 }
 text {
@@ -1085,7 +1051,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):GTIM_CUR_SRC"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -1101,7 +1067,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):GTIM_EVT_SRC"
-		clr=14
+		clr=44
 		bclr=4
 	}
 	format="string"
@@ -1117,7 +1083,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):GTIM_HI_SRC"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	format="string"
@@ -1157,7 +1123,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):GTIM_TIME"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	limits {
@@ -1184,7 +1150,7 @@ text {
 	}
 	monitor {
 		chan="$(ioc):GTIM_ERR_CNT"
-		clr=14
+		clr=54
 		bclr=4
 	}
 	limits {
@@ -1200,7 +1166,7 @@ text {
 	control {
 		chan="$(ioc):GTIM_RESET.PROC"
 		clr=14
-		bclr=7
+		bclr=51
 	}
 	label="Reset"
 	press_msg="0"

@@ -54,7 +54,7 @@ y 29
 w 212
 h 25
 font "helvetica-medium-r-18.0"
-fgColor rgb 0 0 0
+fgColor rgb 2560 0 47104
 bgColor index 3
 useDisplayBg
 value {
@@ -127,8 +127,8 @@ y 111
 w 123
 h 30
 fgColor rgb 0 0 0
-onColor rgb 44544 44544 44544
-offColor rgb 44544 44544 44544
+onColor rgb 29440 57088 65280
+offColor rgb 29440 57088 65280
 topShadowColor rgb 65280 65280 65280
 botShadowColor rgb 0 0 0
 controlPv "$(ioc):SysReset"
@@ -140,3 +140,4 @@ offLabel "Reboot Now!"
 useEnumNumeric
 font "helvetica-medium-r-18.0"
 endObjectProperties
+
