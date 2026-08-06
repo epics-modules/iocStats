@@ -100,7 +100,12 @@ static void cpu_ticks(double *total, double *idle) {
     obj = _Objects_Information_table[x][1];
     if (obj) {
       for (y = 1; y <= obj->maximum; y++) {
-        tc = (Thread_Control *)obj->local_table[y];
+        /* local_table is indexed from 0, but the object's index-within-
+         * class (y) is 1-based (RTEMS stores objects at
+         * id_index - OBJECTS_INDEX_MINIMUM, and OBJECTS_INDEX_MINIMUM is 1).
+         * Indexing with y directly reads one entry past the end of the
+         * array on every pass. */
+        tc = (Thread_Control *)obj->local_table[y - 1];
         if (tc) {
           *total += CPU_ELAPSED_TIME(tc);
           RTEMS_OBJ_GET_NAME(tc, name);
