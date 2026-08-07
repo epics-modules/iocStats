@@ -116,8 +116,13 @@ static validGetWfmParms statsGetWfmParms[] = {
     {"pwd", statsPwd, STATIC_TYPE},
     {NULL, NULL, 0}};
 
-wStats devWaveformStats = {
-    5, NULL, waveform_init, waveform_init_record, NULL, waveform_read};
+/* DEVSUPFUN is a bare `long (*)()`; under C23 empty parens mean "no
+ * arguments" rather than "unspecified arguments" (the C17-and-earlier
+ * meaning this DSET table was written against), so these need an
+ * explicit cast to avoid -Wincompatible-pointer-types. */
+wStats devWaveformStats = {5, NULL, (DEVSUPFUN)waveform_init,
+                            (DEVSUPFUN)waveform_init_record, NULL,
+                            (DEVSUPFUN)waveform_read};
 epicsExportAddress(dset, devWaveformStats);
 
 /* ---------------------------------------------------------------------- */

@@ -108,6 +108,12 @@
     void bsp_reset();                                                          \
     bsp_reset();                                                               \
   }
+#elif RTEMS_VERSION_INT >= VERSION_INT(6, 0, 0, 0)
+/* rtemsReboot() no longer exists; current RTEMS's bsp_reset() takes a
+ * (source, code) pair instead (see <bsp/bootcard.h>). */
+#include <bsp/bootcard.h>
+#include <rtems/score/interr.h>
+#define reboot(x) bsp_reset(RTEMS_FATAL_SOURCE_APPLICATION, (x))
 #else
 #define reboot(x) rtemsReboot()
 #endif
