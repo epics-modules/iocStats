@@ -56,6 +56,80 @@
 
 #include <devIocStats.h>
 
+#if RTEMS_LIBBSD_STACK
+
+/* The legacy network stack's global `struct mbstat mbstat` doesn't exist
+ * under libbsd -- query the same counts through libbsd's portable memstat
+ * API instead (same mechanism `netstat -m`/`vmstat -z` use). */
+#include <memstat.h>
+#include <sys/mbuf.h>
+#include <sys/param.h>
+
+static int get_mbuf_stat(const char *name, uint64_t *psize, uint64_t *pcount,
+                          uint64_t *pfree) {
+  struct memory_type_list *mtlp;
+  struct memory_type *mtp;
+
+  mtlp = memstat_mtl_alloc();
+  if (mtlp == NULL) {
+    return -1;
+  }
+  if (memstat_sysctl_all(mtlp, 0) < 0) {
+    memstat_mtl_free(mtlp);
+    return -1;
+  }
+  mtp = memstat_mtl_find(mtlp, ALLOCATOR_UMA, name);
+  if (mtp == NULL) {
+    memstat_mtl_free(mtlp);
+    return -1;
+  }
+  *psize = memstat_get_size(mtp);
+  *pcount = memstat_get_count(mtp);
+  *pfree = memstat_get_free(mtp);
+  memstat_mtl_free(mtlp);
+  return 0;
+}
+
+int devIocStatsInitClusterInfo(void) { return 0; }
+
+int devIocStatsGetClusterInfo(int pool, clustInfo *pval) {
+  uint64_t size, count, free;
+
+  if (pool == DATA_POOL)
+    return -1;
+
+  if (get_mbuf_stat(MBUF_MEM_NAME, &size, &count, &free))
+    return -1;
+  (*pval)[0][0] = size;
+  (*pval)[0][1] = count;
+  (*pval)[0][2] = free;
+  (*pval)[0][3] = count - free;
+
+  if (get_mbuf_stat(MBUF_CLUSTER_MEM_NAME, &size, &count, &free))
+    return -1;
+  (*pval)[1][0] = size;
+  (*pval)[1][1] = count;
+  (*pval)[1][2] = free;
+  (*pval)[1][3] = count - free;
+
+  return 0;
+}
+
+int devIocStatsGetClusterUsage(int pool, int *pval) {
+  uint64_t size, count, free;
+
+  if (pool == DATA_POOL)
+    return -1;
+
+  if (get_mbuf_stat(MBUF_MEM_NAME, &size, &count, &free))
+    return -1;
+  *pval = count;
+
+  return 0;
+}
+
+#else /* RTEMS_LIBBSD_STACK */
+
 /* This would otherwise need _KERNEL to be defined... */
 extern struct mbstat mbstat;
 
@@ -86,3 +160,5 @@ int devIocStatsGetClusterUsage(int pool, int *pval) {
 
   return 0;
 }
+
+#endif /* RTEMS_LIBBSD_STACK */
