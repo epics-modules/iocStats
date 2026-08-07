@@ -54,6 +54,17 @@
 #include <net/if.h>
 #include <net/if_var.h>
 
+/* osdCpuUsage.c walks _Objects_Information_table[]/Objects_Information
+ * directly; older RTEMS pulled these in transitively via rtems.h, current
+ * RTEMS no longer does, so include the Score header explicitly. */
+#include <rtems/score/objectimpl.h>
+
+/* osdCpuUsage.c reads Thread_Control::cpu_time_used (a Timestamp_Control)
+ * via the portable _Timestamp_Get_*() accessors rather than assuming its
+ * representation (struct timespec vs. int64_t sbintime_t is a per-
+ * architecture/config choice -- that's the whole point of the wrapper). */
+#include <rtems/score/timestampimpl.h>
+
 #undef malloc
 #undef free
 
