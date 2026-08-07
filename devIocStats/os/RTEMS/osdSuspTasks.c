@@ -45,17 +45,21 @@ int devIocStatsInitSuspTasks(void) { return 0; }
 int devIocStatsGetSuspTasks(int *pval) {
   Objects_Control *o;
   Objects_Id id = OBJECTS_ID_INITIAL_INDEX;
-  Objects_Id nid;
   int n = 0;
-  Objects_Locations l;
 
-  /* count all suspended (LOCAL -- cannot deal with remote ones ATM) tasks */
-  while ((o = _Objects_Get_next(&_RTEMS_tasks_Information, id, &l, &nid))) {
-    if ((RTEMS_ALREADY_SUSPENDED == rtems_task_is_suspended(nid))) {
+  /* count all suspended (LOCAL -- cannot deal with remote ones ATM) tasks.
+   * _Objects_Get_next()'s signature/semantics changed: no more separate
+   * Objects_Locations out-param (it now just returns NULL when nothing
+   * local is found), the object information comes first, and id doubles
+   * as both the search-from input and the next-id output. It locks the
+   * object allocator mutex when it finds something, which the caller must
+   * release -- see cpukit/libcsupport/src/resource_snapshot.c for the
+   * reference usage this follows. */
+  while ((o = _Objects_Get_next(id, &_RTEMS_tasks_Information.Objects, &id))) {
+    if ((RTEMS_ALREADY_SUSPENDED == rtems_task_is_suspended(o->id))) {
       n++;
     }
-    _Thread_Enable_dispatch();
-    id = nid;
+    _Objects_Allocator_unlock();
   }
   *pval = n;
   return 0;

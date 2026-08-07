@@ -41,7 +41,18 @@ int devIocStatsGetWorkspaceUsage(memInfo *pval) {
   _RTEMS_Unlock_allocator();
 #endif /* RTEMS_PROTECTED_HEAP */
 #if (__RTEMS_MAJOR__ > 4) || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
-  pval->numBytesTotal = Configuration.work_space_size;
+  /* rtems_configuration_get_work_space_size() (the public accessor for
+   * the global `Configuration` object, which a support library can't
+   * reach directly -- it's only declared when the application itself
+   * includes <rtems/confdefs.h>) reports the compile-time *configured*
+   * workspace size. Hardware-verified on a real BBB (RTEMS_INIT=new)
+   * that this does NOT match the actual runtime-negotiated workspace
+   * region: Free.total+Used.total came back ~227MB while this reported
+   * ~624KB. Derive the total from the same heap-info call that already
+   * produced Free/Used instead -- it's the only value guaranteed
+   * self-consistent with them, regardless of how this port sizes the
+   * workspace at boot. */
+  pval->numBytesTotal = info.Free.total + info.Used.total;
 #else
   pval->numBytesTotal = _Configuration_Table->work_space_size;
 #endif

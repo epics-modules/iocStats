@@ -65,9 +65,12 @@ typedef char *objName;
 
 #if defined(RTEMS_ENABLE_NANOSECOND_CPU_USAGE_STATISTICS) ||                   \
     (__RTEMS_MAJOR__ > 4) || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
+/* cpu_time_used is a Timestamp_Control; its representation (struct
+ * timespec vs. int64_t) is a per-architecture/config choice, so go
+ * through the portable accessor rather than assume struct-timespec
+ * layout. */
 #define CPU_ELAPSED_TIME(tc)                                                   \
-  ((double)(tc)->cpu_time_used.tv_sec +                                        \
-   ((double)tc->cpu_time_used.tv_nsec / 1E9))
+  ((double)_Timestamp_Get_as_nanoseconds(&(tc)->cpu_time_used) / 1E9)
 #else
 #define CPU_ELAPSED_TIME(tc) ((double)(tc)->ticks_executed)
 #endif
@@ -99,8 +102,15 @@ static void cpu_ticks(double *total, double *idle) {
 
     obj = _Objects_Information_table[x][1];
     if (obj) {
-      for (y = 1; y <= obj->maximum; y++) {
-        tc = (Thread_Control *)obj->local_table[y];
+      /* obj->maximum_id is an encoded Objects_Id (API/class/node/index),
+       * not a plain count -- _Objects_Get_maximum_index() extracts the
+       * actual maximum index, matching what RTEMS's own internals use. */
+      for (y = 1; y <= (int)_Objects_Get_maximum_index(obj); y++) {
+        /* local_table is indexed from 0, but the object's index-within-
+         * class (y) is 1-based (RTEMS stores objects at
+         * id_index - OBJECTS_INDEX_MINIMUM). Indexing with y directly
+         * reads one entry past the end of the array on every pass. */
+        tc = (Thread_Control *)obj->local_table[y - OBJECTS_INDEX_MINIMUM];
         if (tc) {
           *total += CPU_ELAPSED_TIME(tc);
           RTEMS_OBJ_GET_NAME(tc, name);

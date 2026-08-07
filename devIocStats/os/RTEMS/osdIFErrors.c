@@ -40,20 +40,37 @@
 
 #include <devIocStats.h>
 
-/* This would otherwise need _KERNEL to be defined... */
-extern struct ifnet *ifnet;
+/* The kernel-internal `struct ifnet` linked list (walked via if_next) is
+ * gone under libbsd -- ifnet is now a CK_STAILQ and if_ierrors/if_oerrors
+ * are behind the if_get_counter KPI, neither meant for use outside the
+ * kernel proper. getifaddrs()/struct if_data is the portable, userspace-
+ * visible way to get the same per-interface error counts: each interface
+ * contributes one AF_LINK entry whose ifa_data is its struct if_data. */
+#include <ifaddrs.h>
+#include <net/if.h>
+#include <sys/socket.h>
 
 int devIocStatsInitIFErrors(void) { return 0; }
 
 int devIocStatsGetIFErrors(ifErrInfo *pval) {
-  struct ifnet *ifp;
+  struct ifaddrs *addrs, *ifa;
 
-  /* add all interfaces' errors */
   pval->ierrors = 0;
   pval->oerrors = 0;
-  for (ifp = ifnet; ifp != NULL; ifp = ifp->if_next) {
-    pval->ierrors += ifp->if_ierrors;
-    pval->oerrors += ifp->if_oerrors;
+
+  if (getifaddrs(&addrs) < 0) {
+    return -1;
   }
+
+  for (ifa = addrs; ifa != NULL; ifa = ifa->ifa_next) {
+    if (ifa->ifa_addr != NULL && ifa->ifa_addr->sa_family == AF_LINK &&
+        ifa->ifa_data != NULL) {
+      struct if_data *ifd = (struct if_data *)ifa->ifa_data;
+      pval->ierrors += ifd->ifi_ierrors;
+      pval->oerrors += ifd->ifi_oerrors;
+    }
+  }
+
+  freeifaddrs(addrs);
   return 0;
 }
