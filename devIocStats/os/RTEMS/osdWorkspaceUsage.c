@@ -41,7 +41,10 @@ int devIocStatsGetWorkspaceUsage(memInfo *pval) {
   _RTEMS_Unlock_allocator();
 #endif /* RTEMS_PROTECTED_HEAP */
 #if (__RTEMS_MAJOR__ > 4) || (__RTEMS_MAJOR__ == 4 && __RTEMS_MINOR__ > 9)
-  pval->numBytesTotal = Configuration.work_space_size;
+  /* The global `Configuration` object is only declared when the
+   * application itself includes <rtems/confdefs.h>; a support library
+   * has to go through the public accessor instead. */
+  pval->numBytesTotal = rtems_configuration_get_work_space_size();
 #else
   pval->numBytesTotal = _Configuration_Table->work_space_size;
 #endif

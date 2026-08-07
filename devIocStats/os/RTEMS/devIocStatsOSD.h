@@ -65,6 +65,15 @@
  * architecture/config choice -- that's the whole point of the wrapper). */
 #include <rtems/score/timestampimpl.h>
 
+/* osdWorkspaceUsage.c uses _Workspace_Area directly; same transitive-
+ * include story as objectimpl.h above. */
+#include <rtems/score/wkspace.h>
+
+/* osdSuspTasks.c walks _RTEMS_tasks_Information.Objects directly; this is
+ * the Classic API task object information, declared here rather than
+ * anywhere Score-level. */
+#include <rtems/rtems/tasksdata.h>
+
 #undef malloc
 #undef free
 
