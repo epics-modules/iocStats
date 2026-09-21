@@ -9,3 +9,4 @@ repos:
     hooks:
       - id: clang-format
         args: ["--sort-includes=false"]
+exclude: ".*/autoconvert/.*"
