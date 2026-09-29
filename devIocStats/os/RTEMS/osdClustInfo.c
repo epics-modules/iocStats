@@ -56,6 +56,37 @@
 
 #include <devIocStats.h>
 
+#if RTEMS_LIBBSD_STACK
+
+/* The legacy network stack's global `struct mbstat mbstat` doesn't exist
+ * under libbsd. libbsd's portable memstat API (memstat_sysctl_all(), the
+ * same mechanism `netstat -m`/`vmstat -z` use) looked like the right
+ * replacement and is what epics-modules/iocStats#61's RTEMS 6 port does
+ * too -- but memstat_sysctl_all() crashes on real hardware here: it walks
+ * into UMA's per-CPU counter stats (uma_vm_zone_stats() ->
+ * _bsd_counter_u64_alloc(), freebsd/sys/kern/subr_counter.c), which faults
+ * with a data abort (confirmed via addr2line against the crash PC/LR).
+ * Whatever's missing/broken in this RTEMS-libbsd port's counter(9)
+ * support, #61 was apparently never actually run on hardware either (it
+ * also has a row-index bug independent of this). Until that's root-caused,
+ * report "not available" rather than crash the IOC. */
+
+int devIocStatsInitClusterInfo(void) { return 0; }
+
+int devIocStatsGetClusterInfo(int pool, clustInfo *pval) {
+  (void)pool;
+  (void)pval;
+  return -1;
+}
+
+int devIocStatsGetClusterUsage(int pool, int *pval) {
+  (void)pool;
+  (void)pval;
+  return -1;
+}
+
+#else /* RTEMS_LIBBSD_STACK */
+
 /* This would otherwise need _KERNEL to be defined... */
 extern struct mbstat mbstat;
 
@@ -86,3 +117,5 @@ int devIocStatsGetClusterUsage(int pool, int *pval) {
 
   return 0;
 }
+
+#endif /* RTEMS_LIBBSD_STACK */

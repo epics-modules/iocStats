@@ -185,11 +185,17 @@ static validGetStrParms statsGetStrParms[] = {
     {"pwd2", statsPwd2, STATIC_TYPE},
     {NULL, NULL, 0}};
 
-sStats devStringinStats = {
-    5, NULL, stringin_init, stringin_init_record, NULL, stringin_read};
-sStats devStringinEnvVar = {5,    NULL,       NULL, envvar_init_record,
-                            NULL, envvar_read};
-sStats devStringinEpics = {5, NULL, NULL, epics_init_record, NULL, epics_read};
+/* DEVSUPFUN is a bare `long (*)()`; under C23 empty parens mean "no
+ * arguments" rather than "unspecified arguments" (the C17-and-earlier
+ * meaning these DSET tables were written against), so these need an
+ * explicit cast to avoid -Wincompatible-pointer-types. */
+sStats devStringinStats = {5, NULL, (DEVSUPFUN)stringin_init,
+                            (DEVSUPFUN)stringin_init_record, NULL,
+                            (DEVSUPFUN)stringin_read};
+sStats devStringinEnvVar = {5, NULL, NULL, (DEVSUPFUN)envvar_init_record,
+                             NULL, (DEVSUPFUN)envvar_read};
+sStats devStringinEpics = {5, NULL, NULL, (DEVSUPFUN)epics_init_record, NULL,
+                            (DEVSUPFUN)epics_read};
 epicsExportAddress(dset, devStringinStats);
 epicsExportAddress(dset, devStringinEnvVar);
 epicsExportAddress(dset, devStringinEpics);

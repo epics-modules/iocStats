@@ -54,6 +54,26 @@
 #include <net/if.h>
 #include <net/if_var.h>
 
+/* osdCpuUsage.c walks _Objects_Information_table[]/Objects_Information
+ * directly; older RTEMS pulled these in transitively via rtems.h, current
+ * RTEMS no longer does, so include the Score header explicitly. */
+#include <rtems/score/objectimpl.h>
+
+/* osdCpuUsage.c reads Thread_Control::cpu_time_used (a Timestamp_Control)
+ * via the portable _Timestamp_Get_*() accessors rather than assuming its
+ * representation (struct timespec vs. int64_t sbintime_t is a per-
+ * architecture/config choice -- that's the whole point of the wrapper). */
+#include <rtems/score/timestampimpl.h>
+
+/* osdWorkspaceUsage.c uses _Workspace_Area directly; same transitive-
+ * include story as objectimpl.h above. */
+#include <rtems/score/wkspace.h>
+
+/* osdSuspTasks.c walks _RTEMS_tasks_Information.Objects directly; this is
+ * the Classic API task object information, declared here rather than
+ * anywhere Score-level. */
+#include <rtems/rtems/tasksdata.h>
+
 #undef malloc
 #undef free
 
@@ -88,6 +108,12 @@
     void bsp_reset();                                                          \
     bsp_reset();                                                               \
   }
+#elif RTEMS_VERSION_INT >= VERSION_INT(6, 0, 0, 0)
+/* rtemsReboot() no longer exists; current RTEMS's bsp_reset() takes a
+ * (source, code) pair instead (see <bsp/bootcard.h>). */
+#include <bsp/bootcard.h>
+#include <rtems/score/interr.h>
+#define reboot(x) bsp_reset(RTEMS_FATAL_SOURCE_APPLICATION, (x))
 #else
 #define reboot(x) rtemsReboot()
 #endif
