@@ -111,15 +111,12 @@
 
 #define MAX_NAME_SIZE (MAX_STRING_SIZE - 1)
 
-struct sStats {
-  long number;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN get_ioint_info;
-  DEVSUPFUN read_stringin;
-};
-typedef struct sStats sStats;
+#ifndef HAS_stringindset
+typedef struct stringindset {
+  dset common;
+  long (*read_stringin)(struct stringinRecord *prec);
+} stringindset;
+#endif
 
 struct pvtArea {
   int index;
@@ -137,11 +134,11 @@ struct validGetStrParms {
 typedef struct validGetStrParms validGetStrParms;
 
 static long stringin_init(int pass);
-static long stringin_init_record(stringinRecord *);
+static long stringin_init_record(struct dbCommon *pcommon);
 static long stringin_read(stringinRecord *);
-static long envvar_init_record(stringinRecord *);
+static long envvar_init_record(struct dbCommon *pcommon);
 static long envvar_read(stringinRecord *);
-static long epics_init_record(stringinRecord *);
+static long epics_init_record(struct dbCommon *pcommon);
 static long epics_read(stringinRecord *);
 
 static void statsSScript1(char *);
@@ -185,11 +182,36 @@ static validGetStrParms statsGetStrParms[] = {
     {"pwd2", statsPwd2, STATIC_TYPE},
     {NULL, NULL, 0}};
 
-sStats devStringinStats = {
-    5, NULL, stringin_init, stringin_init_record, NULL, stringin_read};
-sStats devStringinEnvVar = {5,    NULL,       NULL, envvar_init_record,
-                            NULL, envvar_read};
-sStats devStringinEpics = {5, NULL, NULL, epics_init_record, NULL, epics_read};
+stringindset devStringinStats = {
+    {
+        5,
+        NULL,
+        stringin_init,
+        stringin_init_record,
+        NULL
+    },
+    stringin_read
+};
+stringindset devStringinEnvVar = {
+    {
+        5,
+        NULL,
+        NULL,
+        envvar_init_record,
+        NULL
+    },
+    envvar_read
+};
+stringindset devStringinEpics = {
+    {
+        5,
+        NULL,
+        NULL,
+        epics_init_record,
+        NULL
+    },
+    epics_read
+};
 epicsExportAddress(dset, devStringinStats);
 epicsExportAddress(dset, devStringinEnvVar);
 epicsExportAddress(dset, devStringinEpics);
@@ -215,7 +237,8 @@ static long stringin_init(int pass) {
   return 0;
 }
 
-static long stringin_init_record(stringinRecord *pr) {
+static long stringin_init_record(struct dbCommon *pcommon) {
+  stringinRecord *pr = (stringinRecord *) pcommon;
   int i;
   char *parm;
   pvtArea *pvt = NULL;
@@ -242,7 +265,8 @@ static long stringin_init_record(stringinRecord *pr) {
   return 0; /* success */
 }
 
-static long envvar_init_record(stringinRecord *pr) {
+static long envvar_init_record(struct dbCommon *pcommon) {
+  stringinRecord *pr = (stringinRecord *) pcommon;
   if (pr->inp.type != INST_IO) {
     recGblRecordError(S_db_badField, (void *)pr,
                       "devStringinEnvVar (init_record) Illegal INP field");
@@ -257,11 +281,12 @@ static long envvar_init_record(stringinRecord *pr) {
   return 0; /* success */
 }
 
-static long epics_init_record(stringinRecord *pr) {
+static long epics_init_record(struct dbCommon *pcommon) {
+  stringinRecord *pr = (stringinRecord *) pcommon;
   long status;
   const ENV_PARAM **ppParam = env_param_list;
 
-  status = envvar_init_record(pr);
+  status = envvar_init_record(pcommon);
   if (status)
     return status;
 

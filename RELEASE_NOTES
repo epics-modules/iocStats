@@ -6,6 +6,12 @@ Release Notes for iocStats
 
 ## Unreleased
 
+* Changes by Andrew Johnson:
+  - iocStats now uses the typed device support interfaces introduced in
+    Base 7.0 when built against a Base that provides them, but is still
+    compatible with EPICS Base 3.15 and later. This removes the `DEVSUPFUN`
+    casts, so the code now builds cleanly with newer C/C++ compilers.
+
 ## iocStats-R4-0-1:
 
 ### Bugfixes
